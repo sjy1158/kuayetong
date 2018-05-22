@@ -11,6 +11,9 @@ export default {
 </script>
 
 <style>
+  li{
+    list-style: none;
+  }
   html,body{
     margin: 0;
     padding: 0;

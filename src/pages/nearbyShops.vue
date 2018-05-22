@@ -70,59 +70,59 @@
        </div>
      </div>
 
-     <div style="height: 100px;width: 100%;background: yellow">
+     <div style="width: 100%;margin-top: 20px;font-size: 12px;">
       <div style="display: flex" class="flex1">
-        <div>11111</div>
-        <div>11111</div>
-        <div>11111</div>
-        <div>11111</div>
-        <div>11111</div>
+        <div>
+          <img src="../assets/PartnershipCenter.png" alt="">
+          <p>合作中心</p>
+        </div>
+        <div>
+          <img src="../assets/Enterpriseconsulting.png" alt="">
+          <p>企业咨询</p>
+        </div>
+        <div>
+          <img src="../assets/Gourmetworld.png" alt="">
+          <p>美食天下</p>
+        </div>
+        <div>
+          <img src="../assets/酒店设施-运动健身.png" alt="">
+          <p>运动健身</p>
+        </div>
+        <div>
+          <img src="../assets/购物.png" alt="">
+          <p>时尚购物</p>
+        </div>
       </div>
      </div>
-   <div style="height: 100px;width: 100%;background: yellow">
+   <div style="width: 100%;font-size: 12px;">
      <div style="display: flex" class="flex1">
-       <div>11111</div>
-       <div>11111</div>
-       <div>11111</div>
-       <div>11111</div>
-       <div>11111</div>
+       <div>
+         <img src="../assets/Flowersinthefield.png" alt="">
+         <p>花田喜事</p>
+       </div>
+       <div>
+         <img src="../assets/Lifeservice.png" alt="">
+         <p>生活服务</p>
+       </div>
+       <div>
+         <img src="../assets/Performanceticketing.png" alt="">
+         <p>演出票务</p>
+       </div>
+       <div>
+         <img src="../assets/Hairdressingbeauty.png" alt="">
+         <p>美容美发</p>
+       </div>
+       <div>
+         <img src="../assets/Lookatthewhole.png" alt="">
+         <p>查看全部</p>
+       </div>
      </div>
    </div>
-   <div style="height: 100px;width: 100%;background: yellow">
-     <div style="display: flex" class="flex1">
-       <div>11111</div>
-       <div>11111</div>
-       <div>11111</div>
-       <div>11111</div>
-       <div>11111</div>
-     </div>
-   </div>
-   <div style="height: 100px;width: 100%;background: yellow">
-     <div style="display: flex" class="flex1">
-       <div>11111</div>
-       <div>11111</div>
-       <div>11111</div>
-       <div>11111</div>
-       <div>11111</div>
-     </div>
-   </div>
-   <div style="height: 100px;width: 100%;background: yellow">
-     <div style="display: flex" class="flex1">
-       <div>11111</div>
-       <div>11111</div>
-       <div>11111</div>
-       <div>11111</div>
-       <div>11111</div>
-     </div>
-   </div>
-   <div style="height: 100px;width: 100%;background: yellow">
-     <div style="display: flex" class="flex1">
-       <div>11111</div>
-       <div>11111</div>
-       <div>11111</div>
-       <div>11111</div>
-       <div>11111</div>
-     </div>
+
+   <div class="scroll-wrap">
+     <ul class="scroll-content" :style="{ top }">
+       <li v-for="item in prizeList">{{item.name}}</li >
+     </ul>
    </div>
 
      <!--<mt-tabbar fixed :selected="selected">-->
@@ -155,6 +155,14 @@
               isfixed:true,
               title:'外卖',
               value:'',
+              prizeList: [
+                { name: '今日数据' },
+                { name: 'uiuiuiuui' },
+                { name: 'hkhhhhjkh' },
+                { name: 'dadadada' },
+                { name: 'dadadadada' }
+              ],
+              activeIndex: 0,
               positions:{
                 lng:'',
                 lat:'',
@@ -174,6 +182,11 @@
                 }
               }]
             }
+        },
+        computed: {
+          top() {
+            return - this.activeIndex * 50 + 'px';
+          }
         },
         methods:{
           selected(){
@@ -195,8 +208,15 @@
             }
             return
           },
-        },
-        mounted(){
+          },
+          mounted(){
+          setInterval(()=> {
+            if(this.activeIndex < this.prizeList.length) {
+              this.activeIndex += 1;
+            } else {
+              this.activeIndex = 0;
+            }
+          }, 1000);
             window.addEventListener('scroll',this.handleScroll)
           this.handleScroll()
           this.getLocation()
@@ -213,6 +233,31 @@
       background: palevioletred;
       z-index: 999999999;
     }
+
+    .scroll-wrap{
+      width: 100%;
+      height: 50px;
+      background: pink;
+      /*border: 1px solid blue;*/
+      overflow: hidden;
+    }
+
+    .scroll-content{
+      position: relative;
+      padding-left: 0px!important;
+      margin: 0px!important;
+      /*background: green;*/
+      height: auto;
+      transition: top 0.5s;
+    }
+
+    li{
+      line-height: 50px;
+      width: 100%;
+      text-align: center;
+      /*background: pink;*/
+    }
+
     /*.div{*/
       /*animation: bounce-in .5s;*/
     /*}*/
