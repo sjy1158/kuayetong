@@ -60,7 +60,7 @@
           <p>企业咨询</p>
         </div>
         <div>
-          <img src="../assets/Gourmetworld.png" alt="">
+          <router-link to="/Gastrosoph"><img src="../assets/Gourmetworld.png" alt=""></router-link>
           <p>美食天下</p>
         </div>
         <div>
