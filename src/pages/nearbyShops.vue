@@ -10,7 +10,7 @@
 
        <div style="height: 50px;color: black;display: flex;" ref="location">
          <div style="height: 100%;width: 200px;flex: 1;color: white;" class="location">
-           <img src="../assets/timg.jpg" alt="" style="height: 22px;width: 20px;">
+           <img src="../assets/positioning.png" alt="">
            <span>{{positions.address}}</span>
          </div>
          <div style="flex: 1">
