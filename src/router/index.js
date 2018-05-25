@@ -4,6 +4,7 @@ import nearbyShops from '../pages/nearbyShops'
 import Businesshome from '../pages/Businesshome'
 import Gastrosoph from '../pages/Gastrosoph'
 import allShops from '../pages/allShops'
+import Paybill from '../pages/Paybill'
 
 Vue.use(Router)
 
@@ -24,6 +25,10 @@ export default new Router({
     {
       path:'/allShops',
       component:allShops
+    },
+    {
+      path:'/Paybill',
+      component:Paybill
     },
     {
       path:'*',

@@ -194,7 +194,7 @@
 
       <!--//footer-->
       <div class="btn">
-        <button>话费抵扣买单</button>
+        <button @click="Paybill">话费抵扣买单</button>
       </div>
     </div>
 </template>
@@ -215,6 +215,9 @@
       methods:{
           backIndex(){
             this.$router.push('/nearbyShops');
+          },
+          Paybill(){
+            this.$router.push('/Paybill');
           },
         tabactive(index){
           this.index = index
