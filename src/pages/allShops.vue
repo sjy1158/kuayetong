@@ -2,7 +2,7 @@
   <div class="allShops">
     <header id="header">
       <img src="../assets/return@3x.png" alt="" class="back">
-      <div style="" class="searchInput">
+      <div style="" class="searchInput2">
         <div>
           <img src="../assets/search.png" alt="">
           <input type="text" placeholder="输入商家或商品名称搜索">
@@ -37,7 +37,7 @@
           <li>小吃馆</li>
           <li>小炒菜</li>
         </ul>
-        <div class="shoplist" style="margin-top: 30px;">
+        <div class="shoplist2" style="margin-top: 30px;">
           <ul>
             <li>
               <img src="../assets/fastfood.png" alt="">
@@ -215,17 +215,17 @@
     height: 70px!important;
   }
 
-  .searchInput{
+  .searchInput2{
     height: 40px;width: 100%;line-height: 40px;
   }
-  .searchInput div{
+  .searchInput2 div{
     height: 100%;
     width: 90%;
     /*background: red;*/
     margin: 0 auto;
     position: relative;
   }
-  .searchInput div img{
+  .searchInput2 div img{
     position: absolute;
     height: 15px;
     width: 15px;
@@ -233,12 +233,12 @@
     left: 6%;
     margin-top: -7.5px;
   }
-  .searchInput div input{
+  .searchInput2 div input{
     height: 15px;
     width: 83%;
     padding-left: 7%;
     border: 1px #FFFFFF solid;
-    box-shadow:0px 0px 0px 3px #F3F3F3;
+    box-shadow:0px 0px 0px 3px #F8F8F8;
     border-radius: 15px;
     outline: none;
     color: #909090;
@@ -286,14 +286,14 @@
   .tabcontentshop ul li:last-child{
     padding-bottom: 14px;
   }
-  .shoplist{
+  .shoplist2{
     width: 73%!important;
     height: auto;
     float: right;
     /*background: red!important;*/
     padding: 0% 1% 0% 1%!important;
   }
-  .shoplist ul{
+  .shoplist2 ul{
     width: 100%;
     display: flex;
     flex-wrap: wrap;
@@ -305,7 +305,7 @@
     /*padding: 0px!important;*/
 
   }
-  .shoplist ul li{
+  .shoplist2 ul li{
     /*height: 192px;*/
     flex: 1;
     width: 33%;
@@ -323,10 +323,10 @@
     /*position: relative;*/
     /*margin: 0px!important;*/
   }
-  .shoplist ul li p{
+  .shoplist2 ul li p{
     margin: 0px!important;
   }
-  .shoplist ul li div{
+  .shoplist2 ul li div{
     width: 50px;
     background: #f3f3f3;
     margin: 0 auto;

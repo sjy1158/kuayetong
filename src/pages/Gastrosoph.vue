@@ -11,67 +11,67 @@
      </div>
     </div>
 
-    <div class="box1" style="margin-top: 20px;" id="box1">
-      <ul>
+    <div class="box2" style="margin-top: 20px;" id="box1">
+      <ul style="margin:0px!important;">
         <li id="li">
           <router-link to="/allShops"><img src="../assets/gourmetworld-all.png" alt=""></router-link>
-          <p :class="index==0 ? 'activeslide':''" @click="activeslideTab(0)">全部</p>
+          <div :class="index==0 ? 'activeslide':''" @click="activeslideTab(0)">全部</div>
         </li>
         <li>
           <img src="../assets/foodworld-fastfood.png" alt="">
-          <p :class="index==1 ? 'activeslide':''" @click="activeslideTab(1)">快餐便当</p>
+          <div :class="index==1 ? 'activeslide':''" @click="activeslideTab(1)">快餐便当</div>
         </li>
         <li>
           <img src="../assets/foodworld-hamburgerfries.png" alt="">
-          <p :class="index==2 ? 'activeslide':''" @click="activeslideTab(2)">汉堡薯条</p>
+          <div :class="index==2 ? 'activeslide':''" @click="activeslideTab(2)">汉堡薯条</div>
         </li>
         <li>
           <img src="../assets/gourmetworld-all.png" alt="">
-          <p :class="index==3 ? 'activeslide':''" @click="activeslideTab(3)">汉堡薯条</p>
+          <div :class="index==3 ? 'activeslide':''" @click="activeslideTab(3)">汉堡薯条</div>
         </li>
         <li>
           <img src="../assets/foodworld-fastfood.png" alt="">
-          <p :class="index==4 ? 'activeslide':''" @click="activeslideTab(4)">汉堡薯条</p>
+          <div :class="index==4 ? 'activeslide':''" @click="activeslideTab(4)">汉堡薯条</div>
         </li>
         <li>
           <img src="../assets/foodworld-hamburgerfries.png" alt="">
-          <p :class="index==5 ? 'activeslide':''" @click="activeslideTab(5)">汉堡薯条</p>
+          <div :class="index==5 ? 'activeslide':''" @click="activeslideTab(5)">汉堡薯条</div>
         </li>
         <li>
           <img src="../assets/gourmetworld-all.png" alt="">
-          <p :class="index==6 ? 'activeslide':''" @click="activeslideTab(6)">汉堡薯条</p>
+          <div :class="index==6 ? 'activeslide':''" @click="activeslideTab(6)">汉堡薯条</div>
         </li>
         <li>
           <img src="../assets/foodworld-fastfood.png" alt="">
-          <p :class="index==7 ? 'activeslide':''" @click="activeslideTab(7)">汉堡薯条</p>
+          <div :class="index==7 ? 'activeslide':''" @click="activeslideTab(7)">汉堡薯条</div>
         </li>
         <li>
           <img src="../assets/foodworld-hamburgerfries.png" alt="">
-          <p :class="index==8 ? 'activeslide':''" @click="activeslideTab(8)">汉堡薯条</p>
+          <div :class="index==8 ? 'activeslide':''" @click="activeslideTab(8)">汉堡薯条</div>
         </li>
         <li>
           <img src="../assets/gourmetworld-all.png" alt="">
-          <p :class="index==9 ? 'activeslide':''" @click="activeslideTab(9)">汉堡薯条</p>
+          <div :class="index==9 ? 'activeslide':''" @click="activeslideTab(9)">汉堡薯条</div>
         </li>
         <li>
           <img src="../assets/foodworld-fastfood.png" alt="">
-          <p :class="index==10 ? 'activeslide':''" @click="activeslideTab(10)">汉堡薯条</p>
+          <div :class="index==10 ? 'activeslide':''" @click="activeslideTab(10)">汉堡薯条</div>
         </li>
         <li>
           <img src="../assets/foodworld-hamburgerfries.png" alt="">
-          <p :class="index==11 ? 'activeslide':''" @click="activeslideTab(11)">汉堡薯条</p>
+          <div :class="index==11 ? 'activeslide':''" @click="activeslideTab(11)">汉堡薯条</div>
         </li>
         <li>
           <img src="../assets/gourmetworld-all.png" alt="">
-          <p :class="index==12 ? 'activeslide':''" @click="activeslideTab(12)">汉堡薯条</p>
+          <div :class="index==12 ? 'activeslide':''" @click="activeslideTab(12)">汉堡薯条</div>
         </li>
         <li>
           <img src="../assets/foodworld-fastfood.png" alt="">
-          <p :class="index==13 ? 'activeslide':''" @click="activeslideTab(13)">汉堡薯条</p>
+          <div :class="index==13 ? 'activeslide':''" @click="activeslideTab(13)">汉堡薯条</div>
         </li>
         <li>
           <img src="../assets/foodworld-hamburgerfries.png" alt="">
-          <p :class="index==14 ? 'activeslide':''" @click="activeslideTab(14)">汉堡薯条</p>
+          <div :class="index==14 ? 'activeslide':''" @click="activeslideTab(14)">汉堡薯条</div>
         </li>
       </ul>
     </div>
@@ -275,6 +275,9 @@
 </script>
 
 <style>
+  .Gastrosoph{
+    background: white;
+  }
   .Gastrosoph .mint-header{
     background: white!important;
     color: #393939;
@@ -308,25 +311,27 @@
       margin-top: -7.5px;
     }
   .searchInput div input{
-    height: 28px;
+    height: 23px;
     width: 83%;
     padding-left: 7%;
     border: 1px #FFFFFF solid;
-    box-shadow:0px 0px 0px 3px #F3F3F3;
+    box-shadow:0px 0px 0px 3px #F8F8F8;
     border-radius: 15px;
     outline: none;
     color: #909090;
   }
 
 
-  .box1{
+  .box2{
     width: 100%;
-    height: 100px;
-    /*background: pink;*/
+    height: 77px;
     overflow-x: scroll;
     overflow-y: hidden;
   }
-  .box1 ul{
+  .box2::-webkit-scrollbar {
+    display: none;
+  }
+  .box2 ul{
     display: flex;
     height: 80px;
     padding-left: 0px!important;
@@ -334,31 +339,34 @@
     margin-top: 0px!important;
   }
 
-  .box1 ul li{
+  .box2 ul li{
     flex: 1;
+    line-height: 0px!important;
     /*position: relative;*/
     /*margin-right: 10px;*/
   }
-  .box1 ul li img{
+  .box2 ul li img{
     width: 48px;
     height: 40px;
   }
-  .box1 ul li p{
+  .box2 ul li div{
       font-size: 12px;
-    margin-top: 0px!important;
+    width: 50px;
+    margin: 0 auto;
+    margin-top: 8px!important;
     /*margin: 0px!important;*/
     /*width: 30px;*/
     /*position: absolute;*/
     /*left: 50%;*/
     /*margin-left: -15px;*/
     padding-top: 10px;
-    padding-bottom: 5px;
+    padding-bottom: 17px;
   }
   .activeslide{
     color: #F08400;
     border-bottom: 2px solid #F08400;
   }
-  .box1 ul li img{
+  .box2 ul li img{
     padding: 0px 5px 0px 5px;
   }
 
@@ -389,7 +397,7 @@
   }
   .slidecontent .listshop p{
     margin: 0px!important;
-    padding-bottom: 15px;
+    padding-bottom: 10px;
     /*padding-left: 11px;*/
   }
   .shop span{

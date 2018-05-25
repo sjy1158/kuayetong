@@ -124,10 +124,30 @@
    </div>
 
    <div class="slideleft" style="border-bottom: 1px solid #F3F3F3">
-     <div :class="index==0 ? 'active':''" @click="tabactive(0)">距离最近</div>
-     <div :class="index==1 ? 'active':''" @click="tabactive(1)">折扣最多</div>
-     <div :class="index==2 ? 'active':''" @click="tabactive(2)">评分最高</div>
-     <div :class="index==3 ? 'active':''" @click="tabactive(3)">销量最高</div>
+     <div style="position: relative" :class="index==0 ? 'active':''" @click="tabactive(0)">
+       <div style="width:20px;position: absolute;bottom: 0px;left: 50%;margin-left: -10px;" :class="index==0 ? 'activeTab':''">
+
+       </div>
+       距离最近
+     </div>
+     <div style="position: relative" :class="index==1 ? 'active':''" @click="tabactive(1)">
+       <div style="width:20px;position: absolute;bottom: 0px;left: 50%;margin-left: -10px;" :class="index==1 ? 'activeTab':''">
+
+       </div>
+       折扣最多
+     </div>
+     <div style="position: relative" :class="index==2 ? 'active':''" @click="tabactive(2)">
+       <div style="width:20px;position: absolute;bottom: 0px;left: 50%;margin-left: -10px;" :class="index==2 ? 'activeTab':''">
+
+       </div>
+       评分最高
+     </div>
+     <div style="position: relative" :class="index==3 ? 'active':''" @click="tabactive(3)">
+       <div style="width:20px;position: absolute;bottom: 0px;left: 50%;margin-left: -10px;" :class="index==3 ? 'activeTab':''">
+
+       </div>
+       销量最高
+     </div>
    </div>
 
    <div class="slidecontent">
@@ -396,7 +416,7 @@
   <style>
     .active{
       color: #F08400!important;
-      border-bottom: 2px solid #F08400;
+      /*border-bottom: 2px solid #F08400;*/
     }
     .active1{
       position: absolute;top:55px;width: 100%;
@@ -405,6 +425,28 @@
       position: fixed;top: 0px;width: 100%;
       background: palevioletred;
       z-index: 999999999;
+    }
+
+    .activeTab{
+      border-bottom: 2px solid #F08400;
+    }
+
+    .nearShop .mint-swipe-indicators{
+      position: absolute;
+      top: 185px;
+      z-index: 99999999999999999;
+      /*background: green;*/
+      /*margin-top: 20px;*/
+    }
+    .nearShop .mint-swipe-indicators .mint-swipe-indicator{
+      height: 5px!important;
+      width: 20px!important;
+      border-radius: 0px!important;
+      background: #909090!important;
+      /*z-index: 99999999999999999;*/
+    }
+    .nearShop .mint-swipe-indicators .mint-swipe-indicator.is-active{
+      background: #EE6723!important;
     }
     .listimgTab img{
       height: 25px;
@@ -473,7 +515,7 @@
     }
     .slidecontent .listshop p{
       margin: 0px!important;
-      padding-bottom: 15px;
+      padding-bottom: 10px;
       /*padding-left: 11px;*/
     }
     .shop span{
@@ -550,12 +592,6 @@
     }
     .nearShop .mint-swipe-indicators{
       /*background: black!important;*/
-    }
-    .nearShop .mint-swipe-indicators .mint-swipe-indicator{
-      background: green!important;
-    }
-    .nearShop .mint-swipe-indicators .mint-swipe-indicator.is-active{
-      background: yellow!important;
     }
     .location{
       font-size: 12px;

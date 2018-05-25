@@ -244,6 +244,9 @@
    overflow-x: scroll;
    overflow-y: hidden;
  }
+  .box1::-webkit-scrollbar {
+    display: none;
+  }
  .box1 ul{
    display: flex;
    height: 80px;
