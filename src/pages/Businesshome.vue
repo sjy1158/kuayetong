@@ -70,14 +70,14 @@
 
 
       <div class="tabs">
-        <div style="position: relative;" :class="index==0 ? 'active2':''" @click="tabactive(0)">
+        <div style="position: relative;" :class="index==0 ? 'activeProduce':''" @click="tabactive(0)">
           <div style="width:20px;position: absolute;bottom: 0px;left: 50%;margin-left: -10px;" :class="index==0 ? 'active':''">
 
           </div>
           明星产品
         </div>
 
-        <div style="position: relative;" :class="index==1 ? 'active2':''" @click="tabactive(1)">
+        <div style="position: relative;" :class="index==1 ? 'activeProduce':''" @click="tabactive(1)">
           <div style="width:20px;position: absolute;bottom: 0px;left: 50%;margin-left: -10px;" :class="index==1 ? 'active':''">
 
           </div>
@@ -234,7 +234,7 @@
   .active{
     border-bottom: 2px solid #F08400;
   }
-  .active2{
+  .activeProduce{
     color: #F08400;
   }
  .box1{

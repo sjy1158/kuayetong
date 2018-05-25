@@ -339,6 +339,10 @@
     /*position: relative;*/
     /*margin-right: 10px;*/
   }
+  .box1 ul li img{
+    width: 48px;
+    height: 40px;
+  }
   .box1 ul li p{
       font-size: 12px;
     margin-top: 0px!important;

@@ -45,10 +45,14 @@
             this.value = val;
           },
         openMessage(){
-          MessageBox({
-            title: '提示',
-            message: '此操作不可撤销，请确认使用跨业通余额'+this.prize+'元抵扣买单？',
-            showCancelButton: true
+            var _this = this;
+          MessageBox.confirm('此操作不可撤销，请确认使用跨业通余额'+this.prize+'元抵扣买单？').then(action=>{
+            if(action=='confirm'){
+              // alert(1111);
+              _this.$router.push('/payOver')
+            }else{
+              return
+            }
           });
         }
       }

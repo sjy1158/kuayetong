@@ -49,7 +49,7 @@
        </div>
      </div>
 
-     <div style="width: 100%;margin-top: 20px;font-size: 12px;">
+     <div style="width: 100%;margin-top: 20px;font-size: 12px;" class="listimgTab">
       <div style="display: flex" class="flex1">
         <div>
           <img src="../assets/PartnershipCenter.png" alt="">
@@ -73,7 +73,7 @@
         </div>
       </div>
      </div>
-   <div style="width: 100%;font-size: 12px;">
+   <div style="width: 100%;font-size: 12px;" class="listimgTab">
      <div style="display: flex" class="flex1">
        <div>
          <img src="../assets/Flowersinthefield.png" alt="">
@@ -406,7 +406,10 @@
       background: palevioletred;
       z-index: 999999999;
     }
-
+    .listimgTab img{
+      height: 25px;
+      width: 25px;
+    }
     .scrollTop{
       display: flex;
       margin-top: 15px;
