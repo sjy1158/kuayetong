@@ -71,14 +71,14 @@
 
       <div class="tabs">
         <div style="position: relative;" :class="index==0 ? 'activeProduce':''" @click="tabactive(0)">
-          <div style="width:20px;position: absolute;bottom: 0px;left: 50%;margin-left: -10px;" :class="index==0 ? 'active':''">
+          <div style="width:20px;position: absolute;bottom: 0px;left: 50%;margin-left: -10px;" :class="index==0 ? 'active4':''">
 
           </div>
           明星产品
         </div>
 
         <div style="position: relative;" :class="index==1 ? 'activeProduce':''" @click="tabactive(1)">
-          <div style="width:20px;position: absolute;bottom: 0px;left: 50%;margin-left: -10px;" :class="index==1 ? 'active':''">
+          <div style="width:20px;position: absolute;bottom: 0px;left: 50%;margin-left: -10px;" :class="index==1 ? 'active4':''">
 
           </div>
           商家详情
@@ -231,7 +231,7 @@
   .bottom{
 
   }
-  .active{
+  .active4{
     border-bottom: 2px solid #F08400;
   }
   .activeProduce{
