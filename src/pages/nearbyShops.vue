@@ -9,14 +9,31 @@
        </div>
 
        <div style="height: 50px;color: black;display: flex;" ref="location">
-         <div style="height: 100%;width: 200px;flex: 1;color: white;font-size: 16px;" class="location">
-           <img src="../assets/positioning@2x.png" alt="" style="width:15px;height: 20px;">
-           <span v-if="loaded" style="padding-left: 7px;" class="locationtext">
-              location: lng = {{lng }} lat = {{ lat }}
-            </span>
-           <span v-else style="margin-left: 20px;" class="locationtext">正在定位</span>
-           <!--<span>{{positions.address}}</span>-->
-         </div>
+         <div style="margin-left: 41px;">
+             <div style="height: 50px;width: 15px;float: left;position: relative">
+               <img src="../assets/positioning@2x.png" alt="" style="width:15px;height: 20px;position: absolute;left: 0px;top:50%;margin-top: -10px;">
+             </div>
+             <div style="width: 200px;height: 50px;float: left;margin-left: 3px;overflow-x: scroll;color: white;overflow-y: hidden" class="scrolltitle" id="scrollTitle">
+               <div style="text-align: left;width:450px;height: 50px;line-height: 50px;">
+                <span v-if="loaded" style="" class="locationtext">
+                  {{address}}
+                  </span>
+                  <span v-else style="" class="locationtext">正在定位</span>
+               </div>
+             </div>
+
+             <!--<div style="height: 100%;width: 200px;flex: 1;color: white;font-size: 16px;overflow-x: scroll" class="location">-->
+               <!--<div style="width: 200px!important;background: black!important;height: 100%;margin-left:45px;">-->
+                 <!--<div>-->
+                   <!--<span v-if="loaded" style="" class="locationtext">-->
+                      <!--{{address}}-->
+                    <!--</span>-->
+                   <!--<span v-else style="" class="locationtext">正在定位</span>-->
+                 <!--</div>-->
+               <!--</div>-->
+               <!--&lt;!&ndash;<span>{{positions.address}}</span>&ndash;&gt;-->
+             <!--</div>-->
+           </div>
          <div style="flex: 1;" class="weather">
               <div class="weathernum">
                 <p style="font-size: 16px;">{{tmp}}</p>
@@ -347,6 +364,8 @@
         data(){
             var self = this;
             return{
+              scrollLeft:0,
+              scrollLeftend:500,
               tmp:'',
               weather:'',
               index:0,
@@ -366,6 +385,7 @@
               lng: 0,
               lat: 0,
               loaded: false,
+              address:'',
               plugin: [{
                 pName: 'Geolocation',
                 events: {
@@ -373,6 +393,7 @@
                     // o 是高德地图定位插件实例
                     o.getCurrentPosition((status, result) => {
                       if (result && result.position) {
+                        self.address = result.formattedAddress;
                         self.lng = result.position.lng;
                         self.lat = result.position.lat;
                         self.center = [self.lng, self.lat];
@@ -405,22 +426,17 @@
               }).catch(function (error) {
                 alert(JSON.stringify(error))
             })
-             // var postData = {
-             //   key: "534c5d265f9fb6b8907515fe31677328",
-             //   city: '广州'
-             // };
-            // this.$ajax({
-            //   method: 'get',
-            //   url: 'http://restapi.amap.com/v3/weather/weatherInfo?key=534c5d265f9fb6b8907515fe31677328&city=广州',
-            //   success:function (data) {
-            //     if(data.status==1){
-            //       alert(JSON.stringify(data));
-            //     }
-            //   }
-            // })
           },
           tabactive(index){
               this.index = index;
+          },
+          handleScroll2() {
+            if(document.getElementById('scrollTitle').scrollLeft == 0&&this.loaded){
+              var time = setInterval(()=>{
+                  document.getElementById('scrollTitle').scrollLeft +=20;
+
+              },1000)
+            }
           },
           handleScroll () {
             var _this = this;
@@ -437,6 +453,7 @@
           },
           },
           mounted(){
+            var _this = this;
           setInterval(()=> {
             if(this.activeIndex < this.prizeList.length) {
               this.activeIndex += 1;
@@ -444,9 +461,9 @@
               this.activeIndex = 0;
             }
           }, 1000);
-            window.addEventListener('scroll',this.handleScroll)
-          this.handleScroll()
-            this.getWeather()
+          this.handleScroll();
+            this.getWeather();
+            this.handleScroll2();
         }
       }
   </script>
@@ -486,6 +503,11 @@
       margin: 0px!important;
       color: white;
     }
+    .nearShop .scrolltitle::-webkit-scrollbar {
+      display: none;
+    }{
+
+    }
     .nearShop .mint-swipe-indicators{
       position: absolute;
       top: 185px;
@@ -506,8 +528,6 @@
       margin-top: -10px;
     }
     .nearShop .location span{
-      position: absolute;
-      left: 40px;
       background: linear-gradient(to right, white,white );
       -webkit-background-clip: text;
       color: transparent;

@@ -56,7 +56,7 @@
         <div style="width: 30%;display: flex" class="placelocation2">
             <div style="margin-top: 12px;">
               <img src="../assets/Navigation.png" alt="">
-              <router-link to="http://uri.amap.com/poidetail"><p style="margin: 0px;">导航</p></router-link>
+              <a href="http://uri.amap.com/poidetail"><p style="margin: 0px;">导航</p></a>
             </div>
             <div style="line-height: 50px;">
                 |
