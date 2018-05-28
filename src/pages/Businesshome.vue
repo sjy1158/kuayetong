@@ -56,7 +56,7 @@
         <div style="width: 30%;display: flex" class="placelocation2">
             <div style="margin-top: 12px;">
               <img src="../assets/Navigation.png" alt="">
-              <p style="margin: 0px;">导航</p>
+              <router-link to="http://uri.amap.com/poidetail"><p style="margin: 0px;">导航</p></router-link>
             </div>
             <div style="line-height: 50px;">
                 |
@@ -325,6 +325,10 @@
    }
    .placelocation2 div{
      margin-right: 15px;
+   }
+   .placelocation2 a{
+     text-decoration:none;
+     color: #4A4A4A;
    }
    .tabs{
      display: flex;
