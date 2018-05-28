@@ -9,12 +9,19 @@
        </div>
 
        <div style="height: 50px;color: black;display: flex;" ref="location">
-         <div style="height: 100%;width: 200px;flex: 1;color: white;" class="location">
-           <img src="../assets/positioning.png" alt="">
-           <span>{{positions.address}}</span>
+         <div style="height: 100%;width: 200px;flex: 1;color: white;font-size: 16px;" class="location">
+           <img src="../assets/positioning@2x.png" alt="" style="width:15px;height: 20px;">
+           <span v-if="loaded" style="padding-left: 7px;" class="locationtext">
+              location: lng = {{lng }} lat = {{ lat }}
+            </span>
+           <span v-else style="margin-left: 20px;" class="locationtext">正在定位</span>
+           <!--<span>{{positions.address}}</span>-->
          </div>
-         <div style="flex: 1">
-
+         <div style="flex: 1;" class="weather">
+              <div class="weathernum">
+                <p style="font-size: 16px;">{{tmp}}</p>
+                <p style="font-size: 12px;">{{weather}}</p>
+              </div>
          </div>
        </div>
 
@@ -334,11 +341,14 @@
    </div>
   </template>
   <script>
+     import axios from 'axios'
       export default {
           name: "nearbyShops",
         data(){
             var self = this;
             return{
+              tmp:'',
+              weather:'',
               index:0,
               isfixed:true,
               title:'外卖',
@@ -352,25 +362,28 @@
                 { name: 'dadadadada' }
               ],
               activeIndex: 0,
-              positions:{
-                lng:'',
-                lat:'',
-                address:'',
-                loaded:false
-              },
-              center:[121.59996, 31.197646],
-              plugin:[{
-                pName:'Geolocation',
-                events:{
-                  init(o){
-                    o.getCurrentPosition((status,result)=>{
-                      // alert(result.formattedAddress);
-                      self.positions.address = result.addressComponent.neighborhood
-                    })
+              center: [121.59996, 31.197646],
+              lng: 0,
+              lat: 0,
+              loaded: false,
+              plugin: [{
+                pName: 'Geolocation',
+                events: {
+                  init(o) {
+                    // o 是高德地图定位插件实例
+                    o.getCurrentPosition((status, result) => {
+                      if (result && result.position) {
+                        self.lng = result.position.lng;
+                        self.lat = result.position.lat;
+                        self.center = [self.lng, self.lat];
+                        self.loaded = true;
+                        self.$nextTick();
+                      }
+                    });
                   }
                 }
               }]
-            }
+            };
         },
         computed: {
           top() {
@@ -380,6 +393,31 @@
         methods:{
           getLocation(){
 
+          },
+         getWeather () {
+            var _this = this;
+            axios.get('http://restapi.amap.com/v3/weather/weatherInfo?key=534c5d265f9fb6b8907515fe31677328&city=杭州').then(function (response) {
+                var data = response.data;
+              if(data.status==1){
+                _this.tmp = data.lives[0].temperature;
+                _this.weather = data.lives[0].weather;
+              }
+              }).catch(function (error) {
+                alert(JSON.stringify(error))
+            })
+             // var postData = {
+             //   key: "534c5d265f9fb6b8907515fe31677328",
+             //   city: '广州'
+             // };
+            // this.$ajax({
+            //   method: 'get',
+            //   url: 'http://restapi.amap.com/v3/weather/weatherInfo?key=534c5d265f9fb6b8907515fe31677328&city=广州',
+            //   success:function (data) {
+            //     if(data.status==1){
+            //       alert(JSON.stringify(data));
+            //     }
+            //   }
+            // })
           },
           tabactive(index){
               this.index = index;
@@ -408,7 +446,7 @@
           }, 1000);
             window.addEventListener('scroll',this.handleScroll)
           this.handleScroll()
-          this.getLocation()
+            this.getWeather()
         }
       }
   </script>
@@ -430,12 +468,49 @@
       border-bottom: 2px solid #F08400;
     }
 
+    .weather{
+      font-size: 12px;
+      position: relative;
+    }
+    .weather .weathernum{
+      height: 30px;
+      width: 30px;
+      position: absolute;
+      top:50%;
+      right: 30px;
+      margin-top: -15px;
+      /*background: red;*/
+      /*right: 0px;*/
+    }
+    .weather p{
+      margin: 0px!important;
+      color: white;
+    }
     .nearShop .mint-swipe-indicators{
       position: absolute;
       top: 185px;
       z-index: 99999999999999999;
       /*background: green;*/
       /*margin-top: 20px;*/
+    }
+    .nearShop .location{
+      position: relative;
+      overflow: hidden;
+      text-overflow:ellipsis;
+      white-space: nowrap;
+    }
+    .nearShop .location img{
+      position: absolute;
+      left: 41px;
+      top: 50%;
+      margin-top: -10px;
+    }
+    .nearShop .location span{
+      position: absolute;
+      left: 40px;
+      background: linear-gradient(to right, white,white );
+      -webkit-background-clip: text;
+      color: transparent;
     }
     .nearShop .mint-swipe-indicators .mint-swipe-indicator{
       height: 5px!important;
