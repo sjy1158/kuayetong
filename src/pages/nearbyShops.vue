@@ -177,274 +177,6 @@
        </div>
      </div>
    </div>
-
-   <div class="slidecontent">
-     <div v-show="index==0">
-      <div class="listshop">
-        <div style="float: left;width: 20%;">
-          <img src="../assets/kfc.png" alt="">
-        </div>
-        <div style="text-align: left;padding-left: 11px;border-bottom: 1px solid #f3f3f3;float: right;width: 80%;">
-          <p>星巴克Starbucks（新塘路2店）</p>
-          <p class="shop"><span>咖啡糕点</span><span>人均消费68元</span><span style="float: right"><100m</span></p>
-          <p class="discon"><span>100抵10</span><span>100抵10</span><span>100抵10</span><span>100抵10</span></p>
-        </div>
-      </div>
-     <div class="listshop">
-       <div style="float: left;width: 20%;">
-         <img src="../assets/kfc.png" alt="">
-       </div>
-       <div style="text-align: left;padding-left: 11px;border-bottom: 1px solid #f3f3f3;float: right;width: 80%;">
-         <p>星巴克Starbucks（新塘路2店）</p>
-         <p class="shop"><span>咖啡糕点</span><span>人均消费68元</span><span style="float: right"><100m</span></p>
-         <p class="discon"><span>100抵10</span><span>100抵10</span><span>100抵10</span><span>100抵10</span></p>
-       </div>
-     </div>
-     <div class="listshop">
-       <div style="float: left;width: 20%;">
-         <img src="../assets/kfc.png" alt="">
-       </div>
-       <div style="text-align: left;padding-left: 11px;border-bottom: 1px solid #f3f3f3;float: right;width: 80%;">
-         <p>星巴克Starbucks（新塘路2店）</p>
-         <p class="shop"><span>咖啡糕点</span><span>人均消费68元</span><span style="float: right"><100m</span></p>
-         <p class="discon"><span>100抵10</span><span>100抵10</span><span>100抵10</span><span>100抵10</span></p>
-       </div>
-     </div>
-     <div class="listshop">
-       <div style="float: left;width: 20%;">
-         <img src="../assets/kfc.png" alt="">
-       </div>
-       <div style="text-align: left;padding-left: 11px;border-bottom: 1px solid #f3f3f3;float: right;width: 80%;">
-         <p>星巴克Starbucks（新塘路2店）</p>
-         <p class="shop"><span>咖啡糕点</span><span>人均消费68元</span><span style="float: right"><100m</span></p>
-         <p class="discon"><span>100抵10</span><span>100抵10</span><span>100抵10</span><span>100抵10</span></p>
-       </div>
-     </div>
-       <div class="listshop">
-         <div style="float: left;width: 20%;">
-           <img src="../assets/kfc.png" alt="">
-         </div>
-         <div style="text-align: left;padding-left: 11px;border-bottom: 1px solid #f3f3f3;float: right;width: 80%;">
-           <p>星巴克Starbucks（新塘路2店）</p>
-           <p class="shop"><span>咖啡糕点</span><span>人均消费68元</span><span style="float: right"><100m</span></p>
-           <p class="discon"><span>100抵10</span><span>100抵10</span><span>100抵10</span><span>100抵10</span></p>
-         </div>
-       </div>
-       <div class="listshop">
-         <div style="float: left;width: 20%;">
-           <img src="../assets/kfc.png" alt="">
-         </div>
-         <div style="text-align: left;padding-left: 11px;border-bottom: 1px solid #f3f3f3;float: right;width: 80%;">
-           <p>星巴克Starbucks（新塘路2店）</p>
-           <p class="shop"><span>咖啡糕点</span><span>人均消费68元</span><span style="float: right"><100m</span></p>
-           <p class="discon"><span>100抵10</span><span>100抵10</span><span>100抵10</span><span>100抵10</span></p>
-         </div>
-       </div>
-       <div class="listshop">
-         <div style="float: left;width: 20%;">
-           <img src="../assets/kfc.png" alt="">
-         </div>
-         <div style="text-align: left;padding-left: 11px;border-bottom: 1px solid #f3f3f3;float: right;width: 80%;">
-           <p>星巴克Starbucks（新塘路2店）</p>
-           <p class="shop"><span>咖啡糕点</span><span>人均消费68元</span><span style="float: right"><100m</span></p>
-           <p class="discon"><span>100抵10</span><span>100抵10</span><span>100抵10</span><span>100抵10</span></p>
-         </div>
-       </div>
-       <div class="listshop">
-         <div style="float: left;width: 20%;">
-           <img src="../assets/kfc.png" alt="">
-         </div>
-         <div style="text-align: left;padding-left: 11px;border-bottom: 1px solid #f3f3f3;float: right;width: 80%;">
-           <p>星巴克Starbucks（新塘路2店）</p>
-           <p class="shop"><span>咖啡糕点</span><span>人均消费68元</span><span style="float: right"><100m</span></p>
-           <p class="discon"><span>100抵10</span><span>100抵10</span><span>100抵10</span><span>100抵10</span></p>
-         </div>
-       </div>
-     </div>
-     <div v-show="index==1">
-       <div class="listshop">
-         <div style="float: left;width: 20%;">
-           <router-link to="/Businesshome"><img src="../assets/starbucks.png" alt=""></router-link>
-         </div>
-         <div style="text-align: left;padding-left: 11px;border-bottom: 1px solid #f3f3f3;float: right;width: 80%;">
-           <p>星巴克Starbucks（新塘路2店）</p>
-           <p class="shop"><span>咖啡糕点</span><span>人均消费68元</span><span style="float: right"><100m</span></p>
-           <p class="discon"><span>100抵10</span><span>100抵10</span><span>100抵10</span><span>100抵10</span></p>
-         </div>
-       </div>
-       <div class="listshop">
-         <div style="float: left;width: 20%;">
-           <img src="../assets/starbucks.png" alt="">
-         </div>
-         <div style="text-align: left;padding-left: 11px;border-bottom: 1px solid #f3f3f3;float: right;width: 80%;">
-           <p>星巴克Starbucks（新塘路2店）</p>
-           <p class="shop"><span>咖啡糕点</span><span>人均消费68元</span><span style="float: right"><100m</span></p>
-           <p class="discon"><span>100抵10</span><span>100抵10</span><span>100抵10</span><span>100抵10</span></p>
-         </div>
-       </div>
-       <div class="listshop">
-         <div style="float: left;width: 20%;">
-           <img src="../assets/starbucks.png" alt="">
-         </div>
-         <div style="text-align: left;padding-left: 11px;border-bottom: 1px solid #f3f3f3;float: right;width: 80%;">
-           <p>星巴克Starbucks（新塘路2店）</p>
-           <p class="shop"><span>咖啡糕点</span><span>人均消费68元</span><span style="float: right"><100m</span></p>
-           <p class="discon"><span>100抵10</span><span>100抵10</span><span>100抵10</span><span>100抵10</span></p>
-         </div>
-       </div>
-       <div class="listshop">
-         <div style="float: left;width: 20%;">
-           <img src="../assets/starbucks.png" alt="">
-         </div>
-         <div style="text-align: left;padding-left: 11px;border-bottom: 1px solid #f3f3f3;float: right;width: 80%;">
-           <p>星巴克Starbucks（新塘路2店）</p>
-           <p class="shop"><span>咖啡糕点</span><span>人均消费68元</span><span style="float: right"><100m</span></p>
-           <p class="discon"><span>100抵10</span><span>100抵10</span><span>100抵10</span><span>100抵10</span></p>
-         </div>
-       </div>
-       <div class="listshop">
-         <div style="float: left;width: 20%;">
-           <img src="../assets/kfc.png" alt="">
-         </div>
-         <div style="text-align: left;padding-left: 11px;border-bottom: 1px solid #f3f3f3;float: right;width: 80%;">
-           <p>星巴克Starbucks（新塘路2店）</p>
-           <p class="shop"><span>咖啡糕点</span><span>人均消费68元</span><span style="float: right"><100m</span></p>
-           <p class="discon"><span>100抵10</span><span>100抵10</span><span>100抵10</span><span>100抵10</span></p>
-         </div>
-       </div>
-       <div class="listshop">
-         <div style="float: left;width: 20%;">
-           <img src="../assets/kfc.png" alt="">
-         </div>
-         <div style="text-align: left;padding-left: 11px;border-bottom: 1px solid #f3f3f3;float: right;width: 80%;">
-           <p>星巴克Starbucks（新塘路2店）</p>
-           <p class="shop"><span>咖啡糕点</span><span>人均消费68元</span><span style="float: right"><100m</span></p>
-           <p class="discon"><span>100抵10</span><span>100抵10</span><span>100抵10</span><span>100抵10</span></p>
-         </div>
-       </div>
-       <div class="listshop">
-         <div style="float: left;width: 20%;">
-           <img src="../assets/kfc.png" alt="">
-         </div>
-         <div style="text-align: left;padding-left: 11px;border-bottom: 1px solid #f3f3f3;float: right;width: 80%;">
-           <p>星巴克Starbucks（新塘路2店）</p>
-           <p class="shop"><span>咖啡糕点</span><span>人均消费68元</span><span style="float: right"><100m</span></p>
-           <p class="discon"><span>100抵10</span><span>100抵10</span><span>100抵10</span><span>100抵10</span></p>
-         </div>
-       </div>
-       <div class="listshop">
-         <div style="float: left;width: 20%;">
-           <img src="../assets/kfc.png" alt="">
-         </div>
-         <div style="text-align: left;padding-left: 11px;border-bottom: 1px solid #f3f3f3;float: right;width: 80%;">
-           <p>星巴克Starbucks（新塘路2店）</p>
-           <p class="shop"><span>咖啡糕点</span><span>人均消费68元</span><span style="float: right"><100m</span></p>
-           <p class="discon"><span>100抵10</span><span>100抵10</span><span>100抵10</span><span>100抵10</span></p>
-         </div>
-       </div>
-     </div>
-     <div v-show="index==2">
-       <div class="listshop">
-         <div style="float: left;width: 20%;">
-           <img src="../assets/kfc.png" alt="">
-         </div>
-         <div style="text-align: left;padding-left: 11px;border-bottom: 1px solid #f3f3f3;float: right;width: 80%;">
-           <p>星巴克Starbucks（新塘路2店）</p>
-           <p class="shop"><span>咖啡糕点</span><span>人均消费68元</span><span style="float: right"><100m</span></p>
-           <p class="discon"><span>100抵10</span><span>100抵10</span><span>100抵10</span><span>100抵10</span></p>
-         </div>
-       </div>
-       <div class="listshop">
-         <div style="float: left;width: 20%;">
-           <img src="../assets/kfc.png" alt="">
-         </div>
-         <div style="text-align: left;padding-left: 11px;border-bottom: 1px solid #f3f3f3;float: right;width: 80%;">
-           <p>星巴克Starbucks（新塘路2店）</p>
-           <p class="shop"><span>咖啡糕点</span><span>人均消费68元</span><span style="float: right"><100m</span></p>
-           <p class="discon"><span>100抵10</span><span>100抵10</span><span>100抵10</span><span>100抵10</span></p>
-         </div>
-       </div>
-       <div class="listshop">
-         <div style="float: left;width: 20%;">
-           <img src="../assets/kfc.png" alt="">
-         </div>
-         <div style="text-align: left;padding-left: 11px;border-bottom: 1px solid #f3f3f3;float: right;width: 80%;">
-           <p>星巴克Starbucks（新塘路2店）</p>
-           <p class="shop"><span>咖啡糕点</span><span>人均消费68元</span><span style="float: right"><100m</span></p>
-           <p class="discon"><span>100抵10</span><span>100抵10</span><span>100抵10</span><span>100抵10</span></p>
-         </div>
-       </div>
-       <div class="listshop">
-         <div style="float: left;width: 20%;">
-           <img src="../assets/kfc.png" alt="">
-         </div>
-         <div style="text-align: left;padding-left: 11px;border-bottom: 1px solid #f3f3f3;float: right;width: 80%;">
-           <p>星巴克Starbucks（新塘路2店）</p>
-           <p class="shop"><span>咖啡糕点</span><span>人均消费68元</span><span style="float: right"><100m</span></p>
-           <p class="discon"><span>100抵10</span><span>100抵10</span><span>100抵10</span><span>100抵10</span></p>
-         </div>
-       </div>
-     </div>
-     <div v-show="index==3">
-       <div class="listshop">
-         <div style="float: left;width: 20%;">
-           <img src="../assets/starbucks.png" alt="">
-         </div>
-         <div style="text-align: left;padding-left: 11px;border-bottom: 1px solid #f3f3f3;float: right;width: 80%;">
-           <p>星巴克Starbucks（新塘路2店）</p>
-           <p class="shop"><span>咖啡糕点</span><span>人均消费68元</span><span style="float: right"><100m</span></p>
-           <p class="discon"><span>100抵10</span><span>100抵10</span><span>100抵10</span><span>100抵10</span></p>
-         </div>
-       </div>
-       <div class="listshop">
-         <div style="float: left;width: 20%;">
-           <img src="../assets/starbucks.png" alt="">
-         </div>
-         <div style="text-align: left;padding-left: 11px;border-bottom: 1px solid #f3f3f3;float: right;width: 80%;">
-           <p>星巴克Starbucks（新塘路2店）</p>
-           <p class="shop"><span>咖啡糕点</span><span>人均消费68元</span><span style="float: right"><100m</span></p>
-           <p class="discon"><span>100抵10</span><span>100抵10</span><span>100抵10</span><span>100抵10</span></p>
-         </div>
-       </div>
-       <div class="listshop">
-         <div style="float: left;width: 20%;">
-           <img src="../assets/starbucks.png" alt="">
-         </div>
-         <div style="text-align: left;padding-left: 11px;border-bottom: 1px solid #f3f3f3;float: right;width: 80%;">
-           <p>星巴克Starbucks（新塘路2店）</p>
-           <p class="shop"><span>咖啡糕点</span><span>人均消费68元</span><span style="float: right"><100m</span></p>
-           <p class="discon"><span>100抵10</span><span>100抵10</span><span>100抵10</span><span>100抵10</span></p>
-         </div>
-       </div>
-       <div class="listshop">
-         <div style="float: left;width: 20%;">
-           <img src="../assets/starbucks.png" alt="">
-         </div>
-         <div style="text-align: left;padding-left: 11px;border-bottom: 1px solid #f3f3f3;float: right;width: 80%;">
-           <p>星巴克Starbucks（新塘路2店）</p>
-           <p class="shop"><span>咖啡糕点</span><span>人均消费68元</span><span style="float: right"><100m</span></p>
-           <p class="discon"><span>100抵10</span><span>100抵10</span><span>100抵10</span><span>100抵10</span></p>
-         </div>
-       </div>
-     </div>
-   </div>
-   <div>
-
-   </div>
-
-   <mt-loadmore :top-method="loadTop" :bottom-method="loadBottom" :bottom-all-loaded="allLoaded" ref="loadmore">
-     <ul>
-       <li v-for="item in list">{{ item }}</li>
-     </ul>
-   </mt-loadmore>
-
-   <!--<div>-->
-     <!--<div>距离最近</div>-->
-     <!--<div>折扣最多</div>-->
-     <!--<div>评分最高</div>-->
-     <!--<div>销量最高</div>-->
-   <!--</div>-->
-
    </div>
   </template>
   <script>
@@ -454,6 +186,7 @@
         data(){
             var self = this;
             return{
+              list:[1,2,3,4],
               navBarWrap:false,
               tmp:'',
               weather:'',
@@ -516,13 +249,6 @@
           tabactive(index){
               this.index = index;
           },
-          handleScroll2() {
-            if(document.getElementById('scrollTitle').scrollLeft == 0){
-              var time = setInterval(()=>{
-                  document.getElementById('scrollTitle').scrollLeft +=20;
-              },1000)
-            }
-          },
           watchScroll(){
             var scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
             var domheight = document.getElementById('alldom').offsetHeight;
@@ -537,6 +263,16 @@
             }else{
               this.isfixed = false;
             }
+          },
+          loadMore() {
+            this.loading = true;
+            setTimeout(() => {
+              let last = this.list[this.list.length - 1];
+              for (let i = 1; i <= 10; i++) {
+                this.list.push(last + i);
+              }
+              this.loading = false;
+            }, 2500);
           }
           },
 
@@ -551,7 +287,6 @@
             }
           }, 1000);
             this.getWeather();
-            this.handleScroll2();
         }
       }
   </script>
