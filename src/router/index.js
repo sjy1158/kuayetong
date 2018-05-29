@@ -6,6 +6,7 @@ import Gastrosoph from '../pages/Gastrosoph'
 import allShops from '../pages/allShops'
 import Paybill from '../pages/Paybill'
 import payOver from '../pages/payOver'
+import listItem from '../pages/listItem'
 
 Vue.use(Router)
 
@@ -34,6 +35,10 @@ export default new Router({
     {
       path:'/payOver',
       component:payOver
+    },
+    {
+      path:'/listItem',
+      component:listItem
     },
     {
       path:'*',

@@ -1,6 +1,7 @@
 <template>
  <div class="nearShop">
 
+   <div id="alldom">
    <div style="position: relative;height: 200px;width: 100%;">
 
      <div>
@@ -36,18 +37,18 @@
            </div>
          <div style="flex: 1;" class="weather">
               <div class="weathernum">
-                <p style="font-size: 16px;">{{tmp}}</p>
+                <p style="font-size: 16px;">{{tmp}}℃</p>
                 <p style="font-size: 12px;">{{weather}}</p>
               </div>
          </div>
        </div>
 
          <!--搜索框-->
-      <div style="" :class="isfixed ? 'active1':'active2' " id="searchbox" ref="searchbox">
-       <div style="display: flex;padding: 0px 10px 0px 10px;" class="searchbox2">
-            <input type="text" v-model="value" ref="seachinput" class="div" placeholder="输入商品名称/宝贝标题搜索">
+      <div style="" :class="navBarFixed == true ? 'navBarWrap' :''" id="searchbox" ref="searchbox">
+       <div style="display: flex;" :class="navBarFixed == true ? 'searchBox' :'searchbox2'">
+            <input type="text" v-model="value" ref="seachinput" class="div" placeholder="输入商品名称/宝贝标题搜索" :class="navBarFixed == true ? 'navBarInput' :''">
        </div>
-        <div style="padding: 0px 10px 0px 10px;display: flex;font-size: 12px;color: white;margin-top: 15px;" class="shoplist">
+        <div style="padding: 0px 10px 0px 10px;display: flex;font-size: 12px;color: white;margin-top: 15px;" :class="navBarFixed == true ? 'overhide' :'shoplist'">
           <div>肯德基</div>
           <div>汉堡王</div>
           <div>烤肉</div>
@@ -84,7 +85,7 @@
           <p>企业咨询</p>
         </div>
         <div>
-          <router-link to="/Gastrosoph"><img src="../assets/Gourmetworld.png" alt=""></router-link>
+          <router-link to="/listItem"><img src="../assets/Gourmetworld.png" alt=""></router-link>
           <p>美食天下</p>
         </div>
         <div>
@@ -133,7 +134,7 @@
      </div>
      <div class="scroll-wrap">
        <ul class="scroll-content" :style="{ top }">
-         <li v-for="item in prizeList">{{item.name}}</li >
+         <li v-for="item in prizeList">{{item.name}}</li>
        </ul>
      </div>
      <div style="line-height: 30px;text-align: right;padding-right: 17px;">
@@ -142,35 +143,38 @@
    </div>
 
    <div style="width: 100%;height: 10px;background: #f2f2f2;"></div>
-
-   <div class="title">
-     <span style="font-style: italic;font-size: 2px;">//</span><span class="titleshop">附近商家</span><span style="font-style: italic;font-size: 2px;">//</span>
    </div>
 
-   <div class="slideleft" style="border-bottom: 1px solid #F3F3F3">
-     <div style="position: relative" :class="index==0 ? 'active':''" @click="tabactive(0)">
-       <div style="width:20px;position: absolute;bottom: 0px;left: 50%;margin-left: -10px;" :class="index==0 ? 'activeTab':''">
-
-       </div>
-       距离最近
+   <div style="height: auto" :class="isfixed==true?'gotofixed':''">
+     <div class="title" id="title">
+       <span style="font-style: italic;font-size: 2px;">//</span><span class="titleshop">附近商家</span><span style="font-style: italic;font-size: 2px;">//</span>
      </div>
-     <div style="position: relative" :class="index==1 ? 'active':''" @click="tabactive(1)">
-       <div style="width:20px;position: absolute;bottom: 0px;left: 50%;margin-left: -10px;" :class="index==1 ? 'activeTab':''">
 
-       </div>
-       折扣最多
-     </div>
-     <div style="position: relative" :class="index==2 ? 'active':''" @click="tabactive(2)">
-       <div style="width:20px;position: absolute;bottom: 0px;left: 50%;margin-left: -10px;" :class="index==2 ? 'activeTab':''">
+     <div class="slideleft" style="border-bottom: 1px solid #F3F3F3;">
+       <div style="position: relative" :class="index==0 ? 'active':''" @click="tabactive(0)">
+         <div style="width:20px;position: absolute;bottom: 0px;left: 50%;margin-left: -10px;" :class="index==0 ? 'activeTab':''">
 
+         </div>
+         距离最近
        </div>
-       评分最高
-     </div>
-     <div style="position: relative" :class="index==3 ? 'active':''" @click="tabactive(3)">
-       <div style="width:20px;position: absolute;bottom: 0px;left: 50%;margin-left: -10px;" :class="index==3 ? 'activeTab':''">
+       <div style="position: relative" :class="index==1 ? 'active':''" @click="tabactive(1)">
+         <div style="width:20px;position: absolute;bottom: 0px;left: 50%;margin-left: -10px;" :class="index==1 ? 'activeTab':''">
 
+         </div>
+         折扣最多
        </div>
-       销量最高
+       <div style="position: relative" :class="index==2 ? 'active':''" @click="tabactive(2)">
+         <div style="width:20px;position: absolute;bottom: 0px;left: 50%;margin-left: -10px;" :class="index==2 ? 'activeTab':''">
+
+         </div>
+         评分最高
+       </div>
+       <div style="position: relative" :class="index==3 ? 'active':''" @click="tabactive(3)">
+         <div style="width:20px;position: absolute;bottom: 0px;left: 50%;margin-left: -10px;" :class="index==3 ? 'activeTab':''">
+
+         </div>
+         销量最高
+       </div>
      </div>
    </div>
 
@@ -216,6 +220,46 @@
          <p class="discon"><span>100抵10</span><span>100抵10</span><span>100抵10</span><span>100抵10</span></p>
        </div>
      </div>
+       <div class="listshop">
+         <div style="float: left;width: 20%;">
+           <img src="../assets/kfc.png" alt="">
+         </div>
+         <div style="text-align: left;padding-left: 11px;border-bottom: 1px solid #f3f3f3;float: right;width: 80%;">
+           <p>星巴克Starbucks（新塘路2店）</p>
+           <p class="shop"><span>咖啡糕点</span><span>人均消费68元</span><span style="float: right"><100m</span></p>
+           <p class="discon"><span>100抵10</span><span>100抵10</span><span>100抵10</span><span>100抵10</span></p>
+         </div>
+       </div>
+       <div class="listshop">
+         <div style="float: left;width: 20%;">
+           <img src="../assets/kfc.png" alt="">
+         </div>
+         <div style="text-align: left;padding-left: 11px;border-bottom: 1px solid #f3f3f3;float: right;width: 80%;">
+           <p>星巴克Starbucks（新塘路2店）</p>
+           <p class="shop"><span>咖啡糕点</span><span>人均消费68元</span><span style="float: right"><100m</span></p>
+           <p class="discon"><span>100抵10</span><span>100抵10</span><span>100抵10</span><span>100抵10</span></p>
+         </div>
+       </div>
+       <div class="listshop">
+         <div style="float: left;width: 20%;">
+           <img src="../assets/kfc.png" alt="">
+         </div>
+         <div style="text-align: left;padding-left: 11px;border-bottom: 1px solid #f3f3f3;float: right;width: 80%;">
+           <p>星巴克Starbucks（新塘路2店）</p>
+           <p class="shop"><span>咖啡糕点</span><span>人均消费68元</span><span style="float: right"><100m</span></p>
+           <p class="discon"><span>100抵10</span><span>100抵10</span><span>100抵10</span><span>100抵10</span></p>
+         </div>
+       </div>
+       <div class="listshop">
+         <div style="float: left;width: 20%;">
+           <img src="../assets/kfc.png" alt="">
+         </div>
+         <div style="text-align: left;padding-left: 11px;border-bottom: 1px solid #f3f3f3;float: right;width: 80%;">
+           <p>星巴克Starbucks（新塘路2店）</p>
+           <p class="shop"><span>咖啡糕点</span><span>人均消费68元</span><span style="float: right"><100m</span></p>
+           <p class="discon"><span>100抵10</span><span>100抵10</span><span>100抵10</span><span>100抵10</span></p>
+         </div>
+       </div>
      </div>
      <div v-show="index==1">
        <div class="listshop">
@@ -251,6 +295,46 @@
        <div class="listshop">
          <div style="float: left;width: 20%;">
            <img src="../assets/starbucks.png" alt="">
+         </div>
+         <div style="text-align: left;padding-left: 11px;border-bottom: 1px solid #f3f3f3;float: right;width: 80%;">
+           <p>星巴克Starbucks（新塘路2店）</p>
+           <p class="shop"><span>咖啡糕点</span><span>人均消费68元</span><span style="float: right"><100m</span></p>
+           <p class="discon"><span>100抵10</span><span>100抵10</span><span>100抵10</span><span>100抵10</span></p>
+         </div>
+       </div>
+       <div class="listshop">
+         <div style="float: left;width: 20%;">
+           <img src="../assets/kfc.png" alt="">
+         </div>
+         <div style="text-align: left;padding-left: 11px;border-bottom: 1px solid #f3f3f3;float: right;width: 80%;">
+           <p>星巴克Starbucks（新塘路2店）</p>
+           <p class="shop"><span>咖啡糕点</span><span>人均消费68元</span><span style="float: right"><100m</span></p>
+           <p class="discon"><span>100抵10</span><span>100抵10</span><span>100抵10</span><span>100抵10</span></p>
+         </div>
+       </div>
+       <div class="listshop">
+         <div style="float: left;width: 20%;">
+           <img src="../assets/kfc.png" alt="">
+         </div>
+         <div style="text-align: left;padding-left: 11px;border-bottom: 1px solid #f3f3f3;float: right;width: 80%;">
+           <p>星巴克Starbucks（新塘路2店）</p>
+           <p class="shop"><span>咖啡糕点</span><span>人均消费68元</span><span style="float: right"><100m</span></p>
+           <p class="discon"><span>100抵10</span><span>100抵10</span><span>100抵10</span><span>100抵10</span></p>
+         </div>
+       </div>
+       <div class="listshop">
+         <div style="float: left;width: 20%;">
+           <img src="../assets/kfc.png" alt="">
+         </div>
+         <div style="text-align: left;padding-left: 11px;border-bottom: 1px solid #f3f3f3;float: right;width: 80%;">
+           <p>星巴克Starbucks（新塘路2店）</p>
+           <p class="shop"><span>咖啡糕点</span><span>人均消费68元</span><span style="float: right"><100m</span></p>
+           <p class="discon"><span>100抵10</span><span>100抵10</span><span>100抵10</span><span>100抵10</span></p>
+         </div>
+       </div>
+       <div class="listshop">
+         <div style="float: left;width: 20%;">
+           <img src="../assets/kfc.png" alt="">
          </div>
          <div style="text-align: left;padding-left: 11px;border-bottom: 1px solid #f3f3f3;float: right;width: 80%;">
            <p>星巴克Starbucks（新塘路2店）</p>
@@ -348,6 +432,12 @@
 
    </div>
 
+   <mt-loadmore :top-method="loadTop" :bottom-method="loadBottom" :bottom-all-loaded="allLoaded" ref="loadmore">
+     <ul>
+       <li v-for="item in list">{{ item }}</li>
+     </ul>
+   </mt-loadmore>
+
    <!--<div>-->
      <!--<div>距离最近</div>-->
      <!--<div>折扣最多</div>-->
@@ -364,12 +454,11 @@
         data(){
             var self = this;
             return{
-              scrollLeft:0,
-              scrollLeftend:500,
+              navBarWrap:false,
               tmp:'',
               weather:'',
               index:0,
-              isfixed:true,
+              isfixed:false,
               title:'外卖',
               value:'',
               selected:'1',
@@ -412,9 +501,6 @@
           }
         },
         methods:{
-          getLocation(){
-
-          },
          getWeather () {
             var _this = this;
             axios.get('http://restapi.amap.com/v3/weather/weatherInfo?key=534c5d265f9fb6b8907515fe31677328&city=杭州').then(function (response) {
@@ -431,29 +517,32 @@
               this.index = index;
           },
           handleScroll2() {
-            if(document.getElementById('scrollTitle').scrollLeft == 0&&this.loaded){
+            if(document.getElementById('scrollTitle').scrollLeft == 0){
               var time = setInterval(()=>{
                   document.getElementById('scrollTitle').scrollLeft +=20;
-
               },1000)
             }
           },
-          handleScroll () {
-            var _this = this;
-            var scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
-              if(scrollTop == this.$refs.location.offsetHeight||scrollTop > this.$refs.location.offsetHeight){
-              _this.isfixed = !_this.isfixed
-              // alert(scrollTop);
-              return
-            }else {
-              _this.isfixed = true
-              return
+          watchScroll(){
+            var scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
+            var domheight = document.getElementById('alldom').offsetHeight;
+            //  当滚动超过 50 时，实现吸顶效果
+            if (scrollTop > 49) {
+              this.navBarFixed = true
+            } else {
+              this.navBarFixed = false
+            };
+            if(scrollTop>domheight){
+              this.isfixed = true;
+            }else{
+              this.isfixed = false;
             }
-            return
+          }
           },
-          },
+
           mounted(){
             var _this = this;
+            window.addEventListener('scroll',this.watchScroll);
           setInterval(()=> {
             if(this.activeIndex < this.prizeList.length) {
               this.activeIndex += 1;
@@ -461,7 +550,6 @@
               this.activeIndex = 0;
             }
           }, 1000);
-          this.handleScroll();
             this.getWeather();
             this.handleScroll2();
         }
@@ -469,6 +557,30 @@
   </script>
 
   <style>
+    .gotofixed{
+      position: fixed;width:100%;top: 40px;background: white;
+    }
+    .overhide{
+      display: none!important;
+    }
+    .navBarWrap {
+      position:fixed;
+      top:0;
+      z-index:999;
+      width: 100%;
+      padding: 0px!important;
+    }
+    .searchBox{
+      padding: 0px!important;
+    }
+    .navBarInput{
+      padding: 10px!important;
+      border-radius: 0px!important;
+      width: 100%!important;
+      height: 30px!important;
+      /*color: white!important;*/
+      background: #f2f2f2!important;
+    }
     .active{
       color: #F08400!important;
     }
@@ -585,6 +697,12 @@
     .title .titleshop{
       padding: 0px 8px 0px 8px;
     }
+ /*   .slideFixed{
+      position: fixed;width: 100%;
+      top: 50px;
+      background: gray!important;
+      z-index: 9999999;
+    }*/
     .slideleft{
       display: flex;
       font-size: 12px;
@@ -635,25 +753,6 @@
       text-align: center;
       /*background: pink;*/
     }
-
-    /*.div{*/
-      /*animation: bounce-in .5s;*/
-    /*}*/
-    /*.div {*/
-      /*animation: bounce-in .5s reverse;*/
-    /*}*/
-    /*@keyframes bounce-in {*/
-      /*0% {*/
-        /*transform: scale(0);*/
-      /*}*/
-      /*50% {*/
-        /*transform: scale(1.5);*/
-      /*}*/
-      /*100% {*/
-        /*transform: scale(1);*/
-      /*}*/
-    /*}*/
-
     .nearShop{
       /*margin-top: 40px;*/
       /*margin-bottom: 60px;*/
@@ -706,12 +805,11 @@
       padding-left: 10px;
       border-radius: 10px;height: 20px;width: 100%;outline: none;border: none;font-size: 12px;
     }
+    .searchbox2{
+      padding: 0px 10px 0px 10px;
+    }
     .searchbox{
       animation: change 1s;
-      -webkit-animation-fill-mode:forwards;
-    }
-    .searchbox2{
-      animation: change3 1s;
       -webkit-animation-fill-mode:forwards;
     }
     .flex1 div{

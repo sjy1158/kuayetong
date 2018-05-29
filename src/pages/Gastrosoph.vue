@@ -99,6 +99,29 @@
         <div></div>
     </div>
 
+    <mt-loadmore :top-method="loadTop" @translate-change="translateChange" @top-status-change="handleTopChange" :bottom-method="loadBottom" @bottom-status-change="handleBottomChange" :bottom-all-loaded="allLoaded" ref="loadmore">
+
+      <ul class="page-loadmore-list">
+        <li v-for="item in list" class="page-loadmore-listitem">{{ item }}</li>
+      </ul>
+
+
+      <div slot="top" class="mint-loadmore-top">
+        <span v-show="topStatus !== 'loading'" :class="{ 'is-rotate': topStatus === 'drop' }">↓</span>
+        <span v-show="topStatus === 'loading'">
+            <mt-spinner type="snake"></mt-spinner>
+          </span>
+      </div>
+
+
+      <div slot="bottom" class="mint-loadmore-bottom">
+        <span v-show="bottomStatus !== 'loading'" :class="{ 'is-rotate': bottomStatus === 'drop' }">↑</span>
+        <span v-show="bottomStatus === 'loading'">
+            <mt-spinner type="snake"></mt-spinner>
+          </span>
+      </div>
+    </mt-loadmore>
+
 
     <div class="slidecontent">
       <div v-show="tabindex==0">
@@ -248,7 +271,7 @@
           backIndex:function () {
             this.$router.push('/nearbyShops');
           },
-        handleScroll:function () {
+        handleScroll3:function () {
            this.scrollLeft = document.getElementById('box1').scrollLeft
 
         },
@@ -268,7 +291,7 @@
         }
       },
       mounted(){
-          document.getElementById('box1').addEventListener('scroll',this.handleScroll);
+          document.getElementById('box1').addEventListener('scroll',this.handleScroll3);
           // alert(document.getElementById('box1').scrollLeft)
       }
     }
