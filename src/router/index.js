@@ -7,6 +7,7 @@ import allShops from '../pages/allShops'
 import Paybill from '../pages/Paybill'
 import payOver from '../pages/payOver'
 import listItem from '../pages/listItem'
+import DistanceNear from '../pages/DistanceNear'
 
 Vue.use(Router)
 
@@ -14,15 +15,17 @@ export default new Router({
   routes: [
     {
       path:'/nearbyShops',
-      component:nearbyShops
+      component:nearbyShops,
+      children:[
+        {
+          path:'/nearbyShops/DistanceNear',
+          component:DistanceNear
+        }
+      ]
     },
     {
       path:'/Businesshome',
       component:Businesshome
-    },
-    {
-      path:'/Gastrosoph',
-      component:Gastrosoph
     },
     {
       path:'/allShops',

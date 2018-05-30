@@ -3,14 +3,13 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
-import MintUI from 'mint-ui'
-import 'mint-ui/lib/style.css'
+import Vant from 'vant'
+import 'vant/lib/vant-css/index.css'
+import 'lib-flexible/flexible'
 import AMap from 'vue-amap'
-import Swiper from 'vue-awesome-swiper'
-import 'swiper/dist/css/swiper.css'
-Vue.use(MintUI)
+
 Vue.use(AMap)
-Vue.use(Swiper)
+Vue.use(Vant)
 
 
 AMap.initAMapApiLoader({

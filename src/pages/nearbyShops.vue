@@ -1,561 +1,439 @@
 <template>
  <div class="nearShop">
-
-   <div id="alldom">
-   <div style="position: relative;height: 200px;width: 100%;">
-
+   <!--头部-->
+   <div class="header">
      <div>
-       <div class="date" style="display: none">
-         <el-amap vid="amap" :plugin="plugin" class="amap-demo"></el-amap>
+       <van-swipe :autoplay="3000">
+         <van-swipe-item v-for="(image, index) in images" :key="index">
+           <img :src="image"/>
+         </van-swipe-item>
+       </van-swipe>
+     </div>
+     <!--天气显示-->
+     <div class="titlelocation">
+       <div class="locationtext">
+         <img src="../assets/positioning@2x.png" alt="">
+         <span>新塘路新传媒产</span>
        </div>
-
-       <div style="height: 50px;color: black;display: flex;" ref="location">
-         <div style="margin-left: 41px;">
-             <div style="height: 50px;width: 15px;float: left;position: relative">
-               <img src="../assets/positioning@2x.png" alt="" style="width:15px;height: 20px;position: absolute;left: 0px;top:50%;margin-top: -10px;">
-             </div>
-             <div style="width: 200px;height: 50px;float: left;margin-left: 3px;overflow-x: scroll;color: white;overflow-y: hidden" class="scrolltitle" id="scrollTitle">
-               <div style="text-align: left;width:450px;height: 50px;line-height: 50px;">
-                <span v-if="loaded" style="" class="locationtext">
-                  {{address}}
-                  </span>
-                  <span v-else style="" class="locationtext">正在定位</span>
-               </div>
-             </div>
-
-             <!--<div style="height: 100%;width: 200px;flex: 1;color: white;font-size: 16px;overflow-x: scroll" class="location">-->
-               <!--<div style="width: 200px!important;background: black!important;height: 100%;margin-left:45px;">-->
-                 <!--<div>-->
-                   <!--<span v-if="loaded" style="" class="locationtext">-->
-                      <!--{{address}}-->
-                    <!--</span>-->
-                   <!--<span v-else style="" class="locationtext">正在定位</span>-->
-                 <!--</div>-->
-               <!--</div>-->
-               <!--&lt;!&ndash;<span>{{positions.address}}</span>&ndash;&gt;-->
-             <!--</div>-->
-           </div>
-         <div style="flex: 1;" class="weather">
-              <div class="weathernum">
-                <p style="font-size: 16px;">{{tmp}}℃</p>
-                <p style="font-size: 12px;">{{weather}}</p>
-              </div>
+       <div class="weather">
+         <div class="weathertext">
+          <p style="font-size: 0.5rem;">27℃</p>
+           <p>多云</p>
          </div>
        </div>
-
-         <!--搜索框-->
-      <div style="" :class="navBarFixed == true ? 'navBarWrap' :''" id="searchbox" ref="searchbox">
-       <div style="display: flex;" :class="navBarFixed == true ? 'searchBox' :'searchbox2'">
-            <input type="text" v-model="value" ref="seachinput" class="div" placeholder="输入商品名称/宝贝标题搜索" :class="navBarFixed == true ? 'navBarInput' :''">
-       </div>
-        <div style="padding: 0px 10px 0px 10px;display: flex;font-size: 12px;color: white;margin-top: 15px;" :class="navBarFixed == true ? 'overhide' :'shoplist'">
-          <div>肯德基</div>
-          <div>汉堡王</div>
-          <div>烤肉</div>
-          <div>满30减15</div>
-          <div>吃货公敌</div>
-          <div>小龙虾</div>
-          <div>鸡胗</div>
-        </div>
-      </div>
+     </div>
+      <!--输入框-->
+     <div class="search">
+       <input type="text" placeholder="输入商品名称／宝贝标题搜索">
      </div>
 
-
-
-       <div style="position: absolute;height: 200px;width: 100%;top: 0px;z-index: -99999;">
-       <mt-swipe :auto="4000">
-         <mt-swipe-item><img src="../assets/bg.jpg" alt="" style="width: 100%;"></mt-swipe-item>
-         <mt-swipe-item><img src="../assets/bg2.jpg" alt="" style="width: 100%;"></mt-swipe-item>
-         <mt-swipe-item><img src="../assets/bg3.jpg" alt="" style="width: 100%;"></mt-swipe-item>
-       </mt-swipe>
-         <div style="height: 30px;width:100%;background: white;position: absolute;bottom: -15px;border-radius: 50%;">
-         </div>
-         <div>1111111111111111</div>
-       </div>
-     </div>
-
-     <div style="width: 100%;margin-top: 20px;font-size: 12px;" class="listimgTab">
-      <div style="display: flex" class="flex1">
-        <div>
-          <img src="../assets/PartnershipCenter.png" alt="">
-          <p>合作中心</p>
-        </div>
-        <div>
-          <img src="../assets/Enterpriseconsulting.png" alt="">
-          <p>企业咨询</p>
-        </div>
-        <div>
-          <router-link to="/listItem"><img src="../assets/Gourmetworld.png" alt=""></router-link>
-          <p>美食天下</p>
-        </div>
-        <div>
-          <img src="../assets/酒店设施-运动健身.png" alt="">
-          <p>运动健身</p>
-        </div>
-        <div>
-          <img src="../assets/购物.png" alt="">
-          <p>时尚购物</p>
-        </div>
-      </div>
-     </div>
-   <div style="width: 100%;font-size: 12px;" class="listimgTab">
-     <div style="display: flex" class="flex1">
-       <div>
-         <img src="../assets/Flowersinthefield.png" alt="">
-         <p>花田喜事</p>
-       </div>
-       <div>
-         <img src="../assets/Lifeservice.png" alt="">
-         <p>生活服务</p>
-       </div>
-       <div>
-         <img src="../assets/Performanceticketing.png" alt="">
-         <p>演出票务</p>
-       </div>
-       <div>
-         <img src="../assets/Hairdressingbeauty.png" alt="">
-         <p>美容美发</p>
-       </div>
-       <div>
-         <img src="../assets/Lookatthewhole.png" alt="">
-         <p>查看全部</p>
-       </div>
+     <div class="shoptab">
+       <ul id="choceshop">
+         <li class="van-ellipsis">肯德基</li>
+         <li class="van-ellipsis">汉堡王</li>
+         <li class="van-ellipsis">肯德基</li>
+         <li class="van-ellipsis">烤肉</li>
+         <li class="van-ellipsis">满30减15</li>
+         <li class="van-ellipsis">吃货公敌</li>
+         <li class="van-ellipsis">小龙虾</li>
+         <li class="van-ellipsis">满30减15</li>
+         <li class="van-ellipsis">吃货公敌</li>
+         <li class="van-ellipsis">小龙虾</li>
+         <li class="van-ellipsis">满30减15</li>
+         <li class="van-ellipsis">吃货公敌</li>
+         <li class="van-ellipsis">小龙虾</li>
+      </ul>
      </div>
    </div>
 
-   <div class="scrollTop">
-     <div class="scrollTopflex1">
-          <div style="width: 50%;float: left;font-weight: bold">
-              商家<br/>头条
-          </div>
-       <div style="width: 50%;float: right;line-height: 50px;">
+   <!--主题-->
+   <div class="menulist">
+     <ul>
+       <li>
+         <img src="../assets/merchant_partnership_center.png" alt="">
+         <p>合伙中心</p>
+       </li>
+       <li>
          <img src="../assets/Enterpriseconsulting.png" alt="">
-       </div>
+         <p>企业咨询</p>
+       </li>
+       <li>
+         <img src="../assets/Gourmetworld.png" alt="">
+         <p>美食天下</p>
+       </li>
+       <li>
+         <img src="../assets/business_sports_fitness_icon.png" alt="">
+         <p>运动健身</p>
+       </li>
+       <li>
+         <img src="../assets/merchant_shopping_icon.png" alt="">
+         <p>时尚购物</p>
+       </li>
+       <li>
+         <img src="../assets/business_joy_icon.png" alt="">
+         <p>花田喜事</p>
+       </li>
+       <li>
+         <img src="../assets/business_life_service_icon.png" alt="">
+         <p>生活服务</p>
+       </li>
+       <li>
+         <img src="../assets/business_performance_icon.png" alt="">
+         <p>演出票务</p>
+       </li>
+       <li>
+         <img src="../assets/business_beauty_salons.png" alt="">
+         <p>美容美发</p>
+       </li>
+       <li>
+         <img src="../assets/merchants_all_icon.png" alt="">
+         <p>查看全部</p>
+       </li>
+     </ul>
+   </div>
+
+   <!--通知栏-->
+   <div class="slidexiaoxi">
+      <div>
+        <img src="../assets/business_business_headlines.png" alt="">
+      </div>
+     <div>
+       <img src="../assets/merchant_avatar.png" alt="">
      </div>
-     <div class="scroll-wrap">
-       <ul class="scroll-content" :style="{ top }">
-         <li v-for="item in prizeList">{{item.name}}</li>
-       </ul>
-     </div>
-     <div style="line-height: 30px;text-align: right;padding-right: 17px;">
-      2月3日
+     <van-notice-bar
+       text="足协杯战线连续第2年上演广州德比战，上赛季半决赛上恒大以两回合5-3的总比分淘汰富力。"
+       left-icon="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1527658925226&di=57af8daf1382c8c982ccc5db1e39f932&imgtype=0&src=http%3A%2F%2Fimg.zcool.cn%2Fcommunity%2F01635d571ed29832f875a3994c7836.png%40900w_1l_2o_100sh.jpg"
+     />
+     <div>
+       2月3日
      </div>
    </div>
 
-   <div style="width: 100%;height: 10px;background: #f2f2f2;"></div>
+  <!--tab-->
+   <div class="tabmenu" style="margin-top: 0.3rem">
+     <div class="neartitle"><img src="../assets/merchants_nearby_merchants.png" alt=""></div>
+     <van-tabs @click="onClick">
+       <van-tab v-for="item in menus" :title="item">
+         <router-view></router-view>
+       </van-tab>
+     </van-tabs>
    </div>
 
-   <div style="height: auto" :class="isfixed==true?'gotofixed':''">
-     <div class="title" id="title">
-       <span style="font-style: italic;font-size: 2px;">//</span><span class="titleshop">附近商家</span><span style="font-style: italic;font-size: 2px;">//</span>
-     </div>
-
-     <div class="slideleft" style="border-bottom: 1px solid #F3F3F3;">
-       <div style="position: relative" :class="index==0 ? 'active':''" @click="tabactive(0)">
-         <div style="width:20px;position: absolute;bottom: 0px;left: 50%;margin-left: -10px;" :class="index==0 ? 'activeTab':''">
-
-         </div>
-         距离最近
-       </div>
-       <div style="position: relative" :class="index==1 ? 'active':''" @click="tabactive(1)">
-         <div style="width:20px;position: absolute;bottom: 0px;left: 50%;margin-left: -10px;" :class="index==1 ? 'activeTab':''">
-
-         </div>
-         折扣最多
-       </div>
-       <div style="position: relative" :class="index==2 ? 'active':''" @click="tabactive(2)">
-         <div style="width:20px;position: absolute;bottom: 0px;left: 50%;margin-left: -10px;" :class="index==2 ? 'activeTab':''">
-
-         </div>
-         评分最高
-       </div>
-       <div style="position: relative" :class="index==3 ? 'active':''" @click="tabactive(3)">
-         <div style="width:20px;position: absolute;bottom: 0px;left: 50%;margin-left: -10px;" :class="index==3 ? 'activeTab':''">
-
-         </div>
-         销量最高
-       </div>
-     </div>
-   </div>
-   </div>
+ </div>
   </template>
   <script>
      import axios from 'axios'
       export default {
           name: "nearbyShops",
         data(){
-            var self = this;
-            return{
-              list:[1,2,3,4],
-              navBarWrap:false,
-              tmp:'',
-              weather:'',
-              index:0,
-              isfixed:false,
-              title:'外卖',
-              value:'',
-              selected:'1',
-              prizeList: [
-                { name: '今日数据' },
-                { name: 'uiuiuiuui' },
-                { name: 'hkhhhhjkh' },
-                { name: 'dadadada' },
-                { name: 'dadadadada' }
+            return {
+              images: [
+                'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1527658925226&di=57af8daf1382c8c982ccc5db1e39f932&imgtype=0&src=http%3A%2F%2Fimg.zcool.cn%2Fcommunity%2F01635d571ed29832f875a3994c7836.png%40900w_1l_2o_100sh.jpg',
+                'https://img.yzcdn.cn/2.jpg'
               ],
-              activeIndex: 0,
-              center: [121.59996, 31.197646],
-              lng: 0,
-              lat: 0,
-              loaded: false,
-              address:'',
-              plugin: [{
-                pName: 'Geolocation',
-                events: {
-                  init(o) {
-                    // o 是高德地图定位插件实例
-                    o.getCurrentPosition((status, result) => {
-                      if (result && result.position) {
-                        self.address = result.formattedAddress;
-                        self.lng = result.position.lng;
-                        self.lat = result.position.lat;
-                        self.center = [self.lng, self.lat];
-                        self.loaded = true;
-                        self.$nextTick();
-                      }
-                    });
-                  }
-                }
-              }]
-            };
-        },
-        computed: {
-          top() {
-            return - this.activeIndex * 30 + 'px';
-          }
+              menus:[
+                '距离最近',
+                '折扣最多',
+                '销量最高'
+              ]
+            }
         },
         methods:{
-         getWeather () {
-            var _this = this;
-            axios.get('http://restapi.amap.com/v3/weather/weatherInfo?key=534c5d265f9fb6b8907515fe31677328&city=杭州').then(function (response) {
-                var data = response.data;
-              if(data.status==1){
-                _this.tmp = data.lives[0].temperature;
-                _this.weather = data.lives[0].weather;
-              }
-              }).catch(function (error) {
-                alert(JSON.stringify(error))
-            })
-          },
-          tabactive(index){
-              this.index = index;
-          },
-          watchScroll(){
-            var scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
-            var domheight = document.getElementById('alldom').offsetHeight;
-            //  当滚动超过 50 时，实现吸顶效果
-            if (scrollTop > 49) {
-              this.navBarFixed = true
-            } else {
-              this.navBarFixed = false
-            };
-            if(scrollTop>domheight){
-              this.isfixed = true;
-            }else{
-              this.isfixed = false;
+          onClick(index,title){
+            switch (index){
+              case '0':
+                this.$router.push('/nearbyShops/DistanceNear')
             }
-          },
-          loadMore() {
-            this.loading = true;
-            setTimeout(() => {
-              let last = this.list[this.list.length - 1];
-              for (let i = 1; i <= 10; i++) {
-                this.list.push(last + i);
-              }
-              this.loading = false;
-            }, 2500);
           }
-          },
-
-          mounted(){
-            var _this = this;
-            window.addEventListener('scroll',this.watchScroll);
-          setInterval(()=> {
-            if(this.activeIndex < this.prizeList.length) {
-              this.activeIndex += 1;
-            } else {
-              this.activeIndex = 0;
-            }
-          }, 1000);
-            this.getWeather();
+        },
+        mounted(){
+            this.onClick('0','距离最近')
         }
+        // data(){
+        //     var self = this;
+        //     return{
+        //       list:[1,2,3,4],
+        //       navBarWrap:false,
+        //       tmp:'',
+        //       weather:'',
+        //       index:0,
+        //       isfixed:false,
+        //       title:'外卖',
+        //       value:'',
+        //       selected:'1',
+        //       prizeList: [
+        //         { name: '今日数据' },
+        //         { name: 'uiuiuiuui' },
+        //         { name: 'hkhhhhjkh' },
+        //         { name: 'dadadada' },
+        //         { name: 'dadadadada' }
+        //       ],
+        //       activeIndex: 0,
+        //       center: [121.59996, 31.197646],
+        //       lng: 0,
+        //       lat: 0,
+        //       loaded: false,
+        //       address:'',
+        //       plugin: [{
+        //         pName: 'Geolocation',
+        //         events: {
+        //           init(o) {
+        //             // o 是高德地图定位插件实例
+        //             o.getCurrentPosition((status, result) => {
+        //               if (result && result.position) {
+        //                 self.address = result.formattedAddress;
+        //                 self.lng = result.position.lng;
+        //                 self.lat = result.position.lat;
+        //                 self.center = [self.lng, self.lat];
+        //                 self.loaded = true;
+        //                 self.$nextTick();
+        //               }
+        //             });
+        //           }
+        //         }
+        //       }]
+        //     };
+        // },
+        // computed: {
+        //   top() {
+        //     return - this.activeIndex * 30 + 'px';
+        //   }
+        // },
+        // methods:{
+        //  getWeather () {
+        //     var _this = this;
+        //     axios.get('http://restapi.amap.com/v3/weather/weatherInfo?key=534c5d265f9fb6b8907515fe31677328&city=杭州').then(function (response) {
+        //         var data = response.data;
+        //       if(data.status==1){
+        //         _this.tmp = data.lives[0].temperature;
+        //         _this.weather = data.lives[0].weather;
+        //       }
+        //       }).catch(function (error) {
+        //         alert(JSON.stringify(error))
+        //     })
+        //   },
+        //   tabactive(index){
+        //       this.index = index;
+        //   },
+        //   watchScroll(){
+        //     var scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
+        //     var domheight = document.getElementById('alldom').offsetHeight;
+        //     //  当滚动超过 50 时，实现吸顶效果
+        //     if (scrollTop > 49) {
+        //       this.navBarFixed = true
+        //     } else {
+        //       this.navBarFixed = false
+        //     };
+        //     if(scrollTop>domheight){
+        //       this.isfixed = true;
+        //     }else{
+        //       this.isfixed = false;
+        //     }
+        //   },
+        //   loadMore() {
+        //     this.loading = true;
+        //     setTimeout(() => {
+        //       let last = this.list[this.list.length - 1];
+        //       for (let i = 1; i <= 10; i++) {
+        //         this.list.push(last + i);
+        //       }
+        //       this.loading = false;
+        //     }, 2500);
+        //   }
+        //   },
+        //
+        //   mounted(){
+        //     var _this = this;
+        //     window.addEventListener('scroll',this.watchScroll);
+        //   setInterval(()=> {
+        //     if(this.activeIndex < this.prizeList.length) {
+        //       this.activeIndex += 1;
+        //     } else {
+        //       this.activeIndex = 0;
+        //     }
+        //   }, 1000);
+        //     this.getWeather();
+        // }
       }
   </script>
 
-  <style>
-    .gotofixed{
-      position: fixed;width:100%;top: 40px;background: white;
+  <style scoped>
+    .header{
+      width:100%;
+      height:5rem;
+      position: relative;
+      /*background:red;*/
     }
-    .overhide{
-      display: none!important;
+    .header .van-swipe{
+      /*background: green;*/
+      height: 5rem;
     }
-    .navBarWrap {
-      position:fixed;
-      top:0;
-      z-index:999;
-      width: 100%;
-      padding: 0px!important;
-    }
-    .searchBox{
-      padding: 0px!important;
-    }
-    .navBarInput{
-      padding: 10px!important;
-      border-radius: 0px!important;
+    .header .van-swipe img{
       width: 100%!important;
-      height: 30px!important;
-      /*color: white!important;*/
-      background: #f2f2f2!important;
+      height: 100%;
     }
-    .active{
-      color: #F08400!important;
-    }
-    .active1{
-      position: absolute;top:55px;width: 100%;
-    }
-    .active2{
-      position: fixed;top: 0px;width: 100%;
-      background: palevioletred;
-      z-index: 999999999;
-    }
-
-    .activeTab{
-      border-bottom: 2px solid #F08400;
-    }
-
-    .weather{
-      font-size: 12px;
-      position: relative;
-    }
-    .weather .weathernum{
-      height: 30px;
-      width: 30px;
-      position: absolute;
-      top:50%;
-      right: 30px;
-      margin-top: -15px;
+    .header .titlelocation{
+      height: 0.7rem;
+      width:100%;
       /*background: red;*/
-      /*right: 0px;*/
-    }
-    .weather p{
-      margin: 0px!important;
+      position: absolute;
+      top: 1rem;
       color: white;
     }
-    .nearShop .scrolltitle::-webkit-scrollbar {
-      display: none;
-    }{
-
-    }
-    .nearShop .mint-swipe-indicators{
-      position: absolute;
-      top: 185px;
-      z-index: 99999999999999999;
-      /*background: green;*/
-      /*margin-top: 20px;*/
-    }
-    .nearShop .location{
+    .header .titlelocation .locationtext{
+      width: 50%;
+      height: 100%;
+      /*background: black;*/
       position: relative;
-      overflow: hidden;
-      text-overflow:ellipsis;
-      white-space: nowrap;
+      line-height: 0.7rem;
+      text-align: left;
+      float: left;
     }
-    .nearShop .location img{
+    .header .titlelocation .locationtext span{
+      margin-left: 1.4rem;
+    }
+    .header .titlelocation img{
+      width: 0.35rem;
+      height: 0.5rem;
       position: absolute;
-      left: 41px;
+      left: 0.8rem;
       top: 50%;
-      margin-top: -10px;
+      margin-top: -0.25rem;
     }
-    .nearShop .location span{
-      background: linear-gradient(to right, white,white );
-      -webkit-background-clip: text;
-      color: transparent;
-    }
-    .nearShop .mint-swipe-indicators .mint-swipe-indicator{
-      height: 5px!important;
-      width: 20px!important;
-      border-radius: 0px!important;
-      background: #909090!important;
-      /*z-index: 99999999999999999;*/
-    }
-    .nearShop .mint-swipe-indicators .mint-swipe-indicator.is-active{
-      background: #EE6723!important;
-    }
-    .listimgTab img{
-      height: 25px;
-      width: 25px;
-    }
-    .scrollTop{
-      display: flex;
-      margin-top: 15px;
-      margin-bottom: 15px;
-    }
-    .scrollTop div{
-      height: 30px;
-      flex: 1;
-      /*line-height: 30px;*/
-      font-size: 12px;
-    }
-    .scroll-wrap{
-      width: 100%;
-      height: 30px;
-      /*background: pink;*/
-      /*border: 1px solid blue;*/
-      overflow: hidden;
-    }
-
-    .scroll-content{
-      position: relative;
-      padding-left: 0px!important;
-      margin: 0px!important;
+    .header .titlelocation .weather{
+      width: 50%;
       /*background: green;*/
-      height: auto;
-      transition: top 0.5s;
+      height: 100%;
+      float: right;
+      position: relative;
     }
-
-    .title{
-      color:#FD4F4F;
-      font-size: 16px;
-      font-weight: bold;
-      font-family: PingFangSC-Medium;
-      padding-top: 15px;
-      padding-bottom: 10px;
+    .header .titlelocation .weather .weathertext{
+      position: absolute;
+      height: 0.7rem;
+      right: 0.8rem;
+      top: 50%;
+      margin-top: -0.5rem;
     }
-    .title .titleshop{
-      padding: 0px 8px 0px 8px;
-    }
- /*   .slideFixed{
-      position: fixed;width: 100%;
-      top: 50px;
-      background: gray!important;
-      z-index: 9999999;
-    }*/
-    .slideleft{
-      display: flex;
-      font-size: 12px;
-    }
-    .slideleft div{
-      flex: 1;
-      color: #393939;
-      font-family: PingFangSC-Regular;
-      padding-bottom: 10px;
-    }
-    .slidecontent{
-      width: 100%;
-      height: auto;
-      /*padding-bottom: 20px;*/
-    }
-    .slidecontent .listshop{
-      padding: 16px;
-      height: 95px;
-      /*background: pink;*/
-      display: flex;
-      font-size: 12px;
-    }
-    .slidecontent .listshop p{
+    .header .weather p{
       margin: 0px!important;
-      padding-bottom: 10px;
-      /*padding-left: 11px;*/
     }
-    .shop span{
-      padding-right: 10px;
-      color: #393939;
-    }
-    .discon{
-      display: flex;
-      font-size: 10px;
-      padding-bottom: 0px!important;
-    }
-    .discon span{
-      flex: 1;
-      border: 1px solid #F08400;
-      color: #FF0000;
-      margin-right: 3px;
-      /*margin-left: 3px;*/
-      padding: 1px;
-    }
-    li{
-      line-height: 30px;
-      width: 100%;
-      text-align: center;
-      /*background: pink;*/
-    }
-    .nearShop{
-      /*margin-top: 40px;*/
-      /*margin-bottom: 60px;*/
-    }
-    .active{
-      /*background: gray;*/
-      color: white;
-    }
-    .nearShop .mint-swipe-items-wrap{
-      /*background: aliceblue;*/
-      height: 200px!important;
-      width: 100%;
-      /*margin-top: 40px;*/
-    }
-    .date{
-      height: 50px;
-      background: blue;
-      width: 100%;
-      line-height: 50px;
-    }
-    .nearShop .mint-swipe-items-wrap .mint-swipe-item{
-      background: red;
-      line-height: 200px;
-    }
-    .nearShop .mint-search{
-      height: 50px!important;
-    }
-    .nearShop .mint-swipe-indicators{
-      bottom: 15px;
-    }
-    .nearShop .mint-swipe-indicators{
-      /*background: black!important;*/
-    }
-    .location{
-      font-size: 12px;
-      line-height: 50px;
-    }
-    .location img{
-      vertical-align:middle;
-    }
-    .location span{
-      vertical-align:middle;
-    }
-    .shoplist div{padding-left: 5px;text-align: center;flex: 1;overflow: hidden;
-      text-overflow:ellipsis;
-      white-space: nowrap;}
 
-    .div{
+    .header .search{
+      /*background: palevioletred;*/
+      width: 8.5rem;
+      height: 0.8rem;
+      top: 2.1rem;
+      position: absolute;
+      left: 50%;
+      margin-left: -4.25rem;
+      /*background: green;*/
+
+      /*position: absolute;*/
+    }
+    .header .search input{
+      height: 100%!important;
+      width: 8rem!important;
+      border: none;
+      color: #8F8F8F;
+      background: rgba(255,255,255,.7);
+      border-radius: 0.5rem;
+      padding-left: 0.5rem;
+    }
+    .header .shoptab{
+      width: 8rem;
+      /*background: palevioletred;*/
+      position: absolute;
+      top:3.2rem;
+      left: 50%;
+      margin-left: -4rem;
+      color: white;
+      overflow-y: hidden;
+      overflow-x: scroll;
+    }
+    .header .shoptab::-webkit-scrollbar{
+      display: none;
+    }
+    .header .shoptab ul{
+      display: flex;
+      width: 20rem;
+    }
+    .header .shoptab ul li{
+      width: 1.2rem;
+      text-align: center;
+    }
+
+    /*主题*/
+    .menulist{
+      height: 5.2rem;
+      width: 100%;
+      background: white;
+    }
+    .menulist ul{
+      width: 100%;
+      display: flex;
+      flex-wrap: wrap;
+    }
+    .menulist ul li{
       flex: 1;
-      padding-left: 10px;
-      border-radius: 10px;height: 20px;width: 100%;outline: none;border: none;font-size: 12px;
+      width: 20%;
+      height: 50px;
+      min-width: 20%;
+      margin-bottom: 0.4rem;
+      max-width: 20%;
+      font-size: 12px;
+      padding: 0px!important;
+      padding-top: 0.5rem!important;
     }
-    .searchbox2{
-      padding: 0px 10px 0px 10px;
+    /*通告篮*/
+    .slidexiaoxi{
+      height: 1.5rem;
+      width: 100%;
+      background: white;
     }
-    .searchbox{
-      animation: change 1s;
-      -webkit-animation-fill-mode:forwards;
+    .slidexiaoxi div{
+      float: left;
     }
-    .flex1 div{
-      flex: 1;
+    .slidexiaoxi div:first-child img{
+      margin-left: 0.6rem;
+      margin-top: 0.25rem;
+      font-weight: bold;
     }
-    /*@keyframes change{*/
-        /*from {opacity: 1;margin-top: 10px; transform: scale(0,0);}*/
-        /*to {opacity: 1;margin-top: -20px; height:30px;transform: scale(1,1);top: 20px;}*/
-      /*}*/
-    /*@keyframes change3{*/
-      /*from {padding: 0px 10px 0px 10px;}*/
-      /*to {padding: 0px;}*/
-    /*}*/
+    .slidexiaoxi div:nth-child(2){
+      margin-left: 0.25rem;
+      margin-top: 0.1rem;
+    }
+    .slidexiaoxi div:last-child{
+      float: right;
+      margin-right: 0.6rem;
+      margin-top: 0.3rem;
+    }
+    .slidexiaoxi div p{
+      margin: 0px!important;
+      padding: 0px!important;
+    }
+    .slidexiaoxi .van-notice-bar{
+      width: 4.5rem;
+      height: 0.7rem;
+      background: white;
+      color: #393939;
+      /*background: palevioletred;*/
+      font-size: 0.3rem;
+      margin-top: 0.14rem;
+    }
+    .slidexiaoxi .van-notice-bar .van-notice-bar__wrap{
+        height: 1.24rem!important;
+    }
+
+    /*切换*/
+    .tabmenu .van-tabs .van-tab{
+      font-size: 0.3rem!important;
+    }
+    .tabmenu .neartitle{
+        width: 100%;
+        height: 1.4rem;
+      background: white;
+    }
+    .tabmenu .neartitle img{
+      margin-top: 0.5rem;
+    }
   </style>
