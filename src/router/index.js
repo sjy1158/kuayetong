@@ -8,6 +8,7 @@ import Paybill from '../pages/Paybill'
 import payOver from '../pages/payOver'
 import listItem from '../pages/listItem'
 import DistanceNear from '../pages/DistanceNear'
+import Mostdiscounts from '../pages/Mostdiscounts'
 
 Vue.use(Router)
 
@@ -20,6 +21,10 @@ export default new Router({
         {
           path:'/nearbyShops/DistanceNear',
           component:DistanceNear
+        },
+        {
+          path:'/nearbyShops/Mostdiscounts',
+          component:Mostdiscounts
         }
       ]
     },

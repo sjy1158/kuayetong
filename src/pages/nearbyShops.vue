@@ -1,6 +1,7 @@
 <template>
  <div class="nearShop">
    <!--头部-->
+   <div id="scrollheight">
    <div class="header">
      <div>
        <van-swipe :autoplay="3000">
@@ -50,7 +51,7 @@
    <div class="menulist">
      <ul>
        <li>
-         <img src="../assets/merchant_partnership_center.png" alt="">
+         <router-link to="/Businesshome"><img src="../assets/merchant_partnership_center.png" alt=""></router-link>
          <p>合伙中心</p>
        </li>
        <li>
@@ -108,11 +109,16 @@
        2月3日
      </div>
    </div>
+     <div style="width: 100%;height: 0.2rem">
+
+     </div>
+   </div>
 
   <!--tab-->
-   <div class="tabmenu" style="margin-top: 0.3rem">
+
+   <div class="tabmenu" style="">
      <div class="neartitle"><img src="../assets/merchants_nearby_merchants.png" alt=""></div>
-     <van-tabs @click="onClick">
+     <van-tabs @click="onClick" sticky line-width="20">
        <van-tab v-for="item in menus" :title="item">
          <router-view></router-view>
        </van-tab>
@@ -135,19 +141,35 @@
                 '距离最近',
                 '折扣最多',
                 '销量最高'
-              ]
+              ],
+              isfixed:false,
             }
         },
         methods:{
           onClick(index,title){
             switch (index){
-              case '0':
+              case 0:
                 this.$router.push('/nearbyShops/DistanceNear')
+                break
+              case 1:
+                this.$router.push('/nearbyShops/Mostdiscounts')
+                break
             }
-          }
+          },
+        watchScroll(){
+         var scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
+          var scrollheight = document.getElementById('scrollheight').offsetHeight;
+         //  当滚动超过 50 时，实现吸顶效果
+         if(scrollTop>=scrollheight){
+           this.isfixed = true;
+         }else{
+           this.isfixed = false;
+         }
+       }
         },
         mounted(){
-            this.onClick('0','距离最近')
+            this.onClick(0,'距离最近');
+            window.addEventListener('scroll',this.watchScroll)
         }
         // data(){
         //     var self = this;
