@@ -8,7 +8,7 @@
             >
               <van-cell>
                  <div class="pullbox">
-                   <router-link to="/Businesshome"><img src="../assets/merchant_avatar3.png" alt="" style="float: left" class="shopimg"></router-link>
+                   <router-link to="/Shophome"><img src="../assets/merchant_avatar3.png" alt="" style="float: left" class="shopimg"></router-link>
                    <div class="textbox">
                      <p>星巴克Starbucks（新塘路2店）</p>
                      <p class="titlelist"><img src="../assets/businesses_icon.png" alt=""><span>咖啡糕点</span><span>人均消费68元</span><span style="float: right"><100m</span></p>

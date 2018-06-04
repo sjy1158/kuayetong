@@ -51,7 +51,7 @@
    <div class="menulist">
      <ul>
        <li>
-         <router-link to="/Businesshome"><img src="../assets/merchant_partnership_center.png" alt=""></router-link>
+          <img src="../assets/merchant_partnership_center.png" alt="">
          <p>合伙中心</p>
        </li>
        <li>
@@ -59,7 +59,7 @@
          <p>企业咨询</p>
        </li>
        <li>
-         <img src="../assets/Gourmetworld.png" alt="">
+         <router-link to="/Businesshome"><img src="../assets/Gourmetworld.png" alt=""></router-link>
          <p>美食天下</p>
        </li>
        <li>
@@ -87,7 +87,7 @@
          <p>美容美发</p>
        </li>
        <li>
-         <img src="../assets/merchants_all_icon.png" alt="">
+         <router-link to="/allShops"><img src="../assets/merchants_all_icon.png" alt=""></router-link>
          <p>查看全部</p>
        </li>
      </ul>

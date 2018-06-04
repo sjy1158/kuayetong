@@ -1,340 +1,167 @@
 <template>
   <div class="allShops">
-    <header id="header">
-      <img src="../assets/return@3x.png" alt="" class="back">
-      <div style="" class="searchInput2">
-        <div>
-          <img src="../assets/search.png" alt="">
-          <input type="text" placeholder="输入商家或商品名称搜索">
+    <!--搜索框-->
+    <div class="searchbox" style="position: fixed;top: 0px;">
+      <div class="searchbox2">
+        <div class="left">
+          <van-icon name="arrow-left" />
         </div>
+        <div class="icon">
+          <van-icon name="search" />
+        </div>
+        <input type="text" placeholder="输入商家或商品名称搜索">
       </div>
-    </header>
-    <!--<div style="background: white" class="searchInput">-->
-      <!--<div>-->
-        <!--<img src="../assets/search.png" alt="">-->
-        <!--<input type="text" placeholder="输入商家或商品名称搜索">-->
-      <!--</div>-->
-    <!--</div>-->
-
-    <section class="mod">
-      <div style="text-align: left;position: fixed;z-index: 9999999;background:#f1f0f0 " class="meishi">
-        <span>美食</span>
-        <span>美食（1996）</span>
-        <span style="float: right">去频道▶</span>
+    </div>
+    <!--搜索框ending-->
+    <div class="gopindao" style="position: fixed;top: 2.1rem;width: 100%;z-index: 999999;background: #f2f2f2">
+        <div style="float: left">美食</div>
+      <div style="width: 70%;height: 1.5rem;float: right;margin-right: 0.3rem;line-height: 1.5rem;font-size: 0.3rem;">
+        <span style="float: left">美食（1996）</span>
+        <span style="float: right;">去频道</span>
       </div>
+    </div>
 
-      <div class="tabcontentshop">
-        <ul style="position: fixed!important;top:69px;">
-          <li>甜点饮品</li>
-          <li>正餐优选</li>
-          <li>能量西餐</li>
-          <li>快食简餐</li>
-          <li>异国料理</li>
-          <li>鲜花蛋糕</li>
-          <li>家常菜</li>
-          <li>夜宵</li>
-          <li>早餐</li>
-          <li>小吃馆</li>
-          <li>小炒菜</li>
+    <!--侧边栏-->
+    <div class="shoplist" style="top: 3.5rem;z-index: -99999999;margin-bottom: 2rem;position: fixed;">
+      <div style="float: left;background: white">
+        <ul style="width: 2.5rem;">
+          <li @click="onClick(0)" v-bind:class="index==0 ? 'active':''">甜点饮品</li>
+          <li @click="onClick(1)" v-bind:class="index==1 ? 'active':''">正餐优选</li>
+          <li @click="onClick(2)" v-bind:class="index==2 ? 'active':''">能量西餐</li>
+          <li @click="onClick(3)" v-bind:class="index==3 ? 'active':''">快食简餐</li>
+          <li @click="onClick(4)" v-bind:class="index==4 ? 'active':''">异国料理</li>
+          <li @click="onClick(5)" v-bind:class="index==5 ? 'active':''">鲜花蛋糕</li>
+          <li @click="onClick(6)" v-bind:class="index==6 ? 'active':''">家常菜</li>
+          <li @click="onClick(7)" v-bind:class="index==7 ? 'active':''">夜宵</li>
+          <li @click="onClick(8)" v-bind:class="index==8 ? 'active':''">早餐</li>
+          <li @click="onClick(9)" v-bind:class="index==9 ? 'active':''">小吃馆</li>
+          <li @click="onClick(10)" v-bind:class="index==10 ? 'active':''">小炒菜</li>
         </ul>
-        <div class="shoplist2" style="margin-top: 30px;">
-          <ul>
-            <li>
-              <img src="../assets/fastfood.png" alt="">
-              <p>全部</p>
-              <div>999</div>
-            </li>
-            <li>
-              <img src="../assets/hamburgerfries.png" alt="">
-              <p>全部</p>
-              <div>999</div>
-            </li>
-            <li>
-              <img src="../assets/steak.png" alt="">
-              <p>全部</p>
-              <div>999</div>
-            </li>
-            <li>
-              <img src="../assets/fastfood.png" alt="">
-              <p>全部</p>
-              <div>999</div>
-            </li>
-            <li>
-              <img src="../assets/hamburgerfries.png" alt="">
-              <p>全部</p>
-              <div>999</div>
-            </li>
-            <li>
-              <img src="../assets/steak.png" alt="">
-              <p>全部</p>
-              <div>999</div>
-            </li>
-            <li>
-              <img src="../assets/fastfood.png" alt="">
-              <p>全部</p>
-              <div>999</div>
-            </li>
-            <li>
-              <img src="../assets/hamburgerfries.png" alt="">
-              <p>全部</p>
-              <div>999</div>
-            </li>
-            <li>
-              <img src="../assets/steak.png" alt="">
-              <p>全部</p>
-              <div>999</div>
-            </li>
-            <li>
-              <img src="../assets/fastfood.png" alt="">
-              <p>全部</p>
-              <div>999</div>
-            </li>
-            <li>
-              <img src="../assets/hamburgerfries.png" alt="">
-              <p>全部</p>
-              <div>999</div>
-            </li>
-            <li>
-              <img src="../assets/steak.png" alt="">
-              <p>全部</p>
-              <div>999</div>
-            </li>
-            <li>
-              <img src="../assets/fastfood.png" alt="">
-              <p>全部</p>
-              <div>999</div>
-            </li>
-            <li>
-              <img src="../assets/hamburgerfries.png" alt="">
-              <p>全部</p>
-              <div>999</div>
-            </li>
-            <li>
-              <img src="../assets/steak.png" alt="">
-              <p>全部</p>
-              <div>999</div>
-            </li>
-            <li>
-              <img src="../assets/fastfood.png" alt="">
-              <p>全部</p>
-              <div>999</div>
-            </li>
-            <li>
-              <img src="../assets/hamburgerfries.png" alt="">
-              <p>全部</p>
-              <div>999</div>
-            </li>
-            <li>
-              <img src="../assets/steak.png" alt="">
-              <p>全部</p>
-              <div>999</div>
-            </li>
-            <li>
-              <img src="../assets/fastfood.png" alt="">
-              <p>全部</p>
-              <div>999</div>
-            </li>
-            <li>
-              <img src="../assets/hamburgerfries.png" alt="">
-              <p>全部</p>
-              <div>999</div>
-            </li>
-            <li>
-              <img src="../assets/steak.png" alt="">
-              <p>全部</p>
-              <div>999</div>
-            </li>
-            <li>
-              <img src="../assets/fastfood.png" alt="">
-              <p>全部</p>
-              <div>999</div>
-            </li>
-            <li>
-              <img src="../assets/hamburgerfries.png" alt="">
-              <p>全部</p>
-              <div>999</div>
-            </li>
-            <li>
-              <img src="../assets/steak.png" alt="">
-              <p>全部</p>
-              <div>999</div>
-            </li>
-            <li>
-              <img src="../assets/steak.png" alt="">
-              <p>全部</p>
-              <div>999</div>
-            </li>
-          </ul>
-        </div>
       </div>
-    </section>
+    </div>
+
+    <div style="width: 70%;background: white;float: right;margin-right: 0.25rem;position: absolute;right: 0px;top: 3.5rem;z-index: -99999">
+      <router-view></router-view>
+    </div>
+
+
   </div>
 </template>
 
 <script>
     export default {
-        name: "allShops"
+        name: "allShops",
+      data(){
+          return{
+              activeKey: 0,
+              index:0
+          }
+      },
+      methods: {
+        onClick(index) {
+          this.index = index;
+          switch (index){
+            case 0:
+              this.$router.push('/allShops/Meishilist');
+              break
+          }
+        }
+      },
+      mounted(){
+          this.onClick(0);
+      }
     }
 </script>
 
-<style>
-  html,body{
-    background: #f1f0f0;
+<style scoped>
+  .active{
+    font-weight: bold;
+    background: #f2f2f2;
   }
-  #header{
-    height: 40px;
-    width: 100%;
-    background: white;
-    position: fixed;
-    top: 0px;
-    left: 0px;
-    line-height: 40px;
-    /*padding: 0px 10px 0px 10px;*/
-  }
-  #header .back{
-    float: left;
-    padding-left: 10px;
-    height: 20px;
-    width: 10px;
+  .left{
     position: absolute;
     left: 0px;
+    height: 1.4rem;
+    width: 5%;
+    /*background: palevioletred;*/
     top: 50%;
-    margin-top: -10px;
+    margin-top: -0.7rem;
+    line-height: 1.7rem;
+    z-index: 999999999999;
+    font-size: 0.7rem!important;
   }
-  .allShops .mint-header{
-    background: white!important;
-    color: #393939;
-    font-size: 18px!important;
-    z-index: -9999999999;
+  .searchbox{
+    height: 2.1rem;
+    width: 94%;
+    background: white;
+    padding-left: 3%;
+    padding-right: 3%;
   }
-  .allShops .mint-header i{
-    font-size: 18px!important;
-  }
-  .allShops .mint-search{
-    margin-top: 40px;
-    height: 70px!important;
-  }
-
-  .searchInput2{
-    height: 40px;width: 100%;line-height: 40px;
-  }
-  .searchInput2 div{
+  .searchbox .searchbox2{
     height: 100%;
-    width: 90%;
-    /*background: red;*/
-    margin: 0 auto;
+    width: 100%;
+    /*background: palevioletred;*/
     position: relative;
   }
-  .searchInput2 div img{
+  .searchbox .searchbox2 .icon{
+    width: 1rem;
+    height: 0.9rem;
+    line-height: 1.1rem;
     position: absolute;
-    height: 15px;
-    width: 15px;
+    top:50%;
+    left: 10%;
+    margin-top: -0.45rem;
+    font-size: 15px;
+    /*background: palevioletred;*/
+    z-index: 999999999999999;
+  }
+  .searchbox .searchbox2 input{
+    width:80%;
+    height: 0.9rem;
+    border-radius: 0.5rem;
+    position: absolute;
+    left: 10%;
     top: 50%;
-    left: 6%;
-    margin-top: -7.5px;
-  }
-  .searchInput2 div input{
-    height: 15px;
-    width: 83%;
-    padding-left: 7%;
-    border: 1px #FFFFFF solid;
-    box-shadow:0px 0px 0px 3px #F8F8F8;
-    border-radius: 15px;
+    margin-top: -0.45rem;
+    padding-left: 9%;
     outline: none;
-    color: #909090;
-    font-size: 12px;
-  }
-  .mod{
-    font-size: 12px;
-    /*margin-top: 40px;*/
-    width: 100%;
-    height: auto;
-    background: #f1f0f0;
-    margin-top: 40px;
-  }
-  .meishi{
-    height: 47px;
-    width: 100%;
-    line-height: 47px;
-  }
-  .meishi span{
-    margin-left: 15px;
-  }
-  .meishi span:nth-child(3){
-    padding-right: 6px;
-  }
-  .tabcontentshop{
-    width: 100%;
-    height: auto;
-  }
-  .tabcontentshop ul{
-    padding: 0px!important;
-    width: 25%;
-    height: auto;
-    background: white;
-    float: left;
-    font-size: 14px;
-    font-family: PingFangSC-Regular;
-  }
-  .tabcontentshop ul li{
-    padding-top: 20px;
-  }
-  .tabcontentshop ul li img{
-    width: 39px;
-    height: 26px;
-  }
-  .tabcontentshop ul li:last-child{
-    padding-bottom: 14px;
-  }
-  .shoplist2{
-    width: 73%!important;
-    height: auto;
-    float: right;
-    /*background: red!important;*/
-    padding: 0% 1% 0% 1%!important;
-  }
-  .shoplist2 ul{
-    width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    /*height: auto;*/
-    /*display: flex;*/
-    /*flex-wrap:wrap;*/
-    /*margin: 0 auto;*/
-    /*!*background: green;*!*/
-    /*padding: 0px!important;*/
-
-  }
-  .shoplist2 ul li{
-    /*height: 192px;*/
-    flex: 1;
-    width: 33%;
-    height: 50px;
-    /*background: red;*/
-    min-width: 33%;
-    /*box-shadow:3px 3px 8px 3px #F3F3F3;*/
-    margin-bottom: 29px;
-    /*margin-left: 1%;*/
-    /*border-radius: 10px;*/
-    max-width: 33%;
-    font-size: 12px;
-    padding: 0px!important;
-    padding-top: 10px!important;
-    /*position: relative;*/
-    /*margin: 0px!important;*/
-  }
-  .shoplist2 ul li p{
-    margin: 0px!important;
-  }
-  .shoplist2 ul li div{
-    width: 50px;
-    background: #f3f3f3;
-    margin: 0 auto;
-    color: #717171;
-    margin-top: 4px!important;
-    border-radius: 5px;
+    border: none;
+    box-shadow:0px 0px 8px #f2f2f2;
   }
 
+  /*//去频道*/
+  .gopindao div:first-child{
+      width: 2.5rem;
+      height: 1.5rem;
+      line-height: 1.5rem;
+      /*background: white;*/
+      /*margin-top: 10px;*/
+    font-size: 0.3rem;
+  }
+  .gopindao div:nth-child(2){
+    /*font-size: 0.4rem;*/
+  }
 
-
+  /*商品列表*/
+  .van-badge-group{
+      width: 2.5rem!important;
+  }
+  .van-badge-group .van-badge{
+    background: white!important;
+    font-size: 0.3rem!important;
+    color: #393939!important;
+  }
+  .shoplist ul{
+      height: 10rem;
+    /*background: palevioletred;*/
+    overflow-y: scroll;
+    overflow-x: hidden;
+  }
+  .shoplist ul::-webkit-scrollbar{
+    display: none;
+  }
+  .shoplist ul li{
+    height: 1.5rem;
+    line-height: 1.5rem;
+  }
 </style>

@@ -57,7 +57,7 @@
 
 
       <div class="tabmenu" id="tabmenu" style="margin-top: 30px;">
-        <van-tabs @click="onClick" sticky line-width="20">
+        <van-tabs @click="onClick2" sticky line-width="20">
           <van-tab v-for="item in menus" :title="item">
             <router-view></router-view>
           </van-tab>
@@ -90,10 +90,17 @@
       methods:{
         onClick(index,title){
           alert(index);
+        },
+        onClick2(index,title){
+          switch(index){
+            case 0:
+              this.$router.push('/Businesshome/DistanceNearshopcenter')
+              break
+          }
         }
       },
       mounted(){
-        
+        this.onClick2(0,'距离最近')
       }
     }
 </script>
@@ -147,6 +154,10 @@
     }
     .van-tabs .van-tab{
       height: 2rem!important;
+    }
+
+    .van-tabs--line{
+      padding-top: 2rem!important;
     }
 
 
