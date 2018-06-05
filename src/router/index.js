@@ -14,6 +14,7 @@ import Meishilist from '../pages/Meishilist'
 import Shophome from '../pages/Shophome'
 import starProducts from '../pages/starProducts'
 import Businessdetails from '../pages/Businessdetails'
+import firmOrder from '../pages/firmOrder'
 
 Vue.use(Router)
 
@@ -66,6 +67,10 @@ export default new Router({
           component:Businessdetails
         }
       ]
+    },
+    {
+      path:'/firmOrder',
+      component:firmOrder
     },
     {
       path:'/Paybill',

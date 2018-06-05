@@ -177,8 +177,12 @@
         },
         openBuy(){
           this.showBase = true;
+        },
+        onPointClicked(){
+          this.$router.push('/firmOrder');
         }
       },
+
       mounted(){
 
       }
