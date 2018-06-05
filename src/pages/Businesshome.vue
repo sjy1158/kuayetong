@@ -1,7 +1,14 @@
 <template>
     <div class="shopStore">
+      <van-nav-bar
+        fixed
+        title="美食天下"
+        left-arrow
+        @click-left="onClickLeft"
+        @click-right="onClickRight"
+      />
       <!--搜索框-->
-      <div class="searchbox">
+      <div class="searchbox" style="margin-top: 1.1rem;">
         <div class="searchbox2">
           <div class="icon">
             <van-icon name="search" />
@@ -106,6 +113,13 @@
 </script>
 
 <style scoped>
+  .van-nav-bar{
+    height: 1.1rem;
+    width: 100%;
+    line-height: 1.1rem;
+    z-index: 50!important;
+  }
+  /*van-hairline--bottom van-nav-bar .van-nav-bar--fixed*/
     .searchbox{
       height: 2.1rem;
       width: 96%;
@@ -128,7 +142,7 @@
       margin-top: -0.45rem;
       font-size: 15px;
     /*background: palevioletred;*/
-      z-index: 999999999999999;
+      z-index: 1;
     }
   .searchbox .searchbox2 input{
     width: 91%;

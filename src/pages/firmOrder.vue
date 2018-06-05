@@ -1,6 +1,13 @@
 <template>
   <div class="firmOrder">
-    <div v-show="issave==false">
+    <van-nav-bar
+      fixed
+      title="确认订单"
+      left-arrow
+      @click-left="onClickLeft"
+      @click-right="onClickRight"
+    />
+    <div v-show="issave==false" style="margin-top: 1.1rem;">
       <div class="locationtitle">
         <span style="padding-left: 0.31rem;">地址信息</span>
       </div>
@@ -36,7 +43,7 @@
       </div>
     </div>
 
-    <div class="savelocation" v-show="issave==true" @click="bianjiplace">
+    <div class="savelocation" v-show="issave==true" @click="bianjiplace" style="margin-top: 1.5rem;">
         <div class="savexinxi">
           <img src="../assets/positioning@2x.png" alt="" style="float: left">
           <div style="text-align: left;height: 1rem;" class="locationtext">
@@ -157,6 +164,11 @@
 </script>
 
 <style scoped>
+  .van-nav-bar{
+    height: 1.1rem;
+    width: 100%;
+    line-height: 1.1rem;
+  }
     .locationtitle,.save{
       height: 1.18rem;
       width: 100%;

@@ -1,6 +1,13 @@
 <template>
     <div class="shophome">
-        <div class="titleImg">
+      <van-nav-bar
+        fixed
+        title="商家主页"
+        left-arrow
+        @click-left="onClickLeft"
+        @click-right="onClickRight"
+      />
+        <div class="titleImg" style="margin-top: 1.1rem;">
           <img src="../assets/business_starbucks_round@2x.png" alt="">
           <div class="titletext">
             <p>星巴克Starbucks</p>
@@ -89,7 +96,7 @@
         </van-tabs>
       </div>
 
-      <button type="button">立即抵扣买单</button>
+      <button type="button" @click="openPay">立即抵扣买单</button>
     </div>
 </template>
 
@@ -114,7 +121,10 @@
                 this.$router.push('/Shophome/Businessdetails')
                     break
             }
-          }
+          },
+        openPay(){
+            // this.$router.push('/Paybill');
+        }
       },
       mounted(){
           this.onClick(0,'明星产品')
@@ -123,6 +133,11 @@
 </script>
 
 <style scoped>
+  .van-nav-bar{
+    height: 1.1rem;
+    width: 100%;
+    line-height: 1.1rem;
+  }
   .titleImg{
     height: 1.5rem;
     width: 100%;
@@ -132,14 +147,14 @@
   .titleImg img{
     position: absolute;
     left: 0.6rem;
-    top: 0.1rem;
+    top: 0.25rem;
     height: 1.8rem;
     width: 1.8rem;
   }
   .titleImg .titletext{
     position: absolute;
     left: 2.7rem;
-    top: 0.4rem;
+    top: 0.6rem;
     text-align: left;
     font-size: 0.4rem;
     font-weight: bold;
@@ -232,6 +247,7 @@
     color: white;
     font-weight: bold;
     font-size: 0.5rem;
+    z-index: 100;
   }
 
   /*.slideyouhui{*/
