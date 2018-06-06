@@ -4,13 +4,14 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import Vant from 'vant'
+import Api from './plugins/api'
 import 'vant/lib/vant-css/index.css'
 import 'lib-flexible/flexible'
 import AMap from 'vue-amap'
 
 Vue.use(AMap)
 Vue.use(Vant)
-
+Vue.use(Api)
 
 AMap.initAMapApiLoader({
   // 申请的高德key

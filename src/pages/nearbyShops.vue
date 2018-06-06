@@ -1,7 +1,6 @@
 <template>
  <div class="nearShop">
    <!--头部-->
-   <el-amap vid="amap" :plugin="plugin" class="amap-demo"></el-amap>
    <div id="scrollheight">
    <div class="header">
      <div>
@@ -51,46 +50,46 @@
    <!--主题-->
    <div class="menulist">
      <ul>
-       <li>
-          <img src="../assets/merchant_partnership_center.png" alt="">
-         <p>合伙中心</p>
+       <li v-for="item in iconarr">
+          <img :src="item.imageUrl" alt="" style="width: 0.81rem;height: 0.81rem" @click="openItem(item.id,item.name)">
+         <p>{{item.name}}</p>
        </li>
-       <li>
-         <img src="../assets/Enterpriseconsulting.png" alt="">
-         <p>企业咨询</p>
-       </li>
-       <li>
-         <router-link to="/Businesshome"><img src="../assets/Gourmetworld.png" alt=""></router-link>
-         <p>美食天下</p>
-       </li>
-       <li>
-         <img src="../assets/business_sports_fitness_icon.png" alt="">
-         <p>运动健身</p>
-       </li>
-       <li>
-         <img src="../assets/merchant_shopping_icon.png" alt="">
-         <p>时尚购物</p>
-       </li>
-       <li>
-         <img src="../assets/business_joy_icon.png" alt="">
-         <p>花田喜事</p>
-       </li>
-       <li>
-         <img src="../assets/business_life_service_icon.png" alt="">
-         <p>生活服务</p>
-       </li>
-       <li>
-         <img src="../assets/business_performance_icon.png" alt="">
-         <p>演出票务</p>
-       </li>
-       <li>
-         <img src="../assets/business_beauty_salons.png" alt="">
-         <p>美容美发</p>
-       </li>
-       <li>
-         <router-link to="/allShops"><img src="../assets/merchants_all_icon.png" alt=""></router-link>
-         <p>查看全部</p>
-       </li>
+       <!--<li>-->
+         <!--<img src="../assets/Enterpriseconsulting.png" alt="">-->
+         <!--<p>企业咨询</p>-->
+       <!--</li>-->
+       <!--<li>-->
+         <!--<router-link to="/Businesshome"><img src="../assets/Gourmetworld.png" alt=""></router-link>-->
+         <!--<p>美食天下</p>-->
+       <!--</li>-->
+       <!--<li>-->
+         <!--<img src="../assets/business_sports_fitness_icon.png" alt="">-->
+         <!--<p>运动健身</p>-->
+       <!--</li>-->
+       <!--<li>-->
+         <!--<img src="../assets/merchant_shopping_icon.png" alt="">-->
+         <!--<p>时尚购物</p>-->
+       <!--</li>-->
+       <!--<li>-->
+         <!--<img src="../assets/business_joy_icon.png" alt="">-->
+         <!--<p>花田喜事</p>-->
+       <!--</li>-->
+       <!--<li>-->
+         <!--<img src="../assets/business_life_service_icon.png" alt="">-->
+         <!--<p>生活服务</p>-->
+       <!--</li>-->
+       <!--<li>-->
+         <!--<img src="../assets/business_performance_icon.png" alt="">-->
+         <!--<p>演出票务</p>-->
+       <!--</li>-->
+       <!--<li>-->
+         <!--<img src="../assets/business_beauty_salons.png" alt="">-->
+         <!--<p>美容美发</p>-->
+       <!--</li>-->
+       <!--<li>-->
+         <!--<router-link to="/allShops"><img src="../assets/merchants_all_icon.png" alt=""></router-link>-->
+         <!--<p>查看全部</p>-->
+       <!--</li>-->
      </ul>
    </div>
 
@@ -143,7 +142,8 @@
                 '折扣最多',
                 '销量最高'
               ],
-              isfixed:false
+              isfixed:false,
+              iconarr:''
             }
         },
         methods:{
@@ -166,11 +166,27 @@
          }else{
            this.isfixed = false;
          }
-       }
+       },
+
+          openItem(id,name){
+            this.$router.push({
+              path:'/Businesshome/',
+              params:{
+                id:id,
+                name:name
+              }
+            })
+          }
         },
         mounted(){
+            var _this = this;
             this.onClick(0,'距离最近');
-            window.addEventListener('scroll',this.watchScroll)
+            window.addEventListener('scroll',this.watchScroll);
+            var datajson = this.$api.geticon();
+            datajson.then(function (res) {
+              _this.iconarr = res;
+              // alert(JSON.stringify(res));
+            })
         }
         // data(){
         //     var self = this;
