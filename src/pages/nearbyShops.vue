@@ -1,6 +1,7 @@
 <template>
  <div class="nearShop">
    <!--头部-->
+   <el-amap vid="amap" :plugin="plugin" class="amap-demo"></el-amap>
    <div id="scrollheight">
    <div class="header">
      <div>
@@ -142,7 +143,7 @@
                 '折扣最多',
                 '销量最高'
               ],
-              isfixed:false,
+              isfixed:false
             }
         },
         methods:{
