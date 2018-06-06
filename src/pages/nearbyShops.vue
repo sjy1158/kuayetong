@@ -13,7 +13,7 @@
      <!--天气显示-->
      <div class="titlelocation">
        <div class="locationtext">
-         <img src="../assets/positioning@2x.png" alt="">
+         <img src="../assets/business_positioning@2x.png" alt="">
          <span>新塘路新传媒产</span>
        </div>
        <div class="weather">
@@ -457,5 +457,8 @@
     }
     .tabmenu .neartitle img{
       margin-top: 0.5rem;
+    }
+    .van-tabs__wrap--page-top{
+      top: 0px!important;
     }
   </style>

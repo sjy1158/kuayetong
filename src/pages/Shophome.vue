@@ -75,7 +75,7 @@
             </div>
             <div class="locationicon2">
               <div style="float: right;margin-right: 0.5rem">
-                <img src="../assets/merchant_address_telephone@2x.png" alt="">
+                <a href="tel:0147-88469258"><img src="../assets/merchant_address_telephone@2x.png" alt=""></a>
                 <p>电话</p>
               </div>
              <!--<div style="float: right;line-height: 1rem;margin-right: 0.5rem">|</div>-->
@@ -123,7 +123,7 @@
             }
           },
         openPay(){
-            // this.$router.push('/Paybill');
+            this.$router.push('/Paybill');
         }
       },
       mounted(){
@@ -248,6 +248,9 @@
     font-weight: bold;
     font-size: 0.5rem;
     z-index: 100;
+  }
+  .van-tabs__wrap .van-tabs__wrap--page-top .van-hairline--top-bottom{
+    top: 1.1rem!important;
   }
 
   /*.slideyouhui{*/

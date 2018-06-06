@@ -3,7 +3,7 @@
       <van-pull-refresh v-model="isLoading" @refresh="onRefresh">
         <van-row>
           <van-col span="8">
-            <div class="shopjieshao" @click="openBuy">
+            <div class="shopjieshao" @click.prevent="openBuy($event)">
               <img src="../assets/merchant_product_pictures1@2x.png" alt="">
               <div>
                 <p>新疆精河头茬枸杞，精选“中国枸杞之乡”</p>

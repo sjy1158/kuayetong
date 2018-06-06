@@ -1,35 +1,59 @@
 <template>
   <div class="paybill">
-    <mt-header fixed title="星巴克Starbucks">
-      <mt-button v-link="'/'" icon="back" slot="left"></mt-button>
-    </mt-header>
+    <van-nav-bar
+      fixed
+      title="星巴克Starbucks"
+      left-arrow
+      @click-left="onClickLeft"
+      @click-right="onClickRight"
+    />
 
-    <div>
-      <div class="form">
-        <form action="">
+    <div class="form" style="margin-top: 2rem;">
+      <form action="" style="">
           <div class="input">
             <label>订单金额(元)</label>
             <input type="text" placeholder="请询问服务员后输入">
           </div>
-          <div class="input" style="border-bottom: none!important;">
+          <div class="input" style="border-bottom: none;">
             <label>抵扣类别(元)</label>
-            <input type="text" v-model="value" placeholder="请选择" disabled="true" style="background: white">
-            <ul class="chosesize">
-              <li><span :class="id == 0 ? 'activechose':''" @click="chosesize(0,'11111')">满100抵10元</span></li>
-              <li><span :class="id == 1 ? 'activechose':''" @click="chosesize(1,'22222')">满100抵10元</span></li>
-              <li><span :class="id == 2 ? 'activechose':''" @click="chosesize(2,'33333')">满100抵10元</span></li>
-              <li><span :class="id == 3 ? 'activechose':''" @click="chosesize(3,'4444444')">满100抵10元</span></li>
-            </ul>
+            <input type="text" placeholder="请选择" v-model="value">
           </div>
-          <button type="button" @click="openMessage">立即抵扣买单</button>
-        </form>
-      </div>
+          <ul class="chosesize" style="background: white">
+            <li><span :class="id == 0 ? 'activechose':''" @click="chosesize(0,'满100抵10元')">满100抵10元</span></li>
+            <li><span :class="id == 1 ? 'activechose':''" @click="chosesize(1,'满200抵10元')">满200抵10元</span></li>
+            <li><span :class="id == 2 ? 'activechose':''" @click="chosesize(2,'满300抵10元')">满300抵10元</span></li>
+            <li><span :class="id == 3 ? 'activechose':''" @click="chosesize(3,'满400抵10元')">满400抵10元</span></li>
+          </ul>
+        <button type="button" @click="openMessage">立即抵扣买单</button>
+      </form>
     </div>
+
+    <!--<div>-->
+      <!--<div class="form">-->
+        <!--<form action="">-->
+          <!--<div class="input">-->
+            <!--<label>订单金额(元)</label>-->
+            <!--<input type="text" placeholder="请询问服务员后输入">-->
+          <!--</div>-->
+          <!--<div class="input" style="border-bottom: none!important;">-->
+            <!--<label>抵扣类别(元)</label>-->
+            <!--<input type="text" v-model="value" placeholder="请选择" disabled="true" style="background: white">-->
+            <!--<ul class="chosesize">-->
+              <!--<li><span :class="id == 0 ? 'activechose':''" @click="chosesize(0,'11111')">满100抵10元</span></li>-->
+              <!--<li><span :class="id == 1 ? 'activechose':''" @click="chosesize(1,'22222')">满100抵10元</span></li>-->
+              <!--<li><span :class="id == 2 ? 'activechose':''" @click="chosesize(2,'33333')">满100抵10元</span></li>-->
+              <!--<li><span :class="id == 3 ? 'activechose':''" @click="chosesize(3,'4444444')">满100抵10元</span></li>-->
+            <!--</ul>-->
+          <!--</div>-->
+          <!--<button type="button" @click="openMessage">立即抵扣买单</button>-->
+        <!--</form>-->
+      <!--</div>-->
+    <!--</div>-->
   </div>
 </template>
 
 <script>
-  import {MessageBox} from 'mint-ui'
+    import { Dialog } from 'vant'
     export default {
         name: "Paybill",
       data(){
@@ -48,106 +72,100 @@
             var _this = this;
           Dialog.confirm({
             title: '提示',
-            message: '此操作不可撤销，请确认使用跨业通余'+ '3000'+'元抵扣买单'
+            message: '此操作不可撤销，请确认使用跨业通余'+'3000'+'元抵扣买单'
           }).then(() => {
-            // on confirm
+            this.$router.push('/paySuccess');
           }).catch(() => {
-            // on cancel
+           return
           });
         }
       }
     }
 </script>
 
-<style>
-  .mint-msgbox-content{
-    font-size: 14px!important;
-    font-family: PingFangSC-Regular!important;
-  }
-  .mint-msgbox-message{
-    color: #393939!important;
-  }
-  .mint-msgbox-btns .mint-msgbox-confirm{
-    color: #F08400!important;
-  }
-  .mint-msgbox-btns .mint-msgbox-cancel{
-    color: #F08400!important;
-  }
-  body,html{
-    background: #f1f0f0;
+<style scoped>
+  .van-nav-bar{
+    height: 1.1rem;
+    width: 100%;
+    line-height: 1.1rem;
   }
   .activechose{
     background:  #FF0000;
     color: white!important;
   }
   .form{
-    height: 194px;
-    width: 80%;
+    width: 94%;
+    height: auto;
+    /*background: white;*/
+    padding-left: 3%;
+    padding-right: 3%;
+    border-radius: 20px;
+  }
+  .form form{
+    margin: 0px!important;
+  }
+  .input{
+    width: 94%;
+    height: 1.68rem;
+    line-height: 1.68rem;
     background: white;
-    margin: 0 auto;
-    margin-top: 70px!important;
-    border-radius: 10px;
-    padding: 5%;
-    font-size: 16px;
-    /*font-weight: bold;*/
-    font-family: PingFangSC-Regular;
+    position: relative;
+    padding-left: 3%;
+    padding-right: 3%;
+    border-bottom: 1px solid #F2F2F2;
   }
-  .form .input{
-    padding-top: 15px;
-    padding-bottom: 35px;
-    border-bottom: 1px solid #F3F3F3;
-  }
-  .form .input label{
+  .input label{
     float: left;
+    font-size: 0.4rem;
   }
-  .form .input input{
+  .input input{
     float: right;
+    height: 1rem;
+    position: absolute;
+    right: 0px;
+    top: 50%;
+    margin-top: -0.55rem;
     border: none;
-    color: gray;
     outline: none;
+    font-size: 0.4rem;
     text-align: right;
-    height: 25px;
+    padding-right: 0.3rem;
   }
-
-  .chosesize{
-    width: 100%;
+  ul.chosesize{
+    width:94%;
     height: auto;
     display: flex;
     flex-wrap:wrap;
-    margin: 50px auto;
+    /*margin: 50px auto;*/
     /*background: green;*/
-    padding: 0px!important;
-    font-size: 12px;
+    padding-left: 3%!important;
+    padding-right: 3%!important;
+    padding-bottom: 10%!important;
+    font-size: 0.37rem;
+    /*margin-top: 2rem;*/
   }
-  .chosesize li{
+  ul.chosesize li{
     width: 50%;
     flex: 1;
     min-width: 50%;
     max-width: 50%;
-    margin-bottom: 25px;
+    margin-top: 0.8rem;
+    /*margin-bottom: 25px;*/
+    color:#FF0000;
   }
-  .chosesize li span{
-    padding: 5px 10px;
+  ul.chosesize li span{
+    padding: 0.2rem;
     border: 1px solid #FF0000;
-    color: #FF0000;
-    border-radius: 14px;
   }
-  .paybill .mint-header{
-    background: white!important;
-    color: #393939;
-    font-size: 18px!important;
-  }
-  .paybill .mint-header i{
-    font-size: 18px!important;
-  }
-  button[type='submit']{
+
+  button[type=button]{
     width: 100%;
-    border: none;
+    height: 1.25rem;
     background: #F08400;
+    border: none;
     color: white;
-    height: 40px;
-    border-radius: 5px;
-    font-size: 18px;
+    font-size: 0.5rem;
+    margin-top: 1.25rem;
     font-weight: bold;
   }
 </style>

@@ -15,8 +15,10 @@ import Shophome from '../pages/Shophome'
 import starProducts from '../pages/starProducts'
 import Businessdetails from '../pages/Businessdetails'
 import firmOrder from '../pages/firmOrder'
+import shopPay from '../pages/shopPay'
+import paySuccess from '../pages/paySuccess'
 
-Vue.use(Router)
+  Vue.use(Router)
 
 export default new Router({
   routes: [
@@ -73,8 +75,16 @@ export default new Router({
       component:firmOrder
     },
     {
+      path:'/shopPay',
+      component:shopPay
+    },
+    {
       path:'/Paybill',
       component:Paybill
+    },
+    {
+      path:'/paySuccess',
+      component:paySuccess
     },
     {
       path:'/payOver',

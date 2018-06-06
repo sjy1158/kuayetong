@@ -23,7 +23,7 @@
         <div style="" id="tab1">
           <van-tabs type="line" @click="onClick" line-width="20">
             <van-tab>
-              <div slot="title" class="title">
+              <div slot="title">
                 <img src="../assets/merchants_fast_food_normal.png" alt="">
                 <p class="titleshop">全部</p>
               </div>
@@ -63,7 +63,7 @@
     </div>
 
 
-      <div class="tabmenu" id="tabmenu" style="margin-top: 30px;">
+      <div class="tabmenu" id="tabmenu" style="">
         <van-tabs @click="onClick2" sticky line-width="20">
           <van-tab v-for="item in menus" :title="item">
             <router-view></router-view>
@@ -170,9 +170,6 @@
       height: 2rem!important;
     }
 
-    .van-tabs--line{
-      padding-top: 2rem!important;
-    }
 
 
 </style>
