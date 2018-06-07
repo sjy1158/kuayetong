@@ -23,28 +23,16 @@ import paySuccess from '../pages/paySuccess'
 export default new Router({
   routes: [
     {
-      path:'/nearbyShops',
-      component:nearbyShops,
-      children:[
-        {
-          path:'/nearbyShops/DistanceNear',
-          component:DistanceNear
-        },
-        {
-          path:'/nearbyShops/Mostdiscounts',
-          component:Mostdiscounts
-        }
-      ]
+      path:'*',
+      redirect:'/nearbyShops'
     },
     {
-      path:'/Businesshome/:params',
-      component:Businesshome,
-      children:[
-        {
-          path:'/Businesshome/DistanceNearshopcenter',
-          component:DistanceNearshopcenter
-        }
-      ]
+      path:'/nearbyShops',
+      component:nearbyShops
+    },
+    {
+      path:'/Businesshome',
+      component:Businesshome
     },
     {
       path:'/allShops',
@@ -93,15 +81,6 @@ export default new Router({
     {
       path:'/listItem',
       component:listItem
-    },
-    {
-      path:'*',
-      redirect:'/nearbyShops'
     }
-    // {
-    //   path: '/',
-    //   name: 'HelloWorld',
-    //   component: HelloWorld
-    // }
   ]
 })

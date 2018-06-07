@@ -51,45 +51,9 @@
    <div class="menulist">
      <ul>
        <li v-for="item in iconarr">
-          <img :src="item.imageUrl" alt="" style="width: 0.81rem;height: 0.81rem" @click="openItem(item.id,item.name)">
+        <img :src="item.imageUrl" alt="" style="width: 0.81rem;height: 0.81rem" @click="openBusinesshome(item.name,item.id)">
          <p>{{item.name}}</p>
        </li>
-       <!--<li>-->
-         <!--<img src="../assets/Enterpriseconsulting.png" alt="">-->
-         <!--<p>企业咨询</p>-->
-       <!--</li>-->
-       <!--<li>-->
-         <!--<router-link to="/Businesshome"><img src="../assets/Gourmetworld.png" alt=""></router-link>-->
-         <!--<p>美食天下</p>-->
-       <!--</li>-->
-       <!--<li>-->
-         <!--<img src="../assets/business_sports_fitness_icon.png" alt="">-->
-         <!--<p>运动健身</p>-->
-       <!--</li>-->
-       <!--<li>-->
-         <!--<img src="../assets/merchant_shopping_icon.png" alt="">-->
-         <!--<p>时尚购物</p>-->
-       <!--</li>-->
-       <!--<li>-->
-         <!--<img src="../assets/business_joy_icon.png" alt="">-->
-         <!--<p>花田喜事</p>-->
-       <!--</li>-->
-       <!--<li>-->
-         <!--<img src="../assets/business_life_service_icon.png" alt="">-->
-         <!--<p>生活服务</p>-->
-       <!--</li>-->
-       <!--<li>-->
-         <!--<img src="../assets/business_performance_icon.png" alt="">-->
-         <!--<p>演出票务</p>-->
-       <!--</li>-->
-       <!--<li>-->
-         <!--<img src="../assets/business_beauty_salons.png" alt="">-->
-         <!--<p>美容美发</p>-->
-       <!--</li>-->
-       <!--<li>-->
-         <!--<router-link to="/allShops"><img src="../assets/merchants_all_icon.png" alt=""></router-link>-->
-         <!--<p>查看全部</p>-->
-       <!--</li>-->
      </ul>
    </div>
 
@@ -118,12 +82,84 @@
 
    <div class="tabmenu" style="">
      <div class="neartitle"><img src="../assets/merchants_nearby_merchants.png" alt=""></div>
-     <van-tabs @click="onClick" sticky line-width="20">
+     <van-tabs sticky line-width="20">
        <van-tab v-for="item in menus" :title="item">
-         <router-view></router-view>
+         <div>
+           <van-pull-refresh v-model="isLoading" @refresh="onRefresh">
+             <van-list
+               v-model="loading"
+               :finished="finished"
+               @load="onLoad"
+             >
+               <van-cell>
+                 <div class="pullbox">
+                   <router-link to="/Shophome"><img src="../assets/merchant_avatar3.png" alt="" style="float: left" class="shopimg"></router-link>
+                   <div class="textbox">
+                     <p>星巴克Starbucks（新塘路2店）</p>
+                     <p class="titlelist"><img src="../assets/businesses_icon.png" alt=""><span>咖啡糕点</span><span>人均消费68元</span><span style="float: right"><100m</span></p>
+                     <p class="discon"><span>100抵10</span><span>100抵10</span><span>100抵10</span><span>100抵10</span></p>
+                   </div>
+                 </div>
+               </van-cell>
+               <van-cell>
+                 <div class="pullbox">
+                   <img src="../assets/merchant_avatar3.png" alt="" style="float: left" class="shopimg">
+                   <div class="textbox">
+                     <p>星巴克Starbucks（新塘路2店）</p>
+                     <p class="titlelist"><img src="../assets/businesses_icon.png" alt=""><span>咖啡糕点</span><span>人均消费68元</span><span style="float: right"><100m</span></p>
+                     <p class="discon"><span>100抵10</span><span>100抵10</span><span>100抵10</span><span>100抵10</span></p>
+                   </div>
+                 </div>
+               </van-cell>
+               <van-cell>
+                 <div class="pullbox">
+                   <img src="../assets/merchant_avatar3.png" alt="" style="float: left" class="shopimg">
+                   <div class="textbox">
+                     <p>星巴克Starbucks（新塘路2店）</p>
+                     <p class="titlelist"><img src="../assets/businesses_icon.png" alt=""><span>咖啡糕点</span><span>人均消费68元</span><span style="float: right"><100m</span></p>
+                     <p class="discon"><span>100抵10</span><span>100抵10</span><span>100抵10</span><span>100抵10</span></p>
+                   </div>
+                 </div>
+               </van-cell>
+               <van-cell>
+                 <div class="pullbox">
+                   <img src="../assets/merchant_avatar3.png" alt="" style="float: left" class="shopimg">
+                   <div class="textbox">
+                     <p>星巴克Starbucks（新塘路2店）</p>
+                     <p class="titlelist"><img src="../assets/businesses_icon.png" alt=""><span>咖啡糕点</span><span>人均消费68元</span><span style="float: right"><100m</span></p>
+                     <p class="discon"><span>100抵10</span><span>100抵10</span><span>100抵10</span><span>100抵10</span></p>
+                   </div>
+                 </div>
+               </van-cell>
+               <van-cell>
+                 <div class="pullbox">
+                   <img src="../assets/merchant_avatar3.png" alt="" style="float: left" class="shopimg">
+                   <div class="textbox">
+                     <p>星巴克Starbucks（新塘路2店）</p>
+                     <p class="titlelist"><img src="../assets/businesses_icon.png" alt=""><span>咖啡糕点</span><span>人均消费68元</span><span style="float: right"><100m</span></p>
+                     <p class="discon"><span>100抵10</span><span>100抵10</span><span>100抵10</span><span>100抵10</span></p>
+                   </div>
+                 </div>
+               </van-cell>
+               <van-cell>
+                 <div class="pullbox">
+                   <img src="../assets/merchant_avatar3.png" alt="" style="float: left" class="shopimg">
+                   <div class="textbox">
+                     <p>星巴克Starbucks（新塘路2店）</p>
+                     <p class="titlelist"><img src="../assets/businesses_icon.png" alt=""><span>咖啡糕点</span><span>人均消费68元</span><span style="float: right"><100m</span></p>
+                     <p class="discon"><span>100抵10</span><span>100抵10</span><span>100抵10</span><span>100抵10</span></p>
+                   </div>
+                 </div>
+               </van-cell>
+             </van-list>
+           </van-pull-refresh>
+
+         </div>
        </van-tab>
      </van-tabs>
    </div>
+
+
 
  </div>
   </template>
@@ -143,44 +179,45 @@
                 '销量最高'
               ],
               isfixed:false,
-              iconarr:''
+              iconarr:'',
+              list:['11111','2222222'],
+              loading:false,
+              finished:false,
+              isLoading: false
             }
         },
         methods:{
-          onClick(index,title){
-            switch (index){
-              case 0:
-                this.$router.push('/nearbyShops/DistanceNear')
-                break
-              case 1:
-                this.$router.push('/nearbyShops/Mostdiscounts')
-                break
-            }
-          },
-        watchScroll(){
-         var scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
-          var scrollheight = document.getElementById('scrollheight').offsetHeight;
-         //  当滚动超过 50 时，实现吸顶效果
-         if(scrollTop>=scrollheight){
-           this.isfixed = true;
-         }else{
-           this.isfixed = false;
-         }
-       },
-
-          openItem(id,name){
-            this.$router.push({
-              path:'/Businesshome/',
-              params:{
-                id:id,
-                name:name
+          // 加载
+          onLoad() {
+            setTimeout(() => {
+              for (let i = 0; i < 10; i++) {
+                this.list.push(this.list.length + 1);
               }
-            })
-          }
+              this.loading = false;
+
+              if (this.list.length >= 40) {
+                this.finished = true;
+              }
+            }, 500);
+          },
+          // 刷新
+          onRefresh() {
+            setTimeout(() => {
+              this.$toast('刷新成功');
+              this.isLoading = false;
+              this.count++;
+            }, 500);
+          },
+
+          openBusinesshome(name,id){
+            this.$router.push('/Businesshome');
+            localStorage.setItem("name", name);
+            localStorage.setItem("id",id);
+          },
         },
+
         mounted(){
             var _this = this;
-            this.onClick(0,'距离最近');
             window.addEventListener('scroll',this.watchScroll);
             var datajson = this.$api.geticon();
             datajson.then(function (res) {
@@ -477,5 +514,34 @@
     }
     .van-tabs__wrap--page-top{
       top: 0px!important;
+    }
+
+    .van-cell p{
+      margin: 0px!important;
+      margin-bottom: 0.2rem!important;
+    }
+    .van-cell .shopimg{
+      height: 2.2rem;
+      width: 2.2rem;
+    }
+    .van-cell .textbox{
+      margin-left: 2.5rem;
+    }
+    .van-cell .textbox p img{
+      vertical-align:middle;
+    }
+    .van-cell .textbox .titlelist span{
+      margin-left: 0.2rem;
+      vertical-align:middle;
+    }
+    .van-cell .textbox .discon{
+      /*overflow-x: scroll;*/
+      color: #FF0000;
+    }
+    .van-cell .textbox .discon span{
+      margin-right: 0.2rem!important;
+    }
+    .van-cell .textbox p:first-child{
+      font-weight: bold;
     }
   </style>

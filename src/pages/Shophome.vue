@@ -122,6 +122,9 @@
                     break
             }
           },
+        onClickLeft(){
+          this.$router.go(-1)
+        },
         openPay(){
             this.$router.push('/Paybill');
         }

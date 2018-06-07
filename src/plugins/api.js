@@ -16,7 +16,24 @@ const api = {
       method:'get',
       url:'/api/crossindustry/shopPage/getShopTypeByLevel?level=1',
     })
-  }
+  },
+  // 获取店铺数据
+  getShopimg(id){
+    return axios.request({
+      method:'get',
+      url:'/api/crossindustry/shopPage/getShopTypeListByShopType?',
+      params:{
+        shopTypeId:id
+      }
+    })
+  },
+  getShoplist(params){
+      return axios.request({
+        method:'get',
+        url:'/api/crossindustry/shopPage/getShopByShopType?',
+        params:params
+      })
+  },
 }
 
 export default class Api {
