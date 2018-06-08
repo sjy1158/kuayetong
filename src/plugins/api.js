@@ -11,31 +11,69 @@ axios.interceptors.response.use(response=>{
 
 const api = {
   //获取图标
-  geticon(){
+  geticon() {
     return axios.request({
-      method:'get',
-      url:'/api/crossindustry/shopPage/getShopTypeByLevel?level=1',
+      method: 'get',
+      url: '/api/crossindustry/shopPage/getShopTypeByLevel?level=1',
     })
   },
   // 获取店铺数据
-  getShopimg(id){
+  getShopimg(id) {
     return axios.request({
-      method:'get',
-      url:'/api/crossindustry/shopPage/getShopTypeListByShopType?',
-      params:{
-        shopTypeId:id
+      method: 'get',
+      url: '/api/crossindustry/shopPage/getShopTypeListByShopType?',
+      params: {
+        shopTypeId: id
       }
     })
   },
-  getShoplist(params){
+  getShoplist(params) {
+    return axios.request({
+      method: 'get',
+      url: '/api/crossindustry/shopPage/getShopByShopType?',
+      params: params
+    })
+  },
+
+  //获取店铺信息
+  getShopInformation(shopid) {
+    return axios.request({
+      method: 'get',
+      url: '/api/crossindustry/shopPage/getShopInformation?',
+      params: {
+        shopId: shopid
+      }
+    })
+  },
+  //获取产品列表
+  getStroshops(shopid){
+    return axios.request({
+      method:'get',
+      url:'/api/crossindustry/shopPage/getShopProduct?',
+      params:{
+        shopId:shopid
+      }
+    })
+  },
+  //获取折扣信息
+  getDiscon(shopid){
+    return axios.request({
+      method:'get',
+      url:'/api/crossindustry/shopPage/getShopDeduction?',
+      params:{
+        shopId:shopid
+      }
+    })
+  },
+  //立即抵扣
+  payDicon(params){
       return axios.request({
         method:'get',
-        url:'/api/crossindustry/shopPage/getShopByShopType?',
+        url:'/api/crossindustry/shopPage/deductPay?',
         params:params
       })
-  },
+  }
 }
-
 export default class Api {
   static install(Vue) {
     Object.defineProperty(Vue.prototype, '$api', {

@@ -49,6 +49,10 @@ export default new Router({
       component:Shophome,
       children:[
         {
+          path:'/Shophome',
+          redirect:'/Shophome/starProducts'
+        },
+        {
           path:'/Shophome/starProducts',
           component:starProducts
         },

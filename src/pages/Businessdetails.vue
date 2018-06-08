@@ -8,39 +8,9 @@
               <span>店家环境</span>
             </div>
             <van-tabs v-model="active" line-width="0">
-              <van-tab>
+              <van-tab v-for="item in shopImageList">
                 <div slot="title">
-                  <img src="../assets/business_environment_pictures@2x.png" alt="">
-                </div>
-              </van-tab>
-              <van-tab>
-                <div slot="title">
-                  <img src="../assets/business_environment_pictures@2x.png" alt="">
-                </div>
-              </van-tab>
-              <van-tab>
-                <div slot="title">
-                  <img src="../assets/business_environment_pictures@2x.png" alt="">
-                </div>
-              </van-tab>
-              <van-tab>
-                <div slot="title">
-                  <img src="../assets/business_environment_pictures@2x.png" alt="">
-                </div>
-              </van-tab>
-              <van-tab>
-                <div slot="title">
-                  <img src="../assets/business_environment_pictures@2x.png" alt="">
-                </div>
-              </van-tab>
-              <van-tab>
-                <div slot="title">
-                  <img src="../assets/business_environment_pictures@2x.png" alt="">
-                </div>
-              </van-tab>
-              <van-tab>
-                <div slot="title">
-                  <img src="../assets/business_environment_pictures@2x.png" alt="">
+                  <img :src="item.imageUrl" alt="">
                 </div>
               </van-tab>
             </van-tabs>
@@ -51,7 +21,7 @@
               <span>服务时间</span>
             </div>
             <div style="padding-left: 0.4rem;padding-bottom:0.4rem;padding-right:0.4rem;text-align: left">
-              9:00-10:00
+              {{startTime}}-{{stopTime}}
             </div>
           </li>
           <li>
@@ -60,7 +30,7 @@
               <span>商家介绍</span>
             </div>
             <div style="padding-left: 0.4rem;padding-bottom:0.4rem;padding-right:0.4rem;text-align: left">
-              星享更同步。现在您可以通过Apple Watch打开星巴克移动应用。更便捷地 支付、查询星享卡还有查找附近门店。
+             {{introduce}}
             </div>
           </li>
           <li>
@@ -69,7 +39,7 @@
               <span>商家公告</span>
             </div>
             <div style="padding-left: 0.4rem;padding-bottom:0.4rem;padding-right:0.4rem;text-align: left">
-              星享更同步。现在您可以通过Apple Watch打开星巴克移动应用。更便捷地 支付、查询星享卡还有查找附近门店。
+              {{notice}}
             </div>
           </li>
         </ul>
@@ -82,8 +52,29 @@
         name: "Businessdetails",
       data(){
           return{
-            showCustomAction:''
+            showCustomAction:'',
+            shopImageList:'',
+            startTime:'',
+            stopTime:'',
+            introduce:'',
+            notice:''
           }
+      },
+      methods:{
+        getInformation(shopid){
+          var _this = this;
+          this.$api.getShopInformation(shopid).then(function (res) {
+            _this.shopImageList = res.shopImageList;
+            _this.startTime = res.startTime;
+            _this.stopTime = res.stopTime;
+            _this.introduce = res.introduce;
+            _this.notice = res.notice;
+          })
+        }
+      },
+      created(){
+        var shopid = localStorage.getItem('shopid');
+        this.getInformation(shopid);
       }
     }
 </script>
@@ -94,7 +85,7 @@
     }
     .Businessdetails ul li:nth-child(1){
       width: 100%;
-      margin-bottom: 2.5rem;
+      margin-bottom: 0.5rem;
     }
     .van-tabs .van-tab{
 

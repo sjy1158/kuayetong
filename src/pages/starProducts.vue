@@ -2,87 +2,87 @@
     <div class="starProducts">
       <van-pull-refresh v-model="isLoading" @refresh="onRefresh">
         <van-row>
-          <van-col span="8">
+          <van-col span="8" v-for="item in shoparr">
             <div class="shopjieshao" @click.prevent="openBuy($event)">
-              <img src="../assets/merchant_product_pictures1@2x.png" alt="">
+              <img :src="item.imageUrl" alt="">
               <div>
-                <p>新疆精河头茬枸杞，精选“中国枸杞之乡”</p>
-                <p>¥<span style="font-size:0.35rem;">288</span><span style="margin-left: 0.5rem;font-size: 0.35rem;color: #FF0000">可抵¥150</span></p>
+                <p>{{item.productName}}</p>
+                <p>¥<span style="font-size:0.35rem;">{{item.price}}</span><span style="margin-left: 0.5rem;font-size: 0.35rem;color: #FF0000">可抵¥{{item.subPrice}}</span></p>
               </div>
             </div>
           </van-col>
-          <van-col span="8">
-            <div class="shopjieshao">
-              <img src="../assets/merchant_product_pictures1@2x.png" alt="">
-              <div>
-                <p>新疆精河头茬枸杞，精选“中国枸杞之乡”</p>
-                <p>¥<span style="font-size:0.35rem;">288</span><span style="margin-left: 0.5rem;font-size: 0.35rem;color: #FF0000">可抵¥150</span></p>
-              </div>
-            </div>
-          </van-col>
-          <van-col span="8">
-            <div class="shopjieshao">
-              <img src="../assets/merchant_product_pictures1@2x.png" alt="">
-              <div>
-                <p>新疆精河头茬枸杞，精选“中国枸杞之乡”</p>
-                <p>¥<span style="font-size:0.35rem;">288</span><span style="margin-left: 0.5rem;font-size: 0.35rem;color: #FF0000">可抵¥150</span></p>
-              </div>
-            </div>
-          </van-col>
-          <van-col span="8">
-            <div class="shopjieshao">
-              <img src="../assets/merchant_product_pictures1@2x.png" alt="">
-              <div>
-                <p>新疆精河头茬枸杞，精选“中国枸杞之乡”</p>
-                <p>¥<span style="font-size:0.35rem;">288</span><span style="margin-left: 0.5rem;font-size: 0.35rem;color: #FF0000">可抵¥150</span></p>
-              </div>
-            </div>
-          </van-col>
-          <van-col span="8">
-            <div class="shopjieshao">
-              <img src="../assets/merchant_product_pictures1@2x.png" alt="">
-              <div>
-                <p>新疆精河头茬枸杞，精选“中国枸杞之乡”</p>
-                <p>¥<span style="font-size:0.35rem;">288</span><span style="margin-left: 0.5rem;font-size: 0.35rem;color: #FF0000">可抵¥150</span></p>
-              </div>
-            </div>
-          </van-col>
-          <van-col span="8">
-            <div class="shopjieshao">
-              <img src="../assets/merchant_product_pictures1@2x.png" alt="">
-              <div>
-                <p>新疆精河头茬枸杞，精选“中国枸杞之乡”</p>
-                <p>¥<span style="font-size:0.35rem;">288</span><span style="margin-left: 0.5rem;font-size: 0.35rem;color: #FF0000">可抵¥150</span></p>
-              </div>
-            </div>
-          </van-col>
-          <van-col span="8">
-            <div class="shopjieshao">
-              <img src="../assets/merchant_product_pictures1@2x.png" alt="">
-              <div>
-                <p>新疆精河头茬枸杞，精选“中国枸杞之乡”</p>
-                <p>¥<span style="font-size:0.35rem;">288</span><span style="margin-left: 0.5rem;font-size: 0.35rem;color: #FF0000">可抵¥150</span></p>
-              </div>
-            </div>
-          </van-col>
-          <van-col span="8">
-            <div class="shopjieshao">
-              <img src="../assets/merchant_product_pictures1@2x.png" alt="">
-              <div>
-                <p>新疆精河头茬枸杞，精选“中国枸杞之乡”</p>
-                <p>¥<span style="font-size:0.35rem;">288</span><span style="margin-left: 0.5rem;font-size: 0.35rem;color: #FF0000">可抵¥150</span></p>
-              </div>
-            </div>
-          </van-col>
-          <van-col span="8">
-            <div class="shopjieshao">
-              <img src="../assets/merchant_product_pictures1@2x.png" alt="">
-              <div>
-                <p>新疆精河头茬枸杞，精选“中国枸杞之乡”</p>
-                <p>¥<span style="font-size:0.35rem;">288</span><span style="margin-left: 0.5rem;font-size: 0.35rem;color: #FF0000">可抵¥150</span></p>
-              </div>
-            </div>
-          </van-col>
+          <!--<van-col span="8">-->
+            <!--<div class="shopjieshao">-->
+              <!--<img src="../assets/merchant_product_pictures1@2x.png" alt="">-->
+              <!--<div>-->
+                <!--<p>新疆精河头茬枸杞，精选“中国枸杞之乡”</p>-->
+                <!--<p>¥<span style="font-size:0.35rem;">288</span><span style="margin-left: 0.5rem;font-size: 0.35rem;color: #FF0000">可抵¥150</span></p>-->
+              <!--</div>-->
+            <!--</div>-->
+          <!--</van-col>-->
+          <!--<van-col span="8">-->
+            <!--<div class="shopjieshao">-->
+              <!--<img src="../assets/merchant_product_pictures1@2x.png" alt="">-->
+              <!--<div>-->
+                <!--<p>新疆精河头茬枸杞，精选“中国枸杞之乡”</p>-->
+                <!--<p>¥<span style="font-size:0.35rem;">288</span><span style="margin-left: 0.5rem;font-size: 0.35rem;color: #FF0000">可抵¥150</span></p>-->
+              <!--</div>-->
+            <!--</div>-->
+          <!--</van-col>-->
+          <!--<van-col span="8">-->
+            <!--<div class="shopjieshao">-->
+              <!--<img src="../assets/merchant_product_pictures1@2x.png" alt="">-->
+              <!--<div>-->
+                <!--<p>新疆精河头茬枸杞，精选“中国枸杞之乡”</p>-->
+                <!--<p>¥<span style="font-size:0.35rem;">288</span><span style="margin-left: 0.5rem;font-size: 0.35rem;color: #FF0000">可抵¥150</span></p>-->
+              <!--</div>-->
+            <!--</div>-->
+          <!--</van-col>-->
+          <!--<van-col span="8">-->
+            <!--<div class="shopjieshao">-->
+              <!--<img src="../assets/merchant_product_pictures1@2x.png" alt="">-->
+              <!--<div>-->
+                <!--<p>新疆精河头茬枸杞，精选“中国枸杞之乡”</p>-->
+                <!--<p>¥<span style="font-size:0.35rem;">288</span><span style="margin-left: 0.5rem;font-size: 0.35rem;color: #FF0000">可抵¥150</span></p>-->
+              <!--</div>-->
+            <!--</div>-->
+          <!--</van-col>-->
+          <!--<van-col span="8">-->
+            <!--<div class="shopjieshao">-->
+              <!--<img src="../assets/merchant_product_pictures1@2x.png" alt="">-->
+              <!--<div>-->
+                <!--<p>新疆精河头茬枸杞，精选“中国枸杞之乡”</p>-->
+                <!--<p>¥<span style="font-size:0.35rem;">288</span><span style="margin-left: 0.5rem;font-size: 0.35rem;color: #FF0000">可抵¥150</span></p>-->
+              <!--</div>-->
+            <!--</div>-->
+          <!--</van-col>-->
+          <!--<van-col span="8">-->
+            <!--<div class="shopjieshao">-->
+              <!--<img src="../assets/merchant_product_pictures1@2x.png" alt="">-->
+              <!--<div>-->
+                <!--<p>新疆精河头茬枸杞，精选“中国枸杞之乡”</p>-->
+                <!--<p>¥<span style="font-size:0.35rem;">288</span><span style="margin-left: 0.5rem;font-size: 0.35rem;color: #FF0000">可抵¥150</span></p>-->
+              <!--</div>-->
+            <!--</div>-->
+          <!--</van-col>-->
+          <!--<van-col span="8">-->
+            <!--<div class="shopjieshao">-->
+              <!--<img src="../assets/merchant_product_pictures1@2x.png" alt="">-->
+              <!--<div>-->
+                <!--<p>新疆精河头茬枸杞，精选“中国枸杞之乡”</p>-->
+                <!--<p>¥<span style="font-size:0.35rem;">288</span><span style="margin-left: 0.5rem;font-size: 0.35rem;color: #FF0000">可抵¥150</span></p>-->
+              <!--</div>-->
+            <!--</div>-->
+          <!--</van-col>-->
+          <!--<van-col span="8">-->
+            <!--<div class="shopjieshao">-->
+              <!--<img src="../assets/merchant_product_pictures1@2x.png" alt="">-->
+              <!--<div>-->
+                <!--<p>新疆精河头茬枸杞，精选“中国枸杞之乡”</p>-->
+                <!--<p>¥<span style="font-size:0.35rem;">288</span><span style="margin-left: 0.5rem;font-size: 0.35rem;color: #FF0000">可抵¥150</span></p>-->
+              <!--</div>-->
+            <!--</div>-->
+          <!--</van-col>-->
         </van-row>
       </van-pull-refresh>
 
@@ -114,6 +114,9 @@
         name: "starProducts",
       data(){
         return{
+          //明星产品列表
+          shoparr:'',
+          length:0,
           count: 0,
           isLoading: false,
           showBase:false,
@@ -169,10 +172,15 @@
       },
       methods: {
         onRefresh() {
+          var _this = this;
           setTimeout(() => {
-            this.$toast('刷新成功');
-            this.isLoading = false;
-            this.count++;
+            this.isLoading = true;
+            if(this.shoparr.length>=this.length){
+              return setTimeout(()=>{
+                _this.$toast('刷新成功');
+                _this.isLoading = false;
+              },500)
+            }
           }, 500);
         },
         openBuy(){
@@ -180,11 +188,21 @@
         },
         onPointClicked(){
           this.$router.push('/firmOrder');
+        },
+        getProduce(shopid){
+          var _this = this;
+          this.$api.getStroshops(shopid).then(function (res) {
+            _this.shoparr = res;
+            _this.length = res.length;
+          })
         }
       },
-
+      created(){
+          this.onRefresh();
+        var shopid = localStorage.getItem('shopid');
+        this.getProduce(shopid);
+      },
       mounted(){
-
       }
     }
 </script>
@@ -202,7 +220,7 @@
     }
   .van-row .van-col .shopjieshao{
     width: 4.7rem;
-    height: 6.8rem;
+    height: auto;
     /*background: yellow;*/
     margin: 0 auto;
     box-shadow: 0 0 10px #b8bbbf;
@@ -212,12 +230,14 @@
       margin: 0px!important;
       padding-left: 0.2rem;
       padding-right: 0.2rem;
+      padding-top: 0.2rem;
       font-size: 0.34rem;
     }
     .van-row .van-col .shopjieshao p:nth-child(2){
       margin: 0px!important;
       padding-left: 0.2rem;
       padding-top: 0.2rem;
+      padding-bottom: 0.2rem;
      /*margin-bottom: 0.2rem;*/
     }
     .van-row .van-col .shopjieshao img{

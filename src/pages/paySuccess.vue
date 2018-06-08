@@ -19,7 +19,17 @@
 
 <script>
     export default {
-        name: "paySuccess"
+        name: "paySuccess",
+      data(){
+          return{
+
+          }
+      },
+      methods:{
+        onClickLeft(){
+          this.$router.go(-1);
+        }
+          }
     }
 </script>
 

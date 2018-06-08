@@ -46,7 +46,7 @@
                 >
                   <van-cell v-for="item in list">
                     <div class="pullbox">
-                      <router-link to="/Shophome"><img :src="item.shopHeadImageUrl" alt="" style="float: left" class="shopimg"></router-link>
+                      <img :src="item.shopHeadImageUrl" alt="" style="float: left" class="shopimg" @click="openShophome(item.shopId)">
                       <div class="textbox">
                         <p>{{item.title}}</p>
                         <p class="titlelist"><img src="../assets/businesses_icon.png" alt=""><span>{{item.shopType}}</span><span>人均消费{{item.averageMoney}}元</span><span style="float: right"><100m</span></p>
@@ -84,7 +84,7 @@
               '销量最高'
             ],
             list: [],
-            loading: true,
+            loading:true,
             finished: false,
             isLoading: false,
             // 获取列表数据
@@ -93,38 +93,37 @@
               mark:0,
               pageNum:1,
               num:5
-            }
+            },
+            leng:0
           }
       },
       methods:{
+        onClickLeft(){
+          this.$router.go(-1)
+        },
         getId(id){
           alert(id);
         },
         // 加载
         onLoad() {
-          // this.params.pageNum++;
-          // alert(JSON.stringify(this.params));
-          // this.getList(this.params);
-          // return;
-            // this.params.pageNum = this.params.pageNum+1;
-            // this.loading = false;
-            // alert(JSON.stringify(this.params))
-            // this.loading = false;
-            // for (let i = 0; i < 10; i++) {
-            //   this.list.push(this.list.length + 1);
-            // }
-            // this.loading = false;
-            //
-            // if (this.list.length >= 40) {
-            //   this.finished = true;
-            // }
+          this.loading = true;
+          this.params.pageNum +=1;
+          this.getList(this.params);
+          // if(this.list.length>=this.leng){
+          //   this.loading = false;
+          //   this.finished = true;
+          // }
+          return;
         },
         // 刷新
         onRefresh() {
           setTimeout(() => {
             this.$toast('刷新成功');
             this.isLoading = false;
-            this.count++;
+            this.loading = true;
+            this.finished = false;
+            this.params.pageNum = 1;
+            this.getList(this.params);
           }, 500);
         },
         onClickLeft(){
@@ -133,13 +132,20 @@
         // 获取列表
         getList(params){
           var _this = this;
-          this.$api.getShoplist(params).then(function (res) {
-            _this.loading = false;
-            for(var i = 0;i<res.length;i++){
-              _this.list.push(res[i]);
-            }
-            return;
-          });
+          if(this.loading||this.isLoading){
+            this.$api.getShoplist(params).then(function (res) {
+              _this.loading = false;
+              if(res.length<5){
+                _this.finished = true;
+              };
+              for(var i = 0;i<res.length;i++){
+                _this.list.push(res[i]);
+              }
+              return;
+            });
+          }else {
+            return
+          }
         },
         getimg(id){
           var _this = this;
@@ -148,6 +154,10 @@
             _this.params.shopType = res[0].id;
             return _this.getList(_this.params);
           })
+        },
+        openShophome(shopid){
+          this.$router.push('/Shophome/starProducts');
+          localStorage.setItem('shopid',shopid);
         }
       },
       created:function(){

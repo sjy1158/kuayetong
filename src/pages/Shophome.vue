@@ -8,9 +8,9 @@
         @click-right="onClickRight"
       />
         <div class="titleImg" style="margin-top: 1.1rem;">
-          <img src="../assets/business_starbucks_round@2x.png" alt="">
+          <img :src="shopHeadImageUrl" alt="">
           <div class="titletext">
-            <p>星巴克Starbucks</p>
+            <p>{{title}}</p>
             <p>官方旗舰店</p>
           </div>
         </div>
@@ -18,47 +18,14 @@
       <!--优惠券-->
       <div class="slideyouhui" style="background: white">
         <ul>
-          <li>
+          <li v-for="item in disconarr">
             <div class="discon" style="background: white">
               <p>进店消费满</p>
-              <p style="padding-top: 0.1rem;font-size: 0.4rem!important;font-weight: bold">¥100</p>
+              <p style="padding-top: 0.1rem;font-size: 0.4rem!important;font-weight: bold">¥{{item.requireValue}}</p>
             </div>
             <div class="discon2">
              <p>可话费抵扣</p>
-              <p style="padding-top: 0.1rem;font-size: 0.4rem!important;font-weight: bold">¥10</p>
-            </div>
-            <img src="../assets/merchant_deduct_red_and_white@2x.png" alt="">
-          </li>
-          <li>
-            <div class="discon">
-              <p>进店消费满</p>
-              <p style="padding-top: 0.1rem;font-size: 0.4rem!important;font-weight: bold">¥100</p>
-            </div>
-            <div class="discon2">
-              <p>可话费抵扣</p>
-              <p style="padding-top: 0.1rem;font-size: 0.4rem!important;font-weight: bold">¥10</p>
-            </div>
-            <img src="../assets/merchant_deduct_red_and_white@2x.png" alt="">
-          </li>
-          <li>
-            <div class="discon">
-              <p>进店消费满</p>
-              <p style="padding-top: 0.1rem;font-size: 0.4rem!important;font-weight: bold">¥100</p>
-            </div>
-            <div class="discon2">
-              <p>可话费抵扣</p>
-              <p style="padding-top: 0.1rem;font-size: 0.4rem!important;font-weight: bold">¥10</p>
-            </div>
-            <img src="../assets/merchant_deduct_red_and_white@2x.png" alt="">
-          </li>
-          <li>
-            <div class="discon">
-              <p>进店消费满</p>
-              <p style="padding-top: 0.1rem;font-size: 0.4rem!important;font-weight: bold">¥100</p>
-            </div>
-            <div class="discon2">
-              <p>可话费抵扣</p>
-              <p style="padding-top: 0.1rem;font-size: 0.4rem!important;font-weight: bold">¥10</p>
+              <p style="padding-top: 0.1rem;font-size: 0.4rem!important;font-weight: bold">¥{{item.value}}</p>
             </div>
             <img src="../assets/merchant_deduct_red_and_white@2x.png" alt="">
           </li>
@@ -71,11 +38,11 @@
         <div style="width: 96%;box-shadow:0px 0px 20px #f3f3f3;height: 1.5rem;margin: 0 auto;">
             <div style="float: left" class="locationicon">
               <img src="../assets/merchant_address_location@2x.png" alt="">
-              <span style="padding-left: 0.1rem;">杭州市江干区新塘路58号星巴克</span>
+              <span style="padding-left: 0.1rem;">{{location}}</span>
             </div>
             <div class="locationicon2">
               <div style="float: right;margin-right: 0.5rem">
-                <a href="tel:0147-88469258"><img src="../assets/merchant_address_telephone@2x.png" alt=""></a>
+                <a :href="'tel:'+ call"><img src="../assets/merchant_address_telephone@2x.png" alt=""></a>
                 <p>电话</p>
               </div>
              <!--<div style="float: right;line-height: 1rem;margin-right: 0.5rem">|</div>-->
@@ -108,7 +75,12 @@
             menus:[
               '明星产品',
               '商家详情'
-            ]
+            ],
+            title:'',
+            shopHeadImageUrl:'',
+            disconarr:'',
+            location:'',
+            call:''
           }
       },
       methods:{
@@ -127,7 +99,21 @@
         },
         openPay(){
             this.$router.push('/Paybill');
+        },
+        getInformation(shopid){
+            var _this = this;
+           this.$api.getShopInformation(shopid).then(function (res) {
+             _this.title = res.title;
+             _this.shopHeadImageUrl = res.shopHeadImageUrl;
+             _this.disconarr = res.deductionList;
+             _this.location = res.specificAddress;
+             _this.call = res.phone;
+           })
         }
+      },
+      created(){
+        var shopid = localStorage.getItem('shopid')
+        this.getInformation(shopid);
       },
       mounted(){
           this.onClick(0,'明星产品')
