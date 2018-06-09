@@ -54,6 +54,10 @@
         <img :src="item.imageUrl" alt="" style="width: 0.81rem;height: 0.81rem" @click="openBusinesshome(item.name,item.id)">
          <p>{{item.name}}</p>
        </li>
+       <li>
+         <img src="../assets/Lookatthewhole.png" alt="" @click="openMeishilist">
+         <p>查看全部</p>
+       </li>
      </ul>
    </div>
 
@@ -214,15 +218,16 @@
             localStorage.setItem("name", name);
             localStorage.setItem("id",id);
           },
+          openMeishilist(){
+            this.$router.push('/allShops');
+          }
         },
-
         mounted(){
             var _this = this;
             window.addEventListener('scroll',this.watchScroll);
             var datajson = this.$api.geticon();
             datajson.then(function (res) {
               _this.iconarr = res;
-              // alert(JSON.stringify(res));
             })
         }
         // data(){

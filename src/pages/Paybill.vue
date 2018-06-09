@@ -12,11 +12,11 @@
       <form action="" style="">
           <div class="input">
             <label>订单金额(元)</label>
-            <input type="text" placeholder="请询问服务员后输入" v-model="moneyVal">
+            <input type="text" placeholder="请询问服务员后输入" v-model="moneyVal" ref="moneyVal">
           </div>
           <div class="input" style="border-bottom: none;">
             <label>抵扣类别(元)</label>
-            <input type="text" placeholder="请选择" v-model="value" disabled="true" style="background: white">
+            <input type="text" placeholder="请选择" v-model="value" disabled="true" ref="disconVal" style="background: white">
           </div>
           <ul class="chosesize" style="background: white">
             <li v-for="item in disconarr"><span :class="params.deductionId == item.id ? 'activechose':''" @click="chosesize(item.id,'满'+item.requireValue+'抵'+item.value+'元',item.value)">满{{item.requireValue}}抵{{item.value}}元</span></li>
@@ -54,6 +54,7 @@
 
 <script>
     import { Dialog } from 'vant'
+    import {Toast} from 'vant'
     export default {
         name: "Paybill",
       data(){
@@ -79,21 +80,34 @@
             this.discon = discon
           },
         openMessage(){
+           var regnum = /^[0-9]*$/;
+           // alert(this.$refs.moneyVal.value)
             var _this = this;
-          Dialog.confirm({
-            title: '提示',
-            message: '此操作不可撤销，请确认使用跨业通余额'+this.discon+'元抵扣买单'
-          }).then(() => {
-            _this.params.money = this.moneyVal;
-            _this.paydicon(_this.params);
-            this.$router.push('/paySuccess');
-          }).catch(() => {
-           return
-          });
+            if(this.$refs.moneyVal.value!=''&&regnum.test(this.$refs.moneyVal.value)&&this.$refs.disconVal.value!=''){
+              Dialog.confirm({
+                title: '提示',
+                message: '此操作不可撤销，请确认使用跨业通余额'+this.discon+'元抵扣买单'
+              }).then(() => {
+                _this.params.money = this.moneyVal;
+                _this.paydicon(_this.params);
+              }).catch(() => {
+               return
+              });
+            }else {
+              Toast('请输入正确信息')
+              return;
+            }
         },
         paydicon(params){
+            var _this = this;
           this.$api.payDicon(params).then(function (res) {
-              alert(JSON.stringify(res));
+              // alert(JSON.stringify(res));
+              _this.$router.push({
+                path:'/paySuccess',
+                query:{
+                  prize:res
+                }
+              })
           })
         },
         onClickLeft(){

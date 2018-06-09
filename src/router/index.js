@@ -39,6 +39,10 @@ export default new Router({
       component:allShops,
       children:[
         {
+          path:'/allShops',
+          redirect:'/allShops/Meishilist'
+        },
+        {
           path:'/allShops/Meishilist',
           component:Meishilist
         }

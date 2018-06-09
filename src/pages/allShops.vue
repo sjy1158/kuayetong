@@ -3,7 +3,7 @@
     <!--搜索框-->
     <div class="searchbox" style="position: fixed;top: 0px;">
       <div class="searchbox2">
-        <div class="left">
+        <div class="left" @click="openMeishilist">
           <van-icon name="arrow-left" />
         </div>
         <div class="icon">
@@ -14,10 +14,8 @@
     </div>
     <!--搜索框ending-->
     <div class="gopindao" style="position: fixed;top: 2.1rem;width: 100%;z-index: 999999;background: #f2f2f2">
-        <div style="float: left">美食</div>
+        <div style="float: left"></div>
       <div style="width: 70%;height: 1.5rem;float: right;margin-right: 0.3rem;line-height: 1.5rem;font-size: 0.3rem;">
-        <span style="float: left">美食（1996）</span>
-        <span style="float: right;">去频道</span>
       </div>
     </div>
 
@@ -25,17 +23,18 @@
     <div class="shoplist" style="top: 3.5rem;z-index: -99999999;margin-bottom: 2rem;position: fixed;">
       <div style="float: left;background: white">
         <ul style="width: 2.5rem;">
-          <li @click="onClick(0)" v-bind:class="index==0 ? 'active':''">甜点饮品</li>
-          <li @click="onClick(1)" v-bind:class="index==1 ? 'active':''">正餐优选</li>
-          <li @click="onClick(2)" v-bind:class="index==2 ? 'active':''">能量西餐</li>
-          <li @click="onClick(3)" v-bind:class="index==3 ? 'active':''">快食简餐</li>
-          <li @click="onClick(4)" v-bind:class="index==4 ? 'active':''">异国料理</li>
-          <li @click="onClick(5)" v-bind:class="index==5 ? 'active':''">鲜花蛋糕</li>
-          <li @click="onClick(6)" v-bind:class="index==6 ? 'active':''">家常菜</li>
-          <li @click="onClick(7)" v-bind:class="index==7 ? 'active':''">夜宵</li>
-          <li @click="onClick(8)" v-bind:class="index==8 ? 'active':''">早餐</li>
-          <li @click="onClick(9)" v-bind:class="index==9 ? 'active':''">小吃馆</li>
-          <li @click="onClick(10)" v-bind:class="index==10 ? 'active':''">小炒菜</li>
+          <li v-for="item in tabarr" @click="onClick(item.id)" v-bind:class="index==item.id ? 'active':''">{{item.name}}</li>
+          <!--<li @click="onClick(1)" v-bind:class="index==1 ? 'active':''">甜点饮品</li>-->
+          <!--<li @click="onClick(2)" v-bind:class="index==2 ? 'active':''">正餐优选</li>-->
+          <!--<li @click="onClick(3)" v-bind:class="index==3 ? 'active':''">能量西餐</li>-->
+          <!--<li @click="onClick(4)" v-bind:class="index==4 ? 'active':''">快食简餐</li>-->
+          <!--<li @click="onClick(5)" v-bind:class="index==5 ? 'active':''">异国料理</li>-->
+          <!--<li @click="onClick(6)" v-bind:class="index==6 ? 'active':''">鲜花蛋糕</li>-->
+          <!--<li @click="onClick(7)" v-bind:class="index==7 ? 'active':''">家常菜</li>-->
+          <!--<li @click="onClick(8)" v-bind:class="index==8 ? 'active':''">夜宵</li>-->
+          <!--<li @click="onClick(9)" v-bind:class="index==9 ? 'active':''">早餐</li>-->
+          <!--<li @click="onClick(10)" v-bind:class="index==10 ? 'active':''">小吃馆</li>-->
+          <!--<li @click="onClick(11)" v-bind:class="index==11 ? 'active':''">小炒菜</li>-->
         </ul>
       </div>
     </div>
@@ -54,21 +53,34 @@
       data(){
           return{
               activeKey: 0,
-              index:0
+              index:0,
+              tabarr:'',
+              path:''
           }
       },
       methods: {
-        onClick(index) {
-          this.index = index;
-          switch (index){
-            case 0:
-              this.$router.push('/allShops/Meishilist');
-              break
-          }
+        onClick(id) {
+          this.index = id;
+          this.$router.push({
+            path:'/allShops/Meishilist',
+            query:{
+              id:id
+            }
+          })
+        },
+        openMeishilist(){
+          this.$router.go(-1);
+        },
+        getIcon(){
+          var _this = this;
+          this.$api.geticon().then(function (res) {
+            _this.tabarr = res;
+            _this.onClick(_this.tabarr[0].id);
+          })
         }
       },
       mounted(){
-          this.onClick(0);
+          this.getIcon();
       }
     }
 </script>
