@@ -3,7 +3,7 @@
       <van-pull-refresh v-model="isLoading" @refresh="onRefresh">
         <van-row>
           <van-col span="8" v-for="item in shoparr">
-            <div class="shopjieshao" @click.prevent="openBuy($event)">
+            <div class="shopjieshao" @click.prevent="openBuy($event,item.imageUrl,item.price,item.productName,item.subPrice)">
               <img :src="item.imageUrl" alt="">
               <div>
                 <p>{{item.productName}}</p>
@@ -11,78 +11,6 @@
               </div>
             </div>
           </van-col>
-          <!--<van-col span="8">-->
-            <!--<div class="shopjieshao">-->
-              <!--<img src="../assets/merchant_product_pictures1@2x.png" alt="">-->
-              <!--<div>-->
-                <!--<p>新疆精河头茬枸杞，精选“中国枸杞之乡”</p>-->
-                <!--<p>¥<span style="font-size:0.35rem;">288</span><span style="margin-left: 0.5rem;font-size: 0.35rem;color: #FF0000">可抵¥150</span></p>-->
-              <!--</div>-->
-            <!--</div>-->
-          <!--</van-col>-->
-          <!--<van-col span="8">-->
-            <!--<div class="shopjieshao">-->
-              <!--<img src="../assets/merchant_product_pictures1@2x.png" alt="">-->
-              <!--<div>-->
-                <!--<p>新疆精河头茬枸杞，精选“中国枸杞之乡”</p>-->
-                <!--<p>¥<span style="font-size:0.35rem;">288</span><span style="margin-left: 0.5rem;font-size: 0.35rem;color: #FF0000">可抵¥150</span></p>-->
-              <!--</div>-->
-            <!--</div>-->
-          <!--</van-col>-->
-          <!--<van-col span="8">-->
-            <!--<div class="shopjieshao">-->
-              <!--<img src="../assets/merchant_product_pictures1@2x.png" alt="">-->
-              <!--<div>-->
-                <!--<p>新疆精河头茬枸杞，精选“中国枸杞之乡”</p>-->
-                <!--<p>¥<span style="font-size:0.35rem;">288</span><span style="margin-left: 0.5rem;font-size: 0.35rem;color: #FF0000">可抵¥150</span></p>-->
-              <!--</div>-->
-            <!--</div>-->
-          <!--</van-col>-->
-          <!--<van-col span="8">-->
-            <!--<div class="shopjieshao">-->
-              <!--<img src="../assets/merchant_product_pictures1@2x.png" alt="">-->
-              <!--<div>-->
-                <!--<p>新疆精河头茬枸杞，精选“中国枸杞之乡”</p>-->
-                <!--<p>¥<span style="font-size:0.35rem;">288</span><span style="margin-left: 0.5rem;font-size: 0.35rem;color: #FF0000">可抵¥150</span></p>-->
-              <!--</div>-->
-            <!--</div>-->
-          <!--</van-col>-->
-          <!--<van-col span="8">-->
-            <!--<div class="shopjieshao">-->
-              <!--<img src="../assets/merchant_product_pictures1@2x.png" alt="">-->
-              <!--<div>-->
-                <!--<p>新疆精河头茬枸杞，精选“中国枸杞之乡”</p>-->
-                <!--<p>¥<span style="font-size:0.35rem;">288</span><span style="margin-left: 0.5rem;font-size: 0.35rem;color: #FF0000">可抵¥150</span></p>-->
-              <!--</div>-->
-            <!--</div>-->
-          <!--</van-col>-->
-          <!--<van-col span="8">-->
-            <!--<div class="shopjieshao">-->
-              <!--<img src="../assets/merchant_product_pictures1@2x.png" alt="">-->
-              <!--<div>-->
-                <!--<p>新疆精河头茬枸杞，精选“中国枸杞之乡”</p>-->
-                <!--<p>¥<span style="font-size:0.35rem;">288</span><span style="margin-left: 0.5rem;font-size: 0.35rem;color: #FF0000">可抵¥150</span></p>-->
-              <!--</div>-->
-            <!--</div>-->
-          <!--</van-col>-->
-          <!--<van-col span="8">-->
-            <!--<div class="shopjieshao">-->
-              <!--<img src="../assets/merchant_product_pictures1@2x.png" alt="">-->
-              <!--<div>-->
-                <!--<p>新疆精河头茬枸杞，精选“中国枸杞之乡”</p>-->
-                <!--<p>¥<span style="font-size:0.35rem;">288</span><span style="margin-left: 0.5rem;font-size: 0.35rem;color: #FF0000">可抵¥150</span></p>-->
-              <!--</div>-->
-            <!--</div>-->
-          <!--</van-col>-->
-          <!--<van-col span="8">-->
-            <!--<div class="shopjieshao">-->
-              <!--<img src="../assets/merchant_product_pictures1@2x.png" alt="">-->
-              <!--<div>-->
-                <!--<p>新疆精河头茬枸杞，精选“中国枸杞之乡”</p>-->
-                <!--<p>¥<span style="font-size:0.35rem;">288</span><span style="margin-left: 0.5rem;font-size: 0.35rem;color: #FF0000">可抵¥150</span></p>-->
-              <!--</div>-->
-            <!--</div>-->
-          <!--</van-col>-->
         </van-row>
       </van-pull-refresh>
 
@@ -99,6 +27,19 @@
         :close-on-click-overlay="closeOnClickOverlay"
         @buy-clicked="onBuyClicked"
         @add-cart="onAddCartClicked">
+
+        <template slot="sku-header-price" slot-scope="props">
+          <div class="van-sku__goods-price">
+            <p style="margin: 0px!important;padding-top: 0.1rem;">本商品已用余额抵扣<span>{{sub}}</span>元</p>
+            <span class="van-sku__price-symbol" style="padding-top: 0.1rem;">￥</span><span class="van-sku__price-num">{{sku.price}}</span>
+          </div>
+        </template>
+        <template slot="sku-stepper" slot-scope="props">
+          <div style="height: 1rem;line-height: 1rem;">
+            <span style="float: left;padding-left: 0.5rem;">购买数量</span>
+            <van-stepper v-model="value" style="float: right;padding-right:0.5rem;" @plus="plus(value)" @minus="minus(value)"/>
+          </div>
+        </template>
         <template slot="sku-actions" slot-scope="props">
           <div class="van-sku-actions">
             <van-button bottom-action @click="onPointClicked">确定</van-button>
@@ -120,6 +61,10 @@
           count: 0,
           isLoading: false,
           showBase:false,
+          sub:'',
+          sub2:'',
+          price2:'',
+          value:'',
           sku: {
             tree: [
               {
@@ -135,7 +80,7 @@
                 stock_num: 110
               }
             ],
-            price: '1.00', // 默认价格（单位元）
+            price: 0, // 默认价格（单位元）
             stock_num: 227, // 商品总库存
             collection_id: 2261, // 无规格商品 skuId 取 collection_id，否则取所选 sku 组合对应的 id
             none_sku: true, // 是否无规格商品
@@ -143,34 +88,22 @@
           },
           goods: {
             // 商品标题
-            title: '测试商品',
+            title: '本商品已用余额抵扣150元',
             // 默认商品 sku 缩略图
             picture: 'http://f2.topitme.com/2/6a/bc/113109954583dbc6a2o.jpg'
           },
-          customStepperConfig: {
-            // 自定义限购文案
-            quotaText: '每次限购xxx件',
-            // 自定义步进器超过限制时的回调
-            handleOverLimit: (data) => {
-              const { action, limitType, quota, quotaUsed } = data;
 
-              if (action === 'minus') {
-                Toast('至少选择一件商品');
-              } else if (action === 'plus') {
-                // const { LIMIT_TYPE } = Sku.skuConstants;
-                if (limitType === LIMIT_TYPE.QUOTA_LIMIT) {
-                  let msg = `单次限购${quota}件`;
-                  if (quotaUsed > 0) msg += `，您已购买${quotaUsed}`;
-                  Toast(msg);
-                } else {
-                  Toast('库存不够了~~');
-                }
-              }
-            }
-          },
         }
       },
       methods: {
+        plus(val){
+          this.sku.price = (this.price2*val).toFixed(2);
+          this.sub = this.sub2*val;
+        },
+        minus(val){
+          this.sku.price = (this.price2*val).toFixed(2);
+          this.sub = this.sub2*val;
+        },
         onRefresh() {
           var _this = this;
           setTimeout(() => {
@@ -183,19 +116,33 @@
             }
           }, 500);
         },
-        openBuy(){
+        openBuy(el,imageurl,price,productName,sub){
           this.showBase = true;
+          this.value=1;
+          this.price2 = price-sub;
+          this.sub2 = sub;
+          this.goods.picture = imageurl;
+          this.sku.price = (price-sub).toFixed(2);
+          this.sub = sub;
+          this.goods.title = productName;
         },
         onPointClicked(){
-          this.$router.push('/firmOrder');
+          var _this = this;
+          this.$router.push({
+            path:'/firmOrder',
+           query:{
+                price:_this.price2,
+               val:_this.value
+            }
+          });
         },
         getProduce(shopid){
           var _this = this;
           this.$api.getStroshops(shopid).then(function (res) {
-            _this.shoparr = res;
-            _this.length = res.length;
+            _this.shoparr = res.list;
+            _this.length = res.list.length;
           })
-        }
+        },
       },
       created(){
           this.onRefresh();

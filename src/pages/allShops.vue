@@ -74,7 +74,7 @@
         getIcon(){
           var _this = this;
           this.$api.geticon().then(function (res) {
-            _this.tabarr = res;
+            _this.tabarr = res.list;
             _this.onClick(_this.tabarr[0].id);
           })
         }

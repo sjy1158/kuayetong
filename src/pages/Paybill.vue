@@ -68,7 +68,7 @@
             moneyVal:'',
             params:{
               deductionId:'',
-              userId:'1'
+              userId:'8'
             }
           }
       },
@@ -105,7 +105,7 @@
               _this.$router.push({
                 path:'/paySuccess',
                 query:{
-                  prize:res
+                  prize:res.money
                 }
               })
           })
@@ -116,7 +116,7 @@
         getdiscon(shopid){
             var _this = this;
           this.$api.getDiscon(shopid).then(function (res) {
-              _this.disconarr = res.deductionList;
+              _this.disconarr = res.list;
               _this.title = res.title;
           })
         }

@@ -131,6 +131,9 @@
         }
       },
       methods:{
+        onClickLeft(){
+            this.$router.go(-1);
+        },
         choseCity(){
           this.isshow = !this.isshow;
         },
@@ -159,6 +162,11 @@
       mounted(){
           this.areaList = citys;
           this.allsize = (this.value1*this.onesize).toFixed(2)
+        this.onesize = this.$route.query.price;
+          this.value1 = this.$route.query.val;
+        this.allsize = (this.onesize*this.value1).toFixed(2);
+        // alert(this.$route.query.price);
+        //   alert(this.$route.query.val)
       }
     }
 </script>

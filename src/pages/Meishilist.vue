@@ -22,7 +22,7 @@
         getshopimg(shopid){
           var _this = this;
           this.$api.getShopimg(shopid).then(function (res) {
-              _this.shoparr = res;
+              _this.shoparr = res.list;
           })
         }
       },

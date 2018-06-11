@@ -227,7 +227,7 @@
             window.addEventListener('scroll',this.watchScroll);
             var datajson = this.$api.geticon();
             datajson.then(function (res) {
-              _this.iconarr = res;
+             _this.iconarr = res.list;
             })
         }
         // data(){

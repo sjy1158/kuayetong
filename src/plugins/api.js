@@ -2,10 +2,10 @@ import axios from 'axios'
 import { Toast } from 'vant'
 // 处理服务端错误信息
 axios.interceptors.response.use(response=>{
-  if(response.data.isSuccess){
-    return response.data.result
+  if(response.data.code==200){
+    return response.data.data;
   }else {
-    return Toast(response.data.message);
+    return Toast(response.data.msg);
   }
 });
 

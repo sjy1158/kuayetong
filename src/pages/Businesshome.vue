@@ -34,33 +34,33 @@
 
 
       <div class="tabmenu" id="tabmenu" style="">
-        <van-tabs @click="onClick2" sticky line-width="20">
-          <van-tab v-for="item in menus" :title="item">
-            <div>
-              <van-pull-refresh v-model="isLoading" @refresh="onRefresh">
-                <van-list
-                  v-model="loading"
-                  :finished="finished"
-                  :offset="10"
-                  @load="onLoad"
-                >
-                  <van-cell v-for="item in list">
-                    <div class="pullbox">
-                      <img :src="item.shopHeadImageUrl" alt="" style="float: left" class="shopimg" @click="openShophome(item.shopId)">
-                      <div class="textbox">
-                        <p>{{item.title}}</p>
-                        <p class="titlelist"><img src="../assets/businesses_icon.png" alt=""><span>{{item.shopType}}</span><span>人均消费{{item.averageMoney}}元</span><span style="float: right"><100m</span></p>
-                        <p class="discon"><span>100抵10</span><span>100抵10</span><span>100抵10</span><span>100抵10</span></p>
-                      </div>
-                    </div>
-                  </van-cell>
-                </van-list>
-              </van-pull-refresh>
+      <van-tabs @click="onClick2" sticky line-width="20">
+        <van-tab v-for="item in menus" :title="item">
+        </van-tab>
+      </van-tabs>
 
-            </div>
-          </van-tab>
-        </van-tabs>
-      </div>
+        <div>
+          <van-pull-refresh v-model="isLoading" @refresh="onRefresh">
+            <van-list
+              v-model="loading"
+              :finished="finished"
+              :offset="10"
+              @load="onLoad"
+            >
+              <van-cell v-for="item in list">
+                <div class="pullbox">
+                  <img :src="item.shopHeadImageUrl" alt="" style="float: left" class="shopimg" @click="openShophome(item.shopId)">
+                  <div class="textbox">
+                    <p>{{item.title}}</p>
+                    <p class="titlelist"><img src="../assets/businesses_icon.png" alt=""><span>{{item.shopType}}</span><span>人均消费{{item.averageMoney}}元</span><span style="float: right"><100m</span></p>
+                    <p class="discon"><span>100抵10</span><span>100抵10</span><span>100抵10</span><span>100抵10</span></p>
+                  </div>
+                </div>
+              </van-cell>
+            </van-list>
+          </van-pull-refresh>
+        </div>
+    </div>
 
     </div>
 
@@ -98,32 +98,36 @@
           }
       },
       methods:{
+          onClick2(index){
+            this.list = [];
+            this.params.pageNum = 1;
+            this.finished=false;
+            this.loading = true;
+            this.params.mark=index;
+            this.getList(this.params);
+          },
         onClickLeft(){
           this.$router.go(-1)
         },
         getId(id){
-          alert(id);
-        },
-        // 加载
-        onLoad() {
+          this.list = [];
+          this.params.pageNum = 1;
+          this.params.shopType=id;
+          this.finished=false;
           this.loading = true;
-          this.params.pageNum +=1;
           this.getList(this.params);
-          // if(this.list.length>=this.leng){
-          //   this.loading = false;
-          //   this.finished = true;
-          // }
-          return;
         },
-        // 刷新
+        //加载
+        onLoad() {
+            this.loading = true;
+            this.params.pageNum+=1;
+            this.getList(this.params);
+        },
+        // //刷新
         onRefresh() {
           setTimeout(() => {
             this.$toast('刷新成功');
             this.isLoading = false;
-            this.loading = true;
-            this.finished = false;
-            this.params.pageNum = 1;
-            this.getList(this.params);
           }, 500);
         },
         onClickLeft(){
@@ -131,15 +135,16 @@
         },
         // 获取列表
         getList(params){
+         alert(JSON.stringify(params));
           var _this = this;
-          if(this.loading||this.isLoading){
+          if(this.loading){
             this.$api.getShoplist(params).then(function (res) {
               _this.loading = false;
-              if(res.length<5){
+              if(res.list.length<5){
                 _this.finished = true;
               };
-              for(var i = 0;i<res.length;i++){
-                _this.list.push(res[i]);
+              for(var i = 0;i<res.list.length;i++){
+                _this.list.push(res.list[i]);
               }
               return;
             });
@@ -150,8 +155,8 @@
         getimg(id){
           var _this = this;
           this.$api.getShopimg(id).then(function (res) {
-            _this.headerImg = res;
-            _this.params.shopType = res[0].id;
+            _this.headerImg = res.list;
+            _this.params.shopType = res.list[0].id;
             return _this.getList(_this.params);
           })
         },
@@ -168,7 +173,7 @@
         this.getimg(this.id);
       },
       mounted(){
-        this.onClick2(0,'距离最近');
+        // this.onClick2(0,'距离最近');
         // this.$api.getShopimg(this.id);
       }
     }
