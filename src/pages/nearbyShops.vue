@@ -3,6 +3,7 @@
    <!--头部-->
    <div id="scrollheight">
    <div class="header">
+     <el-amap vid="amap" :plugin="plugin" class="amap-demo" style="display: none"></el-amap>
      <div>
        <van-swipe :autoplay="3000">
          <van-swipe-item v-for="(image, index) in images" :key="index">
@@ -14,18 +15,27 @@
      <div class="titlelocation">
        <div class="locationtext">
          <img src="../assets/business_positioning@2x.png" alt="">
-         <span>新塘路新传媒产</span>
+
+         <van-notice-bar style="background: none!important;left: 1rem;color: white!important;top: -0.1rem;" v-if="loaded">
+           {{formattedAddress}}
+          </van-notice-bar>
+
+         <van-notice-bar style="background: none!important;left: 1rem;color: white!important;top: -0.1rem;" v-else>
+           定位中...
+         </van-notice-bar>
+
+         <!--<span v-else>定位中...</span>-->
        </div>
        <div class="weather">
          <div class="weathertext">
-          <p style="font-size: 0.5rem;">27℃</p>
-           <p>多云</p>
+          <p style="font-size: 0.5rem;">{{tmp}}℃</p>
+           <p>{{weather}}</p>
          </div>
        </div>
      </div>
       <!--输入框-->
      <div class="search">
-       <input type="text" placeholder="输入商品名称／宝贝标题搜索">
+       <input type="search" v-model="value" placeholder="输入商品名称／宝贝标题搜索" ref="input1" @keyup="show($event)">
      </div>
 
      <div class="shoptab">
@@ -55,7 +65,7 @@
          <p>{{item.name}}</p>
        </li>
        <li>
-         <img src="../assets/Lookatthewhole.png" alt="" @click="openMeishilist">
+         <img src="../assets/merchants_all_icon@2x.png" alt="" style="width: 0.81rem;height: 0.81rem" @click="openMeishilist">
          <p>查看全部</p>
        </li>
      </ul>
@@ -71,7 +81,7 @@
      </div>
      <van-notice-bar
        text="足协杯战线连续第2年上演广州德比战，上赛季半决赛上恒大以两回合5-3的总比分淘汰富力。"
-       left-icon="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1527658925226&di=57af8daf1382c8c982ccc5db1e39f932&imgtype=0&src=http%3A%2F%2Fimg.zcool.cn%2Fcommunity%2F01635d571ed29832f875a3994c7836.png%40900w_1l_2o_100sh.jpg"
+       left-icon="https://img.yzcdn.cn/1.png"
      />
      <div>
        2月3日
@@ -86,80 +96,38 @@
 
    <div class="tabmenu" style="">
      <div class="neartitle"><img src="../assets/merchants_nearby_merchants.png" alt=""></div>
-     <van-tabs sticky line-width="20">
+     <van-tabs @click="onClick2" sticky line-width="20">
        <van-tab v-for="item in menus" :title="item">
-         <div>
-           <van-pull-refresh v-model="isLoading" @refresh="onRefresh">
-             <van-list
-               v-model="loading"
-               :finished="finished"
-               @load="onLoad"
-             >
-               <van-cell>
-                 <div class="pullbox">
-                   <router-link to="/Shophome"><img src="../assets/merchant_avatar3.png" alt="" style="float: left" class="shopimg"></router-link>
-                   <div class="textbox">
-                     <p>星巴克Starbucks（新塘路2店）</p>
-                     <p class="titlelist"><img src="../assets/businesses_icon.png" alt=""><span>咖啡糕点</span><span>人均消费68元</span><span style="float: right"><100m</span></p>
-                     <p class="discon"><span>100抵10</span><span>100抵10</span><span>100抵10</span><span>100抵10</span></p>
-                   </div>
-                 </div>
-               </van-cell>
-               <van-cell>
-                 <div class="pullbox">
-                   <img src="../assets/merchant_avatar3.png" alt="" style="float: left" class="shopimg">
-                   <div class="textbox">
-                     <p>星巴克Starbucks（新塘路2店）</p>
-                     <p class="titlelist"><img src="../assets/businesses_icon.png" alt=""><span>咖啡糕点</span><span>人均消费68元</span><span style="float: right"><100m</span></p>
-                     <p class="discon"><span>100抵10</span><span>100抵10</span><span>100抵10</span><span>100抵10</span></p>
-                   </div>
-                 </div>
-               </van-cell>
-               <van-cell>
-                 <div class="pullbox">
-                   <img src="../assets/merchant_avatar3.png" alt="" style="float: left" class="shopimg">
-                   <div class="textbox">
-                     <p>星巴克Starbucks（新塘路2店）</p>
-                     <p class="titlelist"><img src="../assets/businesses_icon.png" alt=""><span>咖啡糕点</span><span>人均消费68元</span><span style="float: right"><100m</span></p>
-                     <p class="discon"><span>100抵10</span><span>100抵10</span><span>100抵10</span><span>100抵10</span></p>
-                   </div>
-                 </div>
-               </van-cell>
-               <van-cell>
-                 <div class="pullbox">
-                   <img src="../assets/merchant_avatar3.png" alt="" style="float: left" class="shopimg">
-                   <div class="textbox">
-                     <p>星巴克Starbucks（新塘路2店）</p>
-                     <p class="titlelist"><img src="../assets/businesses_icon.png" alt=""><span>咖啡糕点</span><span>人均消费68元</span><span style="float: right"><100m</span></p>
-                     <p class="discon"><span>100抵10</span><span>100抵10</span><span>100抵10</span><span>100抵10</span></p>
-                   </div>
-                 </div>
-               </van-cell>
-               <van-cell>
-                 <div class="pullbox">
-                   <img src="../assets/merchant_avatar3.png" alt="" style="float: left" class="shopimg">
-                   <div class="textbox">
-                     <p>星巴克Starbucks（新塘路2店）</p>
-                     <p class="titlelist"><img src="../assets/businesses_icon.png" alt=""><span>咖啡糕点</span><span>人均消费68元</span><span style="float: right"><100m</span></p>
-                     <p class="discon"><span>100抵10</span><span>100抵10</span><span>100抵10</span><span>100抵10</span></p>
-                   </div>
-                 </div>
-               </van-cell>
-               <van-cell>
-                 <div class="pullbox">
-                   <img src="../assets/merchant_avatar3.png" alt="" style="float: left" class="shopimg">
-                   <div class="textbox">
-                     <p>星巴克Starbucks（新塘路2店）</p>
-                     <p class="titlelist"><img src="../assets/businesses_icon.png" alt=""><span>咖啡糕点</span><span>人均消费68元</span><span style="float: right"><100m</span></p>
-                     <p class="discon"><span>100抵10</span><span>100抵10</span><span>100抵10</span><span>100抵10</span></p>
-                   </div>
-                 </div>
-               </van-cell>
-             </van-list>
-           </van-pull-refresh>
 
-         </div>
        </van-tab>
+       <div v-show="issum==true">
+         <van-pull-refresh v-model="isLoading" @refresh="onRefresh">
+           <van-list
+             v-model="loading"
+             :finished="finished"
+             :offset="10"
+             @load="onLoad"
+           >
+             <van-cell v-for="item in list">
+               <div class="pullbox">
+                 <img :src="item.shopHeadImageUrl" alt="" style="float: left" class="shopimg" @click="openShophome(item.shopId)">
+                 <div class="textbox">
+                   <p>{{item.title}}</p>
+                   <p class="titlelist"><img src="../assets/businesses_icon.png" alt=""><span>{{item.shopType}}</span><span>人均消费{{item.averageMoney}}元</span><span style="float: right"><100m</span></p>
+                   <p class="discon" v-for="item1 in item.deductionList">
+                     <span>{{item1.requireValue}}抵{{item1.value}}</span>
+                   </p>
+                 </div>
+               </div>
+             </van-cell>
+           </van-list>
+         </van-pull-refresh>
+       </div>
+
+       <div v-show="issum==false" style="margin-top: 1rem;">
+         <span>暂无数据.........</span>
+       </div>
+
      </van-tabs>
    </div>
 
@@ -172,7 +140,10 @@
       export default {
           name: "nearbyShops",
         data(){
+            var _this = this;
             return {
+              issum:true,
+              value:'',
               images: [
                 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1527658925226&di=57af8daf1382c8c982ccc5db1e39f932&imgtype=0&src=http%3A%2F%2Fimg.zcool.cn%2Fcommunity%2F01635d571ed29832f875a3994c7836.png%40900w_1l_2o_100sh.jpg',
                 'https://img.yzcdn.cn/2.jpg'
@@ -182,34 +153,88 @@
                 '折扣最多',
                 '销量最高'
               ],
+              sum:'',
               isfixed:false,
               iconarr:'',
-              list:['11111','2222222'],
-              loading:false,
+              list:[],
+              loading:true,
               finished:false,
-              isLoading: false
+              isLoading: false,
+              city:'',
+              center:[121.59996, 31.197646],
+              formattedAddress:'',
+              tmp:'',
+              weather:'',
+              loaded:false,
+              params:{
+                productName:'',
+                latitude:'',
+                longitude:'',
+                pageNum:1,
+                num:5,
+                mark:0
+              },
+              plugin:[{
+                pName:'Geolocation',
+                events:{
+                  init(o){
+                    o.getCurrentPosition((status,result)=>{
+                      if(result&&result.position){
+                        // alert(JSON.stringify(result));
+                        _this.city = result.addressComponent.city;
+                        _this.params.latitude=result.position.lat;
+                        _this.params.longitude = result.position.lng;
+                        _this.loaded = true;
+                        _this.finished=false;
+                        _this.loading = true;
+                         _this.formattedAddress = result.formattedAddress;
+                        _this.getweather(_this.city);
+                        _this.getindexList(_this.params);
+                        _this.$nextTick();
+                      }
+                    })
+                  }
+                }
+              }]
             }
         },
         methods:{
+          show(ev){
+            var _this = this;
+           if(ev.keyCode==13){
+             if(this.$refs.input1.value!=''){
+             this.list = [];
+             this.issum=true;
+            this.$refs.input1.blur();
+            this.params.pageNum = 1;
+             this.finished=false;
+             this.loading = true;
+            this.params.productName=this.$refs.input1.value;
+            this.getindexList(this.params);
+             }
+           }
+          },
+          onClick2(index){
+            this.list = [];
+            this.issum=true;
+            this.params.pageNum = 1;
+            this.finished=false;
+            this.loading = true;
+            this.params.mark=index;
+            this.getindexList(this.params);
+          },
           // 加载
           onLoad() {
-            setTimeout(() => {
-              for (let i = 0; i < 10; i++) {
-                this.list.push(this.list.length + 1);
-              }
-              this.loading = false;
-
-              if (this.list.length >= 40) {
-                this.finished = true;
-              }
-            }, 500);
+            this.loading = true;
+            this.issum=true;
+            this.params.pageNum+=1;
+            this.getindexList(this.params);
           },
           // 刷新
           onRefresh() {
             setTimeout(() => {
               this.$toast('刷新成功');
               this.isLoading = false;
-              this.count++;
             }, 500);
           },
 
@@ -220,6 +245,46 @@
           },
           openMeishilist(){
             this.$router.push('/allShops');
+          },
+          getweather(city){
+            var _this = this;
+            this.$api.getWeather(city).then(function (res) {
+              _this.tmp=res[0].temperature;
+              _this.weather = res[0].weather;
+            })
+          },
+          getindexList(params){
+            var _this = this;
+            if(this.loading&&this.issum){
+              this.$api.getIndexList(params).then(function (res) {
+                _this.loading = false;
+                if(res.sum==0){
+                    _this.issum=false;
+                    _this.finished = true;
+                };
+                if(res.list.length<5){
+                  _this.finished = true;
+                };
+                for (var i = 0;i<res.list.length;i++){
+                    _this.list.push(res.list[i])
+                }
+                return;
+              })
+            }else{
+              return
+            }
+          }
+        },
+        watch: {
+          value (val) {
+            if(val==''){
+              this.list=[];
+                this.params.pageNum = 1;
+                this.finished=false;
+                this.loading = true;
+                this.params.productName='';
+                this.getindexList(this.params);
+            }
           }
         },
         mounted(){
@@ -228,7 +293,7 @@
             var datajson = this.$api.geticon();
             datajson.then(function (res) {
              _this.iconarr = res.list;
-            })
+            });
         }
         // data(){
         //     var self = this;
@@ -545,6 +610,7 @@
     }
     .van-cell .textbox .discon span{
       margin-right: 0.2rem!important;
+      float: left;
     }
     .van-cell .textbox p:first-child{
       font-weight: bold;

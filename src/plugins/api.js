@@ -4,9 +4,11 @@ import { Toast } from 'vant'
 axios.interceptors.response.use(response=>{
   if(response.data.code==200){
     return response.data.data;
-  }else {
-    return Toast(response.data.msg);
   }
+  if(response.data.status==1){
+    return response.data.lives
+  };
+  return Toast(response.data.msg);
 });
 
 const api = {
@@ -72,6 +74,31 @@ const api = {
         url:'/api/crossindustry/shopPage/deductPay?',
         params:params
       })
+  },
+  getWeather(city){
+    return axios.request({
+      method:'get',
+      url:'http://restapi.amap.com/v3/weather/weatherInfo?key=534c5d265f9fb6b8907515fe31677328&city='+city,
+    })
+    // return axios.get('http://restapi.amap.com/v3/weather/weatherInfo?key=534c5d265f9fb6b8907515fe31677328&city=杭州').then(function (response) {
+    //   alert(JSON.stringify(response.data))
+    // })
+  },
+  //获取首页列表
+  getIndexList(params){
+    return axios.request({
+      method:'get',
+      url:'/api/crossindustry/shopPage/nearbyShops?',
+      params:params
+    })
+  },
+  //首页搜索
+  homeSearch(params){
+    return axios.request({
+      method:'get',
+      url:'/api/crossindustry/shopPage/search?',
+      params:params
+    })
   }
 }
 export default class Api {

@@ -1,6 +1,6 @@
 <template>
     <div class="starProducts">
-      <van-pull-refresh v-model="isLoading" @refresh="onRefresh">
+      <van-pull-refresh v-model="isLoading" @refresh="onRefresh" v-show="issum==true">
         <van-row>
           <van-col span="8" v-for="item in shoparr">
             <div class="shopjieshao" @click.prevent="openBuy($event,item.imageUrl,item.price,item.productName,item.subPrice)">
@@ -13,7 +13,9 @@
           </van-col>
         </van-row>
       </van-pull-refresh>
-
+      <div v-show="issum==false" style="margin-top: 2rem;">
+          <span>暂无数据.........</span>
+      </div>
 
       <van-sku
         v-model="showBase"
@@ -56,6 +58,7 @@
       data(){
         return{
           //明星产品列表
+          issum:true,
           shoparr:'',
           length:0,
           count: 0,
@@ -139,6 +142,9 @@
         getProduce(shopid){
           var _this = this;
           this.$api.getStroshops(shopid).then(function (res) {
+            if(res.sum==0){
+              _this.issum=false;
+            }
             _this.shoparr = res.list;
             _this.length = res.list.length;
           })

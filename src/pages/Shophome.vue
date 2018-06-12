@@ -19,15 +19,15 @@
       <div class="slideyouhui" style="background: white">
         <ul>
           <li v-for="item in disconarr">
-            <div class="discon" style="background: white">
-              <p>进店消费满</p>
-              <p style="padding-top: 0.1rem;font-size: 0.4rem!important;font-weight: bold">¥{{item.requireValue}}</p>
-            </div>
-            <div class="discon2">
-             <p>可话费抵扣</p>
-              <p style="padding-top: 0.1rem;font-size: 0.4rem!important;font-weight: bold">¥{{item.value}}</p>
-            </div>
             <img src="../assets/merchant_deduct_red_and_white@2x.png" alt="">
+            <div style="position: absolute;top: 0.55rem;width:2.5rem;color: #FF0000">
+              <p>进店消费满</p>
+              <p>¥{{item.requireValue}}</p>
+            </div>
+            <div style="position: absolute;top: 0.55rem;width:2.5rem;left: 2.3rem;color: #FFFFFF">
+              <p>进店消费满</p>
+              <p>¥{{item.value}}</p>
+            </div>
           </li>
         </ul>
       </div>
@@ -172,30 +172,36 @@
     position: relative;
     font-size: 0.3rem;
     margin-top: 0.7rem;
+    height: 2rem;
   }
   .slideyouhui ul li p{
     font-size: 0.3rem!important;
+    margin: 0px!important;
+    padding-left: 0.2rem;
   }
   .slideyouhui ul li img{
-    height: 2rem;
-    width:4.6rem;
+    height: 100%;
+    width: 5rem;
+    float: left;
   }
   .slideyouhui .discon{
-    position:absolute;width: 50%;height: 1rem;left: 0px;top: 50%;margin-top: -0.5rem;
+    position:absolute;height: 1rem;left: 0px;top: 50%;margin-top: -0.5rem;
+    float: left;
     color: #FF0000;
     text-align: center;
   }
   .slideyouhui .discon p{
     margin: 0px!important;
     font-size: 0.3rem!important;
-    padding-left: 0.2rem;
+    padding-left: 0.3rem;
   }
   .slideyouhui .discon2{
-    position:absolute;width: 50%;height: 1rem;right: 0px;top: 50%;margin-top: -0.5rem;
+    position:absolute;width: 50%;height: 1rem;left: 2.3rem;top: 50%;margin-top: -0.5rem;
     color: white;
   }
   .slideyouhui .discon2 p{
     margin: 0px!important;
+    padding-right: 0.2rem;
   }
   .location{
     height: 1.6rem;

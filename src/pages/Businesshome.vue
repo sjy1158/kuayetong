@@ -13,7 +13,7 @@
           <div class="icon">
             <van-icon name="search" />
           </div>
-          <input type="text" placeholder="输入商家或商品名称搜索">
+          <input type="search"  v-model="value" placeholder="输入商家或商品名称搜索" ref="input1" @keyup="show($event)">
         </div>
       </div>
 
@@ -36,10 +36,9 @@
       <div class="tabmenu" id="tabmenu" style="">
       <van-tabs @click="onClick2" sticky line-width="20">
         <van-tab v-for="item in menus" :title="item">
-        </van-tab>
-      </van-tabs>
 
-        <div>
+        </van-tab>
+        <div v-show="issum==true">
           <van-pull-refresh v-model="isLoading" @refresh="onRefresh">
             <van-list
               v-model="loading"
@@ -53,14 +52,22 @@
                   <div class="textbox">
                     <p>{{item.title}}</p>
                     <p class="titlelist"><img src="../assets/businesses_icon.png" alt=""><span>{{item.shopType}}</span><span>人均消费{{item.averageMoney}}元</span><span style="float: right"><100m</span></p>
-                    <p class="discon"><span>100抵10</span><span>100抵10</span><span>100抵10</span><span>100抵10</span></p>
+                    <p class="discon" v-for="item1 in item.deductionList">
+                      <span>{{item1.requireValue}}抵{{item1.value}}</span>
+                    </p>
                   </div>
                 </div>
               </van-cell>
             </van-list>
           </van-pull-refresh>
         </div>
+
+        <div v-show="issum==false" style="margin-top: 2rem;">
+          <span>暂无数据.........</span>
+        </div>
+      </van-tabs>
     </div>
+
 
     </div>
 
@@ -74,6 +81,8 @@
         name: "Businesshome",
       data(){
           return{
+            issum:true,
+            value:'',
             headerImg:'',
             id:'',
             id:'',
@@ -89,6 +98,7 @@
             isLoading: false,
             // 获取列表数据
             params:{
+              productName:'',
               shopType:'',
               mark:0,
               pageNum:1,
@@ -98,8 +108,24 @@
           }
       },
       methods:{
+          show(ev){
+            var _this = this;
+            if(ev.keyCode==13){
+              if(this.$refs.input1.value!=''){
+                this.list = [];
+                this.issum=true;
+                this.$refs.input1.blur();
+                this.params.pageNum = 1;
+                this.finished=false;
+                this.loading = true;
+                this.params.productName=this.$refs.input1.value;
+                this.getList(this.params);
+              }
+            }
+          },
           onClick2(index){
             this.list = [];
+            this.issum=true;
             this.params.pageNum = 1;
             this.finished=false;
             this.loading = true;
@@ -111,6 +137,7 @@
         },
         getId(id){
           this.list = [];
+          this.issum=true;
           this.params.pageNum = 1;
           this.params.shopType=id;
           this.finished=false;
@@ -120,6 +147,7 @@
         //加载
         onLoad() {
             this.loading = true;
+            this.issum=true;
             this.params.pageNum+=1;
             this.getList(this.params);
         },
@@ -135,10 +163,13 @@
         },
         // 获取列表
         getList(params){
-         alert(JSON.stringify(params));
           var _this = this;
-          if(this.loading){
+          if(this.loading&&this.issum){
             this.$api.getShoplist(params).then(function (res) {
+              if(res.sum==0){
+                _this.issum=false;
+                _this.finished = true;
+              }
               _this.loading = false;
               if(res.list.length<5){
                 _this.finished = true;
@@ -163,6 +194,18 @@
         openShophome(shopid){
           this.$router.push('/Shophome/starProducts');
           localStorage.setItem('shopid',shopid);
+        }
+      },
+      watch: {
+        value (val) {
+          if(val==''){
+            this.list=[];
+            this.params.pageNum = 1;
+            this.finished=false;
+            this.loading = true;
+            this.params.productName='';
+            this.getList(this.params);
+          }
         }
       },
       created:function(){
@@ -258,6 +301,7 @@
     color: #FF0000;
   }
   .van-cell .textbox .discon span{
+    float: left;
     margin-right: 0.2rem!important;
   }
   .van-cell .textbox p:first-child{

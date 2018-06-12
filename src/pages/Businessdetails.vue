@@ -65,8 +65,8 @@
           var _this = this;
           this.$api.getShopInformation(shopid).then(function (res) {
             _this.shopImageList = res.shopImageList;
-            _this.startTime = res.startTime;
-            _this.stopTime = res.stopTime;
+            _this.startTime = res.startTimeString;
+            _this.stopTime = res.stopTimeString;
             _this.introduce = res.introduce;
             _this.notice = res.notice;
           })
