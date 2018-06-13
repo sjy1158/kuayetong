@@ -72,6 +72,7 @@
         name: "Shophome",
       data(){
           return{
+            path:'',
             menus:[
               '明星产品',
               '商家详情'
@@ -95,7 +96,7 @@
             }
           },
         onClickLeft(){
-          this.$router.go(-1)
+          this.$router.push(this.path);
         },
         openPay(){
             this.$router.push('/Paybill');
@@ -114,6 +115,12 @@
       created(){
         var shopid = localStorage.getItem('shopid')
         this.getInformation(shopid);
+        if(localStorage.getItem('pathid')==1){
+          this.path = '/nearbyShops';
+        };
+        if(localStorage.getItem('pathid')==2){
+          this.path = '/Businesshome';
+        }
       },
       mounted(){
           this.onClick(0,'明星产品')

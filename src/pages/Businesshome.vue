@@ -31,8 +31,7 @@
           </van-tabs>
         </div>
     </div>
-
-
+      
       <div class="tabmenu" id="tabmenu" style="">
       <van-tabs @click="onClick2" sticky line-width="20">
         <van-tab v-for="item in menus" :title="item">
@@ -60,6 +59,9 @@
               </van-cell>
             </van-list>
           </van-pull-refresh>
+          <div v-show="finished==true" style="margin-top: 0.5rem;margin-bottom: 0.5rem;">
+            加载完毕........
+          </div>
         </div>
 
         <div v-show="issum==false" style="margin-top: 2rem;">
@@ -67,7 +69,6 @@
         </div>
       </van-tabs>
     </div>
-
 
     </div>
 
@@ -194,6 +195,7 @@
         openShophome(shopid){
           this.$router.push('/Shophome/starProducts');
           localStorage.setItem('shopid',shopid);
+          localStorage.setItem('pathid',2)
         }
       },
       watch: {
@@ -201,6 +203,7 @@
           if(val==''){
             this.list=[];
             this.params.pageNum = 1;
+            this.issum = true;
             this.finished=false;
             this.loading = true;
             this.params.productName='';
@@ -255,7 +258,7 @@
       z-index: 1;
     }
   .searchbox .searchbox2 input{
-    width: 91%;
+    width: 100%;
     height: 0.9rem;
     border-radius: 0.5rem;
     position: absolute;

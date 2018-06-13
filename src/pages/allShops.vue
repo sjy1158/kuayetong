@@ -9,7 +9,7 @@
         <div class="icon">
           <van-icon name="search" />
         </div>
-        <input type="text" placeholder="输入商家或商品名称搜索">
+        <input type="search" v-model="value" placeholder="输入商家或商品名称搜索" ref="input1" @keyup="show($event)">
       </div>
     </div>
     <!--搜索框ending-->
@@ -48,10 +48,12 @@
 </template>
 
 <script>
+  import { Toast } from 'vant'
     export default {
         name: "allShops",
       data(){
           return{
+              value:'',
               activeKey: 0,
               index:0,
               tabarr:'',
@@ -59,6 +61,11 @@
           }
       },
       methods: {
+        show(ev){
+          if(ev.keyCode==13){
+            Toast('暂无法搜索')
+          }
+        },
         onClick(id) {
           this.index = id;
           this.$router.push({
@@ -93,14 +100,13 @@
   .left{
     position: absolute;
     left: 0px;
-    height: 1.4rem;
+    height: 1.1rem;
     width: 5%;
     /*background: palevioletred;*/
     top: 50%;
     margin-top: -0.7rem;
-    line-height: 1.7rem;
+    line-height: 1.6rem;
     z-index: 999999999999;
-    font-size: 0.7rem!important;
   }
   .searchbox{
     height: 2.1rem;
@@ -128,7 +134,7 @@
     z-index: 999999999999999;
   }
   .searchbox .searchbox2 input{
-    width:80%;
+    width:90%;
     height: 0.9rem;
     border-radius: 0.5rem;
     position: absolute;

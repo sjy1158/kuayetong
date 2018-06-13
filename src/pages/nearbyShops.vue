@@ -1,5 +1,8 @@
 <template>
  <div class="nearShop">
+
+     <van-loading color="black" class="top active" style="height: 1rem;width: 1rem;position: absolute;z-index: 999999999999999;left: 50%;margin-left: -0.5rem;opacity:0;top: 5rem;background: white;box-shadow:0px 0px 8px gray;border-radius: 50%;"/>
+
    <!--头部-->
    <div id="scrollheight">
    <div class="header">
@@ -74,10 +77,10 @@
    <!--通知栏-->
    <div class="slidexiaoxi">
       <div>
-        <img src="../assets/business_business_headlines.png" alt="">
+        <img src="../assets/business_business_headlines@2x.png" alt="" style="height: 0.7rem;width: 0.7rem;">
       </div>
      <div>
-       <img src="../assets/merchant_avatar.png" alt="">
+       <img src="../assets/merchant_avatar@2x.png" alt="" style="height: 1rem;width: 1rem;">
      </div>
      <van-notice-bar
        text="足协杯战线连续第2年上演广州德比战，上赛季半决赛上恒大以两回合5-3的总比分淘汰富力。"
@@ -95,7 +98,7 @@
   <!--tab-->
 
    <div class="tabmenu" style="">
-     <div class="neartitle"><img src="../assets/merchants_nearby_merchants.png" alt=""></div>
+     <div class="neartitle"><img src="../assets/merchants_nearby_merchants@2x.png" alt="" style="height: 0.5rem;width: 3.5rem;"></div>
      <van-tabs @click="onClick2" sticky line-width="20">
        <van-tab v-for="item in menus" :title="item">
 
@@ -122,6 +125,9 @@
              </van-cell>
            </van-list>
          </van-pull-refresh>
+         <div v-show="finished==true" style="margin-top: 0.5rem;margin-bottom: 0.5rem;">
+           加载完毕........
+         </div>
        </div>
 
        <div v-show="issum==false" style="margin-top: 1rem;">
@@ -142,6 +148,7 @@
         data(){
             var _this = this;
             return {
+              loadreload:true,
               issum:true,
               value:'',
               images: [
@@ -180,6 +187,9 @@
                   init(o){
                     o.getCurrentPosition((status,result)=>{
                       if(result&&result.position){
+                        setTimeout(function () {
+                          document.querySelector('.top').classList.remove('active');
+                        },1000);
                         // alert(JSON.stringify(result));
                         _this.city = result.addressComponent.city;
                         _this.params.latitude=result.position.lat;
@@ -199,6 +209,11 @@
             }
         },
         methods:{
+          openShophome(shopid){
+            this.$router.push('/Shophome');
+            localStorage.setItem('shopid',shopid);
+            localStorage.setItem('pathid',1)
+          },
           show(ev){
             var _this = this;
            if(ev.keyCode==13){
@@ -273,14 +288,22 @@
             }else{
               return
             }
+          },
+          getIcon(){
+            var _this = this;
+            var datajson = this.$api.geticon();
+            datajson.then(function (res) {
+              _this.iconarr = res.list;
+            });
           }
-        },
+      },
         watch: {
           value (val) {
             if(val==''){
               this.list=[];
                 this.params.pageNum = 1;
                 this.finished=false;
+                this.issum = true;
                 this.loading = true;
                 this.params.productName='';
                 this.getindexList(this.params);
@@ -289,117 +312,28 @@
         },
         mounted(){
             var _this = this;
-            window.addEventListener('scroll',this.watchScroll);
-            var datajson = this.$api.geticon();
-            datajson.then(function (res) {
-             _this.iconarr = res.list;
-            });
+          var startX = 0,
+            startY = 0;
+          this.getIcon();
+          document.getElementById('scrollheight').addEventListener('touchstart',function (e) {
+            startX=e.touches[0].pageX;
+            startY=e.touches[0].pageY;
+          })
+          document.getElementById('scrollheight').addEventListener('touchmove',function (e) {
+            var y = e.touches[0].pageY;
+            if(y-startY>0){
+              if(_this.loadreload){
+              document.querySelector('.top').classList.add('active');
+                  _this.getIcon();
+                  _this.loadreload = false;
+              setTimeout(function () {
+                    _this.loadreload = true;
+                    document.querySelector('.top').classList.remove('active');
+                  },1000);
+              }
+            }
+          })
         }
-        // data(){
-        //     var self = this;
-        //     return{
-        //       list:[1,2,3,4],
-        //       navBarWrap:false,
-        //       tmp:'',
-        //       weather:'',
-        //       index:0,
-        //       isfixed:false,
-        //       title:'外卖',
-        //       value:'',
-        //       selected:'1',
-        //       prizeList: [
-        //         { name: '今日数据' },
-        //         { name: 'uiuiuiuui' },
-        //         { name: 'hkhhhhjkh' },
-        //         { name: 'dadadada' },
-        //         { name: 'dadadadada' }
-        //       ],
-        //       activeIndex: 0,
-        //       center: [121.59996, 31.197646],
-        //       lng: 0,
-        //       lat: 0,
-        //       loaded: false,
-        //       address:'',
-        //       plugin: [{
-        //         pName: 'Geolocation',
-        //         events: {
-        //           init(o) {
-        //             // o 是高德地图定位插件实例
-        //             o.getCurrentPosition((status, result) => {
-        //               if (result && result.position) {
-        //                 self.address = result.formattedAddress;
-        //                 self.lng = result.position.lng;
-        //                 self.lat = result.position.lat;
-        //                 self.center = [self.lng, self.lat];
-        //                 self.loaded = true;
-        //                 self.$nextTick();
-        //               }
-        //             });
-        //           }
-        //         }
-        //       }]
-        //     };
-        // },
-        // computed: {
-        //   top() {
-        //     return - this.activeIndex * 30 + 'px';
-        //   }
-        // },
-        // methods:{
-        //  getWeather () {
-        //     var _this = this;
-        //     axios.get('http://restapi.amap.com/v3/weather/weatherInfo?key=534c5d265f9fb6b8907515fe31677328&city=杭州').then(function (response) {
-        //         var data = response.data;
-        //       if(data.status==1){
-        //         _this.tmp = data.lives[0].temperature;
-        //         _this.weather = data.lives[0].weather;
-        //       }
-        //       }).catch(function (error) {
-        //         alert(JSON.stringify(error))
-        //     })
-        //   },
-        //   tabactive(index){
-        //       this.index = index;
-        //   },
-        //   watchScroll(){
-        //     var scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
-        //     var domheight = document.getElementById('alldom').offsetHeight;
-        //     //  当滚动超过 50 时，实现吸顶效果
-        //     if (scrollTop > 49) {
-        //       this.navBarFixed = true
-        //     } else {
-        //       this.navBarFixed = false
-        //     };
-        //     if(scrollTop>domheight){
-        //       this.isfixed = true;
-        //     }else{
-        //       this.isfixed = false;
-        //     }
-        //   },
-        //   loadMore() {
-        //     this.loading = true;
-        //     setTimeout(() => {
-        //       let last = this.list[this.list.length - 1];
-        //       for (let i = 1; i <= 10; i++) {
-        //         this.list.push(last + i);
-        //       }
-        //       this.loading = false;
-        //     }, 2500);
-        //   }
-        //   },
-        //
-        //   mounted(){
-        //     var _this = this;
-        //     window.addEventListener('scroll',this.watchScroll);
-        //   setInterval(()=> {
-        //     if(this.activeIndex < this.prizeList.length) {
-        //       this.activeIndex += 1;
-        //     } else {
-        //       this.activeIndex = 0;
-        //     }
-        //   }, 1000);
-        //     this.getWeather();
-        // }
       }
   </script>
 
@@ -614,5 +548,14 @@
     }
     .van-cell .textbox p:first-child{
       font-weight: bold;
+    }
+
+    .active{
+      animation: mytop 1s infinite;
+    }
+    @keyframes mytop
+    {
+      from{top: 5rem;opacity: 0}
+      to{top:7rem;opacity: 1}
     }
   </style>
