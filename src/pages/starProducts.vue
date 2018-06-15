@@ -3,7 +3,7 @@
       <van-pull-refresh v-model="isLoading" @refresh="onRefresh" v-show="issum==true">
         <van-row>
           <van-col span="8" v-for="item in shoparr">
-            <div class="shopjieshao" @click.prevent="openBuy($event,item.imageUrl,item.price,item.productName,item.subPrice)">
+            <div class="shopjieshao" @click.prevent="openBuy($event,item.imageUrl,item.price,item.productName,item.subPrice,item.id)">
               <img :src="item.imageUrl" alt="">
               <div>
                 <p>{{item.productName}}</p>
@@ -60,6 +60,7 @@
       data(){
         return{
           //明星产品列表
+          shoptypeid:'',
           issum:true,
           shoparr:'',
           length:0,
@@ -121,7 +122,8 @@
             }
           }, 500);
         },
-        openBuy(el,imageurl,price,productName,sub){
+        openBuy(el,imageurl,price,productName,sub,shoptypeid){
+          this.shoptypeid = shoptypeid;
           this.showBase = true;
           this.value=1;
           this.price2 = price-sub;
@@ -137,7 +139,8 @@
             path:'/firmOrder',
            query:{
                 price:_this.price2,
-               val:_this.value
+               val:_this.value,
+             shoptypeid:_this.shoptypeid
             }
           });
         },

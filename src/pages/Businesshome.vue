@@ -137,7 +137,7 @@
         onClickLeft(){
           this.$router.go(-1)
         },
-        getId(id,index){
+        getId(id){
           this.list = [];
           this.issum=true;
           this.params.pageNum = 1;
@@ -187,11 +187,11 @@
             return
           }
         },
-        getimg(id){
+        getimg(id,index){
           var _this = this;
           this.$api.getShopimg(id).then(function (res) {
             _this.headerImg = res.list;
-            _this.params.shopType = res.list[0].id;
+            _this.params.shopType = res.list[index].id;
             return _this.getList(_this.params);
           })
         },
@@ -219,12 +219,15 @@
         var name = localStorage.getItem("name");
         this.id = localStorage.getItem("id");
         this.title = name;
-        this.getimg(this.id);
+        if(this.$route.query.root==1){
+        this.getimg(this.id,0);
+        }else {
+          this.getimg(this.id,this.$route.query.index);
+        }
       },
       mounted(){
-        // this.active = this.$route.query.index;
-        // this.onClick2(0,'距离最近');
-        // this.$api.getShopimg(this.id);
+        this.active = this.$route.query.index;
+        // this.getId(this.$route.query.id1);
       }
     }
 </script>

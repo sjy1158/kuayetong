@@ -1,8 +1,8 @@
 <template>
     <div class="meishilist" style="padding-top: 0.5rem;padding-bottom: 0.5rem;">
       <van-row v-show="issum==true">
-        <van-col span="8" v-for="item in shoparr">
-          <img :src="item.imageUrl" alt="" @click="openBusiness(item.id,item.index)">
+        <van-col span="8" v-for="(item,index) in shoparr">
+          <img :src="item.imageUrl" alt="" @click="openBusiness(item.id,index,item.superiorShopTypeId)">
           <p>{{item.name}}</p>
         </van-col>
         <van-col span="8">
@@ -27,6 +27,7 @@
         name: "Meishilist",
       data(){
           return{
+            name:'',
             issum:true,
             id:'',
               shoparr:'',
@@ -37,24 +38,26 @@
           var _this = this;
           if(this.issum){
             this.$api.getShopimg(shopid).then(function (res) {
-              alert(JSON.stringify(res));
                 if(res.sum==0){
                   _this.issum = false;
                 }
                 _this.shoparr = res.list;
+                _this.name = res.name;
             })
           }else {
             return
           }
         },
-        openBusiness(id,index){
+        openBusiness(id1,index,id){
          this.$router.push({
            path:'/Businesshome',
            query:{
-             index:index
+             index:index,
+             id1:id1
            }
          });
          localStorage.setItem('id',id);
+         localStorage.setItem('name',this.name);
         }
       },
       watch: {

@@ -108,10 +108,18 @@ const api = {
     })
   },
   // 新闻条
-  getheadLine(){
+  getheadLine() {
+    return axios.request({
+      method: 'get',
+      url: '/api/crossindustry/shopPage/getHeadLine?'
+    })
+  },
+
+  // 支付宝支付
+  getPay1(params){
     return axios.request({
       method:'get',
-      url:'/api/crossindustry/shopPage/getHeadLine?'
+      url:''
     })
   }
 }

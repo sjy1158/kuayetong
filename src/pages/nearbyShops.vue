@@ -248,7 +248,12 @@
           },
 
           openBusinesshome(name,id){
-            this.$router.push('/Businesshome');
+            this.$router.push({
+              path:'/Businesshome',
+              query:{
+                 root:1
+              }
+            });
             localStorage.setItem("name", name);
             localStorage.setItem("id",id);
           },

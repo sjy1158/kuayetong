@@ -17,6 +17,7 @@ import Businessdetails from '../pages/Businessdetails'
 import firmOrder from '../pages/firmOrder'
 import shopPay from '../pages/shopPay'
 import paySuccess from '../pages/paySuccess'
+import payOk from '../pages/payOk'
 
   Vue.use(Router)
 
@@ -65,6 +66,10 @@ export default new Router({
           component:Businessdetails
         }
       ]
+    },
+    {
+      path:'/payOk',
+      component:payOk
     },
     {
       path:'/firmOrder',

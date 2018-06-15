@@ -76,7 +76,7 @@
           <van-cell title="支付方式">
             <template>
               <div>
-                <van-radio-group v-model="radio">
+                <van-radio-group v-model="radio" @change="change">
                   <van-radio name="1"><img src="../assets/merchant_alipay@2x.png" alt=""><span>支付宝</span></van-radio>
                   <van-radio name="2"><img src="../assets/merchant_wx@2x.png" alt=""><span>微信</span></van-radio>
                 </van-radio-group>
@@ -92,7 +92,7 @@
           </van-cell>
           <van-cell title="买家留言">
             <template>
-              <input type="text" placeholder="选填：填写内容已和卖家协商确认" :value="value2" style="background: white;width: 6rem">
+              <input type="text" placeholder="选填：填写内容已和卖家协商确认" v-model="value2" style="background: white;width: 6rem">
             </template>
           </van-cell>
         </van-cell-group>
@@ -103,7 +103,7 @@
     <div class="savedingdan">
       <div class="savedingdanbtn">
           <span style="color: #8F8F8F">合计：</span><span style="color: #FF0000">¥{{allsize}}</span>
-          <button @click="getpay">提交订单</button>
+        <a href="">提交订单</a><button @click="getpay"></button>
       </div>
     </div>
   </div>
@@ -115,11 +115,13 @@
     export default {
         name: "firmOrder",
       data(){
+          var _this = this;
         return{
           areaList:'',
           isshow:false,
           value:'',
           value1:1,
+          value2:'',
           radio:'1',
           onesize:138,
           allsize:'',
@@ -130,7 +132,19 @@
             valuephone:'',
             valueplace:'',
           },
-          valuelocation:''
+          typeparams:{
+            type:'1',
+            consignee:'',
+            phone:'',
+            area:'',
+            address:'',
+            word:'',
+            productId:this.$route.query.shoptypeid,
+            num:'',
+            money:'',
+            userId:'8'
+          },
+          valuelocation:'',
         }
       },
       methods:{
@@ -139,6 +153,9 @@
         },
         choseCity(){
           this.isshow = !this.isshow;
+        },
+        change(){
+            alert(this.radio);
         },
         finish(val){
           var _this = this;
@@ -155,23 +172,36 @@
           this.allsize = (this.value1*this.onesize).toFixed(2)
         },
         savelocation(){
-          var phone=/^([0-9]{3,4}-)?[0-9]{7,8}$/;
-          if(this.value!=''&&this.params.valuename!=''&&!phone.test(this.params.valuephone)&&this.params.valueplace!=''){
+          var phone=/(^1[3|4|5|7|8]\d{9}$)|(^09\d{8}$)/;
+          if(this.value!=''&&this.params.valuename!=''&&phone.test(this.params.valuephone)&&this.params.valueplace!=''){
             this.issave = !this.issave;
             this.valuelocation = this.value + this.params.valueplace;
             return
           }else{
-            return Toast('请填写正确完整信息')
+            return Toast('请填写正确完整地址信息')
           }
         },
         bianjiplace(){
           this.issave = !this.issave;
         },
+        getpay1(params){
+          this.$api.getPay1(params).then(function (res) {
+            alert(res);
+          })
+        },
         getpay(){
+          var _this = this;
           if (!this.issave){
             return Toast('请保存收货信息')
           }else{
-            return Toast('支付')
+            this.typeparams.consignee = this.params.valuename;
+            this.typeparams.phone = this.params.valuephone;
+            this.typeparams.address = this.params.valueplace;
+            this.typeparams.area = this.value;
+            this.typeparams.word = this.value2;
+            this.typeparams.num = this.value1;
+            this.typeparams.money = this.allsize;
+            // window.location.href='http://192.168.5.126:8080/crossindustry/alipay/pay'+this.typeparams;
           }
         },
       },
