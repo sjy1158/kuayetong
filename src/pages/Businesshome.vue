@@ -21,9 +21,9 @@
       <!--商品tab切换-->
       <div class="slideshoptab" id="slideshoptab" style="">
         <div style="" id="tab1">
-          <van-tabs type="line" @click="onClick" line-width="20">
-            <van-tab v-for="item in headerImg">
-              <div slot="title" @click="getId(item.id)">
+          <van-tabs type="line" @click="onClick" line-width="20" v-model="active">
+            <van-tab v-for="(item,index) in headerImg">
+              <div slot="title" @click="getId(item.id,index)">
                 <img :src="item.imageUrl" alt="" style="padding-top: 10px;">
                 <p class="titleshop">{{item.name}}</p>
               </div>
@@ -31,7 +31,7 @@
           </van-tabs>
         </div>
     </div>
-      
+
       <div class="tabmenu" id="tabmenu" style="">
       <van-tabs @click="onClick2" sticky line-width="20">
         <van-tab v-for="item in menus" :title="item">
@@ -50,7 +50,7 @@
                   <img :src="item.shopHeadImageUrl" alt="" style="float: left" class="shopimg" @click="openShophome(item.shopId)">
                   <div class="textbox">
                     <p>{{item.title}}</p>
-                    <p class="titlelist"><img src="../assets/businesses_icon.png" alt=""><span>{{item.shopType}}</span><span>人均消费{{item.averageMoney}}元</span><span style="float: right"><100m</span></p>
+                    <p class="titlelist"><img src="../assets/businesses_icon@2x.png" alt=""><span>{{item.shopType}}</span><span>人均消费{{item.averageMoney}}元</span><span style="float: right"><100m</span></p>
                     <p class="discon" v-for="item1 in item.deductionList">
                       <span>{{item1.requireValue}}抵{{item1.value}}</span>
                     </p>
@@ -64,8 +64,9 @@
           </div>
         </div>
 
-        <div v-show="issum==false" style="margin-top: 2rem;">
-          <span>暂无数据.........</span>
+        <div v-show="issum==false" style="margin-top: 2rem;margin-bottom: 1rem;">
+          <div><img src="../assets/load_failed@2x.png" alt="" style="height: 1rem;width: 1rem;"></div>
+          <span style="margin-top: 1rem;">暂无数据</span>
         </div>
       </van-tabs>
     </div>
@@ -136,7 +137,7 @@
         onClickLeft(){
           this.$router.go(-1)
         },
-        getId(id){
+        getId(id,index){
           this.list = [];
           this.issum=true;
           this.params.pageNum = 1;
@@ -161,6 +162,8 @@
         },
         onClickLeft(){
           this.$router.push('/nearbyShops');
+          localStorage.removeItem('id');
+          localStorage.removeItem('name');
         },
         // 获取列表
         getList(params){
@@ -219,6 +222,7 @@
         this.getimg(this.id);
       },
       mounted(){
+        // this.active = this.$route.query.index;
         // this.onClick2(0,'距离最近');
         // this.$api.getShopimg(this.id);
       }
@@ -283,7 +287,7 @@
 
   .van-cell p{
     margin: 0px!important;
-    margin-bottom: 0.2rem!important;
+    margin-bottom: 0.1rem!important;
   }
   .van-cell .shopimg{
     height: 2.2rem;
@@ -292,7 +296,10 @@
   .van-cell .textbox{
     margin-left: 2.5rem;
   }
-  .van-cell .textbox p img{
+  .van-cell .textbox .titlelist img{
+    height: 0.4rem;
+    width: 0.4rem;
+    margin-bottom: 0.1rem;
     vertical-align:middle;
   }
   .van-cell .textbox .titlelist span{
@@ -304,8 +311,14 @@
     color: #FF0000;
   }
   .van-cell .textbox .discon span{
-    float: left;
     margin-right: 0.2rem!important;
+    border: 1px solid #f08400;
+    border-radius: 5px;
+    font-size: 0.3rem;
+    padding-left: 0.1rem;
+    padding-right: 0.1rem;
+    text-align: center;
+    float: left;
   }
   .van-cell .textbox p:first-child{
     font-weight: bold;

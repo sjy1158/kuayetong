@@ -2,7 +2,7 @@
     <div class="meishilist" style="padding-top: 0.5rem;padding-bottom: 0.5rem;">
       <van-row v-show="issum==true">
         <van-col span="8" v-for="item in shoparr">
-          <img :src="item.imageUrl" alt="">
+          <img :src="item.imageUrl" alt="" @click="openBusiness(item.id,item.index)">
           <p>{{item.name}}</p>
         </van-col>
         <van-col span="8">
@@ -15,8 +15,9 @@
         </van-col>
       </van-row>
 
-      <div v-show="issum==false">
-        <span>暂无数据.......</span>
+      <div v-show="issum==false" style="margin-top: 1rem;margin-bottom: 1rem;">
+        <div><img src="../assets/load_failed@2x.png" alt="" style="height: 1rem;width: 1rem;"></div>
+        <span style="margin-top: 1rem;">暂无数据</span>
       </div>
     </div>
 </template>
@@ -36,6 +37,7 @@
           var _this = this;
           if(this.issum){
             this.$api.getShopimg(shopid).then(function (res) {
+              alert(JSON.stringify(res));
                 if(res.sum==0){
                   _this.issum = false;
                 }
@@ -44,6 +46,15 @@
           }else {
             return
           }
+        },
+        openBusiness(id,index){
+         this.$router.push({
+           path:'/Businesshome',
+           query:{
+             index:index
+           }
+         });
+         localStorage.setItem('id',id);
         }
       },
       watch: {
@@ -57,7 +68,7 @@
       created(){
       },
       mounted(){
-          this.getshopimg(this.$route.query.id);
+
       }
     }
 </script>

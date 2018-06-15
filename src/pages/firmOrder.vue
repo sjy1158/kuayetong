@@ -15,12 +15,12 @@
         <van-cell-group>
           <van-cell title="收货人">
             <template>
-              <input type="text" placeholder="请使用真实姓名" style="margin-left: 1.3rem;" v-model="valuename">
+              <input type="text" placeholder="请使用真实姓名" style="margin-left: 1.3rem;" v-model="params.valuename">
             </template>
           </van-cell>
           <van-cell title="联系电话">
             <template>
-              <input type="text" placeholder="1111111111" v-model="valuephone">
+              <input type="text" placeholder="请输入联系电话" v-model="params.valuephone">
             </template>
           </van-cell>
           <van-cell title="所在地区" is-link @click="choseCity">
@@ -30,7 +30,7 @@
           </van-cell>
           <van-cell title="详细地址">
             <template>
-              <input type="text" placeholder="街道、小区门牌等" v-model="valueplace">
+              <input type="text" placeholder="街道、小区门牌等" v-model="params.valueplace">
             </template>
           </van-cell>
 
@@ -47,7 +47,7 @@
         <div class="savexinxi">
           <img src="../assets/positioning@2x.png" alt="" style="float: left">
           <div style="text-align: left;height: 1rem;" class="locationtext">
-            <p><span>{{valuename}}</span><span style="padding-left: 0.2rem">{{valuephone}}</span></p>
+            <p><span>{{params.valuename}}</span><span style="padding-left: 0.2rem">{{params.valuephone}}</span></p>
             <p>{{valuelocation}}</p>
           </div>
         </div>
@@ -103,7 +103,7 @@
     <div class="savedingdan">
       <div class="savedingdanbtn">
           <span style="color: #8F8F8F">合计：</span><span style="color: #FF0000">¥{{allsize}}</span>
-          <button>提交订单</button>
+          <button @click="getpay">提交订单</button>
       </div>
     </div>
   </div>
@@ -111,6 +111,7 @@
 
 <script>
   import citys from '../assets/js/area'
+  import { Toast } from 'vant'
     export default {
         name: "firmOrder",
       data(){
@@ -124,9 +125,11 @@
           allsize:'',
           // 表单
           issave:false,
-          valuename:'',
-          valuephone:'',
-          valueplace:'',
+          params:{
+            valuename:'',
+            valuephone:'',
+            valueplace:'',
+          },
           valuelocation:''
         }
       },
@@ -152,12 +155,25 @@
           this.allsize = (this.value1*this.onesize).toFixed(2)
         },
         savelocation(){
-          this.issave = !this.issave;
-          this.valuelocation = this.value + this.valueplace;
+          var phone=/^([0-9]{3,4}-)?[0-9]{7,8}$/;
+          if(this.value!=''&&this.params.valuename!=''&&!phone.test(this.params.valuephone)&&this.params.valueplace!=''){
+            this.issave = !this.issave;
+            this.valuelocation = this.value + this.params.valueplace;
+            return
+          }else{
+            return Toast('请填写正确完整信息')
+          }
         },
         bianjiplace(){
           this.issave = !this.issave;
-        }
+        },
+        getpay(){
+          if (!this.issave){
+            return Toast('请保存收货信息')
+          }else{
+            return Toast('支付')
+          }
+        },
       },
       mounted(){
           this.areaList = citys;
@@ -290,8 +306,7 @@
       padding-left: 0.1rem;
     }
     .savedingdan{
-      position: fixed;
-      bottom: 0px;
+      position: fixed;bottom: 0px;
       left: 0px;
       width: 100%;
     }

@@ -13,8 +13,10 @@
           </van-col>
         </van-row>
       </van-pull-refresh>
-      <div v-show="issum==false" style="margin-top: 2rem;">
-          <span>暂无数据.........</span>
+
+      <div v-show="issum==false" style="margin-top: 2rem;margin-bottom: 1rem;">
+        <div><img src="../assets/load_failed@2x.png" alt="" style="height: 1rem;width: 1rem;"></div>
+        <span style="margin-top: 1rem;">暂无数据</span>
       </div>
 
       <van-sku

@@ -99,6 +99,20 @@ const api = {
       url:'/api/crossindustry/shopPage/search?',
       params:params
     })
+  },
+  //首页热词
+  gethotWord(){
+    return axios.request({
+      method:'get',
+      url:'/api/crossindustry/shopPage/getHotWord?'
+    })
+  },
+  // 新闻条
+  getheadLine(){
+    return axios.request({
+      method:'get',
+      url:'/api/crossindustry/shopPage/getHeadLine?'
+    })
   }
 }
 export default class Api {

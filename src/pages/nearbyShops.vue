@@ -33,6 +33,8 @@
          <div class="weathertext">
           <p style="font-size: 0.5rem;">{{tmp}}℃</p>
            <p>{{weather}}</p>
+           <img v-show="weathericon==true" src="../assets/business_weather@2x.png" alt="" style="padding-left: 0.3rem;height: 0.6rem;width: 0.55rem;padding-top: 0.15rem;">
+           <img v-show="weathericon==false" src="../assets/during_the_day@2x.png" alt="" style="padding-left: 0.3rem;height: 0.6rem;width: 0.55rem;padding-top: 0.15rem;">
          </div>
        </div>
      </div>
@@ -43,19 +45,7 @@
 
      <div class="shoptab">
        <ul id="choceshop">
-         <li class="van-ellipsis">肯德基</li>
-         <li class="van-ellipsis">汉堡王</li>
-         <li class="van-ellipsis">肯德基</li>
-         <li class="van-ellipsis">烤肉</li>
-         <li class="van-ellipsis">满30减15</li>
-         <li class="van-ellipsis">吃货公敌</li>
-         <li class="van-ellipsis">小龙虾</li>
-         <li class="van-ellipsis">满30减15</li>
-         <li class="van-ellipsis">吃货公敌</li>
-         <li class="van-ellipsis">小龙虾</li>
-         <li class="van-ellipsis">满30减15</li>
-         <li class="van-ellipsis">吃货公敌</li>
-         <li class="van-ellipsis">小龙虾</li>
+         <li class="van-ellipsis" v-for="item in hotarr">{{item}}</li>
       </ul>
      </div>
    </div>
@@ -82,12 +72,11 @@
      <div>
        <img src="../assets/merchant_avatar@2x.png" alt="" style="height: 1rem;width: 1rem;">
      </div>
-     <van-notice-bar
-       text="足协杯战线连续第2年上演广州德比战，上赛季半决赛上恒大以两回合5-3的总比分淘汰富力。"
-       left-icon="https://img.yzcdn.cn/1.png"
-     />
+     <van-notice-bar mode="link" :scrollable="true">
+       <span style="margin-right: 0.5rem;" v-for="item in linearr">{{item.id}}.{{item.headline}}</span>
+     </van-notice-bar>
      <div>
-       2月3日
+       {{time2}}
      </div>
    </div>
      <div style="width: 100%;height: 0.2rem">
@@ -116,7 +105,7 @@
                  <img :src="item.shopHeadImageUrl" alt="" style="float: left" class="shopimg" @click="openShophome(item.shopId)">
                  <div class="textbox">
                    <p>{{item.title}}</p>
-                   <p class="titlelist"><img src="../assets/businesses_icon.png" alt=""><span>{{item.shopType}}</span><span>人均消费{{item.averageMoney}}元</span><span style="float: right"><100m</span></p>
+                   <p class="titlelist"><img src="../assets/businesses_icon@2x.png" alt=""><span>{{item.shopType}}</span><span>人均消费{{item.averageMoney}}元</span><span style="float: right"><100m</span></p>
                    <p class="discon" v-for="item1 in item.deductionList">
                      <span>{{item1.requireValue}}抵{{item1.value}}</span>
                    </p>
@@ -130,8 +119,9 @@
          </div>
        </div>
 
-       <div v-show="issum==false" style="margin-top: 1rem;">
-         <span>暂无数据.........</span>
+       <div v-show="issum==false" style="margin-top: 1rem;margin-bottom: 1rem;">
+         <div><img src="../assets/load_failed@2x.png" alt="" style="height: 1rem;width: 1rem;"></div>
+         <span style="padding-top: 0.7rem;">暂无数据</span>
        </div>
 
      </van-tabs>
@@ -148,6 +138,10 @@
         data(){
             var _this = this;
             return {
+              linearr:[],
+              weathericon:'',
+              time2:'',
+              hotarr:[],
               loadreload:true,
               issum:true,
               value:'',
@@ -266,7 +260,18 @@
             this.$api.getWeather(city).then(function (res) {
               _this.tmp=res[0].temperature;
               _this.weather = res[0].weather;
+             var time = res[0].reporttime;
+             _this.changetime(new Date(time).getHours());
             })
+          },
+          changetime(time){
+            if(7<time<18){
+              this.weathericon =false;
+              return;
+            }else{
+              this.weathericon =true;
+              return;
+            }
           },
           getindexList(params){
             var _this = this;
@@ -295,6 +300,23 @@
             datajson.then(function (res) {
               _this.iconarr = res.list;
             });
+          },
+          gethot(){
+            var _this = this;
+            this.$api.gethotWord().then(function (res) {
+              _this.hotarr=res.list
+            })
+          },
+          gettime(){
+            var time = new Date();
+            this.time2 = (time.getMonth()+1)+'月'+time.getDate()+'日';
+            return this.time2
+          },
+          getheadline(){
+            var _this = this;
+            this.$api.getheadLine().then(function (res) {
+              _this.linearr=res.list;
+            })
           }
       },
         watch: {
@@ -315,6 +337,9 @@
           var startX = 0,
             startY = 0;
           this.getIcon();
+          this.gethot();
+          this.gettime();
+          this.getheadline();
           document.getElementById('scrollheight').addEventListener('touchstart',function (e) {
             startX=e.touches[0].pageX;
             startY=e.touches[0].pageY;
@@ -325,6 +350,7 @@
               if(_this.loadreload){
               document.querySelector('.top').classList.add('active');
                   _this.getIcon();
+                  _this.gethot();
                   _this.loadreload = false;
               setTimeout(function () {
                     _this.loadreload = true;
@@ -390,7 +416,7 @@
     .header .titlelocation .weather .weathertext{
       position: absolute;
       height: 0.7rem;
-      right: 0.8rem;
+      right: 1.5rem;
       top: 50%;
       margin-top: -0.5rem;
     }
@@ -485,14 +511,14 @@
     .slidexiaoxi div:last-child{
       float: right;
       margin-right: 0.6rem;
-      margin-top: 0.3rem;
+      margin-top: 0.4rem;
     }
     .slidexiaoxi div p{
       margin: 0px!important;
       padding: 0px!important;
     }
     .slidexiaoxi .van-notice-bar{
-      width: 4.5rem;
+      width: 4rem;
       height: 0.7rem;
       background: white;
       color: #393939;
@@ -522,7 +548,7 @@
 
     .van-cell p{
       margin: 0px!important;
-      margin-bottom: 0.2rem!important;
+      margin-bottom: 0.1rem!important;
     }
     .van-cell .shopimg{
       height: 2.2rem;
@@ -531,8 +557,13 @@
     .van-cell .textbox{
       margin-left: 2.5rem;
     }
-    .van-cell .textbox p img{
+    .van-cell .textbox .titlelist img{
+    height: 0.4rem;width: 0.4rem;
+      margin-bottom: 0.1rem;
       vertical-align:middle;
+    }
+    .van-cell .textbox .titlelist{
+      font-size: 0.35rem;
     }
     .van-cell .textbox .titlelist span{
       margin-left: 0.2rem;
@@ -544,6 +575,12 @@
     }
     .van-cell .textbox .discon span{
       margin-right: 0.2rem!important;
+      border: 1px solid #f08400;
+      border-radius: 5px;
+      font-size: 0.3rem;
+      padding-left: 0.1rem;
+      padding-right: 0.1rem;
+      text-align: center;
       float: left;
     }
     .van-cell .textbox p:first-child{
