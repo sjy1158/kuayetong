@@ -88,7 +88,7 @@
 
    <div class="tabmenu" style="">
      <div class="neartitle"><img src="../assets/merchants_nearby_merchants@2x.png" alt="" style="height: 0.5rem;width: 3.5rem;"></div>
-     <van-tabs @click="onClick2" sticky line-width="20">
+     <van-tabs @click="onClick2" sticky swipeable line-width="20">
        <van-tab v-for="item in menus" :title="item">
 
        </van-tab>
@@ -100,6 +100,30 @@
              :offset="10"
              @load="onLoad"
            >
+             <van-cell>
+                 <div class="pullbox">
+                   <img src="../assets/merchant_avatar3@2x.png" alt="" style="float: left" class="shopimg">
+                   <div class="textbox">
+                     <p>巴客的饭</p>
+                     <p class="titlelist"><img src="../assets/businesses_icon@2x.png" alt=""><span>快餐便当</span><span>人均消费16元</span><span style="float: right"><100m</span></p>
+                     <p class="discon">
+                       <span>100抵10</span>
+                     </p>
+                   </div>
+                 </div>
+             </van-cell>
+             <van-cell>
+               <div class="pullbox">
+                 <img src="../assets/merchant_avatar2@2x.png" alt="" style="float: left" class="shopimg">
+                 <div class="textbox">
+                   <p>巴客的饭</p>
+                   <p class="titlelist"><img src="../assets/businesses_icon@2x.png" alt=""><span>快餐便当</span><span>人均消费16元</span><span style="float: right"><100m</span></p>
+                   <p class="discon">
+                     <span>100抵10</span>
+                   </p>
+                 </div>
+               </div>
+             </van-cell>
              <van-cell v-for="item in list">
                <div class="pullbox">
                  <img :src="item.shopHeadImageUrl" alt="" style="float: left" class="shopimg" @click="openShophome(item.shopId)">
@@ -112,6 +136,7 @@
                  </div>
                </div>
              </van-cell>
+
            </van-list>
          </van-pull-refresh>
          <div v-show="finished==true" style="margin-top: 0.5rem;margin-bottom: 0.5rem;">
@@ -550,7 +575,9 @@
     .van-tabs__wrap--page-top{
       top: 0px!important;
     }
-
+    .van-cell{
+      /*border-bottom: 1px solid #F2F2F2;*/
+    }
     .van-cell p{
       margin: 0px!important;
       margin-bottom: 0.1rem!important;

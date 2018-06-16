@@ -2,9 +2,12 @@ import axios from 'axios'
 import { Toast } from 'vant'
 // 处理服务端错误信息
 axios.interceptors.response.use(response=>{
-  if(response.data.code==200){
+  if(response.data.code==200) {
     return response.data.data;
-  }
+  };
+  // if(response.data.code==undefined){
+  //   return response.data;
+  // };
   if(response.data.status==1){
     return response.data.lives
   };
@@ -119,7 +122,8 @@ const api = {
   getPay1(params){
     return axios.request({
       method:'get',
-      url:''
+      url:'/api/crossindustry/alipay/pay?',
+      params:params
     })
   }
 }

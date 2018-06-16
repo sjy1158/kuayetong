@@ -103,7 +103,7 @@
     <div class="savedingdan">
       <div class="savedingdanbtn">
           <span style="color: #8F8F8F">合计：</span><span style="color: #FF0000">¥{{allsize}}</span>
-        <a href="">提交订单</a><button @click="getpay"></button>
+          <button @click="getpay">提交订单</button>
       </div>
     </div>
   </div>
@@ -184,11 +184,6 @@
         bianjiplace(){
           this.issave = !this.issave;
         },
-        getpay1(params){
-          this.$api.getPay1(params).then(function (res) {
-            alert(res);
-          })
-        },
         getpay(){
           var _this = this;
           if (!this.issave){
@@ -201,7 +196,10 @@
             this.typeparams.word = this.value2;
             this.typeparams.num = this.value1;
             this.typeparams.money = this.allsize;
-            // window.location.href='http://192.168.5.126:8080/crossindustry/alipay/pay'+this.typeparams;
+            this.$router.push({
+              path:'/payOk',
+              query:this.typeparams
+            })
           }
         },
       },

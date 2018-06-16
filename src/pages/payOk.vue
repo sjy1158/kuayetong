@@ -1,7 +1,4 @@
 <template>
-    <div class="payok" v-html="html">
-
-    </div>
 </template>
 
 <script>
@@ -16,17 +13,15 @@
         getok(params){
           var _this = this;
           this.$api.getPay1(params).then(function (res) {
-            window.location.href = res.data;
-          })
+            document.body.innerHTML=res.split('</form>')[0];
+            document.forms[0].submit();
+          });
         },
       },
       created(){
-        alert(JSON.stringify(this.$route.query));
-        this.getok(this.$route.query)
       },
       mounted(){
-        //   alert(JSON.stringify(this.$route.query));
-        // this.getok(this.$route.query)
+        this.getok(this.$route.query)
       }
     }
 </script>
