@@ -12,10 +12,10 @@ module.exports = {
     assetsPublicPath: '/',
     proxyTable: {
       '/api': {  //使用"/api"来代替"http://f.apiplus.c"
-        target: 'http://192.168.5.126:8080', //源地址
+        target: 'http://120.55.67.48:8080', //源地址
         changeOrigin: true, //改变源
         pathRewrite: {
-          '^/api': 'http://192.168.5.126:8080' //路径重写
+          '^/api': 'http://120.55.67.48:8080' //路径重写
         }
       }
     },
@@ -58,7 +58,7 @@ module.exports = {
     // Paths
     assetsRoot: path.resolve(__dirname, '../dist'),
     assetsSubDirectory: 'static',
-    assetsPublicPath: '/',
+    assetsPublicPath: './',
 
     /**
      * Source Maps
