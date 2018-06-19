@@ -11,10 +11,10 @@ module.exports = {
     assetsPublicPath: './',
     proxyTable: {
       '/api': {  //使用"/api"来代替"http://f.apiplus.c"
-        target: 'https://sjy1158.github.io', //源地址
+        target: 'https://sjy1158.github.io/kuayetong', //源地址
         changeOrigin: true, //改变源
         pathRewrite: {
-          '^/api': 'https://sjy1158.github.io' //路径重写
+          '^/api': 'https://sjy1158.github.io/kuayetong' //路径重写
         }
       }
     },
