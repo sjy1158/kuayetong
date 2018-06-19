@@ -1,5 +1,6 @@
 import axios from 'axios'
 import { Toast } from 'vant'
+import config from '../util/config'
 // 处理服务端错误信息
 axios.interceptors.response.use(response=>{
   if(response.data.code==200) {
@@ -26,7 +27,7 @@ const api = {
   getShopimg(id) {
     return axios.request({
       method: 'get',
-      url: '/api/crossindustry/shopPage/getShopTypeListByShopType?',
+      url:'/api/crossindustry/shopPage/getShopTypeListByShopType?',
       params: {
         shopTypeId: id
       }
