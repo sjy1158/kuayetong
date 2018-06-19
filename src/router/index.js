@@ -28,14 +28,17 @@ export default new Router({
       redirect:'/nearbyShops'
     },
     {
+      name:'nearbyShops',
       path:'/nearbyShops',
       component:nearbyShops
     },
     {
+      name:'Businesshome',
       path:'/Businesshome',
       component:Businesshome
     },
     {
+      name:'allShops',
       path:'/allShops',
       component:allShops,
       children:[
@@ -44,12 +47,14 @@ export default new Router({
           redirect:'/allShops/Meishilist'
         },
         {
+          name:'Meishilist',
           path:'/allShops/Meishilist',
           component:Meishilist
         }
       ]
     },
     {
+      name:'Shophome',
       path:'/Shophome',
       component:Shophome,
       children:[
@@ -58,40 +63,49 @@ export default new Router({
           redirect:'/Shophome/starProducts'
         },
         {
+          name:'starProducts',
           path:'/Shophome/starProducts',
           component:starProducts
         },
         {
+          name:'Businessdetails',
           path:'/Shophome/Businessdetails',
           component:Businessdetails
         }
       ]
     },
     {
+      name:'payOk',
       path:'/payOk',
       component:payOk
     },
     {
+      name:'firmOrder',
       path:'/firmOrder',
       component:firmOrder
     },
     {
+      name:'shopPay',
       path:'/shopPay',
       component:shopPay
     },
     {
+      name:'Paybill',
       path:'/Paybill',
       component:Paybill
     },
     {
+      name:'paySuccess',
       path:'/paySuccess',
       component:paySuccess
     },
     {
+      name:'payOver',
       path:'/payOver',
       component:payOver
     },
     {
+      name:'listItem',
       path:'/listItem',
       component:listItem
     }
