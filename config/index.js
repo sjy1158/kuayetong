@@ -6,15 +6,16 @@ const path = require('path')
 
 module.exports = {
   dev: {
+
     // Paths
     assetsSubDirectory: 'static',
-    assetsPublicPath: './',
+    assetsPublicPath: '/',
     proxyTable: {
       '/api': {  //使用"/api"来代替"http://f.apiplus.c"
-        target: 'https://sjy1158.github.io/kuayetong', //源地址
+        target: 'http://120.55.67.48:8080', //源地址
         changeOrigin: true, //改变源
         pathRewrite: {
-          '^/api': 'https://sjy1158.github.io/kuayetong' //路径重写
+          '^/api': 'http://120.55.67.48:8080' //路径重写
         }
       }
     },
