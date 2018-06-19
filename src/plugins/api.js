@@ -5,9 +5,9 @@ axios.interceptors.response.use(response=>{
   if(response.data.code==200) {
     return response.data.data;
   };
-  // if(response.data.code==undefined){
-  //   return response.data;
-  // };
+  if(typeof response.data=="string"){
+     return response.data
+  };
   if(response.data.status==1){
     return response.data.lives
   };
