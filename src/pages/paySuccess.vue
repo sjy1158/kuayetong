@@ -9,9 +9,9 @@
       />
       <div class="payicon" style="margin-top: 2.03rem">
         <img src="../assets/business_pay_succeed@2x.png" alt="">
-        <p style="font-size: 0.75rem;padding-top: 0.31rem;padding-bottom: 1.18rem">抵扣成功</p>
-        <p style="font-size: 0.625rem;padding-bottom: 0.18rem;">请将折扣后剩余的<span style="color: #F08400">{{prize}}</span>元</p>
-        <p style="font-size: 0.625rem;">线下支付给商家</p>
+        <p style="font-size: 24px;padding-top: 0.31rem;padding-bottom: 1.18rem">抵扣成功</p>
+        <p style="font-size: 20px;padding-bottom: 0.18rem;">请将折扣后剩余的<span style="color: #F08400">{{prize}}</span>元</p>
+        <p style="font-size: 20px;">线下支付给商家</p>
         <button type="button">完成订单</button>
       </div>
     </div>
@@ -44,8 +44,8 @@
     line-height: 1.1rem;
   }
   .payicon img{
-    height: 2.81rem;
-    width: 2.81rem;
+    height: 90px;
+    width: 90px;
   }
   .payicon p{
     margin: 0px!important;
@@ -55,11 +55,11 @@
   }
   button[type=button]{
     width: 94%;
-    height: 1.25rem;
+    height: 40px;
     background: #F08400;
     border: none;
     color: white;
-    font-size: 0.5rem;
+    font-size: 18px;
     margin-top: 1.25rem;
     font-weight: bold;
     border-radius: 5px;

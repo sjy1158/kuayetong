@@ -181,5 +181,6 @@
   .shoplist ul li{
     height: 1.5rem;
     line-height: 1.5rem;
+    font-size: 13px;
   }
 </style>

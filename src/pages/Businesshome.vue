@@ -24,8 +24,8 @@
           <van-tabs type="line" @click="onClick" line-width="20" v-model="active">
             <van-tab v-for="(item,index) in headerImg">
               <div slot="title" @click="getId(item.id,index)">
-                <img :src="item.imageUrl" alt="" style="padding-top: 10px;">
-                <p class="titleshop">{{item.name}}</p>
+                <img :src="item.imageUrl" alt="" style="padding-top: 10px;height: 48px;width: 48px;">
+                <p class="titleshop" style="font-size: 12px!important;">{{item.name}}</p>
               </div>
             </van-tab>
           </van-tabs>
@@ -45,6 +45,30 @@
               :offset="10"
               @load="onLoad"
             >
+              <van-cell>
+                <div class="pullbox">
+                  <img src="../assets/merchant_avatar3@2x.png" alt="" style="float: left" class="shopimg">
+                  <div class="textbox">
+                    <p>巴客的饭</p>
+                    <p class="titlelist"><img src="../assets/businesses_icon@2x.png" alt=""><span>快餐便当</span><span>人均消费16元</span><span style="float: right"><100m</span></p>
+                    <p class="discon">
+                      <span>100抵10</span>
+                    </p>
+                  </div>
+                </div>
+              </van-cell>
+              <van-cell>
+                <div class="pullbox">
+                  <img src="../assets/merchant_avatar2@2x.png" alt="" style="float: left" class="shopimg">
+                  <div class="textbox">
+                    <p>巴客的饭</p>
+                    <p class="titlelist"><img src="../assets/businesses_icon@2x.png" alt=""><span>快餐便当</span><span>人均消费16元</span><span style="float: right"><100m</span></p>
+                    <p class="discon">
+                      <span>100抵10</span>
+                    </p>
+                  </div>
+                </div>
+              </van-cell>
               <van-cell v-for="item in list">
                 <div class="pullbox">
                   <img :src="item.shopHeadImageUrl" alt="" style="float: left" class="shopimg" @click="openShophome(item.shopId)">
@@ -290,7 +314,6 @@
 
   .van-cell p{
     margin: 0px!important;
-    margin-bottom: 0.1rem!important;
   }
   .van-cell .shopimg{
     height: 2.2rem;
@@ -299,11 +322,21 @@
   .van-cell .textbox{
     margin-left: 2.5rem;
   }
+  .van-cell .shopimg{
+    height: 70px;
+    width: 70px;
+  }
+  .van-cell .textbox{
+    margin-left: 85px;
+  }
   .van-cell .textbox .titlelist img{
-    height: 0.4rem;
-    width: 0.4rem;
-    margin-bottom: 0.1rem;
+    height: 10px;
+    width: 11px;
+    margin-bottom: 2px;
     vertical-align:middle;
+  }
+  .van-cell .textbox .titlelist{
+    font-size: 10px;
   }
   .van-cell .textbox .titlelist span{
     margin-left: 0.2rem;
@@ -317,14 +350,19 @@
     margin-right: 0.2rem!important;
     border: 1px solid #f08400;
     border-radius: 5px;
-    font-size: 0.3rem;
-    padding-left: 0.1rem;
-    padding-right: 0.1rem;
+    font-size: 10px;
+    height: 14px;
+    width: auto;
+    padding-left: 2px;
+    padding-right: 2px;
+    line-height: 15px!important;
     text-align: center;
     float: left;
+    margin-top: 7px;
   }
   .van-cell .textbox p:first-child{
     font-weight: bold;
+    font-size: 14px;
   }
 
 </style>

@@ -78,12 +78,13 @@
 
 <style scoped>
   .van-row .van-col p{
+    font-size: 10px!important;
     margin: 0px!important;
     padding-top: 0.25rem;
   }
   .van-row .van-col img{
-    width: 1.56rem;
-    height:1.06rem;
+   width: 50px;
+    height: 33px;
   }
   .van-row .van-col{
     margin-bottom: 0.9rem;

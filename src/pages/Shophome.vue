@@ -21,12 +21,12 @@
           <li v-for="item in disconarr">
             <img src="../assets/merchant_deduct_red_and_white@2x.png" alt="">
             <div style="position: absolute;top: 0.55rem;width:2.5rem;color: #FF0000">
-              <p>进店消费满</p>
-              <p>¥{{item.requireValue}}</p>
+              <p style="font-size: 9px!important;padding-top: 5px;">进店消费满</p>
+              <p style="font-size: 12px!important;">¥{{item.requireValue}}</p>
             </div>
             <div style="position: absolute;top: 0.55rem;width:2.5rem;left: 2.3rem;color: #FFFFFF">
-              <p>进店消费满</p>
-              <p>¥{{item.value}}</p>
+              <p style="font-size: 9px!important;padding-top: 5px;">进店消费满</p>
+              <p style="font-size: 12px!important;">¥{{item.value}}</p>
             </div>
           </li>
         </ul>
@@ -144,24 +144,26 @@
     position: absolute;
     left: 0.6rem;
     top: 0.25rem;
-    height: 1.8rem;
-    width: 1.8rem;
+   height: 48px;
+    width: 48px;
   }
   .titleImg .titletext{
     position: absolute;
-    left: 2.7rem;
-    top: 0.6rem;
+    left: 80px;
+    top: 14px;
+    /*top: 0.6rem;*/
     text-align: left;
-    font-size: 0.4rem;
+    font-size: 14px;
     font-weight: bold;
   }
   .titleImg .titletext p{
     margin: 0px!important;
+    margin-bottom: 4px!important;
   }
 
   .slideyouhui{
     width: 100%;
-    height: 3rem;
+    height: auto;
     background: white;
     overflow-x: scroll;
     overflow-y: hidden;
@@ -182,7 +184,7 @@
     height: 2rem;
   }
   .slideyouhui ul li p{
-    font-size: 0.3rem!important;
+    /*font-size: 12px!important;*/
     margin: 0px!important;
     padding-left: 0.2rem;
   }
@@ -218,29 +220,29 @@
   .location .locationicon{
     line-height: 1.6rem;
     vertical-align:middle;
-    font-size: 0.37rem;
+    font-size:12px;
   }
   .location .locationicon img{
-    height: 0.45rem;
-    width: 0.5rem;
+  height: 16px;
+    width: 17px;
     vertical-align:middle;
     padding-left: 0.2rem;
   }
   .location .locationicon2 p{
       margin: 0px!important;
-    font-size: 0.3rem!important;
+    font-size: 10px!important;
   }
   .location .locationicon2 div{
-    margin-top: 0.3rem;
+    margin-top: 0.4rem;
   }
   .location .locationicon2 img{
-    height: 0.45rem;
-    width: 0.5rem;
+   height: 12px;
+    width: 12px;
   }
 
   button[type=button]{
     width: 100%;
-    height: 1.56rem;
+    height: 49px;
     background: #F08400;
     position: fixed;
     bottom: 0px;
@@ -248,7 +250,7 @@
     border: none;
     color: white;
     font-weight: bold;
-    font-size: 0.5rem;
+    font-size: 18px;
     z-index: 100;
   }
   .van-tabs__wrap .van-tabs__wrap--page-top .van-hairline--top-bottom{

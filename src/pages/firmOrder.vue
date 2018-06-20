@@ -9,7 +9,7 @@
     />
     <div v-show="issave==false" style="margin-top: 1.1rem;">
       <div class="locationtitle">
-        <span style="padding-left: 0.31rem;">地址信息</span>
+        <span style="padding-left: 0.31rem;font-size: 14px;">地址信息</span>
       </div>
       <form action="">
         <van-cell-group>
@@ -63,8 +63,11 @@
         <div class="itemxiangqing">
           <img src="../assets/merchants_products_pictures@2x.png" alt="" style="float: left">
           <div>
-            <p>新疆精河头茬枸杞，精选“中国枸杞之乡”新疆精河头茬枸</p>
-            <div class="sizeitem"><span style="color:#FF0000 ">¥{{onesize}}</span><span style="padding-left: 0.1rem;color: #8F8F8F">×{{value1}}</span><van-stepper style="float: right" @change="changenum" v-model="value1"/></div>
+            <p style="font-size: 12px;">新疆精河头茬枸杞，精选“中国枸杞之乡”新疆精河头茬枸</p>
+            <div class="sizeitem" style="font-size: 14px!important;">
+              <span style="color:#FF0000 ">¥{{onesize}}</span>
+              <span style="padding-left: 0.1rem;color: #8F8F8F;font-size: 14px;">×{{value1}}</span>
+              <van-stepper style="float: right;font-size: 14px;" @change="changenum" v-model="value1"/></div>
           </div>
         </div>
       </div>
@@ -102,7 +105,7 @@
     <!--提交订单-->
     <div class="savedingdan">
       <div class="savedingdanbtn">
-          <span style="color: #8F8F8F">合计：</span><span style="color: #FF0000">¥{{allsize}}</span>
+          <span style="color: #8F8F8F;font-size: 14px;">合计：</span><span style="color: #FF0000;font-size: 14px;">¥{{allsize}}</span>
           <button @click="getpay">提交订单</button>
       </div>
     </div>
@@ -225,7 +228,7 @@
       height: 1.18rem;
       width: 100%;
       line-height: 1.18rem;
-      font-size: 0.37rem;
+      font-size:14px;
     }
     .locationtitle{
       text-align: left;
@@ -235,6 +238,7 @@
       color: #FFFFFF;
     }
     .van-cell-group .van-cell{
+      font-size: 14px;
       text-align: left!important;
     }
   .van-cell-group .van-cell .van-cell__title{
@@ -256,16 +260,16 @@
   }
   .dingdanitem .itemtitle{
     width: 100%;
-    height: 1.62rem;
-    line-height: 1.62rem;
+    height: 52px;
+    line-height: 52px;
     /*background: palevioletred;*/
     position: relative;
     text-align: left;
     border-bottom: 2px solid #F2F2F2;
   }
     .dingdanitem .itemtitle img{
-      height: 0.87rem;
-      width: 0.87rem;
+      height: 28px;
+      width: 28px;
       position: absolute;
       top: 50%;
       margin-top: -0.435rem;
@@ -273,7 +277,7 @@
     }
     .dingdanitem .itemtitle span{
       margin-left: 1.5rem;
-      font-size: 0.37rem;
+      font-size: 12px;
     }
     .itemxiangqing{
       height: 2.68rem;
@@ -286,9 +290,10 @@
       position: relative;
     }
   .itemxiangqing img{
-    width: 2.62rem;
-    height: 2.68rem;
+    width: 84px;
+    height: 86px;
     padding-left: 0.31rem;
+    border-radius: 10px;
   }
     .itemxiangqing p{
       margin: 0px!important;
@@ -350,17 +355,17 @@
       font-size: 0.37rem;
     }
   button{
-    height: 1.31rem;
-    width: 5rem;
+    height: 41px;
+    width: 160px;
     background: #FF0000;
     border: none;
     color: white;
-    line-height: 1.31rem;
+    line-height: 41px;
     float: right;
     border-radius: 2rem;
-    margin-top: 0.3rem;
+    margin-top: 0.4rem;
     margin-right: 0.31rem;
-    font-size: 0.4rem;
+    font-size: 16px;
   }
   .savelocation{
     height: 3rem;
@@ -382,11 +387,11 @@
       box-shadow: 0px 0px 8px #f2f2f2;
     }
     .savelocation .savexinxi img{
-      height: 0.56rem;
-      width: 0.5rem;
+      height: 18px;
+      width: 15px;
       position: absolute;
       top: 50%;
-      left: 0.18rem;
+      left: 0.4rem;
       margin-top: -0.28rem;
     }
     .savelocation .savexinxi p{
@@ -401,6 +406,6 @@
     top: 50%;
     left: 1.125rem;
     margin-top: -0.6rem;
-    font-size: 0.37rem;
+    font-size: 12px;
   }
 </style>

@@ -19,9 +19,12 @@
        <div class="locationtext">
          <img src="../assets/business_positioning@2x.png" alt="">
 
-         <van-notice-bar style="background: none!important;left: 1rem;color: white!important;top: -0.1rem;" v-if="loaded">
-           {{formattedAddress}}
-          </van-notice-bar>
+         <!--<van-notice-bar style="background: none!important;left: 1rem;color: white!important;top: -0.1rem;" v-if="loaded">-->
+           <!--{{formattedAddress}}-->
+          <!--</van-notice-bar>-->
+         <van-notice-bar  v-if="loaded" style="background: none!important;left: 1rem;color: white!important;top: -0.1rem;"
+           :text="formattedAddress"
+         />
 
          <van-notice-bar style="background: none!important;left: 1rem;color: white!important;top: -0.1rem;" v-else>
            定位中...
@@ -54,11 +57,11 @@
    <div class="menulist">
      <ul>
        <li v-for="item in iconarr">
-        <img :src="item.imageUrl" alt="" style="width: 0.81rem;height: 0.81rem" @click="openBusinesshome(item.name,item.id)">
+        <img :src="item.imageUrl" alt="" @click="openBusinesshome(item.name,item.id)">
          <p>{{item.name}}</p>
        </li>
        <li>
-         <img src="../assets/merchants_all_icon@2x.png" alt="" style="width: 0.81rem;height: 0.81rem" @click="openMeishilist">
+         <img src="../assets/merchants_all_icon@2x.png" alt="" style="width: 34px;height: 34px;" @click="openMeishilist">
          <p>查看全部</p>
        </li>
      </ul>
@@ -67,16 +70,21 @@
    <!--通知栏-->
    <div class="slidexiaoxi">
       <div>
-        <img src="../assets/business_business_headlines@2x.png" alt="" style="height: 0.7rem;width: 0.7rem;">
+        <img src="../assets/business_business_headlines@2x.png" alt="" style="height: 28px;width: 27px;margin-top: 11px;">
       </div>
      <div>
-       <img src="../assets/merchant_avatar@2x.png" alt="" style="height: 1rem;width: 1rem;">
+       <img src="../assets/merchant_avatar@2x.png" alt="" style="width: 34px;height: 34px;margin-top: 4px;">
      </div>
-     <van-notice-bar mode="link" :scrollable="true">
+     <van-notice-bar :scrollable="true" v-if="loaded">
        <span style="margin-right: 0.5rem;" v-for="item in linearr">{{item.id}}.{{item.headline}}</span>
      </van-notice-bar>
-     <div>
-       {{time2}}
+
+     <!--<van-notice-bar style="background: none!important;left: 1rem;color: white!important;top: -0.1rem;"-->
+                      <!--:text="formattedAddress"-->
+     <!--/>-->
+     <div style="margin-top: 0.3rem;margin-right: 10px;float: right">
+       <img src="../assets/merchant_notice@2x.png" alt="" style="width: 16px;height: 14px;vertical-align: middle;margin-right: 20px;">
+       <span style="vertical-align: middle;">{{time2}}</span>
      </div>
    </div>
      <div style="width: 100%;height: 0.2rem">
@@ -87,7 +95,7 @@
   <!--tab-->
 
    <div class="tabmenu" style="">
-     <div class="neartitle"><img src="../assets/merchants_nearby_merchants@2x.png" alt="" style="height: 0.5rem;width: 3.5rem;"></div>
+     <div class="neartitle"><img src="../assets/merchants_nearby_merchants@2x.png" alt="" style="width: 106px;height: 16px;"></div>
      <van-tabs @click="onClick2" sticky swipeable line-width="20">
        <van-tab v-for="item in menus" :title="item">
 
@@ -129,7 +137,7 @@
                  <img :src="item.shopHeadImageUrl" alt="" style="float: left" class="shopimg" @click="openShophome(item.shopId)">
                  <div class="textbox">
                    <p>{{item.title}}</p>
-                   <p class="titlelist"><img src="../assets/businesses_icon@2x.png" alt=""><span>{{item.shopType}}</span><span>人均消费{{item.averageMoney}}元</span><span style="float: right"><100m</span></p>
+                   <p class="titlelist"><img src="../assets/businesses_icon@2x.png" alt=""><span>{{item.shopType}}</span><span>人均消费{{item.averageMoney}}元</span><span style="float: right">{{item.distanceString}}m</span></p>
                    <p class="discon" v-for="item1 in item.deductionList">
                      <span>{{item1.requireValue}}抵{{item1.value}}</span>
                    </p>
@@ -520,6 +528,10 @@
       padding: 0px!important;
       padding-top: 0.5rem!important;
     }
+    .menulist ul li img{
+      height: 25px!important;
+      width: 25px!important;
+    }
     /*通告篮*/
     .slidexiaoxi{
       height: 1.5rem;
@@ -562,7 +574,7 @@
 
     /*切换*/
     .tabmenu .van-tabs .van-tab{
-      font-size: 0.3rem!important;
+      font-size: 12px!important;
     }
     .tabmenu .neartitle{
         width: 100%;
@@ -580,22 +592,23 @@
     }
     .van-cell p{
       margin: 0px!important;
-      margin-bottom: 0.1rem!important;
+      /*margin-bottom: 0.1rem!important;*/
     }
     .van-cell .shopimg{
-      height: 2.2rem;
-      width: 2.2rem;
+     height: 70px;
+      width: 70px;
     }
     .van-cell .textbox{
-      margin-left: 2.5rem;
+      margin-left: 85px;
     }
     .van-cell .textbox .titlelist img{
-    height: 0.4rem;width: 0.4rem;
-      margin-bottom: 0.1rem;
+   height: 10px;
+      width: 11px;
+      margin-bottom: 2px;
       vertical-align:middle;
     }
     .van-cell .textbox .titlelist{
-      font-size: 0.35rem;
+     font-size: 10px;
     }
     .van-cell .textbox .titlelist span{
       margin-left: 0.2rem;
@@ -609,14 +622,19 @@
       margin-right: 0.2rem!important;
       border: 1px solid #f08400;
       border-radius: 5px;
-      font-size: 0.3rem;
-      padding-left: 0.1rem;
-      padding-right: 0.1rem;
+      font-size: 10px;
+      height: 14px;
+      width: auto;
+      padding-left: 2px;
+      padding-right: 2px;
+      line-height: 15px!important;
       text-align: center;
       float: left;
+      margin-top: 7px;
     }
     .van-cell .textbox p:first-child{
       font-weight: bold;
+      font-size: 14px;
     }
 
     .active{

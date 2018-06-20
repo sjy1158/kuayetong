@@ -20,7 +20,7 @@
               <img src="../assets/business_service_hours@2x.png" alt="">
               <span>服务时间</span>
             </div>
-            <div style="padding-left: 0.4rem;padding-bottom:0.4rem;padding-right:0.4rem;text-align: left">
+            <div style="padding-left: 0.4rem;padding-bottom:0.4rem;padding-right:0.4rem;text-align: left;font-size: 10px;">
               {{startTime}}-{{stopTime}}
             </div>
           </li>
@@ -29,7 +29,7 @@
               <img src="../assets/merchants_introduction@2x.png" alt="">
               <span>商家介绍</span>
             </div>
-            <div style="padding-left: 0.4rem;padding-bottom:0.4rem;padding-right:0.4rem;text-align: left">
+            <div style="padding-left: 0.4rem;padding-bottom:0.4rem;padding-right:0.4rem;text-align: left;font-size: 10px;">
              {{introduce}}
             </div>
           </li>
@@ -38,7 +38,7 @@
               <img src="../assets/merchant_notice@2x.png" alt="">
               <span>商家公告</span>
             </div>
-            <div style="padding-left: 0.4rem;padding-bottom:0.4rem;padding-right:0.4rem;text-align: left">
+            <div style="padding-left: 0.4rem;padding-bottom:0.4rem;padding-right:0.4rem;text-align: left;font-size: 10px;">
               {{notice}}
             </div>
           </li>
@@ -91,7 +91,8 @@
 
     }
   .van-tabs .van-tab img{
-    height: 2.75rem;
+    width: 100px;
+    height: 88px;
     margin-top: 0.6rem;
   }
   .title{
@@ -100,10 +101,13 @@
     font-size: 0.37rem;
   }
   .title img{
-    width: 0.37rem;
+   width: 12px;
+    height: 12px;
+    margin-top: -1px;
     vertical-align: middle;
     }
   .title span{
+    font-size: 14px!important;
     vertical-align: middle;
   }
 </style>

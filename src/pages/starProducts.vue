@@ -7,7 +7,7 @@
               <img :src="item.imageUrl" alt="">
               <div>
                 <p>{{item.productName}}</p>
-                <p>¥<span style="font-size:0.35rem;">{{item.price}}</span><span style="margin-left: 0.5rem;font-size: 0.35rem;color: #FF0000">可抵¥{{item.subPrice}}</span></p>
+                <p>¥<span style="font-size:12px;">{{item.price}}</span><span style="margin-left: 0.5rem;font-size: 14px;color: #FF0000">可抵¥{{item.subPrice}}</span></p>
               </div>
             </div>
           </van-col>
@@ -189,7 +189,7 @@
       padding-left: 0.2rem;
       padding-right: 0.2rem;
       padding-top: 0.2rem;
-      font-size: 0.34rem;
+      font-size: 12px;
     }
     .van-row .van-col .shopjieshao p:nth-child(2){
       margin: 0px!important;
@@ -199,7 +199,8 @@
      /*margin-bottom: 0.2rem;*/
     }
     .van-row .van-col .shopjieshao img{
-      width: 100%;
+     width: 100%;
+      height: 182px;
     }
 
 

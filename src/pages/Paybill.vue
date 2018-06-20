@@ -161,7 +161,7 @@
   }
   .input label{
     float: left;
-    font-size: 0.4rem;
+    font-size: 16px;
   }
   .input input{
     float: right;
@@ -186,7 +186,7 @@
     padding-left: 3%!important;
     padding-right: 3%!important;
     padding-bottom: 10%!important;
-    font-size: 0.37rem;
+    font-size: 12px;
     /*margin-top: 2rem;*/
   }
   ul.chosesize li{
@@ -201,15 +201,16 @@
   ul.chosesize li span{
     padding: 0.2rem;
     border: 1px solid #FF0000;
+    border-radius: 15px;
   }
 
   button[type=button]{
     width: 100%;
-    height: 1.25rem;
+    height: 40px;
     background: #F08400;
     border: none;
     color: white;
-    font-size: 0.5rem;
+    font-size:18px;
     margin-top: 1.25rem;
     font-weight: bold;
   }
