@@ -116,10 +116,20 @@
         var shopid = localStorage.getItem('shopid')
         this.getInformation(shopid);
         if(localStorage.getItem('pathid')==1){
-          this.path = '/nearbyShops';
+          this.path = {
+            path:'/nearbyShops',
+            query:{
+              index:0
+            }
+          };
         };
         if(localStorage.getItem('pathid')==2){
-          this.path = '/Businesshome';
+          this.path = {
+            path:'/Businesshome',
+            query:{
+              index:0
+            }
+          };
         }
       },
       mounted(){

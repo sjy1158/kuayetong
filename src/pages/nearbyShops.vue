@@ -137,9 +137,12 @@
                  <img :src="item.shopHeadImageUrl" alt="" style="float: left" class="shopimg" @click="openShophome(item.shopId)">
                  <div class="textbox">
                    <p>{{item.title}}</p>
-                   <p class="titlelist"><img src="../assets/businesses_icon@2x.png" alt=""><span>{{item.shopType}}</span><span>人均消费{{item.averageMoney}}元</span><span style="float: right">{{item.distanceString}}m</span></p>
-                   <p class="discon" v-for="item1 in item.deductionList">
-                     <span>{{item1.requireValue}}抵{{item1.value}}</span>
+                   <p class="titlelist"><img src="../assets/businesses_icon@2x.png" alt=""><span>{{item.shopType}}</span><span>人均消费{{item.averageMoney}}元</span><span style="float: right"><100m</span></p>
+                   <p class="discon" v-if="item.deductionList.length!=0">
+                     <span v-for="item1 in item.deductionList">{{item1.requireValue}}抵{{item1.value}}</span>
+                   </p>
+                   <p class="discon1" v-else>
+                     <span>此店暂无优惠券~~~~~</span>
                    </p>
                  </div>
                </div>
@@ -618,10 +621,26 @@
       /*overflow-x: scroll;*/
       color: #FF0000;
     }
+    .van-cell .textbox .discon1{
+      /*overflow-x: scroll;*/
+      color: #FF0000;
+    }
     .van-cell .textbox .discon span{
       margin-right: 0.2rem!important;
       border: 1px solid #f08400;
       border-radius: 5px;
+      font-size: 10px;
+      height: 14px;
+      width: auto;
+      padding-left: 2px;
+      padding-right: 2px;
+      line-height: 15px!important;
+      text-align: center;
+      float: left;
+      margin-top: 7px;
+    }
+    .van-cell .textbox .discon1 span{
+      margin-right: 0.2rem!important;
       font-size: 10px;
       height: 14px;
       width: auto;
