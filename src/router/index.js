@@ -18,13 +18,14 @@ import firmOrder from '../pages/firmOrder'
 import shopPay from '../pages/shopPay'
 import paySuccess from '../pages/paySuccess'
 import payOk from '../pages/payOk'
+import cardList from '../pages/cardList'
 
-  Vue.use(Router)
+Vue.use(Router)
 
 export default new Router({
   routes: [
     {
-      path:'*',
+      path:'/',
       redirect:'/nearbyShops'
     },
     {
@@ -36,6 +37,10 @@ export default new Router({
       name:'Businesshome',
       path:'/Businesshome',
       component:Businesshome
+    },
+    {
+      path:'/',
+      redirect:'/allShops'
     },
     {
       name:'allShops',
@@ -52,6 +57,10 @@ export default new Router({
           component:Meishilist
         }
       ]
+    },
+    {
+      path:'/',
+      redirect:'/Shophome'
     },
     {
       name:'Shophome',
@@ -73,6 +82,14 @@ export default new Router({
           component:Businessdetails
         }
       ]
+    },
+    {
+      path:'/',
+      redirect:'/cardList'
+    },
+    {
+      path:'/cardList',
+      component:cardList
     },
     {
       name:'payOk',
