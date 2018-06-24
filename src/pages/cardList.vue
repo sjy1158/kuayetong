@@ -26,7 +26,10 @@
             </div>
           </form>
         </div>
-        <button type="button" class="button">快速查询</button>
+        <button type="button" class="button" @click="fastSeach">快速查询</button>
+        <div v-show="loading" style="height: 30px;width: 30px;position: absolute;top: 50%;margin-top: -15px;left: 50%;margin-left: -15px;">
+          <van-loading type="spinner" color="black"/>
+        </div>
         <table border="1" width="100%" cellspacing="0" cellpadding="2" style="margin-top: 22px;">
           <thead>
              <tr>
@@ -37,89 +40,31 @@
                <th>状态</th>
              </tr>
           </thead>
-          <tbody>
-          <tr>
-            <td>January</td>
-            <td>$100</td>
-            <td>January</td>
-            <td>$100</td>
-            <td>$100</td>
-          </tr>
-          <tr>
-            <td>January</td>
-            <td>$100</td>
-            <td>January</td>
-            <td>$100</td>
-            <td>$100</td>
-          </tr>
-          <tr>
-            <td>January</td>
-            <td>$100</td>
-            <td>January</td>
-            <td>$100</td>
-            <td>$100</td>
-          </tr>
-          <tr>
-            <td>January</td>
-            <td>$100</td>
-            <td>January</td>
-            <td>$100</td>
-            <td>$100</td>
-          </tr>
-          <tr>
-            <td>January</td>
-            <td>$100</td>
-            <td>January</td>
-            <td>$100</td>
-            <td>$100</td>
-          </tr>
-          <tr>
-            <td>January</td>
-            <td>$100</td>
-            <td>January</td>
-            <td>$100</td>
-            <td>$100</td>
-          </tr>
-          <tr>
-            <td>January</td>
-            <td>$100</td>
-            <td>January</td>
-            <td>$100</td>
-            <td>$100</td>
-          </tr>
-          <tr>
-            <td>January</td>
-            <td>$100</td>
-            <td>January</td>
-            <td>$100</td>
-            <td>$100</td>
-          </tr>
-          <tr>
-            <td>January</td>
-            <td>$100</td>
-            <td>January</td>
-            <td>$100</td>
-            <td>充值</td>
-          </tr>
-          <tr>
-            <td>January</td>
-            <td>$100</td>
-            <td>January</td>
-            <td>$100</td>
-            <td>$100</td>
+          <tbody v-if="this.total!=0">
+          <tr v-for="item in tablearr">
+            <td>{{item.id}}</td>
+            <td>{{item.cardId}}</td>
+            <td>{{item.password}}</td>
+            <td>{{item.money}}</td>
+            <td v-if="item.status==0" @click="toup(item.cardId)">充值</td>
+            <td v-if="item.status==1">{{item.account}}</td>
           </tr>
           </tbody>
         </table>
+        <div v-if="this.total==0" style="margin-top: 20px;">
+          暂无数据~~~~~~~~
+        </div>
         <!--分页-->
         <div style="width: 100%;height: 62px;line-height:62px;position: relative">
-          <input type="text" v-model="params.pageNum" placeholder="请输入页码数"
-                 style="width: 80px;height: 20px;text-align:center;background: #cfcfcf;border: none;
-                 float: left;font-size: 10px;position: absolute;left: 0px;top: 50%;margin-top: -10px;border-radius: 4px;">
-          <span style="float: left;margin-left: 90px;color: #4AB1FE">快速跳转</span>
-          <span>首页</span>
-          <span style="margin-left: 10px">尾页</span>
-          <span style="float: right">共计8000</span>
-        </div>
+            <div>
+              <span style="font-size: 16px;font-weight: bold;padding-right: 20px;" @click="pushPage">＜</span>
+              <input type="text" placeholder="" v-model="params.pageNum" disabled="disabled" style="height: 20px;width:30px;background:#cfcfcf;border: none;text-align: center;border-radius: 5px;">
+              <span style="font-size: 16px;font-weight: bold;padding-left: 20px;" @click="addPage">＞</span>
+            </div>
+          <div style="position: absolute;width: 100px;right: 0px;top: 0px;">
+            <span style="float: right">共计{{total}}条</span>
+          </div>
+          </div>
       </div>
     </div>
 </template>
@@ -137,13 +82,59 @@
               status:'1',
               pageNum:1,
               num:10
-            }
+            },
+            total:0,
+            tablearr:[],
+            loading:true,
           }
       },
       methods:{
+        fastSeach(){
+          this.loading=true;
+          this.params.pageNum=1;
+          this.getcardlist(this.params);
+        },
         change(name){
-          alert(name);
+          this.params.status=name;
+          this.getcardlist(this.params);
+        },
+        //获取列表
+        getcardlist(params){
+          const _this=this;
+          this.$api.getCardlist(params).then((res)=>{
+            _this.loading=false;
+            _this.total=res.sum;
+            _this.tablearr=res.list;
+          })
+        },
+        // 加
+        addPage(){
+          this.loading=true;
+          this.params.pageNum++;
+          this.getcardlist(this.params);
+        },
+        //减
+        pushPage(){
+          if(this.params.pageNum==1){
+            return false;
+          }
+          this.loading=true;
+          this.params.pageNum--;
+          this.getcardlist(this.params);
+        },
+        // 充值
+        toup(cardId){
+          this.$router.push({
+            path:'/toUp',
+            query:{
+              cardId:cardId
+            }
+          })
         }
+      },
+      mounted(){
+        this.loading=true;
+          this.getcardlist(this.params);
       }
     }
 </script>

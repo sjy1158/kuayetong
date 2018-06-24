@@ -5,14 +5,15 @@ import config from '../util/config'
 axios.interceptors.response.use(response=>{
   if(response.data.code==200) {
     return response.data.data;
-  };
-  if(typeof response.data=="string"){
-     return response.data
-  };
-  if(response.data.status==1){
-    return response.data.lives
-  };
-  return Toast(response.data.msg);
+  } else if (response.data.code==300){
+      return Toast(response.data.msg);;
+  } else if(typeof response.data=="string"){
+     return response.data;
+  } else if(response.data.status==1){
+    return response.data.lives;
+  }else {
+   return Toast(response.data.msg);
+  }
 });
 
 const api = {
@@ -124,6 +125,30 @@ const api = {
     return axios.request({
       method:'get',
       url:'/api/crossindustry/alipay/pay?',
+      params:params
+    })
+  },
+  //获取卡列表
+  getCardlist(params){
+    return axios.request({
+      method:'get',
+      url:'/api/crossindustry/userPage/getCardList?',
+      params:params
+    })
+  },
+  // 充值
+  manageRecharge(params){
+    return axios.request({
+      method:'get',
+      url:'/api/crossindustry/userPage/manageRecharge?',
+      params:params
+    })
+  },
+  //获取用户列表
+  getagentUser(params){
+    return axios.request({
+      method:'get',
+      url:'/api/crossindustry/userPage/getAgentUser?',
       params:params
     })
   }

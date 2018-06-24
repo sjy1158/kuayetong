@@ -19,6 +19,8 @@ import shopPay from '../pages/shopPay'
 import paySuccess from '../pages/paySuccess'
 import payOk from '../pages/payOk'
 import cardList from '../pages/cardList'
+import toUp from '../pages/toUp'
+import userMg from '../pages/userMg'
 
 Vue.use(Router)
 
@@ -90,6 +92,22 @@ export default new Router({
     {
       path:'/cardList',
       component:cardList
+    },
+    {
+      path:'/',
+      redirect:'/toUp',
+    },
+    {
+      path:'/toUp',
+      component:toUp
+    },
+    {
+      path:'/',
+      redirect:'/userMg',
+    },
+    {
+      path:'/userMg',
+      component:userMg
     },
     {
       name:'payOk',
