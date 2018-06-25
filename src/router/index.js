@@ -21,6 +21,7 @@ import payOk from '../pages/payOk'
 import cardList from '../pages/cardList'
 import toUp from '../pages/toUp'
 import userMg from '../pages/userMg'
+import pageStatus from '../pages/pageStatus'
 
 Vue.use(Router)
 
@@ -108,6 +109,14 @@ export default new Router({
     {
       path:'/userMg',
       component:userMg
+    },
+    {
+      path:'/',
+      redirect:'/pageStatus'
+    },
+    {
+      path:'/pageStatus',
+      component:pageStatus
     },
     {
       name:'payOk',

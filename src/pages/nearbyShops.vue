@@ -9,8 +9,8 @@
      <el-amap vid="amap" :plugin="plugin" class="amap-demo" style="display: none"></el-amap>
      <div>
        <van-swipe :autoplay="3000">
-         <van-swipe-item v-for="(image, index) in images" :key="index">
-           <img :src="image"/>
+         <van-swipe-item v-for="item in images">
+           <img :src="item.advertiseImageUrl"/>
          </van-swipe-item>
        </van-swipe>
      </div>
@@ -181,10 +181,7 @@
               loadreload:true,
               issum:true,
               value:'',
-              images: [
-                'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1527658925226&di=57af8daf1382c8c982ccc5db1e39f932&imgtype=0&src=http%3A%2F%2Fimg.zcool.cn%2Fcommunity%2F01635d571ed29832f875a3994c7836.png%40900w_1l_2o_100sh.jpg',
-                'https://img.yzcdn.cn/2.jpg'
-              ],
+              images: [],
               menus:[
                 '距离最近',
                 '折扣最多',
@@ -216,18 +213,18 @@
                 events:{
                   init(o){
                     o.getCurrentPosition((status,result)=>{
-                      if(result&&result.position){
+                      if(result&&result.position) {
                         setTimeout(function () {
                           document.querySelector('.top').classList.remove('active');
-                        },1000);
-                        // alert(JSON.stringify(result));
+                        }, 1000);
                         _this.city = result.addressComponent.city;
-                        _this.params.latitude=result.position.lat;
+                        _this.params.latitude = result.position.lat;
                         _this.params.longitude = result.position.lng;
+                        _this.center=[_this.params.longitude,_this.params.latitude];
                         _this.loaded = true;
-                        _this.finished=false;
+                        _this.finished = false;
                         _this.loading = true;
-                         _this.formattedAddress = result.formattedAddress;
+                        _this.formattedAddress = result.formattedAddress;
                         _this.getweather(_this.city);
                         _this.getindexList(_this.params);
                         _this.$nextTick();
@@ -358,6 +355,13 @@
             this.$api.getheadLine().then(function (res) {
               _this.linearr=res.list;
             })
+          },
+          // 获取banner图
+          getBanner(){
+            var _this=this;
+            this.$api.getImage().then((res)=>{
+              _this.images=res.list;
+            })
           }
       },
         watch: {
@@ -372,6 +376,9 @@
                 this.getindexList(this.params);
             }
           }
+        },
+        created(){
+          this.getBanner();
         },
         mounted(){
             var _this = this;

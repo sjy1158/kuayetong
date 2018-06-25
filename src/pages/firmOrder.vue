@@ -54,16 +54,16 @@
     </div>
 
     <div class="dingdanlist">
-      <div class="dingdanitem">
+      <div class="dingdanitem" v-for="item in shoparr">
         <!--item商品列表-->
         <div class="itemtitle" style="float: left">
-          <img src="../assets/merchants_products_pictures2.png" alt="">
-          <span>枸杞之乡旗舰店</span>
+          <img :src="item.shopUrl" alt="">
+          <span>{{item.shopName}}</span>
         </div>
         <div class="itemxiangqing">
-          <img src="../assets/merchants_products_pictures@2x.png" alt="" style="float: left">
+          <img :src="item.imageUrl" alt="" style="float: left">
           <div>
-            <p style="font-size: 12px;">新疆精河头茬枸杞，精选“中国枸杞之乡”新疆精河头茬枸</p>
+            <p style="font-size: 12px;">{{item.productName}}</p>
             <div class="sizeitem" style="font-size: 14px!important;">
               <span style="color:#FF0000 ">¥{{onesize}}</span>
               <span style="padding-left: 0.1rem;color: #8F8F8F;font-size: 14px;">×{{value1}}</span>
@@ -148,6 +148,7 @@
             userId:'8'
           },
           valuelocation:'',
+          shoparr:[],
         }
       },
       methods:{
@@ -205,8 +206,16 @@
             })
           }
         },
+        //获取产品
+        getproduct(id){
+          var _this=this;
+          this.$api.getProduct(id).then((res)=>{
+            _this.shoparr=res.list;
+          })
+        }
       },
       mounted(){
+          this.getproduct(this.$route.query.shoptypeid);
           this.areaList = citys;
           this.allsize = (this.value1*this.onesize).toFixed(2)
         this.onesize = this.$route.query.price;

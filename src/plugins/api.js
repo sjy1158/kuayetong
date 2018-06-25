@@ -18,6 +18,12 @@ axios.interceptors.response.use(response=>{
 
 const api = {
   //获取图标
+  getImage(){
+    return axios.request({
+      method:'get',
+      url:'/api/crossindustry/shopPage/getShopAdvertiseImage',
+    })
+  },
   geticon() {
     return axios.request({
       method: 'get',
@@ -150,6 +156,26 @@ const api = {
       method:'get',
       url:'/api/crossindustry/userPage/getAgentUser?',
       params:params
+    })
+  },
+  //获取产品
+  getProduct(productId){
+    return axios.request({
+      method:'get',
+      url:'/api/crossindustry/shopPage/getProductMessage?',
+      params:{
+        productId:productId
+      }
+    })
+  },
+  // 获取订单状态
+  getpaystatus(orderId){
+    return axios.request({
+      method:'get',
+      url:'/api/crossindustry/shopPage/judgeOrderStatus?',
+      params:{
+        orderId:orderId
+      }
     })
   }
 }

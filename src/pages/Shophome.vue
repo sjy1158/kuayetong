@@ -72,6 +72,7 @@
         name: "Shophome",
       data(){
           return{
+            headerTitle:'商家主页',
             path:'',
             menus:[
               '明星产品',
