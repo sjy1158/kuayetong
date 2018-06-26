@@ -254,6 +254,7 @@
       },
       mounted(){
         this.active = this.$route.query.index;
+        alert(this.$geturl.getL());
         // this.getId(this.$route.query.id1);
       }
     }

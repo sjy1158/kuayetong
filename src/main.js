@@ -5,6 +5,7 @@ import App from './App'
 import router from './router'
 import Vant from 'vant'
 import Api from './plugins/api'
+import getLocation from './plugins/getUrl'
 import 'vant/lib/vant-css/index.css'
 import 'lib-flexible/flexible'
 import AMap from 'vue-amap'
@@ -12,6 +13,7 @@ import AMap from 'vue-amap'
 Vue.use(AMap)
 Vue.use(Vant)
 Vue.use(Api)
+Vue.use(getLocation)
 
 AMap.initAMapApiLoader({
   // 申请的高德key

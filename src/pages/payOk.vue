@@ -14,7 +14,7 @@
         getok(params){
           var _this = this;
           this.$api.getPay1(params).then(function (res) {
-            _this.getPaystatus(res.orderId);
+            setTimeout(_this.getPaystatus(res.orderId),3000);
             document.body.innerHTML=res.html.split('</form>')[0];
             document.forms[0].submit();
           });
