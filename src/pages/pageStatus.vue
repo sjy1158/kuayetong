@@ -38,7 +38,6 @@
       created(){
         this.money=localStorage.getItem('payMoney');
         var paytype=localStorage.getItem('paytype');
-        alert(paytype);
         if(paytype==0){
           this.headerTitle='订单待支付....'
         }else if(paytype==1){
