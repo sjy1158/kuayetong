@@ -73,7 +73,8 @@
         }
       },
       created(){
-        var shopid = localStorage.getItem('shopid');
+        // var shopid = localStorage.getItem('shopid');
+        var shopid=this.$route.query.shopid;
         this.getInformation(shopid);
       }
     }

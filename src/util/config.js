@@ -1,4 +1,4 @@
 export default {
-  baseUrl:'http://192.168.5.126:8080',
+  baseUrl:'http://971e532c.ngrok.io',
   appUrl:'',
 }

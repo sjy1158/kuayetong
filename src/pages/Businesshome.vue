@@ -223,9 +223,15 @@
           })
         },
         openShophome(shopid){
-          this.$router.push('/Shophome/starProducts');
-          localStorage.setItem('shopid',shopid);
-          localStorage.setItem('pathid',2)
+          this.$router.push({
+            path:'/Shophome/starProducts',
+            query:{
+              shopid:shopid,
+              pathid:2
+            }
+          });
+          // localStorage.setItem('shopid',shopid);
+          // localStorage.setItem('pathid',2)
         }
       },
       watch: {
@@ -243,8 +249,8 @@
       },
       created:function(){
           var _this = this;
-        var name = localStorage.getItem("name");
-        this.id = localStorage.getItem("id");
+        var name = this.$route.query.name;
+        this.id = this.$route.query.id;
         this.title = name;
         if(this.$route.query.root==1){
         this.getimg(this.id,0);
@@ -254,7 +260,6 @@
       },
       mounted(){
         this.active = this.$route.query.index;
-        alert(this.$geturl.getL());
         // this.getId(this.$route.query.id1);
       }
     }

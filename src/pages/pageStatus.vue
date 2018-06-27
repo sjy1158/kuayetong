@@ -31,13 +31,11 @@
       methods:{
         onClickLeft(){
           this.$router.push('/nearbyShops');
-          localStorage.removeItem('paytype');
-          localStorage.removeItem('payMoney');
         }
       },
       created(){
-        this.money=localStorage.getItem('payMoney');
-        var paytype=localStorage.getItem('paytype');
+        this.money=this.$route.query.payMoney;
+        var paytype=this.$route.query.paytype;
         if(paytype==0){
           this.headerTitle='订单待支付....'
         }else if(paytype==1){

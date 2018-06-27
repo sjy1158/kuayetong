@@ -122,7 +122,7 @@
         }
       },
       created(){
-          var shopid = localStorage.getItem('shopid');
+        var shopid=this.$route.query.shopid;
           this.getdiscon(shopid);
       }
     }

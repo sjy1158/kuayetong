@@ -114,9 +114,9 @@
         }
       },
       created(){
-        var shopid = localStorage.getItem('shopid')
+        var shopid = this.$route.query.shopid;
         this.getInformation(shopid);
-        if(localStorage.getItem('pathid')==1){
+        if(this.$route.query.pathid==1){
           this.path = {
             path:'/nearbyShops',
             query:{
@@ -124,7 +124,7 @@
             }
           };
         };
-        if(localStorage.getItem('pathid')==2){
+        if(this.$route.query.pathid==2){
           this.path = {
             path:'/Businesshome',
             query:{

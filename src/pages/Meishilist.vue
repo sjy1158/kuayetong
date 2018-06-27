@@ -53,11 +53,11 @@
            path:'/Businesshome',
            query:{
              index:index,
-             id1:id1
+             id1:id1,
+             id:id,
+             name:this.name
            }
          });
-         localStorage.setItem('id',id);
-         localStorage.setItem('name',this.name);
         }
       },
       watch: {

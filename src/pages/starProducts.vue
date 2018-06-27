@@ -157,7 +157,8 @@
       },
       created(){
           this.onRefresh();
-        var shopid = localStorage.getItem('shopid');
+        // var shopid = localStorage.getItem('shopid');
+        var shopid=this.$route.query.shopid;
         this.getProduce(shopid);
       },
       mounted(){

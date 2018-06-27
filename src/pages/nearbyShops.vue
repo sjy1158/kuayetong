@@ -1,7 +1,7 @@
 <template>
  <div class="nearShop">
 
-     <van-loading color="black" class="top active" style="height: 1rem;width: 1rem;position: absolute;z-index: 999999999999999;left: 50%;margin-left: -0.5rem;opacity:0;top: 5rem;background: white;box-shadow:0px 0px 8px gray;border-radius: 50%;"/>
+     <!--<van-loading color="black" class="top active" style="height: 1rem;width: 1rem;position: absolute;z-index: 999999999999999;left: 50%;margin-left: -0.5rem;opacity:0;top: 5rem;background: white;box-shadow:0px 0px 8px gray;border-radius: 50%;"/>-->
 
    <!--头部-->
    <div id="scrollheight">
@@ -17,16 +17,16 @@
      <!--天气显示-->
      <div class="titlelocation">
        <div class="locationtext">
-         <img src="../assets/business_positioning@2x.png" alt="">
+         <img src="../assets/business_positioning@2x.png" alt="" style="width: 10px;height: 15px;">
 
          <!--<van-notice-bar style="background: none!important;left: 1rem;color: white!important;top: -0.1rem;" v-if="loaded">-->
            <!--{{formattedAddress}}-->
           <!--</van-notice-bar>-->
-         <van-notice-bar  v-if="loaded" style="background: none!important;left: 1rem;color: white!important;top: -0.1rem;"
+         <van-notice-bar  v-if="loaded" style="background: none!important;left: 0.5rem;color: white!important;top: -0.1rem;font-size: 16px!important;"
            :text="formattedAddress"
          />
 
-         <van-notice-bar style="background: none!important;left: 1rem;color: white!important;top: -0.1rem;" v-else>
+         <van-notice-bar style="background: none!important;left: 1rem;color: white!important;top: -0.1rem;font-size: 16px!important;" v-else>
            定位中...
          </van-notice-bar>
 
@@ -34,10 +34,10 @@
        </div>
        <div class="weather">
          <div class="weathertext">
-          <p style="font-size: 0.5rem;">{{tmp}}℃</p>
-           <p>{{weather}}</p>
-           <img v-show="weathericon==true" src="../assets/business_weather@2x.png" alt="" style="padding-left: 0.3rem;height: 0.6rem;width: 0.55rem;padding-top: 0.15rem;">
-           <img v-show="weathericon==false" src="../assets/during_the_day@2x.png" alt="" style="padding-left: 0.3rem;height: 0.6rem;width: 0.55rem;padding-top: 0.15rem;">
+          <p style="font-size: 16px;">{{tmp}}℃</p>
+           <p style="font-size: 8px;">{{weather}}</p>
+           <img v-show="weathericon==true" src="../assets/business_weather@2x.png" alt="" style="padding-left: 0.3rem;height: 20px;width: 18px;padding-top: 0.15rem;">
+           <img v-show="weathericon==false" src="../assets/during_the_day@2x.png" alt="" style="padding-left: 0.3rem;height: 20px;width: 18px;padding-top: 0.15rem;">
          </div>
        </div>
      </div>
@@ -54,7 +54,7 @@
    </div>
 
    <!--主题-->
-   <div class="menulist">
+   <div class="menulist" style="">
      <ul>
        <li v-for="item in iconarr">
         <img :src="item.imageUrl" alt="" @click="openBusinesshome(item.name,item.id)">
@@ -73,7 +73,7 @@
         <img src="../assets/business_business_headlines@2x.png" alt="" style="height: 28px;width: 27px;margin-top: 11px;">
       </div>
      <div>
-       <img src="../assets/merchant_avatar@2x.png" alt="" style="width: 34px;height: 34px;margin-top: 4px;">
+       <img src="../assets/merchant_avatar@2x.png" alt="" style="width: 34px;height: 34px;margin-top: 5px;">
      </div>
      <van-notice-bar :scrollable="true" v-if="loaded">
        <span style="margin-right: 0.5rem;" v-for="item in linearr">{{item.id}}.{{item.headline}}</span>
@@ -82,12 +82,12 @@
      <!--<van-notice-bar style="background: none!important;left: 1rem;color: white!important;top: -0.1rem;"-->
                       <!--:text="formattedAddress"-->
      <!--/>-->
-     <div style="margin-top: 0.3rem;margin-right: 10px;float: right">
+     <div style="float: right">
        <img src="../assets/merchant_notice@2x.png" alt="" style="width: 16px;height: 14px;vertical-align: middle;margin-right: 20px;">
        <span style="vertical-align: middle;">{{time2}}</span>
      </div>
    </div>
-     <div style="width: 100%;height: 0.2rem">
+     <div style="width: 100%;height: 0.5rem">
 
      </div>
    </div>
@@ -221,7 +221,7 @@
                         _this.params.latitude = result.position.lat;
                         _this.params.longitude = result.position.lng;
                         _this.center=[_this.params.longitude,_this.params.latitude];
-                        _this.loaded = true;
+                          _this.loaded = true;
                         _this.finished = false;
                         _this.loading = true;
                         _this.formattedAddress = result.formattedAddress;
@@ -237,9 +237,13 @@
         },
         methods:{
           openShophome(shopid){
-            this.$router.push('/Shophome');
-            localStorage.setItem('shopid',shopid);
-            localStorage.setItem('pathid',1)
+            this.$router.push({
+              path:'/Shophome',
+              query:{
+                shopid:shopid,
+                pathid:1
+              }
+            });
           },
           show(ev){
             var _this = this;
@@ -284,11 +288,11 @@
             this.$router.push({
               path:'/Businesshome',
               query:{
-                 root:1
+                 root:1,
+                name:name,
+                id:id
               }
             });
-            localStorage.setItem("name", name);
-            localStorage.setItem("id",id);
           },
           openMeishilist(){
             this.$router.push('/allShops');
@@ -383,7 +387,9 @@
         mounted(){
             var _this = this;
           var startX = 0,
-            startY = 0;
+              startY = 0;
+          this.getindexList(this.params);
+          this.getweather('杭州');
           this.getIcon();
           this.gethot();
           this.gettime();
@@ -429,6 +435,8 @@
     .header .titlelocation{
       height: 0.7rem;
       width:100%;
+      padding-left: 10px;
+      padding-right: 10px;
       /*background: red;*/
       position: absolute;
       top: 1rem;
@@ -447,12 +455,9 @@
       margin-left: 1.4rem;
     }
     .header .titlelocation img{
-      width: 0.35rem;
-      height: 0.5rem;
       position: absolute;
-      left: 0.8rem;
-      top: 50%;
-      margin-top: -0.25rem;
+      top: 0.26rem;
+      left: 20px;
     }
     .header .titlelocation .weather{
       width: 50%;
@@ -467,6 +472,13 @@
       right: 1.5rem;
       top: 50%;
       margin-top: -0.5rem;
+    }
+    .header .titlelocation .weather .weathertext img{
+      height: 20px;
+      width: 18px;
+      position: absolute;
+      right: -10px;
+      top: 1px;
     }
     .header .weather p{
       margin: 0px!important;
@@ -489,7 +501,7 @@
       width: 8rem!important;
       border: none;
       color: #8F8F8F;
-      background: rgba(255,255,255,.7);
+      background: rgba(255,255,255,.95);
       border-radius: 0.5rem;
       padding-left: 0.5rem;
     }
@@ -512,31 +524,36 @@
       width: 20rem;
     }
     .header .shoptab ul li{
+      font-size: 11px!important;
       width: 1.2rem;
       text-align: center;
     }
 
     /*主题*/
     .menulist{
-      height: 5.2rem;
-      width: 100%;
+      padding-left: 10px!important;padding-right: 10px!important;
       background: white;
     }
     .menulist ul{
       width: 100%;
       display: flex;
       flex-wrap: wrap;
+      padding-bottom: 10px;
     }
     .menulist ul li{
       flex: 1;
       width: 20%;
       height: 50px;
       min-width: 20%;
-      margin-bottom: 0.4rem;
       max-width: 20%;
       font-size: 12px;
       padding: 0px!important;
-      padding-top: 0.5rem!important;
+      padding-top: 20px!important;
+      /*padding-top: 0.5rem!important;*/
+    }
+    .menulist ul li p{
+      margin: 0px!important;
+      padding-top: 5px;
     }
     .menulist ul li img{
       height: 25px!important;
@@ -570,7 +587,7 @@
       padding: 0px!important;
     }
     .slidexiaoxi .van-notice-bar{
-      width: 4rem;
+      width: 3.5rem;
       height: 0.7rem;
       background: white;
       color: #393939;
