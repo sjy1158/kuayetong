@@ -4,6 +4,7 @@
     <!--<van-loading color="black" class="top active" style="height: 1rem;width: 1rem;position: absolute;z-index: 999999999999999;left: 50%;margin-left: -0.5rem;opacity:0;top: 5rem;background: white;box-shadow:0px 0px 8px gray;border-radius: 50%;"/>-->
 
     <!--头部-->
+    <van-pull-refresh v-model="isLoading2" @refresh="onRefresh2">
     <div id="scrollheight">
       <div class="header">
         <el-amap vid="amap" :plugin="plugin" class="amap-demo" style="display: none"></el-amap>
@@ -27,7 +28,7 @@
             />
 
             <van-notice-bar style="background: none!important;left: 1rem;color: white!important;top: -0.1rem;font-size: 16px!important;" v-else>
-              定位中...
+              全部
             </van-notice-bar>
 
             <!--<span v-else>定位中...</span>-->
@@ -96,7 +97,7 @@
 
     <div class="tabmenu" style="">
       <div class="neartitle"><img src="../assets/merchants_nearby_merchants@2x.png" alt="" style="width: 106px;height: 16px;"></div>
-      <van-tabs @click="onClick2" sticky swipeable line-width="20" style="border-top: 0px!important;">
+      <van-tabs @click="onClick2" sticky line-width="20" style="border-top: 0px!important;">
         <van-tab v-for="item in menus" :title="item">
 
         </van-tab>
@@ -138,7 +139,7 @@
 
       </van-tabs>
     </div>
-
+    </van-pull-refresh>
 
 
   </div>
@@ -176,6 +177,7 @@
         tmp:'',
         weather:'',
         loaded:false,
+        isLoading2:false,
         params:{
           productName:'',
           latitude:'',
@@ -184,19 +186,17 @@
           num:5,
           mark:0
         },
+        logarr:[],
         plugin:[{
           pName:'Geolocation',
           events:{
             init(o){
               o.getCurrentPosition((status,result)=>{
                 if(result&&result.position) {
-                  setTimeout(function () {
-                    document.querySelector('.top').classList.remove('active');
-                  }, 1000);
                   _this.city = result.addressComponent.city;
                   _this.params.latitude = result.position.lat;
                   _this.params.longitude = result.position.lng;
-                  _this.center=[_this.params.longitude,_this.params.latitude];
+                  _this.center = [_this.params.longitude, _this.params.latitude];
                   _this.loaded = true;
                   _this.finished = false;
                   _this.loading = true;
@@ -212,6 +212,18 @@
       }
     },
     methods:{
+      // 刷新
+      onRefresh2(){
+        setTimeout(()=>{
+          this.$toast('刷新成功');
+          this.isLoading2=false;
+          this.getindexList(this.params);
+          this.getIcon();
+          this.gethot();
+          this.gettime();
+          this.getheadline();
+        },500);
+      },
       openShophome(shopid){
         this.$router.push({
           path:'/Shophome/starProducts',
@@ -359,9 +371,14 @@
     },
     created(){
       this.getBanner();
+      var arrstr=[];
+      var arr=this.$geturl.getL();
+      for(var i=0;i<arr.length;i++){
+        arrstr.push(arr[i].split('=')[1]);
+      }
+      this.logarr=arrstr;
     },
     mounted(){
-      // alert(this.$geturl.getL())
       var _this = this;
       var startX = 0,
         startY = 0;
@@ -389,7 +406,7 @@
                 },1000);
             }
           }
-        })
+        });
     }
   }
 </script>

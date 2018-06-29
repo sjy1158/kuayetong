@@ -8,32 +8,32 @@
         @click-right="onClickRight"
       />
       <!--搜索框-->
-      <div class="searchbox" style="margin-top: 61px;">
-        <div class="searchbox2">
-          <div class="icon">
-            <van-icon name="search" />
-          </div>
-          <input type="search"  v-model="value" placeholder="输入商家或商品名称搜索" ref="input1" @keyup="show($event)">
-        </div>
-      </div>
-
-
-      <!--商品tab切换-->
-      <div class="slideshoptab" id="slideshoptab" style="">
-        <div style="" id="tab1">
-          <van-tabs type="line" @click="onClick" line-width="20" v-model="active">
-            <van-tab v-for="(item,index) in headerImg">
-              <div slot="title" @click="getId(item.id,index)">
-                <img :src="item.imageUrl" alt="" style="padding-top: 10px;height: 48px;width: 48px;">
-                <p class="titleshop" style="font-size: 12px!important;">{{item.name}}</p>
+            <div class="searchbox" style="margin-top: 61px;">
+              <div class="searchbox2">
+                <div class="icon">
+                  <van-icon name="search" />
+                </div>
+                <input type="search"  v-model="value" placeholder="输入商家或商品名称搜索" ref="input1" @keyup="show($event)">
               </div>
-            </van-tab>
-          </van-tabs>
-        </div>
-    </div>
+            </div>
+
+
+            <!--商品tab切换-->
+            <div class="slideshoptab" id="slideshoptab" style="">
+              <div style="" id="tab1">
+                <van-tabs type="line" @click="onClick" line-width="20" v-model="active">
+                  <van-tab v-for="(item,index) in headerImg">
+                    <div slot="title" @click="getId(item.id,index)">
+                      <img :src="item.imageUrl" alt="" style="padding-top: 10px;height: 48px;width: 48px;">
+                      <p class="titleshop" style="font-size: 12px!important;">{{item.name}}</p>
+                    </div>
+                  </van-tab>
+                </van-tabs>
+              </div>
+          </div>
 
       <div class="tabmenu" id="tabmenu" style="">
-      <van-tabs @click="onClick2" sticky line-width="20">
+      <van-tabs @click="onClick2" line-width="20">
         <van-tab v-for="item in menus" :title="item">
 
         </van-tab>
@@ -237,6 +237,7 @@
       },
       mounted(){
         this.active = this.$route.query.index;
+        athis.$geturl.getL();
         // this.getId(this.$route.query.id1);
       }
     }
