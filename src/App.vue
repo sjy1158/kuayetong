@@ -19,6 +19,7 @@ export default {
     padding: 0;
     background: #f2f2f2;
     font-family: PingFangSC-Regular, sans-serif;
+    overflow-x: hidden;
   }
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;

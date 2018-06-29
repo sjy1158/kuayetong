@@ -135,12 +135,12 @@
   }
   .searchbox .searchbox2 input{
     width:90%;
-    height: 0.9rem;
+    height: 0.8rem;
     border-radius: 0.5rem;
     position: absolute;
     left: 10%;
     top: 50%;
-    margin-top: -0.45rem;
+    margin-top: -0.4rem;
     padding-left: 9%;
     outline: none;
     border: none;

@@ -10,20 +10,22 @@
 
     <div class="form" style="margin-top: 2rem;">
       <form action="" style="">
-          <div class="input">
-            <label>订单金额(元)</label>
-            <input type="text" placeholder="请询问服务员后输入" v-model="moneyVal" ref="moneyVal">
-          </div>
-          <div class="input" style="border-bottom: none;">
-            <label>抵扣类别(元)</label>
-            <input type="text" placeholder="请选择" v-model="value" disabled="true" ref="disconVal" style="background: white">
-          </div>
-          <ul class="chosesize" style="background: white">
-            <li v-for="item in disconarr"><span :class="params.deductionId == item.id ? 'activechose':''" @click="chosesize(item.id,'满'+item.requireValue+'抵'+item.value+'元',item.value)">满{{item.requireValue}}抵{{item.value}}元</span></li>
-            <!--<li><span :class="id == 1 ? 'activechose':''" @click="chosesize(1,'满200抵10元')">满200抵10元</span></li>-->
-            <!--<li><span :class="id == 2 ? 'activechose':''" @click="chosesize(2,'满300抵10元')">满300抵10元</span></li>-->
-            <!--<li><span :class="id == 3 ? 'activechose':''" @click="chosesize(3,'满400抵10元')">满400抵10元</span></li>-->
-          </ul>
+        <div style="height: auto;width: 100%;background: black;">
+            <div class="input">
+              <label>订单金额(元)</label>
+              <input type="text" placeholder="请询问服务员后输入" v-model="moneyVal" ref="moneyVal">
+            </div>
+            <div class="input" style="border-bottom: none;">
+              <label>抵扣类别(元)</label>
+              <input type="text" placeholder="请选择" v-model="value" disabled="true" ref="disconVal" style="background: white">
+            </div>
+            <ul class="chosesize" style="background: white">
+              <li v-for="item in disconarr"><span :class="params.deductionId == item.id ? 'activechose':''" @click="chosesize(item.id,'满'+item.requireValue+'抵'+item.value+'元',item.value)">满{{item.requireValue}}抵{{item.value}}元</span></li>
+              <!--<li><span :class="id == 1 ? 'activechose':''" @click="chosesize(1,'满200抵10元')">满200抵10元</span></li>-->
+              <!--<li><span :class="id == 2 ? 'activechose':''" @click="chosesize(2,'满300抵10元')">满300抵10元</span></li>-->
+              <!--<li><span :class="id == 3 ? 'activechose':''" @click="chosesize(3,'满400抵10元')">满400抵10元</span></li>-->
+            </ul>
+        </div>
         <button type="button" @click="openMessage">立即抵扣买单</button>
       </form>
     </div>
@@ -111,7 +113,7 @@
           })
         },
         onClickLeft(){
-            this.$router.go(-1)
+            window.history.go(-1);
         },
         getdiscon(shopid){
             var _this = this;
@@ -130,9 +132,10 @@
 
 <style scoped>
   .van-nav-bar{
-    height: 1.1rem;
+    height: 43px;
     width: 100%;
-    line-height: 1.1rem;
+    line-height: 43px;
+    padding-top: 18px;
   }
   .activechose{
     background:  #FF0000;
@@ -213,5 +216,6 @@
     font-size:18px;
     margin-top: 1.25rem;
     font-weight: bold;
+    border-radius: 5px;
   }
 </style>

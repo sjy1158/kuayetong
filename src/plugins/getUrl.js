@@ -1,10 +1,10 @@
 
 const getUrl={
     getL(){
-      var url = document.URL;
+      var url = window.location;
       if(url.indexOf("?") != -1){
         url = url.split("?");
-        return url;
+        return alert(url);
       }else{
         return;
       }

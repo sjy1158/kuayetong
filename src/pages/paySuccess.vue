@@ -39,9 +39,10 @@
 
 <style scoped>
   .van-nav-bar{
-    height: 1.1rem;
+    height: 43px;
     width: 100%;
-    line-height: 1.1rem;
+    line-height: 43px;
+    padding-top: 18px;
   }
   .payicon img{
     height: 90px;

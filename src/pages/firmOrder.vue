@@ -7,7 +7,7 @@
       @click-left="onClickLeft"
       @click-right="onClickRight"
     />
-    <div v-show="issave==false" style="margin-top: 1.1rem;">
+    <div v-show="issave==false" style="margin-top: 62px;">
       <div class="locationtitle">
         <span style="padding-left: 0.31rem;font-size: 14px;">地址信息</span>
       </div>
@@ -229,9 +229,10 @@
 
 <style scoped>
   .van-nav-bar{
-    height: 1.1rem;
+    height: 43px;
     width: 100%;
-    line-height: 1.1rem;
+    line-height: 43px;
+    padding-top: 18px;
   }
     .locationtitle,.save{
       height: 1.18rem;

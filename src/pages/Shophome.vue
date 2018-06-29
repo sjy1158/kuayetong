@@ -7,7 +7,7 @@
         @click-left="onClickLeft"
         @click-right="onClickRight"
       />
-        <div class="titleImg" style="margin-top: 1.1rem;">
+        <div class="titleImg" style="margin-top: 55px;">
           <img :src="shopHeadImageUrl" alt="">
           <div class="titletext">
             <p>{{title}}</p>
@@ -17,7 +17,7 @@
 
       <!--优惠券-->
       <div class="slideyouhui" style="background: white">
-        <ul>
+        <ul v-if="disconarr.length!=0">
           <li v-for="item in disconarr">
             <img src="../assets/merchant_deduct_red_and_white@2x.png" alt="">
             <div style="position: absolute;top: 0.55rem;width:2.5rem;color: #FF0000">
@@ -30,39 +30,54 @@
             </div>
           </li>
         </ul>
+        <p v-if="disconarr.length==0" style="color: red;text-align: left;padding-left: 25px;padding-top: 5px;">此店暂无优惠券~~~~~~~</p>
       </div>
 
 
       <!--地址-->
-      <div class="location">
-        <div style="width: 96%;box-shadow:0px 0px 20px #f3f3f3;height: 1.5rem;margin: 0 auto;">
-            <div style="float: left" class="locationicon">
-              <img src="../assets/merchant_address_location@2x.png" alt="">
-              <span style="padding-left: 0.1rem;">{{location}}</span>
-            </div>
-            <div class="locationicon2">
-              <div style="float: right;margin-right: 0.5rem">
-                <a :href="'tel:'+ call"><img src="../assets/merchant_address_telephone@2x.png" alt=""></a>
-                <p>电话</p>
+      <div class="location" style="position: relative;width: 100%;">
+        <img src="../assets/merchant_address_box@2x.png" alt="" style="height: 50px;width: 96%;position: absolute;left: 7px;">
+        <div style="width: 96%;position: absolute;left: 8px;top: -4px;">
+              <div style="float: left;" class="locationicon">
+                <img src="../assets/merchant_address_location@2x.png" alt="">
+                <span style="padding-left: 0.1rem;">{{location}}</span>
               </div>
-             <!--<div style="float: right;line-height: 1rem;margin-right: 0.5rem">|</div>-->
-              <div style="float: right;margin-right: 0.7rem;">
-                <img src="../assets/merchant_address_navigation@2x.png" alt="">
-              <p>导航</p>
+              <div class="locationicon2">
+                <div style="float: right;margin-right: 0.5rem">
+                  <a :href="'tel:'+ call"><img src="../assets/merchant_address_telephone@2x.png" alt=""></a>
+                  <p>电话</p>
+                </div>
+               <!--<div style="float: right;line-height: 1rem;margin-right: 0.5rem">|</div>-->
+                <div style="float: right;margin-right: 0.7rem;">
+                  <img src="../assets/merchant_address_navigation@2x.png" alt="">
+                <p>导航</p>
+                </div>
               </div>
-            </div>
         </div>
       </div>
 
 
       <div class="swiper">
         <van-tabs @click="onClick" v-model="active" sticky line-width="20">
-          <van-tab v-for="item in menus" :title="item">
-              <router-view></router-view>
-          </van-tab>
+          <router-link to="/Shophome/starProducts">
+            <van-tab>
+                <div slot="title" style="font-size: 14px;">
+                  明星产品
+                </div>
+            </van-tab>
+          </router-link>
+          <router-link to="/Shophome/Businessdetails">
+            <van-tab>
+              <div slot="title" style="font-size: 14px;">
+                商品详情
+              </div>
+            </van-tab>
+          </router-link>
         </van-tabs>
       </div>
-
+      <div>
+        <router-view></router-view>
+      </div>
       <button type="button" @click="openPay">立即抵扣买单</button>
     </div>
 </template>
@@ -72,6 +87,8 @@
         name: "Shophome",
       data(){
           return{
+            shopid:'',
+            index:1,
             headerTitle:'商家主页',
             path:'',
             menus:[
@@ -87,20 +104,37 @@
       },
       methods:{
           onClick(index,title){
-            switch (index){
-              case 0:
-                this.$router.push('/Shophome/starProducts')
-                    break
+            this.indexS++;
+            switch (index) {
               case 1:
-                this.$router.push('/Shophome/Businessdetails')
-                    break
+                this.$router.push({
+                  path:"/Shophome/Businessdetails",
+                  query:{
+                    shopid:this.$route.query.shopid
+                  }
+                });
+                break;
+              case 0:
+                this.$router.push({
+                  path:"/Shophome/starProducts",
+                  query:{
+                    shopid:this.$route.query.shopid
+                  }
+                });
             }
           },
         onClickLeft(){
-          this.$router.push(this.path);
+            // alert(this.indexs);
+          var sum=1+this.indexS;
+            window.history.go(-sum);
         },
         openPay(){
-            this.$router.push('/Paybill');
+            this.$router.push({
+              path:'/Paybill',
+              query:{
+                shopid:this.$route.query.shopid
+              }
+            });
         },
         getInformation(shopid){
             var _this = this;
@@ -115,35 +149,22 @@
       },
       created(){
         var shopid = this.$route.query.shopid;
+         // this.url=this.$route.query.url;
         this.getInformation(shopid);
-        if(this.$route.query.pathid==1){
-          this.path = {
-            path:'/nearbyShops',
-            query:{
-              index:0
-            }
-          };
-        };
-        if(this.$route.query.pathid==2){
-          this.path = {
-            path:'/Businesshome',
-            query:{
-              index:0
-            }
-          };
-        }
       },
       mounted(){
-          this.onClick(0,'明星产品')
+          this.indexS=0;
+          // this.onClick(0,'明星产品')
       }
     }
 </script>
 
 <style scoped>
   .van-nav-bar{
-    height: 1.1rem;
+    height: 43px;
     width: 100%;
-    line-height: 1.1rem;
+    line-height: 43px;
+    padding-top: 18px;
   }
   .titleImg{
     height: 1.5rem;
@@ -253,14 +274,14 @@
 
   button[type=button]{
     width: 100%;
-    height: 49px;
+    height: 45px;
     background: #F08400;
     position: fixed;
     bottom: 0px;
     left: 0px;
     border: none;
     color: white;
-    font-weight: bold;
+    /*font-weight: bold;*/
     font-size: 18px;
     z-index: 100;
   }

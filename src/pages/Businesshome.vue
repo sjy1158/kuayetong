@@ -8,7 +8,7 @@
         @click-right="onClickRight"
       />
       <!--搜索框-->
-      <div class="searchbox" style="margin-top: 1.1rem;">
+      <div class="searchbox" style="margin-top: 61px;">
         <div class="searchbox2">
           <div class="icon">
             <van-icon name="search" />
@@ -45,30 +45,6 @@
               :offset="10"
               @load="onLoad"
             >
-              <van-cell>
-                <div class="pullbox">
-                  <img src="../assets/merchant_avatar3@2x.png" alt="" style="float: left" class="shopimg">
-                  <div class="textbox">
-                    <p>巴客的饭</p>
-                    <p class="titlelist"><img src="../assets/businesses_icon@2x.png" alt=""><span>快餐便当</span><span>人均消费16元</span><span style="float: right"><100m</span></p>
-                    <p class="discon">
-                      <span>100抵10</span>
-                    </p>
-                  </div>
-                </div>
-              </van-cell>
-              <van-cell>
-                <div class="pullbox">
-                  <img src="../assets/merchant_avatar2@2x.png" alt="" style="float: left" class="shopimg">
-                  <div class="textbox">
-                    <p>巴客的饭</p>
-                    <p class="titlelist"><img src="../assets/businesses_icon@2x.png" alt=""><span>快餐便当</span><span>人均消费16元</span><span style="float: right"><100m</span></p>
-                    <p class="discon">
-                      <span>100抵10</span>
-                    </p>
-                  </div>
-                </div>
-              </van-cell>
               <van-cell v-for="item in list">
                 <div class="pullbox">
                   <img :src="item.shopHeadImageUrl" alt="" style="float: left" class="shopimg" @click="openShophome(item.shopId)">
@@ -227,7 +203,8 @@
             path:'/Shophome/starProducts',
             query:{
               shopid:shopid,
-              pathid:2
+              pathid:2,
+              url:this.$route.path
             }
           });
           // localStorage.setItem('shopid',shopid);
@@ -267,10 +244,10 @@
 
 <style scoped>
   .van-nav-bar{
-    height: 1.1rem;
+    height: 43px;
     width: 100%;
-    line-height: 1.1rem;
-    z-index: 50!important;
+    line-height: 43px;
+    padding-top: 18px;
   }
   /*van-hairline--bottom van-nav-bar .van-nav-bar--fixed*/
     .searchbox{

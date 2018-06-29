@@ -26,6 +26,7 @@ import pageStatus from '../pages/pageStatus'
 Vue.use(Router)
 
 export default new Router({
+  mode: 'history',
   routes: [
     {
       path:'/',
@@ -86,6 +87,16 @@ export default new Router({
         }
       ]
     },
+    // {
+    //   name:'starProducts',
+    //   path:'/Shophome/starProducts',
+    //   component:starProducts
+    // },
+    // {
+    //   name:'Businessdetails',
+    //   path:'/Shophome/Businessdetails',
+    //   component:Businessdetails
+    // },
     {
       path:'/',
       redirect:'/cardList'

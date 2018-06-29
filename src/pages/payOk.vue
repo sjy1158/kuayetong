@@ -14,19 +14,19 @@
         getok(params){
           var _this = this;
           this.$api.getPay1(params).then(function (res) {
-            setTimeout(_this.getPaystatus(res.orderId),3000);
+            // setTimeout(_this.getPaystatus(res.orderId),3000);
             document.body.innerHTML=res.html.split('</form>')[0];
             document.forms[0].submit();
           });
         },
-        getPaystatus(orderId){
-         var _this=this;
-          this.$api.getpaystatus(orderId).then((res)=>{
-              window.location.href='http://cpgkhd.natappfree.cc/#/pageStatus';
-              localStorage.setItem('paytype',res.type);
-              localStorage.setItem('payMoney',res.money);
-          })
-        }
+        // getPaystatus(orderId){
+        //  var _this=this;
+        //   this.$api.getpaystatus(orderId).then((res)=>{
+        //       // window.location.href='http://cpgkhd.natappfree.cc/#/pageStatus';
+        //       // localStorage.setItem('paytype',res.type);
+        //       // localStorage.setItem('payMoney',res.money);
+        //   })
+        // }
       },
       created(){
       },

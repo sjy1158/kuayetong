@@ -78,7 +78,7 @@
 
 <style scoped>
   .van-row .van-col p{
-    font-size: 10px!important;
+    font-size: 11px!important;
     margin: 0px!important;
     padding-top: 0.25rem;
   }
