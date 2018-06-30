@@ -1,8 +1,8 @@
 <template>
   <div>
-    <div style="padding: 30px;height: 45px;">
-      <div style="width:100%;height: 45px;border-radius: 30px;background: white">
-        <input type="text" v-model="params.phone" style="width:92%;height: 100%;border: none;border-radius: 30px;" placeholder="请输入手机号码">
+    <div style="padding: 30px;height: 3rem;">
+      <div style="width:100%;height: 45px;border-radius: 30px;">
+        <input type="text" v-model="params.phone" style="width:92%;height: 100%;border: none;border-radius: 30px;padding-left: 20px;" placeholder="请输入手机号码">
       </div>
       <button type="button" @click="toupPay">充值</button>
     </div>

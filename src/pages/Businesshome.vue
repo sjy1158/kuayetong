@@ -46,8 +46,8 @@
               @load="onLoad"
             >
               <van-cell v-for="item in list">
-                <div class="pullbox">
-                  <img :src="item.shopHeadImageUrl" alt="" style="float: left" class="shopimg" @click="openShophome(item.shopId)">
+                <div class="pullbox" @click="openShophome(item.shopId)">
+                  <img :src="item.shopHeadImageUrl" alt="" style="float: left" class="shopimg">
                   <div class="textbox">
                     <p>{{item.title}}</p>
                     <p class="titlelist"><img src="../assets/businesses_icon@2x.png" alt=""><span>{{item.shopType}}</span><span>人均消费{{item.averageMoney}}元</span><span style="float: right"><100m</span></p>
@@ -249,6 +249,7 @@
     width: 100%;
     line-height: 43px;
     padding-top: 18px;
+    z-index: 99999999!important
   }
   /*van-hairline--bottom van-nav-bar .van-nav-bar--fixed*/
     .searchbox{

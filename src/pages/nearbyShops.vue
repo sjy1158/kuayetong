@@ -23,12 +23,12 @@
             <!--<van-notice-bar style="background: none!important;left: 1rem;color: white!important;top: -0.1rem;" v-if="loaded">-->
             <!--{{formattedAddress}}-->
             <!--</van-notice-bar>-->
-            <van-notice-bar  v-if="loaded" style="background: none!important;left: 0.5rem;color: white!important;top: -0.1rem;font-size: 16px!important;"
+            <van-notice-bar  v-if="loaded" style="background: none!important;left: 1rem;color: white!important;top: -0.1rem;font-size: 16px!important;"
                              :text="formattedAddress"
             />
 
             <van-notice-bar style="background: none!important;left: 1rem;color: white!important;top: -0.1rem;font-size: 16px!important;" v-else>
-              全部
+              定位中...
             </van-notice-bar>
 
             <!--<span v-else>定位中...</span>-->
@@ -76,9 +76,14 @@
         <div>
           <img src="../assets/merchant_avatar@2x.png" alt="" style="width: 34px;height: 34px;margin-top: 5px;">
         </div>
-        <van-notice-bar :scrollable="true" v-if="loaded">
-          <span style="margin-right: 0.5rem;" v-for="item in linearr">{{item.id}}.{{item.headline}}</span>
-        </van-notice-bar>
+        <!--<van-notice-bar :scrollable="true" v-if="loaded">-->
+          <!--<span style="margin-right: 0.5rem;" v-for="item in linearr">{{item.id}}.{{item.headline}}</span>-->
+        <!--</van-notice-bar>-->
+        <div class="scroll-wrap">
+          <ul class="scroll-content" :style="{ top }">
+            <li v-for="item in linearr">{{item.headline}}</li >
+          </ul>
+        </div>
 
         <!--<van-notice-bar style="background: none!important;left: 1rem;color: white!important;top: -0.1rem;"-->
         <!--:text="formattedAddress"-->
@@ -152,6 +157,7 @@
       var _this = this;
       return {
         linearr:[],
+        activeIndex: 0,
         weathericon:'',
         time2:'',
         hotarr:[],
@@ -204,6 +210,18 @@
                   _this.getweather(_this.city);
                   _this.getindexList(_this.params);
                   _this.$nextTick();
+                }else{
+                  _this.city='杭州';
+                  _this.params.latitude =_this.logarr[0];
+                  _this.params.longitude = _this.logarr[1];
+                  _this.center = [_this.params.longitude, _this.params.latitude];
+                  _this.loaded = true;
+                  _this.finished = false;
+                  _this.loading = true;
+                  _this.formattedAddress = "左右世界";
+                  _this.getweather(_this.city);
+                  _this.getindexList(_this.params);
+                  _this.$nextTick();
                 }
               })
             }
@@ -217,11 +235,11 @@
         setTimeout(()=>{
           this.$toast('刷新成功');
           this.isLoading2=false;
-          this.getindexList(this.params);
           this.getIcon();
           this.gethot();
           this.gettime();
           this.getheadline();
+          this.getindexList(this.params);
         },500);
       },
       openShophome(shopid){
@@ -369,8 +387,14 @@
         }
       }
     },
+    computed: {
+      top() {
+        return - this.activeIndex * 50 + 'px';
+      }
+    },
     created(){
       this.getBanner();
+      this.getheadline();
       var arrstr=[];
       var arr=this.$geturl.getL();
       for(var i=0;i<arr.length;i++){
@@ -382,12 +406,18 @@
       var _this = this;
       var startX = 0,
         startY = 0;
+      setInterval(() => {
+        if(this.activeIndex < this.linearr.length) {
+          this.activeIndex += 1;
+        } else {
+          this.activeIndex = 0;
+        }
+      }, 1000);
       this.getindexList(this.params);
-      this.getweather('杭州');
+      // this.getweather('杭州');
       this.getIcon();
       this.gethot();
       this.gettime();
-      this.getheadline();
         document.getElementById('scrollheight').addEventListener('touchstart',function (e) {
           startX=e.touches[0].pageX;
           startY=e.touches[0].pageY;
@@ -412,6 +442,22 @@
 </script>
 
 <style scoped>
+  .scroll-wrap{
+    width: 4rem;
+    height: 50px;
+    /*border: 1px solid blue;*/
+    overflow: hidden;
+  }
+
+  .scroll-content{
+    position: relative;
+    transition: top 0.5s;}
+
+  .scroll-content li{
+    line-height: 50px;
+    text-align: center;
+  }
+
   .header{
     width:100%;
     height:255px;
@@ -576,7 +622,7 @@
   .slidexiaoxi div:last-child{
     float: right;
     margin-right: 0.6rem;
-    margin-top: 0.4rem;
+    margin-top: 0.45rem;
   }
   .slidexiaoxi div p{
     margin: 0px!important;

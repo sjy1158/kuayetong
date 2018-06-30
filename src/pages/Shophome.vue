@@ -59,20 +59,16 @@
 
       <div class="swiper">
         <van-tabs @click="onClick" v-model="active" sticky line-width="20">
-          <router-link to="/Shophome/starProducts">
             <van-tab>
                 <div slot="title" style="font-size: 14px;">
                   明星产品
                 </div>
             </van-tab>
-          </router-link>
-          <router-link to="/Shophome/Businessdetails">
             <van-tab>
               <div slot="title" style="font-size: 14px;">
                 商品详情
               </div>
             </van-tab>
-          </router-link>
         </van-tabs>
       </div>
       <div>
@@ -110,7 +106,7 @@
                 this.$router.push({
                   path:"/Shophome/Businessdetails",
                   query:{
-                    shopid:this.$route.query.shopid
+                    shopid:this.$route.query.shopid,
                   }
                 });
                 break;
@@ -125,14 +121,16 @@
           },
         onClickLeft(){
             // alert(this.indexs);
-          var sum=1+this.indexS;
-            window.history.go(-sum);
+          this.sum=1+this.indexS;
+            window.history.go(-this.sum);
         },
         openPay(){
+            // alert(this.indexS);
             this.$router.push({
               path:'/Paybill',
               query:{
-                shopid:this.$route.query.shopid
+                shopid:this.$route.query.shopid,
+                sum:this.indexS
               }
             });
         },
@@ -154,7 +152,8 @@
       },
       mounted(){
           this.indexS=0;
-          // this.onClick(0,'明星产品')
+          // var index=this.$router.query.indexS;
+          this.onClick(0,'明星产品')
       }
     }
 </script>
@@ -165,6 +164,7 @@
     width: 100%;
     line-height: 43px;
     padding-top: 18px;
+    z-index:9999999!important;
   }
   .titleImg{
     height: 1.5rem;

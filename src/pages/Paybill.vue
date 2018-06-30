@@ -111,7 +111,8 @@
           })
         },
         onClickLeft(){
-            window.history.go(-1);
+            // alert(this.$route.query.sum);
+            window.history.go(-this.$route. query.sum);
         },
         getdiscon(shopid){
             var _this = this;

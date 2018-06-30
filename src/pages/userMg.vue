@@ -116,6 +116,12 @@
       }
     },
     mounted(){
+      var str='';
+      var arr=this.$geturl.getL();
+      for(var i=0;i<arr.length;i++){
+        str=arr[i].split('=')[1];
+      }
+      this.params.accountNumber=str;
       this.loading=true;
       this.getcardlist(this.params);
     }

@@ -22,9 +22,7 @@
         // getPaystatus(orderId){
         //  var _this=this;
         //   this.$api.getpaystatus(orderId).then((res)=>{
-        //       // window.location.href='http://cpgkhd.natappfree.cc/#/pageStatus';
-        //       // localStorage.setItem('paytype',res.type);
-        //       // localStorage.setItem('payMoney',res.money);
+        //       window.location.href='';
         //   })
         // }
       },
