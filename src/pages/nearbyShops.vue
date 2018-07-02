@@ -218,7 +218,7 @@
                   _this.loaded = true;
                   _this.finished = false;
                   _this.loading = true;
-                  _this.formattedAddress = "左右世界";
+                  _this.formattedAddress = _this.logarr[3];
                   _this.getweather(_this.city);
                   _this.getindexList(_this.params);
                   _this.$nextTick();

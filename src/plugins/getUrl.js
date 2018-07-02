@@ -1,7 +1,7 @@
 
 const getUrl={
     getL(){
-      var url = document.URL;
+      var url = decodeURI(document.URL);
       if(url.indexOf("?") != -1){
         url = url.split("?")[1].split('&');
         return url;
