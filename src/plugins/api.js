@@ -22,20 +22,20 @@ const api = {
   getImage(){
     return axios.request({
       method:'get',
-      url:config.appUrl+'/crossindustry/shopPage/getShopAdvertiseImage',
+      url:'/api/crossindustry/shopPage/getShopAdvertiseImage',
     })
   },
   geticon() {
     return axios.request({
       method: 'get',
-      url:config.appUrl+'/crossindustry/shopPage/getShopTypeByLevel?level=1',
+      url:'/api/crossindustry/shopPage/getShopTypeByLevel?level=1',
     })
   },
   // 获取店铺数据
   getShopimg(id) {
     return axios.request({
       method: 'get',
-      url:config.appUrl+'/crossindustry/shopPage/getShopTypeListByShopType',
+      url:'/api/crossindustry/shopPage/getShopTypeListByShopType',
       params: {
         shopTypeId: id
       }
@@ -44,7 +44,7 @@ const api = {
   getShoplist(params) {
     return axios.request({
       method: 'get',
-      url:config.appUrl+'/crossindustry/shopPage/getShopByShopType',
+      url:'/api/crossindustry/shopPage/getShopByShopType',
       params: params
     })
   },
@@ -53,7 +53,7 @@ const api = {
   getShopInformation(shopid) {
     return axios.request({
       method: 'get',
-      url:config.appUrl+'/crossindustry/shopPage/getShopInformation',
+      url:'/api/crossindustry/shopPage/getShopInformation',
       params: {
         shopId: shopid
       }
@@ -63,7 +63,7 @@ const api = {
   getStroshops(shopid){
     return axios.request({
       method:'get',
-      url:config.appUrl+'/crossindustry/shopPage/getShopProduct',
+      url:'/api/crossindustry/shopPage/getShopProduct',
       params:{
         shopId:shopid
       }
@@ -73,7 +73,7 @@ const api = {
   getDiscon(shopid){
     return axios.request({
       method:'get',
-      url:config.appUrl+'/crossindustry/shopPage/getShopDeduction',
+      url:'/api/crossindustry/shopPage/getShopDeduction',
       params:{
         shopId:shopid
       }
@@ -83,7 +83,7 @@ const api = {
   payDicon(params){
       return axios.request({
         method:'get',
-        url:config.appUrl+'/crossindustry/shopPage/deductPay',
+        url:'/api/crossindustry/shopPage/deductPay',
         params:params
       })
   },
@@ -100,7 +100,7 @@ const api = {
   getIndexList(params){
     return axios.request({
       method:'get',
-      url:config.appUrl+'/crossindustry/shopPage/nearbyShops',
+      url:'/api/crossindustry/shopPage/nearbyShops',
       params:params
     })
   },
@@ -108,7 +108,7 @@ const api = {
   homeSearch(params){
     return axios.request({
       method:'get',
-      url:config.appUrl+'/crossindustry/shopPage/search',
+      url:'/api/crossindustry/shopPage/search',
       params:params
     })
   },
@@ -116,14 +116,14 @@ const api = {
   gethotWord(){
     return axios.request({
       method:'get',
-      url:config.appUrl+'/crossindustry/shopPage/getHotWord'
+      url:'/api/crossindustry/shopPage/getHotWord'
     })
   },
   // 新闻条
   getheadLine() {
     return axios.request({
       method: 'get',
-      url:config.appUrl+'/crossindustry/shopPage/getHeadLine'
+      url:'/api/crossindustry/shopPage/getHeadLine'
     })
   },
 
@@ -131,7 +131,7 @@ const api = {
   getPay1(params){
     return axios.request({
       method:'get',
-      url:config.appUrl+'/crossindustry/alipay/pay',
+      url:'/api/crossindustry/alipay/pay',
       params:params
     })
   },
@@ -139,7 +139,7 @@ const api = {
   getCardlist(params){
     return axios.request({
       method:'get',
-      url:config.appUrl+'/crossindustry/userPage/getCardList',
+      url:'/api/crossindustry/userPage/getCardList',
       params:params
     })
   },
@@ -147,7 +147,7 @@ const api = {
   manageRecharge(params){
     return axios.request({
       method:'get',
-      url:config.appUrl+'/crossindustry/userPage/manageRecharge',
+      url:'/api/crossindustry/userPage/manageRecharge',
       params:params
     })
   },
@@ -155,7 +155,7 @@ const api = {
   getagentUser(params){
     return axios.request({
       method:'get',
-      url:config.appUrl+'/crossindustry/userPage/getAgentUser',
+      url:'/api/crossindustry/userPage/getAgentUser',
       params:params
     })
   },
@@ -163,7 +163,7 @@ const api = {
   getProduct(productId){
     return axios.request({
       method:'get',
-      url:config.appUrl+'/crossindustry/shopPage/getProductMessage',
+      url:'/api/crossindustry/shopPage/getProductMessage',
       params:{
         productId:productId
       }
@@ -173,7 +173,7 @@ const api = {
   getpaystatus(orderId){
     return axios.request({
       method:'get',
-      url:config.appUrl+'/crossindustry/shopPage/judgeOrderStatus',
+      url:'/api/crossindustry/shopPage/judgeOrderStatus',
       params:{
         orderId:orderId
       }
@@ -183,7 +183,7 @@ const api = {
   getInfor(userid){
     return axios.request({
       method:'get',
-      url:config.appUrl+'/crossindustry/phonePage/getUserInformation',
+      url:'/api/crossindustry/phonePage/getUserInformation',
       params:{
         userId:userid
       }
@@ -192,7 +192,7 @@ const api = {
   shareRegister(params){
     return axios.request({
       method:'get',
-      url:config.appUrl+'/crossindustry/userManage/shareRegister',
+      url:'/api/crossindustry/userManage/shareRegister',
       params:params
     })
   }
