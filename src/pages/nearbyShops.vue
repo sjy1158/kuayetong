@@ -418,6 +418,9 @@
       this.getIcon();
       this.gethot();
       this.gettime();
+      setTimeout(()=>{
+        document.querySelector('.van-tabs__line').style.transform='translateX(50px)';
+      },100);
         document.getElementById('scrollheight').addEventListener('touchstart',function (e) {
           startX=e.touches[0].pageX;
           startY=e.touches[0].pageY;
@@ -442,6 +445,12 @@
 </script>
 
 <style scoped>
+
+  element {
+    width: 20px!important;
+    transform: translateX(50px)!important;
+    transition-duration: 0.2s!important;
+  }
   .scroll-wrap{
     width: 4rem;
     height: 50px;
@@ -594,8 +603,8 @@
     margin: 0px!important;
     padding-top: 5px;
     color: #393910;
-    font-weight: 700;
-    /*font-weight: bold;*/
+    font-weight: normal;
+    /*font-weight: bold ;*/
   }
   .menulist ul li img{
     height: 25px!important;
@@ -719,7 +728,7 @@
     margin-top: 7px;
   }
   .van-cell .textbox p:first-child{
-    font-weight: bold;
+    font-weight:bolder;
     font-size: 14px;
   }
 
