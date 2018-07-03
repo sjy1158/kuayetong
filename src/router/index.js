@@ -22,11 +22,11 @@ import cardList from '../pages/cardList'
 import toUp from '../pages/toUp'
 import userMg from '../pages/userMg'
 import pageStatus from '../pages/pageStatus'
+import Sharepage from '../pages/Sharepage'
 
 Vue.use(Router)
 
 export default new Router({
-  mode: 'history',
   routes: [
     {
       path:'/',
@@ -153,6 +153,10 @@ export default new Router({
       name:'paySuccess',
       path:'/paySuccess',
       component:paySuccess
+    },
+    {
+      path:'/Sharepage',
+      component:Sharepage
     },
     {
       name:'payOver',

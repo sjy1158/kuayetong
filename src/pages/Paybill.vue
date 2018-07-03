@@ -68,7 +68,7 @@
             moneyVal:'',
             params:{
               deductionId:'',
-              userId:'8'
+              userId:'5d'
             }
           }
       },

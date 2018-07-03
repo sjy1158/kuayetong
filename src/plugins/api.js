@@ -178,6 +178,23 @@ const api = {
         orderId:orderId
       }
     })
+  },
+  // 获取用户信息
+  getInfor(userid){
+    return axios.request({
+      method:'get',
+      url:'/api/crossindustry/phonePage/getUserInformation',
+      params:{
+        userId:userid
+      }
+    })
+  },
+  shareRegister(params){
+    return axios.request({
+      method:'get',
+      url:'/api/crossindustry/userManage/shareRegister',
+      params:params
+    })
   }
 }
 export default class Api {

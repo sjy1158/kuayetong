@@ -138,7 +138,7 @@
             this.getList(this.params);
           },
         onClickLeft(){
-          this.$router.go(-1)
+          window.history.go(-1);
         },
         getId(id){
           this.list = [];
