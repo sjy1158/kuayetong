@@ -325,6 +325,7 @@
         var _this = this;
         if(this.loading&&this.issum){
           this.$api.getIndexList(params).then(function (res) {
+            alert(JSON.stringify(res));
             _this.loading = false;
             if(res.sum==0){
               _this.issum=false;
