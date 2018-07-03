@@ -27,7 +27,6 @@ import Sharepage from '../pages/Sharepage'
 Vue.use(Router)
 
 export default new Router({
-  mode:'history',
   routes: [
     {
       path:'/',
