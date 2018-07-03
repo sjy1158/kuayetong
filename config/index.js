@@ -58,7 +58,7 @@ module.exports = {
     // Paths
     assetsRoot: path.resolve(__dirname, '../dist'),
     assetsSubDirectory: 'static',
-    assetsPublicPath: '',
+    assetsPublicPath: 'http://08a1f3cf.ngrok.io',
     /**
      * Source Maps
      */

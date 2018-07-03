@@ -27,14 +27,14 @@
             params:{
               phone:'',
               password:'',
-              userId:'5d'
+              userId:''
             }
           }
         },
       methods:{
-          getmation(){
+          getmation(userid){
             const _this=this;
-            this.$api.getInfor(this.params.userId).then((res)=>{
+            this.$api.getInfor(userid).then((res)=>{
               _this.headImage=res.user.headImage;
               _this.name=res.user.nickName;
             })
@@ -53,7 +53,13 @@
         }
       },
       mounted(){
-          this.getmation();
+          var Idarr=[];
+          var arr=this.$geturl.getL();
+          for(var i=0;i<arr.length;i++){
+            Idarr.push(arr[i].split('=')[1]);
+          }
+        this.params.userId=Idarr[0];
+        this.getmation(this.params.userId);
       }
     }
 </script>
