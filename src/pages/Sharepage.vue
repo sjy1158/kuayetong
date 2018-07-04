@@ -90,7 +90,7 @@
   div.shareInput{
     width: 100%;
     height: 170px;
-    background: rgba(255,255,255);
+    background: rgba(255,255,255,.9);
     position: fixed;
     bottom: 0px;
     left: 0px;
@@ -106,6 +106,7 @@
     border-radius: 20px;
     border:1px solid #909090;
     text-align: center;
+    font-size: 16px;
   }
   ::-webkit-input-placeholder{
     text-align: center;
@@ -120,5 +121,6 @@
     border: none;
     border-radius: 20px;
     font-size: 14px;
+    margin-left: 2px;
   }
 </style>
