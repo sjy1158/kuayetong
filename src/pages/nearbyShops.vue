@@ -211,7 +211,6 @@
                   _this.getindexList(_this.params);
                   _this.$nextTick();
                 }else{
-                  _this.city='杭州';
                   _this.params.latitude =_this.logarr[0];
                   _this.params.longitude = _this.logarr[1];
                   _this.center = [_this.params.longitude, _this.params.latitude];
@@ -219,7 +218,6 @@
                   _this.finished = false;
                   _this.loading = true;
                   _this.formattedAddress = _this.logarr[3].split('#')[0];
-                  _this.getweather(_this.city);
                   _this.getindexList(_this.params);
                   _this.$nextTick();
                 }
@@ -414,7 +412,7 @@
         }
       }, 1000);
       this.getindexList(this.params);
-      // this.getweather('杭州');
+      this.getweather('杭州');
       this.getIcon();
       this.gethot();
       this.gettime();
@@ -563,6 +561,7 @@
     color: white;
     overflow-y: hidden;
     overflow-x: scroll;
+    border: none!important;
   }
   .header .shoptab::-webkit-scrollbar{
     display: none;
