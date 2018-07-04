@@ -40,6 +40,7 @@
             })
           },
         startOpen(){
+            const _this=this;
            var phone=/^[1][3,4,5,7,8][0-9]{9}$/;
            if(!phone.test(this.params.phone)){
              this.$toast('请输入正确的手机号')
@@ -48,6 +49,9 @@
            }else{
              this.$api.shareRegister(this.params).then((res)=>{
                // this.$toast('工程师正在努力研发中...')
+               setTimeout((res)=>{
+                _this.$router.push('/Shareweima');
+               },1000)
              })
            }
         }

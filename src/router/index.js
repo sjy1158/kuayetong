@@ -23,7 +23,7 @@ import toUp from '../pages/toUp'
 import userMg from '../pages/userMg'
 import pageStatus from '../pages/pageStatus'
 import Sharepage from '../pages/Sharepage'
-
+import Shareweima from '../pages/Shareweima'
 Vue.use(Router)
 
 export default new Router({
@@ -157,6 +157,10 @@ export default new Router({
     {
       path:'/Sharepage',
       component:Sharepage
+    },
+    {
+      path:'/Shareweima',
+      component:Shareweima
     },
     {
       name:'payOver',
