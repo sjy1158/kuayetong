@@ -5,7 +5,7 @@
       <img :src="headImage" alt="" style="width: 24px;height: 24px;border-radius: 50%;">
       <span style="padding-left: 50px">{{name}}邀你开启跨业之旅</span>
     </div>
-    <img src="../assets/invite_page@3x.png" alt="" style="width: 100%;">
+    <img src="../assets/invite_page@3x.png" alt="" style="width: 100%;margin-bottom:170px;">
     <div class="shareInput">
       <ul>
         <li><input type="text" v-model="params.phone" placeholder="请输入手机号码"></li>
@@ -89,8 +89,8 @@
   }
   div.shareInput{
     width: 100%;
-    height: 145px;
-    background: rgba(255,255,255,.8);
+    height: 170px;
+    background: rgba(255,255,255);
     position: fixed;
     bottom: 0px;
     left: 0px;
@@ -102,7 +102,7 @@
   }
   div.shareInput ul li input{
     width: 100%;
-    height: 25px;
+    height: 35px;
     border-radius: 20px;
     border:1px solid #909090;
     text-align: center;
@@ -114,7 +114,7 @@
   }
   button[type=button]{
     width: 100%;
-    height: 27px;
+    height: 35px;
     color: white;
     background: #f08400;
     border: none;
