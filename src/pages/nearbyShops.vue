@@ -11,7 +11,7 @@
         <div>
           <van-swipe :autoplay="3000">
             <van-swipe-item v-for="item in images">
-              <img :src="item.advertiseImageUrl"/>
+              <img :src="item.advertiseImageUrl" style="-webkit-font-smoothing:antialiased"/>
             </van-swipe-item>
           </van-swipe>
         </div>
@@ -54,7 +54,7 @@
         </div>
 
 
-        <div style="width: 110%;height: 50px;position: absolute; border-radius: 60% 60% 0 0;background: white;bottom: -25px;left: 50%;margin-left: -55%;" >
+        <div style="width: 110%;height: 50px;position: absolute; border-radius: 60% 60% 0 0;background: white;bottom: -30px;left: 50%;margin-left: -55%;-webkit-font-smoothing:antialiased" >
 
         </div>
       </div>
