@@ -52,6 +52,11 @@
             <li class="van-ellipsis" v-for="item in hotarr">{{item}}</li>
           </ul>
         </div>
+
+
+        <div style="width: 100%;height: 30px;position: absolute;border-radius: 50%;background: white;bottom: -15px;">
+
+        </div>
       </div>
 
       <!--主题-->
@@ -81,7 +86,14 @@
         <!--</van-notice-bar>-->
         <div class="scroll-wrap">
           <ul class="scroll-content" :style="{ top }">
-            <li v-for="item in linearr">{{item.headline}}</li >
+            <li v-for="item in linearr">
+              <p style="font-size: 12px;color: #393939;font-weight: bold">{{item.headline}}</p>
+              <p style="font-size: 12px;color: #393939;">@{{item.headline}}</p>
+            </li >
+            <li>
+              <p style="font-size: 12px;color: #393939;font-weight: bold">港诚医美芦琪评论了附近店铺</p>
+              <p style="font-size: 12px;color: #393939;">@福宇记黄焖鸡米饭（新塘店）</p>
+            </li >
           </ul>
         </div>
 
@@ -237,6 +249,7 @@
           this.gethot();
           this.gettime();
           this.getheadline();
+          this.getBanner();
           this.getindexList(this.params);
         },500);
       },
@@ -450,7 +463,7 @@
     transition-duration: 0.2s!important;
   }
   .scroll-wrap{
-    width: 4rem;
+    width: 4.2rem;
     height: 50px;
     /*border: 1px solid blue;*/
     overflow: hidden;
@@ -461,14 +474,20 @@
     transition: top 0.5s;}
 
   .scroll-content li{
-    line-height: 50px;
-    text-align: center;
+    line-height: 20px;
+    text-align: left;
+    padding-left: 0.5rem;
+    padding-top: 0.2rem;
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
   }
 
   .header{
     width:100%;
     height:255px;
     position: relative;
+    overflow: hidden;
     /*background:red;*/
   }
   .header .van-swipe{

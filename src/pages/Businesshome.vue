@@ -351,6 +351,7 @@
     text-align: center;
     float: left;
     margin-top: 7px;
+    font-weight: bold;
   }
   .van-cell .textbox .discon1 span{
     margin-right: 0.2rem!important;
