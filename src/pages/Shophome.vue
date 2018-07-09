@@ -8,7 +8,8 @@
         @click-right="onClickRight"
       />
         <div class="titleImg" style="margin-top: 55px;">
-          <img :src="shopHeadImageUrl" alt="">
+          <img v-if="shopHeadImageUrl!=''" :src="shopHeadImageUrl" alt="">
+          <img v-else src="" alt="">
           <div class="titletext">
             <p>{{title}}</p>
             <p>官方旗舰店</p>
@@ -55,8 +56,6 @@
               </div>
         </div>
       </div>
-
-
       <div class="swiper">
         <van-tabs @click="onClick" v-model="active" sticky line-width="20">
             <van-tab>
@@ -175,9 +174,10 @@
   .titleImg img{
     position: absolute;
     left: 0.6rem;
-    top: 0.25rem;
+    top: 0.31rem;
    height: 48px;
     width: 48px;
+    border-radius: 50%;
   }
   .titleImg .titletext{
     position: absolute;

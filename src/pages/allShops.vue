@@ -67,6 +67,7 @@
           }
         },
         onClick(id) {
+          this.indextab++;
           this.index = id;
           this.$router.push({
             path:'/allShops/Meishilist',
@@ -76,7 +77,8 @@
           })
         },
         openMeishilist(){
-          this.$router.go(-1);
+          this.sum=1+this.indextab;
+          window.history.go(-this.sum);
         },
         getIcon(){
           var _this = this;
@@ -88,6 +90,7 @@
       },
       mounted(){
           this.getIcon();
+          this.indextab=0;
       }
     }
 </script>
@@ -142,6 +145,7 @@
     top: 50%;
     margin-top: -0.4rem;
     padding-left: 9%;
+    padding-right: 0.3rem;
     outline: none;
     border: none;
     box-shadow:0px 0px 8px #f2f2f2;

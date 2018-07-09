@@ -54,7 +54,7 @@
         </div>
 
 
-        <div style="width: 100%;height: 30px;position: absolute;border-radius: 50%;background: white;bottom: -15px;">
+        <div style="width: 100%;height: 30px;position: absolute; border-radius: 50% 50% 0 0;background: white;bottom: -10px;">
 
         </div>
       </div>
@@ -93,7 +93,7 @@
             <li>
               <p style="font-size: 12px;color: #393939;font-weight: bold">港诚医美芦琪评论了附近店铺</p>
               <p style="font-size: 12px;color: #393939;">@福宇记黄焖鸡米饭（新塘店）</p>
-            </li >
+            </li>
           </ul>
         </div>
 
@@ -567,6 +567,7 @@
     background: rgba(255,255,255,.95);
     border-radius: 0.5rem;
     padding-left: 0.5rem;
+    padding-right: 0.3rem;
     font-size: 14px;
     color: black;
   }

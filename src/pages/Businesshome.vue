@@ -285,6 +285,7 @@
     top: 50%;
     margin-top: -0.45rem;
     padding-left: 9%;
+    padding-right: 0.3rem;
     outline: none;
     border: none;
     box-shadow:0px 0px 8px #f2f2f2;
