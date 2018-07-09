@@ -54,7 +54,7 @@
         </div>
 
 
-        <div style="width: 100%;height: 30px;position: absolute; border-radius: 50% 50% 0 0;background: white;bottom: -10px;">
+        <div style="width: 110%;height: 50px;position: absolute; border-radius: 60% 60% 0 0;background: white;bottom: -25px;left: 50%;margin-left: -55%;" >
 
         </div>
       </div>

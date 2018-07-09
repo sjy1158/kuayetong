@@ -174,15 +174,15 @@
   .titleImg img{
     position: absolute;
     left: 0.6rem;
-    top: 0.31rem;
-   height: 48px;
-    width: 48px;
+    top: 18%;
+   height: 50px;
+    width: 50px;
     border-radius: 50%;
   }
   .titleImg .titletext{
     position: absolute;
     left: 80px;
-    top: 14px;
+    top: 0.4rem;
     /*top: 0.6rem;*/
     text-align: left;
     font-size: 14px;
@@ -191,6 +191,7 @@
   .titleImg .titletext p{
     margin: 0px!important;
     margin-bottom: 4px!important;
+    font-size: 14px;
   }
 
   .slideyouhui{
