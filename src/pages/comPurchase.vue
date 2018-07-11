@@ -1,7 +1,7 @@
 <template>
 <div>
   <img src="../assets/bg2.jpg" alt="" style="width: 100%;height: 375px;">
-  <button type="button" style="position: fixed;bottom: 0px;left: 0px;" @click="openpay">
+  <button id="paybtn" type="button" style="position: fixed;bottom: 0px;left: 0px;" @click="openpay">
     立即抵扣购买
   </button>
   <div style="padding: 10px;height: 80px;background: white">
@@ -53,6 +53,7 @@
             title: '提示',
             message: '此操作不可撤销，请确认使用跨业通余额'+0.00+'元抵扣买单'
           }).then(() => {
+              document.getElementById('paybtn').style.display='none';
               document.getElementById('pop').style.display='block';
           }).catch(() => {
             return
