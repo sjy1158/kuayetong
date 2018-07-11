@@ -218,7 +218,7 @@
                   _this.loaded = true;
                   _this.finished = false;
                   _this.loading = true;
-                  _this.formattedAddress = result.formattedAddress;
+                  _this.formattedAddress = result.formattedAddress.split('市')[1];
                   _this.getweather(_this.city);
                   _this.getindexList(_this.params);
                   _this.$nextTick();

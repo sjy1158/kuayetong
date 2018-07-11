@@ -22,20 +22,20 @@ const api = {
   getImage(){
     return axios.request({
       method:'get',
-      url:config.baseUrl+'/crossindustry/shopPage/getShopAdvertiseImage',
+      url:'/api/crossindustry/shopPage/getShopAdvertiseImage',
     })
   },
   geticon() {
     return axios.request({
       method: 'get',
-      url:config.baseUrl+'/crossindustry/shopPage/getShopTypeByLevel?level=1',
+      url:'/api/crossindustry/shopPage/getShopTypeByLevel?level=1',
     })
   },
   // 获取店铺数据
   getShopimg(id) {
     return axios.request({
       method: 'get',
-      url:config.baseUrl+'/crossindustry/shopPage/getShopTypeListByShopType',
+      url:'/api/crossindustry/shopPage/getShopTypeListByShopType',
       params: {
         shopTypeId: id
       }
@@ -44,7 +44,7 @@ const api = {
   getShoplist(params) {
     return axios.request({
       method: 'get',
-      url:config.baseUrl+'/crossindustry/shopPage/getShopByShopType',
+      url:'/api/crossindustry/shopPage/getShopByShopType',
       params: params
     })
   },
@@ -53,7 +53,7 @@ const api = {
   getShopInformation(shopid) {
     return axios.request({
       method: 'get',
-      url:config.baseUrl+'/crossindustry/shopPage/getShopInformation',
+      url:'/api/crossindustry/shopPage/getShopInformation',
       params: {
         shopId: shopid
       }
@@ -63,7 +63,7 @@ const api = {
   getStroshops(shopid){
     return axios.request({
       method:'get',
-      url:config.baseUrl+'/crossindustry/shopPage/getShopProduct',
+      url:'/api/crossindustry/shopPage/getShopProduct',
       params:{
         shopId:shopid
       }
@@ -73,7 +73,7 @@ const api = {
   getDiscon(shopid){
     return axios.request({
       method:'get',
-      url:config.baseUrl+'/crossindustry/shopPage/getShopDeduction',
+      url:'/api/crossindustry/shopPage/getShopDeduction',
       params:{
         shopId:shopid
       }
@@ -83,7 +83,7 @@ const api = {
   payDicon(params){
       return axios.request({
         method:'get',
-        url:config.baseUrl+'/crossindustry/shopPage/deductPay',
+        url:'/api/crossindustry/shopPage/deductPay',
         params:params
       })
   },
@@ -100,7 +100,7 @@ const api = {
   getIndexList(params){
     return axios.request({
       method:'get',
-      url:config.baseUrl+'/crossindustry/shopPage/nearbyShops',
+      url:'/api/crossindustry/shopPage/nearbyShops',
       params:params
     })
   },
@@ -108,7 +108,7 @@ const api = {
   homeSearch(params){
     return axios.request({
       method:'get',
-      url:config.baseUrl+'/crossindustry/shopPage/search',
+      url:'/api/crossindustry/shopPage/search',
       params:params
     })
   },
@@ -116,14 +116,14 @@ const api = {
   gethotWord(){
     return axios.request({
       method:'get',
-      url:config.baseUrl+'/crossindustry/shopPage/getHotWord'
+      url:'/api/crossindustry/shopPage/getHotWord'
     })
   },
   // 新闻条
   getheadLine() {
     return axios.request({
       method: 'get',
-      url:config.baseUrl+'/crossindustry/shopPage/getHeadLine'
+      url:'/api/crossindustry/shopPage/getHeadLine'
     })
   },
 
@@ -131,7 +131,7 @@ const api = {
   getPay1(params){
     return axios.request({
       method:'get',
-      url:config.baseUrl+'/crossindustry/alipay/pay',
+      url:'/api/crossindustry/alipay/pay',
       params:params
     })
   },
@@ -139,7 +139,7 @@ const api = {
   getCardlist(params){
     return axios.request({
       method:'get',
-      url:config.baseUrl+'/crossindustry/userPage/getCardList',
+      url:'/api/crossindustry/userPage/getCardList',
       params:params
     })
   },
@@ -147,7 +147,7 @@ const api = {
   manageRecharge(params){
     return axios.request({
       method:'get',
-      url:config.baseUrl+'/crossindustry/userPage/manageRecharge',
+      url:'/api/crossindustry/userPage/manageRecharge',
       params:params
     })
   },
@@ -155,7 +155,7 @@ const api = {
   getagentUser(params){
     return axios.request({
       method:'get',
-      url:config.baseUrl+'/crossindustry/userPage/getAgentUser',
+      url:'/api/crossindustry/userPage/getAgentUser',
       params:params
     })
   },
@@ -163,7 +163,7 @@ const api = {
   getProduct(productId){
     return axios.request({
       method:'get',
-      url:config.baseUrl+'/crossindustry/shopPage/getProductMessage',
+      url:'/api/crossindustry/shopPage/getProductMessage',
       params:{
         productId:productId
       }
@@ -173,7 +173,7 @@ const api = {
   getpaystatus(orderId){
     return axios.request({
       method:'get',
-      url:config.baseUrl+'/crossindustry/shopPage/judgeOrderStatus',
+      url:'/api/crossindustry/shopPage/judgeOrderStatus',
       params:{
         orderId:orderId
       }
@@ -183,7 +183,7 @@ const api = {
   getInfor(userid){
     return axios.request({
       method:'get',
-      url:config.baseUrl+'/crossindustry/phonePage/getUserInformation',
+      url:'/api/crossindustry/phonePage/getUserInformation',
       params:{
         userId:userid
       }
@@ -192,8 +192,23 @@ const api = {
   shareRegister(params){
     return axios.request({
       method:'get',
-      url:config.baseUrl+'/crossindustry/userManage/shareRegister',
+      url:'/api/crossindustry/userManage/shareRegister',
       params:params
+    })
+  },
+  // 领取优惠券
+  getConpou(params){
+    return axios.request({
+      method:'get',
+      url:'/api/crossindustry/powerPurchaser/getQuanlink',
+      params:params
+    })
+  },
+  //成功领取
+  getSess(){
+    return axios.request({
+      method:'get',
+      url:'https://acs.m.taobao.com/h5/mtop.alimama.union.hsf.coupon.get/1.0/?jsv=2.4.0&appKey=12574478&t=1528968734043&sign=854db05a11347be3faa5b0980718c805&api=mtop.alimama.union.hsf.coupon.get&v=1.0&AntiCreep=true&AntiFlood=true&type=jsonp&dataType=jsonp&callback=mtopjsonp1&data={"e":"xoyvPHKA4ToGQASttHIRqYSIT%2F9eOKFdCey1AiYoIWat3jOelrqun34L01ZdcrpwzWaMcPcatNCKdbEkXytHL5Q5wfGz%2Fu%2BNZhslHmaWDjMu2U1SwL8p1muFqp8TFaHM0fZrWRyQevUuPScDq4%2BZBw%3D%3D","pid":"mm_96231688_7050284_23466771"}',
     })
   }
 }
