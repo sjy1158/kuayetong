@@ -24,6 +24,9 @@ import userMg from '../pages/userMg'
 import pageStatus from '../pages/pageStatus'
 import Sharepage from '../pages/Sharepage'
 import Shareweima from '../pages/Shareweima'
+import receiveCoupons from '../pages/receiveCoupons'
+import logintaobao from '../pages/logintaobao'
+import comPurchase from '../pages/comPurchase'
 Vue.use(Router)
 
 export default new Router({
@@ -166,6 +169,21 @@ export default new Router({
       name:'payOver',
       path:'/payOver',
       component:payOver
+    },
+    {
+      name:'comPurchase',
+      path:'/comPurchase',
+      component:comPurchase
+    },
+    {
+      name:'logintaobao',
+      path:'/logintaobao',
+      component:logintaobao
+    },
+    {
+      name:'receiveCoupons',
+      path:'/receiveCoupons',
+      component:receiveCoupons
     },
     {
       name:'listItem',

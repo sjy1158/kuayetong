@@ -2,63 +2,61 @@
   <div class="nearShop">
 
     <!--<van-loading color="black" class="top active" style="height: 1rem;width: 1rem;position: absolute;z-index: 999999999999999;left: 50%;margin-left: -0.5rem;opacity:0;top: 5rem;background: white;box-shadow:0px 0px 8px gray;border-radius: 50%;"/>-->
-
     <!--头部-->
-    <van-pull-refresh v-model="isLoading2" @refresh="onRefresh2">
-    <div id="scrollheight">
-      <div class="header">
-        <el-amap vid="amap" :plugin="plugin" class="amap-demo" style="display: none"></el-amap>
-        <div>
-          <van-swipe :autoplay="3000">
-            <van-swipe-item v-for="item in images">
-              <img :src="item.advertiseImageUrl" style="-webkit-font-smoothing:antialiased"/>
-            </van-swipe-item>
-          </van-swipe>
-        </div>
-        <!--天气显示-->
-        <div class="titlelocation">
-          <div class="locationtext">
-            <img src="../assets/business_positioning@2x.png" alt="" style="width: 10px;height: 15px;">
-
-            <!--<van-notice-bar style="background: none!important;left: 1rem;color: white!important;top: -0.1rem;" v-if="loaded">-->
-            <!--{{formattedAddress}}-->
-            <!--</van-notice-bar>-->
-            <van-notice-bar  v-if="loaded" style="background: none!important;left: 1rem;color: white!important;top: -0.1rem;font-size: 16px!important;"
-                             :text="formattedAddress"
-            />
-
-            <van-notice-bar style="background: none!important;left: 1rem;color: white!important;top: -0.1rem;font-size: 16px!important;" v-else>
-              定位中...
-            </van-notice-bar>
-
-            <!--<span v-else>定位中...</span>-->
+    <van-pull-refresh v-model="isLoading" @refresh="onRefresh">
+      <div id="scrollheight">
+        <div class="header">
+          <el-amap vid="amap" :plugin="plugin" class="amap-demo" style="display: none"></el-amap>
+          <div>
+            <van-swipe :autoplay="3000">
+              <van-swipe-item v-for="item in images">
+                <img :src="item.advertiseImageUrl" style="-webkit-font-smoothing:antialiased"/>
+              </van-swipe-item>
+            </van-swipe>
           </div>
-          <div class="weather" style="margin-top: 5px;">
-            <div class="weathertext">
-              <p style="font-size: 15px;">{{tmp}}℃</p>
-              <p style="font-size: 8px;">{{weather}}</p>
-              <img v-show="weathericon==true" src="../assets/business_weather@2x.png" alt="" style="padding-left: 0.3rem;height: 20px;width: 18px;padding-top: 0.15rem;">
-              <img v-show="weathericon==false" src="../assets/during_the_day@2x.png" alt="" style="padding-left: 0.3rem;height: 20px;width: 18px;padding-top: 0.15rem;">
+          <!--天气显示-->
+          <div class="titlelocation">
+            <div class="locationtext">
+              <img src="../assets/business_positioning@2x.png" alt="" style="width: 10px;height: 15px;">
+
+              <!--<van-notice-bar style="background: none!important;left: 1rem;color: white!important;top: -0.1rem;" v-if="loaded">-->
+              <!--{{formattedAddress}}-->
+              <!--</van-notice-bar>-->
+              <van-notice-bar  v-if="loaded" style="background: none!important;left: 1rem;color: white!important;top: -0.1rem;font-size: 16px!important;"
+                               :text="formattedAddress"
+              />
+
+              <van-notice-bar style="background: none!important;left: 1rem;color: white!important;top: -0.1rem;font-size: 16px!important;" v-else>
+                定位中...
+              </van-notice-bar>
+
+              <!--<span v-else>定位中...</span>-->
+            </div>
+            <div class="weather" style="margin-top: 5px;">
+              <div class="weathertext">
+                <p style="font-size: 15px;">{{tmp}}℃</p>
+                <p style="font-size: 8px;">{{weather}}</p>
+                <img v-show="weathericon==true" src="../assets/business_weather@2x.png" alt="" style="padding-left: 0.3rem;height: 20px;width: 18px;padding-top: 0.15rem;">
+                <img v-show="weathericon==false" src="../assets/during_the_day@2x.png" alt="" style="padding-left: 0.3rem;height: 20px;width: 18px;padding-top: 0.15rem;">
+              </div>
             </div>
           </div>
-        </div>
         <!--输入框-->
-        <div class="search">
-          <input type="search" v-model="value" placeholder="输入商品名称／宝贝标题搜索" ref="input1" @keyup="show($event)">
-        </div>
+          <div class="search">
+            <input type="search" v-model="value" placeholder="输入商品名称／宝贝标题搜索" ref="input1" @keyup="show($event)">
+          </div>
 
-        <div class="shoptab">
-          <ul id="choceshop">
-            <li class="van-ellipsis" v-for="item in hotarr">{{item}}</li>
-          </ul>
-        </div>
+          <div class="shoptab">
+            <ul id="choceshop">
+              <li class="van-ellipsis" v-for="item in hotarr">{{item}}</li>
+            </ul>
+          </div>
 
 
         <div style="width: 110%;height: 50px;position: absolute; border-radius: 60% 60% 0 0;background: white;bottom: -30px;left: 50%;margin-left: -55%;-webkit-font-smoothing:antialiased" >
 
         </div>
       </div>
-
       <!--主题-->
       <div class="menulist" style="">
         <ul>
@@ -157,8 +155,6 @@
       </van-tabs>
     </div>
     </van-pull-refresh>
-
-
   </div>
 </template>
 <script>
@@ -432,25 +428,6 @@
       setTimeout(()=>{
         document.querySelector('.van-tabs__line').style.transform='translateX(50px)';
       },100);
-        document.getElementById('scrollheight').addEventListener('touchstart',function (e) {
-          startX=e.touches[0].pageX;
-          startY=e.touches[0].pageY;
-        })
-        document.getElementById('scrollheight').addEventListener('touchmove',function (e) {
-          var y = e.touches[0].pageY;
-          if(y-startY>0){
-            if(_this.loadreload){
-            document.querySelector('.top').classList.add('active');
-                _this.getIcon();
-                _this.gethot();
-                _this.loadreload = false;
-            setTimeout(function () {
-                  _this.loadreload = true;
-                  document.querySelector('.top').classList.remove('active');
-                },1000);
-            }
-          }
-        });
     }
   }
 </script>
@@ -549,7 +526,7 @@
   }
 
   .header .search{
-    /*background: palevioletred;*/
+      /*background: palevioletred;*/
     width:12rem;
     height: 0.8rem;
     top: 1.7rem;
@@ -559,6 +536,24 @@
     /*background: green;*/
 
     /*position: absolute;*/
+  }
+  .search2{
+    width:100%;
+    height: 0.8rem;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+  }
+  .search2 input{
+    height: 100%!important;
+    width:100%!important;
+    border: none;
+    background: rgba(255,255,255,.95);
+    border-radius: 0.5rem;
+    padding-left: 0.5rem;
+    padding-right: 0.3rem;
+    font-size: 14px;
+    color: black;
   }
   .header .search input{
     height: 100%!important;
