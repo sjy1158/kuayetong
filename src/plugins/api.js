@@ -200,7 +200,7 @@ const api = {
   getConpou(params){
     return axios.request({
       method:'get',
-      url:'/api/crossindustry/powerPurchaser/getQuanlink',
+      url:config.baseUrl+'/crossindustry/powerPurchaser/getQuanlink',
       params:params
     })
   },

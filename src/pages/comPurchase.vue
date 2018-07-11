@@ -16,8 +16,8 @@
       </div>
   </div>
 
-  <div style="height: 50px;overflow: hidden;margin-top: 10px;">
-    <iframe :src="src" id="preframe" scrolling="no" style="height: 300px;border: 0px none;width: 100%;margin-top: -180px;margin-left: -24px;">
+  <div id="pop" style="height: 50px;overflow: hidden;margin-top: 10px;display: none">
+    <iframe src="https://uland.taobao.com/quan/detail?sellerId=753490464&activityId=b72abb40ed3f49cd94d41304124e234f" id="preframe" scrolling="no" style="height: 300px;border: 0px none;width: 100%;margin-top: -180px;margin-left: -24px;">
     </iframe>
   </div>
   <!--<div style="height: 75px;width: 150px;background: #f08400;margin: 0 auto;color: white;margin-top: 10px!important;">-->
@@ -53,9 +53,7 @@
             title: '提示',
             message: '此操作不可撤销，请确认使用跨业通余额'+0.00+'元抵扣买单'
           }).then(() => {
-            _this.$api.getConpou(_this.params).then((res)=>{
-              _this.src=res;
-            })
+              document.getElementById('pop').style.display='block';
           }).catch(() => {
             return
           })
