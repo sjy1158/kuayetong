@@ -94,7 +94,6 @@
   .van-tabs .van-tab img{
     width: 100px;
     height: 88px;
-    margin-top: 0.6rem;
   }
   .title{
     padding: 0.4rem;

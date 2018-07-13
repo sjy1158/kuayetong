@@ -1,8 +1,12 @@
 <template>
   <div id="all" style="width: 100%;height: 100%;">
+    <button type="button" @click="open" style="margin-top: 200px;">
+      去领券
+    </button>
     <div>
-      <div class="button" style="position: absolute;z-index: 999999999999999;width: 100%;height: 100%;">
-        <iframe src="https://uland.taobao.com/quan/detail?sellerId=3063594148&activityId=e9419e51fa234e0ea6178fe8ba116d11" id="preframe" scrolling="0" frameborder="0" width="100%" height="100%">
+      <div class="button" style="position: absolute;z-index: 999999999999999;width: 100%;height: 500px;">
+        <iframe src="https://login.m.taobao.com/login.htm?" id="preframe" scrolling="0" frameborder="0" width="100%" height="100%" style="border:none">
+
         </iframe>
       </div>
     </div>
@@ -11,7 +15,17 @@
 
 <script>
     export default {
-        name: "logintaobao"
+        name: "logintaobao",
+      data(){
+          return{
+
+          }
+      },
+      methods:{
+          open(){
+            this.$router.push('/comPurchase');
+          }
+      }
     }
 </script>
 

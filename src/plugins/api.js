@@ -200,9 +200,16 @@ const api = {
   getConpou(params){
     return axios.request({
       method:'get',
-      url:config.baseUrl+'/crossindustry/powerPurchaser/getQuanlink',
+      url:'/api/crossindustry/powerPurchaser/getQuanlink',
       params:params
     })
+  },
+  getDinshang(params){
+      return axios.request({
+        method:'get',
+        url:'/api/crossindustry/powerPurchaser/getpro',
+        params:params
+      })
   },
   getConpoulist(){
     return axios.request({

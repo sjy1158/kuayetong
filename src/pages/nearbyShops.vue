@@ -1,6 +1,5 @@
 <template>
   <div class="nearShop">
-
     <!--<van-loading color="black" class="top active" style="height: 1rem;width: 1rem;position: absolute;z-index: 999999999999999;left: 50%;margin-left: -0.5rem;opacity:0;top: 5rem;background: white;box-shadow:0px 0px 8px gray;border-radius: 50%;"/>-->
     <!--头部-->
     <van-pull-refresh v-model="isLoading" @refresh="onRefresh">
@@ -77,7 +76,7 @@
           <img src="../assets/business_business_headlines@2x.png" alt="" style="height: 28px;width: 27px;margin-top: 11px;">
         </div>
         <div>
-          <img src="../assets/merchant_avatar@2x.png" alt="" style="width: 34px;height: 34px;margin-top: 5px;">
+          <img src="../assets/merchant_avatar@3x.png" alt="" style="width: 34px;height: 34px;margin-top: 5px;" @click="openGet">
         </div>
         <!--<van-notice-bar :scrollable="true" v-if="loaded">-->
           <!--<span style="margin-right: 0.5rem;" v-for="item in linearr">{{item.id}}.{{item.headline}}</span>-->
@@ -308,7 +307,11 @@
         });
       },
       openMeishilist(){
-        this.$router.push('/allShops');
+        this.$router.push('/logintaobao');
+        // window.location.href='https://login.m.taobao.com/login.htm?';
+      },
+      openGet(){
+          this.$router.push('/comPurchase');
       },
       getweather(city){
         var _this = this;
@@ -408,6 +411,7 @@
         arrstr.push(arr[i].split('=')[1]);
       }
       this.logarr=arrstr;
+      alert(this.logarr);
     },
     mounted(){
       var _this = this;
@@ -419,7 +423,7 @@
         } else {
           this.activeIndex = 0;
         }
-      }, 1000);
+      }, 2500);
       this.getindexList(this.params);
       this.getweather('杭州');
       this.getIcon();
