@@ -200,14 +200,14 @@ const api = {
   getConpou(params){
     return axios.request({
       method:'get',
-      url:'/api/crossindustry/powerPurchaser/getQuanlink',
+      url:config.baseUrl+'/crossindustry/powerPurchaser/getQuanlink',
       params:params
     })
   },
   getDinshang(params){
       return axios.request({
         method:'get',
-        url:'/api/crossindustry/powerPurchaser/getpro',
+        url:config.baseUrl+'/crossindustry/powerPurchaser/getpro',
         params:params
       })
   },
@@ -215,6 +215,15 @@ const api = {
     return axios.request({
       method:'get',
       url:'https://acs.m.taobao.com/h5/mtop.alimama.union.hsf.mama.coupon.apply/1.0/?jsv=2.3.16&appKey=12574478&t=1531309271615&sign=0536daeed24b11ef94e8ab7cb11ba33e&api=mtop.alimama.union.hsf.mama.coupon.apply&AntiCreep=true&v=1.0&ecode=1&LoginRequest=true&type=jsonp&dataType=jsonp&callback=mtopjsonp3&data=%7B%22sellerId%22%3A%223063594148%22%2C%22activityId%22%3A%22e9419e51fa234e0ea6178fe8ba116d11%22%2C%22pid%22%3A%22mm_33231688_7050284_23466709%22%2C%22mteeUa%22%3A%22110%23QAZkAUkfkBKWgnaH2wgAMuy2kMJ2vkNOmkm2hQ7%2F8DBLkhOryE2IjQk2QgVn81KCjKkchQ7y8bBokPkoi%2F%2F%2Fjn3ekQap8MGQm0jchn0y833skkkpheK62miDbToEbcrgSg%2FOdXeJMGTCUFFwRe6ztrrKgTvwsTfjcz49bEciskT47TmwjsSQ44W3sOgwpO144yjOsfIisG2kGOmwjTcwkkTa0Ovis9T4acwOs3kkQxYKqTrej9TBkdYEgIwM2pUkDoGWrXrJC4LQE7HGM5jXLd%2FjKKOTclbEYKG7niwI3cJ9tdfy3o8LEOf0UKfaGD%2BMCBzz2byqnRPetTfkAmNvW0mqR3mMSJBYFJb4SOZlxznzm%2FerqKZpnlGM%2Bcj%2BhS8jRm3kjMLUC0E5C75Zo%2F5LV6pra2tseQPCn26ARWv5d8FI%2BUt6McEOr4AfAcrZSRtJiScvRBgeXP90ewACanD0pVWH82B03BSfrGFeUkjdRrl4gIbBNy5CKSMZ1VPWXxefSQnAJHzNJ6Cqy%2FkukAD74K%3D%3D%22%2C%22umidToken%22%3A%22HV01PAAZ0baf6cca73c35d125b45efd00025fb9f%22%7D'
+    })
+  },
+
+  // 微信支付
+  payWei(params){
+    return axios.request({
+      method:'get',
+      url:config.baseUrl+'/crossindustry/pay.do',
+      params:params
     })
   }
 }

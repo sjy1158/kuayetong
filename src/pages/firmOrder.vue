@@ -145,7 +145,7 @@
             productId:this.$route.query.shoptypeid,
             num:'',
             money:'',
-            userId:'8'
+            userId:'5d'
           },
           valuelocation:'',
           shoparr:[],
@@ -159,7 +159,7 @@
           this.isshow = !this.isshow;
         },
         change(){
-            alert(this.radio);
+            this.typeparams.type=this.radio;
         },
         finish(val){
           var _this = this;
@@ -200,10 +200,16 @@
             this.typeparams.word = this.value2;
             this.typeparams.num = this.value1;
             this.typeparams.money = this.allsize;
-            this.$router.push({
-              path:'/payOk',
-              query:this.typeparams
-            })
+              if(this.radio==1){
+              this.$router.push({
+                path:'/payOk',
+                query:this.typeparams
+              })
+             }else if(this.radio==2){
+                this.$api.payWei(this.typeparams).then((res)=>{
+                  window.location.href="https://www.baidu.com/";
+                })
+              }
           }
         },
         //获取产品

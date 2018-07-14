@@ -12,18 +12,18 @@
         <input type="search" v-model="value" placeholder="输入商家或商品名称搜索" ref="input1" @keyup="show($event)">
       </div>
     </div>
-    <!--搜索框ending-->
-    <div class="gopindao" style="position: fixed;top: 2.1rem;width: 100%;z-index: 999999;background: #f2f2f2">
-        <div style="float: left"></div>
-      <div style="width: 70%;height: 1.5rem;float: right;margin-right: 0.3rem;line-height: 1.5rem;font-size: 0.3rem;">
+    <div style="margin-top: 2.2rem;margin-right: 0.25rem;">
+      <div style="width: 2.5rem;padding-top: 9px;font-size: 13px;float: left;">美食</div>
+      <div style="width: 72%;float: right;padding-top: 9px;">
+        <span style="float: left">美食（1996）</span>
+        <span style="float: right">去频道</span>
       </div>
     </div>
-
     <!--侧边栏-->
-    <div class="shoplist" style="top: 3.5rem;z-index: -99999999;margin-bottom: 2rem;position: fixed;">
+    <div class="shoplist" style="top: 3.4rem;z-index: -99999999;margin-bottom: 2rem;position: fixed;">
       <div style="float: left;background: white">
         <ul style="width: 2.5rem;">
-          <li v-for="item in tabarr" @click="onClick(item.id)" v-bind:class="index==item.id ? 'active':''">{{item.name}}</li>
+          <li v-for="item in tabarr" @click="onClick(item.id,item.sumShop)" v-bind:class="index==item.id ? 'active':''">{{item.name}}</li>
           <!--<li @click="onClick(1)" v-bind:class="index==1 ? 'active':''">甜点饮品</li>-->
           <!--<li @click="onClick(2)" v-bind:class="index==2 ? 'active':''">正餐优选</li>-->
           <!--<li @click="onClick(3)" v-bind:class="index==3 ? 'active':''">能量西餐</li>-->
@@ -39,7 +39,7 @@
       </div>
     </div>
 
-    <div style="width: 70%;background: white;float: right;margin-right: 0.25rem;position: absolute;right: 0px;top: 3.5rem;z-index: -99999">
+    <div style="width: 70%;background: white;float: right;margin-right: 0.25rem;position: absolute;right: 0px;top: 3.4rem;z-index: -99999">
       <router-view></router-view>
     </div>
 
@@ -66,7 +66,7 @@
             Toast('暂无法搜索')
           }
         },
-        onClick(id) {
+        onClick(id,slideindex) {
           this.indextab++;
           this.index = id;
           this.$router.push({
@@ -77,12 +77,14 @@
           })
         },
         openMeishilist(){
+          // this.$router.push('/nearbyShops');
           this.sum=1+this.indextab;
           window.history.go(-this.sum);
         },
         getIcon(){
           var _this = this;
           this.$api.geticon().then(function (res) {
+            // alert(res.sumShop);
             _this.tabarr = res.list;
             _this.onClick(_this.tabarr[0].id);
           })
@@ -183,8 +185,8 @@
     display: none;
   }
   .shoplist ul li{
-    height: 1.5rem;
-    line-height: 1.5rem;
+    height: 1.2rem;
+    line-height: 1.2rem;
     font-size: 13px;
   }
 </style>

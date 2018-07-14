@@ -48,7 +48,6 @@
                   <a :href="'tel:'+ call"><img src="../assets/merchant_address_telephone@2x.png" alt=""></a>
                   <p>电话</p>
                 </div>
-               <!--<div style="float: right;line-height: 1rem;margin-right: 0.5rem">|</div>-->
                 <div style="float: right;margin-right: 0.7rem;">
                   <img src="../assets/merchant_address_navigation@2x.png" alt="">
                 <p>导航</p>

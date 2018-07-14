@@ -9,7 +9,7 @@
       </van-swipe-item>
     </van-swipe>
     <div class="slidesum" style=""><span style="padding-right: 2px;">{{index+1}}</span>/<span style="padding-left: 2px;">{{imgUrl.length}}</span></div>
-    <img src="../assets/commerce_return_bg@3x.png" alt="" style="position: absolute;width: 32px;height: 32px;top: 23px;left: 10px;" @click="getLeft">
+    <img src="../assets/commerce_return_bg@3x.png" alt="" style="position: fixed;width: 32px;height: 32px;top: 23px;left: 10px;z-index: 9999999999999999999999;" @click="getLeft">
   </div>
 
   <div style="height: auto;background: white;padding:10px;">
@@ -176,14 +176,15 @@
         },
         getcoupon(params){
           this.$api.getConpou(params).then((res)=>{
-            var arrall=[];
-            var activityId=res.split('?')[1];
-            var arr=activityId.split('&');
-            for (var i=0;i<arr.length;i++){
-              arrall.push(arr[i].split("=")[1])
-            };
-            var arrpd=arrall[1];
-            window.location.href='https://uland.taobao.com/coupon/edetail?e=/KfYv1f4RuQGQASttHIRqf5e1NUPk9EB35zW1YK2zpH73GnxKsppM+/jeYyibvzN4EmMoALL5Z8+D4SDSmjXfpQ5wfGz/u+Nx3iAE/j7p2ddiwTmD3eVNmuFqp8TFaHM52ttWb//2DPfHkioo+/RrQ==&traceId=0ab2017015314795170647938e&pid=mm_132210399_46844403_1735122725&activityId='+arrpd+'&src=cn666_com&tj1=1&tj2=1';
+            window.location.href=res;
+            // var arrall=[];
+            // var activityId=res.split('?')[1];
+            // var arr=activityId.split('&');
+            // for (var i=0;i<arr.length;i++){
+            //   arrall.push(arr[i].split("=")[1])
+            // };
+            // var arrpd=arrall[1];
+           // window.location.href='https://uland.taobao.com/coupon/edetail?e=/KfYv1f4RuQGQASttHIRqf5e1NUPk9EB35zW1YK2zpH73GnxKsppM+/jeYyibvzN4EmMoALL5Z8+D4SDSmjXfpQ5wfGz/u+Nx3iAE/j7p2ddiwTmD3eVNmuFqp8TFaHM52ttWb//2DPfHkioo+/RrQ==&traceId=0ab2017015314795170647938e&pid=mm_132210399_46844403_1735122725&activityId='+arrpd+'&src=cn666_com&tj1=1&tj2=1';
             // window.location.href="https://uland.taobao.com/coupon/edetail?"+res.split("?")[1]
           })
         },

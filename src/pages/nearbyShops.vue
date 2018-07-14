@@ -1,5 +1,8 @@
 <template>
   <div class="nearShop">
+    <div class="search" style="position: fixed;top: 0px;z-index: 99999999999999999999;display: none" id="search">
+      <input type="search" v-model="value" placeholder="输入商品名称／宝贝标题搜索" ref="input1" @keyup="show($event)">
+    </div>
     <!--<van-loading color="black" class="top active" style="height: 1rem;width: 1rem;position: absolute;z-index: 999999999999999;left: 50%;margin-left: -0.5rem;opacity:0;top: 5rem;background: white;box-shadow:0px 0px 8px gray;border-radius: 50%;"/>-->
     <!--头部-->
     <van-pull-refresh v-model="isLoading" @refresh="onRefresh">
@@ -59,12 +62,12 @@
       <!--主题-->
       <div class="menulist" style="">
         <ul>
-          <li v-for="item in iconarr">
-            <img :src="item.imageUrl" alt="" @click="openBusinesshome(item.name,item.id)">
+          <li v-for="item in iconarr" @click="openBusinesshome(item.name,item.id)">
+            <img :src="item.imageUrl" alt="">
             <p>{{item.name}}</p>
           </li>
-          <li>
-            <img src="../assets/merchants_all_icon@2x.png" alt="" style="width: 34px;height: 34px;" @click="openMeishilist">
+          <li @click="openMeishilist">
+            <img src="../assets/merchants_all_icon@2x.png" alt="" style="width: 34px;height: 34px;">
             <p>查看全部</p>
           </li>
         </ul>
@@ -76,7 +79,7 @@
           <img src="../assets/business_business_headlines@2x.png" alt="" style="height: 28px;width: 27px;margin-top: 11px;">
         </div>
         <div>
-          <img src="../assets/merchant_avatar@3x.png" alt="" style="width: 34px;height: 34px;margin-top: 5px;" @click="openGet">
+          <img src="../assets/merchant_avatar@3x.png" alt="" style="width: 34px;height: 34px;margin-top: 5px;">
         </div>
         <!--<van-notice-bar :scrollable="true" v-if="loaded">-->
           <!--<span style="margin-right: 0.5rem;" v-for="item in linearr">{{item.id}}.{{item.headline}}</span>-->
@@ -86,10 +89,10 @@
             <li v-for="item in linearr">
               <p style="font-size: 12px;color: #393939;font-weight: bold">{{item.headline}}</p>
               <p style="font-size: 12px;color: #393939;">@{{item.headline}}</p>
-            </li >
+            </li>
             <li>
-              <p style="font-size: 12px;color: #393939;font-weight: bold">港诚医美芦琪评论了附近店铺</p>
-              <p style="font-size: 12px;color: #393939;">@福宇记黄焖鸡米饭（新塘店）</p>
+              <p style="font-size: 12px;color: #393939;font-weight: bold">黄焖鸡开业了,你造么？</p>
+              <p style="font-size: 12px;color: #393939;">@黄焖鸡开业了,你造么？</p>
             </li>
           </ul>
         </div>
@@ -307,11 +310,8 @@
         });
       },
       openMeishilist(){
-        this.$router.push('/logintaobao');
+        this.$router.push('/allShops');
         // window.location.href='https://login.m.taobao.com/login.htm?';
-      },
-      openGet(){
-          this.$router.push('/comPurchase');
       },
       getweather(city){
         var _this = this;
@@ -432,6 +432,17 @@
       setTimeout(()=>{
         document.querySelector('.van-tabs__line').style.transform='translateX(50px)';
       },100);
+
+      window.addEventListener('scroll',function () {
+        var height=document.querySelector('.header').clientHeight;
+        var pageY=window.pageYOffset;
+        if(pageY>height||pageY==height){
+          document.getElementById('search').style.display='block';
+        }else{
+          document.getElementById('search').style.display='none';
+        }
+        // alert(window.pageYOffset);
+      })
     }
   }
 </script>
@@ -540,6 +551,23 @@
     /*background: green;*/
 
     /*position: absolute;*/
+  }
+  #search{
+    width:100%;
+    height: 0.8rem;
+    top: 1.7rem;
+    position: absolute;
+  }
+  #search input{
+    height: 100%!important;
+    width:100%!important;
+    border: none;
+    background: rgba(255,255,255,.95);
+    /*border-radius: 0.5rem;*/
+    padding-left: 0.5rem;
+    padding-right: 0.3rem;
+    font-size: 14px;
+    color: black;
   }
   .search2{
     width:100%;

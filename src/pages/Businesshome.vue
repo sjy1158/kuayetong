@@ -24,7 +24,7 @@
                 <van-tabs type="line" @click="onClick" line-width="20" v-model="active">
                   <van-tab v-for="(item,index) in headerImg">
                     <div slot="title" @click="getId(item.id,index)">
-                      <img :src="item.imageUrl" alt="" style="padding-top: 10px;height: 48px;width: 48px;">
+                      <img :src="item.imageUrl" alt="" style="padding-top: 10px;height: 48px;width: 48px;border-radius: 50%;padding-top: 0px!important;" ref="imageList">
                       <p class="titleshop" style="font-size: 12px!important;">{{item.name}}</p>
                     </div>
                   </van-tab>
@@ -50,7 +50,7 @@
                   <img :src="item.shopHeadImageUrl" alt="" style="float: left" class="shopimg">
                   <div class="textbox">
                     <p>{{item.title}}</p>
-                    <p class="titlelist"><img src="../assets/businesses_icon@2x.png" alt=""><span>{{item.shopType}}</span><span>人均消费{{item.averageMoney}}元</span><span style="float: right"><100m</span></p>
+                    <p class="titlelist"><img src="../assets/businesses_icon@2x.png" alt=""><span>{{item.shopType}}</span><span>人均消费{{item.averageMoney}}元</span><span style="position: absolute;right: 25px;"><100m</span></p>
                     <p class="discon" v-if="item.deductionList.length!=0">
                       <span v-for="item1 in item.deductionList">{{item1.requireValue}}抵{{item1.value}}</span>
                     </p>
@@ -253,7 +253,7 @@
   }
   /*van-hairline--bottom van-nav-bar .van-nav-bar--fixed*/
     .searchbox{
-      height: 2.1rem;
+      height: 1.5rem;
       width: 96%;
       background: white;
       padding-left: 2%;
