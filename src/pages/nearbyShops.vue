@@ -1,8 +1,8 @@
 <template>
   <div class="nearShop">
-    <div class="search" style="position: fixed;top: 0px;z-index: 99999999999999999999;display: none" id="search">
-      <input type="search" v-model="value" placeholder="输入商品名称／宝贝标题搜索" ref="input1" @keyup="show($event)">
-    </div>
+    <!--<div class="search" style="position: fixed;top: 0px;z-index: 99999999999999999999;display: none;" id="search">-->
+      <!--<input type="search" v-model="value" placeholder="输入商品名称／宝贝标题搜索" ref="input1" @keyup="show($event)">-->
+    <!--</div>-->
     <!--<van-loading color="black" class="top active" style="height: 1rem;width: 1rem;position: absolute;z-index: 999999999999999;left: 50%;margin-left: -0.5rem;opacity:0;top: 5rem;background: white;box-shadow:0px 0px 8px gray;border-radius: 50%;"/>-->
     <!--头部-->
     <van-pull-refresh v-model="isLoading" @refresh="onRefresh">
