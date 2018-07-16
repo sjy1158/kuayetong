@@ -1,7 +1,7 @@
 <template>
   <div class="nearShop">
-    <!--<div class="search" style="position: fixed;top: 0px;z-index: 99999999999999999999;display: none;" id="search">-->
-      <!--<input type="search" v-model="value" placeholder="输入商品名称／宝贝标题搜索" ref="input1" @keyup="show($event)">-->
+    <!--&lt;!&ndash;<div class="search" style="position: fixed;top: 0px;z-index: 99999999999999999999;display: none;" id="search">&ndash;&gt;-->
+      <!--&lt;!&ndash;<input type="search" v-model="value" placeholder="输入商品名称／宝贝标题搜索" ref="input1" @keyup="show($event)">&ndash;&gt;-->
     <!--</div>-->
     <!--<van-loading color="black" class="top active" style="height: 1rem;width: 1rem;position: absolute;z-index: 999999999999999;left: 50%;margin-left: -0.5rem;opacity:0;top: 5rem;background: white;box-shadow:0px 0px 8px gray;border-radius: 50%;"/>-->
     <!--头部-->
@@ -161,6 +161,7 @@
 </template>
 <script>
   import axios from 'axios'
+  import storage from '../util/storage.js'
   export default {
     name: "nearbyShops",
     data(){
@@ -170,6 +171,7 @@
         activeIndex: 0,
         weathericon:'',
         time2:'',
+        userId:'',
         hotarr:[],
         loadreload:true,
         issum:true,
@@ -256,7 +258,8 @@
           path:'/Shophome/starProducts',
           query:{
             shopid:shopid,
-            pathid:1
+            pathid:1,
+            userId:this.userId,
           }
         });
       },
@@ -305,7 +308,8 @@
           query:{
             root:1,
             name:name,
-            id:id
+            id:id,
+            userId:this.userId
           }
         });
       },
@@ -411,7 +415,7 @@
         arrstr.push(arr[i].split('=')[1]);
       }
       this.logarr=arrstr;
-      alert(this.logarr);
+      this.userId=arrstr[3];
     },
     mounted(){
       var _this = this;

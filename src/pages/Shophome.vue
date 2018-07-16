@@ -82,6 +82,7 @@
       data(){
           return{
             shopid:'',
+            userIdL:'',
             index:1,
             headerTitle:'商家主页',
             path:'',
@@ -105,6 +106,7 @@
                   path:"/Shophome/Businessdetails",
                   query:{
                     shopid:this.$route.query.shopid,
+                    userId:this.$route.query.userId,
                   }
                 });
                 break;
@@ -112,7 +114,8 @@
                 this.$router.push({
                   path:"/Shophome/starProducts",
                   query:{
-                    shopid:this.$route.query.shopid
+                    shopid:this.$route.query.shopid,
+                    userId:this.$route.query.userId,
                   }
                 });
             }
@@ -128,7 +131,8 @@
               path:'/Paybill',
               query:{
                 shopid:this.$route.query.shopid,
-                sum:this.indexS
+                userId:this.$route.query.userId,
+                sum:this.indexS,
               }
             });
         },
@@ -145,6 +149,7 @@
       },
       created(){
         var shopid = this.$route.query.shopid;
+       // alert(this.$route.query.userId);
          // this.url=this.$route.query.url;
         this.getInformation(shopid);
       },

@@ -207,6 +207,7 @@
               })
              }else if(this.radio==2){
                 this.$api.payWei(this.typeparams).then((res)=>{
+                  // alert(JSON.stringify(res));
                   window.location.href="https://www.baidu.com/";
                 })
               }
@@ -217,6 +218,11 @@
           var _this=this;
           this.$api.getProduct(id).then((res)=>{
             _this.shoparr=res.list;
+          })
+        },
+        getPaystatus(orderId){
+          var _this=this;
+          this.$api.getpaystatus(orderId).then((res)=>{
           })
         }
       },

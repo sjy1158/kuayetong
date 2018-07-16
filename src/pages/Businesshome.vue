@@ -204,7 +204,8 @@
             query:{
               shopid:shopid,
               pathid:2,
-              url:this.$route.path
+              url:this.$route.path,
+              userId:this.$route.query.userId
             }
           });
           // localStorage.setItem('shopid',shopid);
@@ -228,6 +229,7 @@
           var _this = this;
         var name = this.$route.query.name;
         this.id = this.$route.query.id;
+        // alert(this.$route.query.userId);
         this.title = name;
         if(this.$route.query.root==1){
         this.getimg(this.id,0);
@@ -237,7 +239,7 @@
       },
       mounted(){
         this.active = this.$route.query.index;
-        athis.$geturl.getL();
+        this.$geturl.getL();
         // this.getId(this.$route.query.id1);
       }
     }

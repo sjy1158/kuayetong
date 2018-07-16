@@ -141,11 +141,11 @@
       data(){
           return{
             params:{
-              pId:'66',
-              userId:'5d'
+              pId:'',
+              userId:''
             },
             params2:{
-              id:'66'
+              id:''
             },
             src:'',
             prize:'',
@@ -157,6 +157,7 @@
             imgUrl:[],
             listArr:[],
             cliHeight:'',
+            logarr:[],
           }
       },
       methods:{
@@ -217,9 +218,19 @@
           this.getdinshang(this.params2);
         },
       },
+      created(){
+        var arrstr=[];
+        var arr=this.$geturl.getL();
+        for(var i=0;i<arr.length;i++){
+          arrstr.push(arr[i].split('=')[1]);
+        }
+        this.logarr=arrstr;
+        this.params.pId=arrstr[0];
+        this.params2.id=arrstr[0];
+        this.params.userId=arrstr[1];
+      },
       mounted(){
           this.getdinshang(this.params2);
-          this.$geturl.getL();
       }
     }
 </script>

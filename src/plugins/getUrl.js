@@ -7,6 +7,8 @@ const getUrl={
          url = decodeURI(document.URL);
       } else if(!!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/)){
          url = document.url;
+      }else{
+        url = decodeURI(document.URL);
       }
       if(url.indexOf("?") != -1){
         url = url.split("?")[1].split('&');

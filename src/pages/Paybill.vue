@@ -55,6 +55,7 @@
 <script>
     import { Dialog } from 'vant'
     import {Toast} from 'vant'
+    import storage from '../util/storage.js'
     export default {
         name: "Paybill",
       data(){
@@ -68,7 +69,7 @@
             moneyVal:'',
             params:{
               deductionId:'',
-              userId:'5d'
+              userId:this.$route.query.userId
             }
           }
       },
@@ -112,7 +113,7 @@
         },
         onClickLeft(){
             // alert(this.$route.query.sum);
-            window.history.go(-this.$route. query.sum);
+            window.history.go(-this.$route.query.sum);
         },
         getdiscon(shopid){
             var _this = this;
@@ -122,8 +123,12 @@
           })
         }
       },
+      mounted(){
+        // this.params.userId=storage.getToken('userId');
+      },
       created(){
         var shopid=this.$route.query.shopid;
+        // alert(this.$route.query.userId);
           this.getdiscon(shopid);
       }
     }
