@@ -208,7 +208,7 @@
              }else if(this.radio==2){
                 this.$api.payWei(this.typeparams).then((res)=>{
                   // alert(JSON.stringify(res));
-                  window.location.href="https://www.baidu.com/";
+                  window.location.href=res;
                 })
               }
           }
