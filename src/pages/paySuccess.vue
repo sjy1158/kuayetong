@@ -30,7 +30,7 @@
           window.history.go(-1);
         },
         finish(){
-          window.location.href="https://www.baidu.com/";
+          window.location.href="www.back.com";
         }
           },
       created(){
