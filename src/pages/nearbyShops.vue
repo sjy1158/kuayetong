@@ -415,9 +415,9 @@
         arrstr.push(arr[i].split('=')[1]);
       }
       this.logarr=arrstr;
-      this.userId=arrstr[3];
     },
     mounted(){
+      this.userId=this.logarr[4];
       var _this = this;
       var startX = 0,
         startY = 0;
