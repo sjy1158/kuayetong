@@ -39,7 +39,7 @@
       </div>
   </div>
 
-  <div style="width: 100%;height: 60px;background: white;margin-top: 10px;border-bottom: 3px solid #F2F2F2;">
+  <div style="width: 100%;height: 60px;background: white;margin-top: 10px;border-bottom: 3px solid #F2F2F2;position: relative">
       <div style="width: 5rem;height: 60px;margin: 0 auto;display: flex" class="titleshop">
         <div style="">
           <img src="../assets/commerce_merchandise_line@3x.png" alt="" class="leftimg">
@@ -51,9 +51,9 @@
         <div style="">
           <img src="../assets/commerce_merchandise_line2@3x.png" alt="" class="rightimg">
         </div>
+        <p @click="goxiangqing" style="margin: 0px!important;width: 100%;position: absolute;bottom: -0.5rem;right: 0px;font-size: 10px;color: #4AB1FE">（查看商品信息）</p>
       </div>
   </div>
-
   <div style="height: 373px;background: white;padding-top: 10px;padding-bottom: 10px;" v-for="item in imgUrl">
     <img :src="item" alt="" style="width: 100%;height: 100%;">
   </div>
@@ -158,6 +158,7 @@
             listArr:[],
             cliHeight:'',
             logarr:[],
+            location:'',
           }
       },
       methods:{
@@ -199,7 +200,11 @@
               _this.salesVolume=res.product.salesVolume;
               _this.deduction=res.product.deduction;
               _this.listArr=res.list;
+              _this.location='https://market.m.taobao.com/app/dinamic/h5-tb-detail/index.html?id='+res.itemId;
             })
+        },
+        goxiangqing(){
+          window.location.href=this.location;
         },
         change(index){
           // alert(index);

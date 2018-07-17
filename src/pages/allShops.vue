@@ -13,9 +13,9 @@
       </div>
     </div>
     <div style="margin-top: 2.2rem;margin-right: 0.25rem;">
-      <div style="width: 2.5rem;padding-top: 9px;font-size: 13px;float: left;">美食</div>
+      <div style="width: 2.5rem;padding-top: 9px;font-size: 13px;float: left;">{{name}}</div>
       <div style="width: 72%;float: right;padding-top: 9px;">
-        <span style="float: left">美食（1996）</span>
+        <span style="float: left">{{name}}<span>(</span>{{shopSum}}<span>)</span></span>
         <span style="float: right">去频道</span>
       </div>
     </div>
@@ -23,7 +23,7 @@
     <div class="shoplist" style="top: 3.4rem;z-index: -99999999;margin-bottom: 2rem;position: fixed;">
       <div style="float: left;background: white">
         <ul style="width: 2.5rem;">
-          <li v-for="item in tabarr" @click="onClick(item.id,item.sumShop)" v-bind:class="index==item.id ? 'active':''">{{item.name}}</li>
+          <li v-for="item in tabarr" @click="onClick(item.id,item.sumShop,item.name)" v-bind:class="index==item.id ? 'active':''">{{item.name}}</li>
           <!--<li @click="onClick(1)" v-bind:class="index==1 ? 'active':''">甜点饮品</li>-->
           <!--<li @click="onClick(2)" v-bind:class="index==2 ? 'active':''">正餐优选</li>-->
           <!--<li @click="onClick(3)" v-bind:class="index==3 ? 'active':''">能量西餐</li>-->
@@ -57,7 +57,9 @@
               activeKey: 0,
               index:0,
               tabarr:'',
-              path:''
+              path:'',
+              name:'',
+              shopSum:''
           }
       },
       methods: {
@@ -66,9 +68,11 @@
             Toast('暂无法搜索')
           }
         },
-        onClick(id,slideindex) {
+        onClick(id,slideindex,name) {
           this.indextab++;
           this.index = id;
+          this.name=name;
+          this.shopSum=slideindex;
           this.$router.push({
             path:'/allShops/Meishilist',
             query:{
@@ -86,7 +90,7 @@
           this.$api.geticon().then(function (res) {
             // alert(res.sumShop);
             _this.tabarr = res.list;
-            _this.onClick(_this.tabarr[0].id);
+            _this.onClick(_this.tabarr[0].id,_this.tabarr[0].sumShop,_this.tabarr[0].name);
           })
         }
       },

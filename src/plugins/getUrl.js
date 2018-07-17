@@ -6,7 +6,7 @@ const getUrl={
       if(u.indexOf('Android') > -1 || u.indexOf('Linux') > -1){
          url = decodeURI(document.URL);
       } else if(!!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/)){
-         url = document.url;
+        url = decodeURI(document.URL);
       }else{
         url = decodeURI(document.URL);
       }

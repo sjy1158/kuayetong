@@ -21,11 +21,22 @@
         <ul v-if="disconarr.length!=0">
           <li v-for="item in disconarr">
             <img src="../assets/merchant_deduct_red_and_white@2x.png" alt="">
-            <div style="position: absolute;top: 0.55rem;width:2.5rem;color: #FF0000">
+            <div style="position: absolute;top: 0.55rem;width:2.5rem;color: #FF0000;left: -0.2rem;">
               <p style="font-size: 9px!important;padding-top: 5px;">进店消费满</p>
               <p style="font-size: 12px!important;">¥{{item.requireValue}}</p>
             </div>
-            <div style="position: absolute;top: 0.55rem;width:2.5rem;left: 2.3rem;color: #FFFFFF">
+            <div style="position: absolute;top: 0.55rem;width:1.6rem;left: 2.15rem;color: #FFFFFF">
+              <p style="font-size: 9px!important;padding-top: 5px;">进店消费满</p>
+              <p style="font-size: 12px!important;">¥{{item.value}}</p>
+            </div>
+          </li>
+          <li v-for="item in disconarr">
+            <img src="../assets/merchant_deduct_red_and_white@2x.png" alt="">
+            <div style="position: absolute;top: 0.55rem;width:2.5rem;color: #FF0000;left: -0.2rem;">
+              <p style="font-size: 9px!important;padding-top: 5px;">进店消费满</p>
+              <p style="font-size: 12px!important;">¥{{item.requireValue}}</p>
+            </div>
+            <div style="position: absolute;top: 0.55rem;width:1.6rem;left: 2.15rem;color: #FFFFFF">
               <p style="font-size: 9px!important;padding-top: 5px;">进店消费满</p>
               <p style="font-size: 12px!important;">¥{{item.value}}</p>
             </div>
@@ -212,7 +223,7 @@
     display: flex;
   }
   .slideyouhui ul li{
-    flex: 1;
+    /*flex: 1;*/
     /*background: black;*/
     /*margin-right: 0.5rem;*/
     position: relative;
@@ -223,11 +234,11 @@
   .slideyouhui ul li p{
     /*font-size: 12px!important;*/
     margin: 0px!important;
-    padding-left: 0.2rem;
+    /*padding-left: 0.2rem;*/
   }
   .slideyouhui ul li img{
     height: 100%;
-    width: 5rem;
+    width: 4rem;
     float: left;
   }
   .slideyouhui .discon{
