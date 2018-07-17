@@ -83,7 +83,7 @@ const api = {
   payDicon(params){
       return axios.request({
         method:'get',
-        url:'/api/crossindustry/shopPage/deductPay',
+        url:config.baseUrl+'/crossindustry/shopPage/deductPay',
         params:params
       })
   },
@@ -207,7 +207,7 @@ const api = {
   getDinshang(params){
       return axios.request({
         method:'get',
-        url:'/api/crossindustry/powerPurchaser/getpro',
+        url:config.baseUrl+'/crossindustry/powerPurchaser/getpro',
         params:params
       })
   },
