@@ -204,39 +204,39 @@
           num:5,
           mark:0
         },
-        logarr:[],
-        plugin:[{
-          pName:'Geolocation',
-          events:{
-            init(o){
-              o.getCurrentPosition((status,result)=>{
-                if(result&&result.position) {
-                  _this.city = result.addressComponent.city;
-                  _this.params.latitude = result.position.lat;
-                  _this.params.longitude = result.position.lng;
-                  _this.center = [_this.params.longitude, _this.params.latitude];
-                  _this.loaded = true;
-                  _this.finished = false;
-                  _this.loading = true;
-                  _this.formattedAddress = result.formattedAddress.split('市')[1];
-                  _this.getweather(_this.city);
-                  _this.getindexList(_this.params);
-                  _this.$nextTick();
-                }else{
-                  _this.params.latitude =_this.logarr[0];
-                  _this.params.longitude = _this.logarr[1];
-                  _this.center = [_this.params.longitude, _this.params.latitude];
-                  _this.loaded = true;
-                  _this.finished = false;
-                  _this.loading = true;
-                  _this.formattedAddress = _this.logarr[3].split('#')[0];
-                  _this.getindexList(_this.params);
-                  _this.$nextTick();
-                }
-              })
-            }
-          }
-        }]
+        logarr:[]
+        // plugin:[{
+        //   pName:'Geolocation',
+        //   events:{
+        //     init(o){
+        //       o.getCurrentPosition((status,result)=>{
+        //         if(result&&result.position) {
+        //           _this.city = result.addressComponent.city;
+        //           _this.params.latitude = result.position.lat;
+        //           _this.params.longitude = result.position.lng;
+        //           _this.center = [_this.params.longitude, _this.params.latitude];
+        //           _this.loaded = true;
+        //           _this.finished = false;
+        //           _this.loading = true;
+        //           _this.formattedAddress = result.formattedAddress.split('市')[1];
+        //           _this.getweather(_this.city);
+        //           _this.getindexList(_this.params);
+        //           _this.$nextTick();
+        //         }else{
+        //           _this.params.latitude =_this.logarr[0];
+        //           _this.params.longitude = _this.logarr[1];
+        //           _this.center = [_this.params.longitude, _this.params.latitude];
+        //           _this.loaded = true;
+        //           _this.finished = false;
+        //           _this.loading = true;
+        //           _this.formattedAddress = _this.logarr[3].split('#')[0];
+        //           _this.getindexList(_this.params);
+        //           _this.$nextTick();
+        //         }
+        //       })
+        //     }
+        //   }
+        // }]
       }
     },
     methods:{
@@ -415,6 +415,7 @@
         arrstr.push(arr[i].split('=')[1]);
       }
       this.logarr=arrstr;
+      alert(this.logarr);
     },
     mounted(){
       this.userId=this.logarr[4];
