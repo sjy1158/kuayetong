@@ -282,7 +282,8 @@
   height: 16px;
     width: 17px;
     vertical-align:middle;
-    padding-left: 0.2rem;
+    padding-left: 0.4rem;
+    margin-top: -0.1rem;
   }
   .location .locationicon2 p{
       margin: 0px!important;

@@ -539,6 +539,7 @@
     width: 18px;
     position: absolute;
     right: -10px;
+    left: 20px;
     top: 1px;
   }
   .header .weather p{
