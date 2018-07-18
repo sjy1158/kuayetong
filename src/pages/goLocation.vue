@@ -7,6 +7,7 @@
     @click-left="onClickLeft"
     @click-right="onClickRight"
   />
+  <iframe :src="src" style="width: 100%;height: 100%;"></iframe>
 </div>
 </template>
 
@@ -15,12 +16,15 @@
         name: "goLocation",
       data(){
           return{
-
+            src:''
           }
+      },
+      created(){
+          this.src="https://m.amap.com/navigation/index/daddr="+this.$route.query.latitude+"%2C"+this.$route.query.longitude+"%2C"+this.$route.query.location;
       },
       methods:{
         onClickLeft(){
-          this.$router.go(-1);
+          window.history.go(-1);
         }
       }
     }
