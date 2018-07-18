@@ -27,6 +27,7 @@ import Shareweima from '../pages/Shareweima'
 import receiveCoupons from '../pages/receiveCoupons'
 import logintaobao from '../pages/logintaobao'
 import comPurchase from '../pages/comPurchase'
+import goLocation from '../pages/goLocation'
 Vue.use(Router)
 
 export default new Router({
@@ -177,6 +178,11 @@ export default new Router({
       name:'comPurchase',
       path:'/comPurchase',
       component:comPurchase
+    },
+    {
+      name:'goLocation',
+      path:'/goLocation',
+      component:goLocation
     },
     {
       name:'logintaobao',

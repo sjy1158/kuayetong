@@ -225,6 +225,14 @@ const api = {
       url:config.baseUrl+'/crossindustry/pay.do',
       params:params
     })
+  },
+
+  // 定位api
+  getMap(){
+    return axios.request({
+      method:'get',
+      url:'https://m.amap.com/detail/index/poiid=B000AAFAC5&callnative=1'
+    })
   }
 }
 export default class Api {

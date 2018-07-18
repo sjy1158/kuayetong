@@ -59,7 +59,7 @@
                   <a :href="'tel:'+ call"><img src="../assets/merchant_address_telephone@2x.png" alt=""></a>
                   <p>电话</p>
                 </div>
-                <div style="float: right;margin-right: 0.7rem;">
+                <div style="float: right;margin-right: 0.7rem;" @click="getmap">
                   <img src="../assets/merchant_address_navigation@2x.png" alt="">
                 <p>导航</p>
                 </div>
@@ -105,7 +105,9 @@
             shopHeadImageUrl:'',
             disconarr:'',
             location:'',
-            call:''
+            call:'',
+            latitude:'',
+            longitude:''
           }
       },
       methods:{
@@ -150,12 +152,18 @@
         getInformation(shopid){
             var _this = this;
            this.$api.getShopInformation(shopid).then(function (res) {
+             _this.latitude=res.latitude;
+             _this.longitude=res.longitude;
              _this.title = res.title;
              _this.shopHeadImageUrl = res.shopHeadImageUrl;
              _this.disconarr = res.deductionList;
              _this.location = res.specificAddress;
              _this.call = res.phone;
            })
+        },
+        getmap(){
+          window.location.href="https://m.amap.com/navigation/index/daddr="+this.latitude+"%2C"+this.longitude+"%2C"+this.location;
+           // window.location.href="https://m.amap.com/navigation/index/daddr=116.48105%2C39.996794%2C'望京';
         }
       },
       created(){
