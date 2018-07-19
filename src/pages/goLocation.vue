@@ -27,7 +27,7 @@
       methods:{
         onClickLeft(){
           document.querySelector('iframe').style.display="none";
-          this.$router.go(-1)
+          this.$router.go(-2)
         }
       },
     }
