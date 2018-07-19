@@ -7,7 +7,9 @@
     @click-left="onClickLeft"
     @click-right="onClickRight"
   />
-  <iframe :src="src" style="width: 100%;height: 100%;"></iframe>
+  <div style="margin-top: 61px;width: 100%;height: 100%;">
+    <iframe :src="src" width="100%" style="border: none;position: absolute;height: 100%;position: absolute;left: 0px;"></iframe>
+  </div>
 </div>
 </template>
 
@@ -24,7 +26,7 @@
       },
       methods:{
         onClickLeft(){
-          window.history.go(-1);
+          window.history.go(-2);
         }
       }
     }

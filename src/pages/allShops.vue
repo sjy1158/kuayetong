@@ -83,7 +83,7 @@
         openMeishilist(){
           // this.$router.push('/nearbyShops');
           this.sum=1+this.indextab;
-          window.history.go(-this.sum);
+          this.$router.replace('/nearbyShops');
         },
         getIcon(){
           var _this = this;

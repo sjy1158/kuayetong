@@ -47,7 +47,10 @@ export default new Router({
     {
       name:'Businesshome',
       path:'/Businesshome',
-      component:Businesshome
+      component:Businesshome,
+      meta:{
+        keepAlive: true
+      }
     },
     {
       path:'/',
@@ -77,6 +80,9 @@ export default new Router({
       name:'Shophome',
       path:'/Shophome',
       component:Shophome,
+      meta:{
+        keepAlive: false
+      },
       children:[
         {
           path:'/Shophome',

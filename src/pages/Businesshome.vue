@@ -164,6 +164,7 @@
           }, 500);
         },
         onClickLeft(){
+          this.$route.meta.keepAlive=false;
           this.$router.push('/nearbyShops');
           localStorage.removeItem('id');
           localStorage.removeItem('name');
@@ -199,9 +200,11 @@
           })
         },
         openShophome(shopid){
+          this.$route.meta.keepAlive=true;
           this.$router.push({
             path:'/Shophome/starProducts',
             query:{
+              root:1,
               shopid:shopid,
               pathid:2,
               url:this.$route.path,
@@ -225,6 +228,10 @@
           }
         }
       },
+      // beforeRouteLeave(to, from, next) {
+      //   this.$route.meta.keepAlive = false;
+      //   next();
+      // },
       created:function(){
           var _this = this;
         var name = this.$route.query.name;

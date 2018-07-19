@@ -119,6 +119,7 @@
                   path:"/Shophome/Businessdetails",
                   query:{
                     shopid:this.$route.query.shopid,
+                    root:this.$route.query.root,
                     userId:this.$route.query.userId,
                   }
                 });
@@ -128,6 +129,7 @@
                   path:"/Shophome/starProducts",
                   query:{
                     shopid:this.$route.query.shopid,
+                    root:this.$route.query.root,
                     userId:this.$route.query.userId,
                   }
                 });
@@ -136,7 +138,11 @@
         onClickLeft(){
             // alert(this.indexs);
           this.sum=1+this.indexS;
-            window.history.go(-this.sum);
+          if(this.$route.query.root==1){
+            this.$router.push('/Businesshome');
+          }else{
+            this.$router.replace('/nearbyShops');
+          }
         },
         openPay(){
             // alert(this.indexS);
@@ -162,11 +168,24 @@
            })
         },
         getmap(){
-          window.location.href="https://m.amap.com/navigation/index/daddr="+this.latitude+"%2C"+this.longitude+"%2C"+this.location;
+            this.$router.push({
+              path:'/goLocation',
+              query:{
+                latitude:this.latitude,
+                longitude:this.longitude,
+                location:this.location
+              }
+            })
+          // window.location.href="https://m.amap.com/navigation/index/daddr="+this.latitude+"%2C"+this.longitude+"%2C"+this.location;
            // window.location.href="https://m.amap.com/navigation/index/daddr=116.48105%2C39.996794%2C'望京';
         }
       },
-      created(){
+      beforeRouteLeave(to, from, next) {
+            from.meta.keepAlive = true;
+            this.$route.meta.keepAlive=false;
+            next();
+      },
+        created(){
         var shopid = this.$route.query.shopid;
        // alert(this.$route.query.userId);
          // this.url=this.$route.query.url;
