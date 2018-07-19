@@ -26,9 +26,10 @@
       },
       methods:{
         onClickLeft(){
-          window.history.go(-1);
+          document.querySelector('iframe').style.display="none";
+          this.$router.go(-1)
         }
-      }
+      },
     }
 </script>
 
