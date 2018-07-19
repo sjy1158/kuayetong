@@ -139,7 +139,12 @@
             // alert(this.indexs);
           this.sum=1+this.indexS;
           if(this.$route.query.root==1){
-            this.$router.push('/Businesshome');
+            this.$router.push({
+              path:'/Businesshome',
+              query:{
+                userId:this.$route.query.userId,
+              }
+            });
           }else{
             this.$router.replace('/nearbyShops');
           }
