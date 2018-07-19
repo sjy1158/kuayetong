@@ -26,7 +26,6 @@
       },
       methods:{
         onClickLeft(){
-          document.querySelector('iframe').style.display="none";
           this.$router.go(-1)
         }
       },
