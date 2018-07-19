@@ -23,10 +23,17 @@
       },
       created(){
           this.src="https://m.amap.com/navigation/index/daddr="+this.$route.query.latitude+"%2C"+this.$route.query.longitude+"%2C"+this.$route.query.location;
+          // alert(this.$route.query.shopid);
       },
       methods:{
         onClickLeft(){
-          this.$router.go(-1)
+          this.$router.push({
+            path:'/Shophome/starProducts',
+            query:{
+              shopid:this.$route.query.shopid,
+              userId:this.$route.query.userId,
+            }
+          })
         }
       },
     }

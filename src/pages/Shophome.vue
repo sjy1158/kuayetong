@@ -173,7 +173,9 @@
               query:{
                 latitude:this.latitude,
                 longitude:this.longitude,
-                location:this.location
+                location:this.location,
+                shopid:this.$route.query.shopid,
+                userId:this.$route.query.userId,
               }
             })
           // window.location.href="https://m.amap.com/navigation/index/daddr="+this.latitude+"%2C"+this.longitude+"%2C"+this.location;
