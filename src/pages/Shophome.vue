@@ -176,6 +176,7 @@
                 location:this.location,
                 shopid:this.$route.query.shopid,
                 userId:this.$route.query.userId,
+                root:this.$route.query.root
               }
             })
           // window.location.href="https://m.amap.com/navigation/index/daddr="+this.latitude+"%2C"+this.longitude+"%2C"+this.location;

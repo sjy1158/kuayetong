@@ -32,6 +32,7 @@
             query:{
               shopid:this.$route.query.shopid,
               userId:this.$route.query.userId,
+              root:this.$route.query.root
             }
           })
         }
