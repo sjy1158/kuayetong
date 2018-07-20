@@ -1,9 +1,17 @@
 <template>
   <div class="nearShop">
-    <!--&lt;!&ndash;<div class="search" style="position: fixed;top: 0px;z-index: 99999999999999999999;display: none;" id="search">&ndash;&gt;-->
-      <!--&lt;!&ndash;<input type="search" v-model="value" placeholder="输入商品名称／宝贝标题搜索" ref="input1" @keyup="show($event)">&ndash;&gt;-->
-    <!--</div>-->
-    <!--<van-loading color="black" class="top active" style="height: 1rem;width: 1rem;position: absolute;z-index: 999999999999999;left: 50%;margin-left: -0.5rem;opacity:0;top: 5rem;background: white;box-shadow:0px 0px 8px gray;border-radius: 50%;"/>-->
+    <div class="search" style="position: fixed;top: 0px;z-index: 99999999999999999999;display: none" id="search">
+      <van-nav-bar
+        fixed
+        title="商家"
+        @click-right="onClickRight"
+      />
+      <div style="width:100%;background:white;position: absolute;top: 5px;">
+        <form @submit.prevent="submit" action="javascript:return true">
+          <input type="search" v-model="value" class="input2" style="margin-top: 61px;" placeholder="输入商品名称／宝贝标题搜索" ref="input1" @blur="clear()" @keyup="show($event)">
+        </form>
+      </div>
+    </div>
     <!--头部-->
     <van-pull-refresh v-model="isLoading" @refresh="onRefresh">
       <div id="scrollheight">
@@ -45,7 +53,9 @@
           </div>
         <!--输入框-->
           <div class="search">
-            <input type="search" v-model="value" placeholder="输入商品名称／宝贝标题搜索" ref="input1" @keyup="show($event)">
+            <form @submit.prevent="submit" action="javascript:return true">
+              <input type="search" v-model="value" class="input2" style="" placeholder="输入商品名称／宝贝标题搜索" ref="input1" @blur="clear()" @keyup="show($event)">
+            </form>
           </div>
 
           <div class="shoptab">
@@ -240,6 +250,9 @@
       }
     },
     methods:{
+      submit() {
+        return false
+      },
       // 刷新
       onRefresh2(){
         setTimeout(()=>{
@@ -437,7 +450,6 @@
       setTimeout(()=>{
         document.querySelector('.van-tabs__line').style.transform='translateX(50px)';
       },100);
-
       window.addEventListener('scroll',function () {
         var height=document.querySelector('.header').clientHeight;
         var pageY=window.pageYOffset;
@@ -453,7 +465,13 @@
 </script>
 
 <style scoped>
-
+  .van-nav-bar{
+    height: 43px;
+    width: 100%;
+    line-height: 43px;
+    padding-top: 18px;
+    z-index: 99999999!important
+  }
   element {
     width: 20px!important;
     transform: translateX(50px)!important;
@@ -546,11 +564,11 @@
     margin: 0px!important;
   }
 
-  .header .search{
+  .header .search form{
       /*background: palevioletred;*/
     width:12rem;
     height: 0.8rem;
-    top: 1.7rem;
+    top:-0.05rem;
     position: absolute;
     left: 50%;
     margin-left: -6rem;
@@ -565,15 +583,20 @@
     position: absolute;
   }
   #search input{
-    height: 100%!important;
-    width:100%!important;
+    height: 30px!important;
+    width:90%!important;
+    /*border: 1px solid grey;*/
     border: none;
     background: rgba(255,255,255,.95);
+    box-shadow: 0px 0px 8px #f2f2f2;
     /*border-radius: 0.5rem;*/
-    padding-left: 0.5rem;
+    /*padding-left: 0.5rem;*/
     padding-right: 0.3rem;
     font-size: 14px;
+    text-align: center;
     color: black;
+    border-radius: 50px;
+    margin-bottom: 10px;
   }
   .search2{
     width:100%;
@@ -593,7 +616,7 @@
     font-size: 14px;
     color: black;
   }
-  .header .search input{
+  .header .search form input{
     height: 100%!important;
     width:8.5rem!important;
     border: none;
@@ -603,6 +626,7 @@
     padding-right: 0.3rem;
     font-size: 14px;
     color: black;
+    margin-top: 1.8rem;
   }
   .header .shoptab{
     width: 8rem;
