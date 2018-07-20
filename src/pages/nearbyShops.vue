@@ -206,6 +206,7 @@
         weather:'',
         loaded:false,
         isLoading2:false,
+        pageY:'',
         params:{
           productName:'',
           latitude:'',
@@ -267,12 +268,13 @@
         },500);
       },
       openShophome(shopid){
+        document.getElementById('search').style.display='none';
         this.$router.push({
           path:'/Shophome/starProducts',
           query:{
             shopid:shopid,
             pathid:1,
-            userId:this.userId,
+            userId:this.userId
           }
         });
       },
