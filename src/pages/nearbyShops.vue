@@ -318,6 +318,7 @@
       },
 
       openBusinesshome(name,id){
+        document.getElementById('search').style.display='none';
         this.$router.push({
           path:'/Businesshome',
           query:{
