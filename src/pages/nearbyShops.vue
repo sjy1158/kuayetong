@@ -683,6 +683,7 @@
     padding-top: 5px;
     color: #393910;
     font-weight: normal;
+    /*font-family: PingFangTC-Regular, sans-serif;*/
     /*font-weight: bold ;*/
   }
   .menulist ul li img{
