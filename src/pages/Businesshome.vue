@@ -229,7 +229,11 @@
         }
       },
       // beforeRouteLeave(to, from, next) {
-      //   this.$route.meta.keepAlive = false;
+      //   if(to.path=='/nearbyShops'){
+      //     this.$route.meta.keepAlive=false;
+      //   }else{
+      //     this.$route.meta.keepAlive=true;
+      //   }
       //   next();
       // },
       created:function(){
