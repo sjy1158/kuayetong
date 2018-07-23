@@ -1,14 +1,9 @@
 <template>
   <div class="nearShop">
     <div class="search" style="position: fixed;top: 0px;z-index: 99999999999999999999;display: none" id="search">
-      <van-nav-bar
-        fixed
-        title="商家"
-        @click-right="onClickRight"
-      />
-      <div style="width:100%;background:white;position: absolute;top: 5px;">
+      <div style="width:100%;background:white;position: absolute;">
         <form @submit.prevent="submit" action="javascript:return true">
-          <input type="search" v-model="value" class="input2" style="margin-top: 61px;" placeholder="输入商品名称／宝贝标题搜索" ref="input1" @blur="clear()" @keyup="show($event)">
+          <input type="search" v-model="value" class="input2" style="margin-top: 27px;" placeholder="输入商品名称／宝贝标题搜索" ref="input1" @blur="clear()" @keyup="show($event)">
         </form>
       </div>
     </div>
@@ -422,6 +417,12 @@
         return - this.activeIndex * 50 + 'px';
       }
     },
+    // beforeRouteLeave(to,from,next){
+    //   if(to.path=='/Businesshome'){
+    //       to.meta.keepAlive=false;
+    //   };
+    //   next();
+    // },
     created(){
       this.getBanner();
       this.getheadline();
@@ -451,7 +452,7 @@
       this.gethot();
       this.gettime();
       setTimeout(()=>{
-        document.querySelector('.van-tabs__line').style.transform='translateX(50px)';
+        document.querySelector('.van-tabs__line').style.transform='translateX(1.4rem)';
       },100);
       window.addEventListener('scroll',function () {
         var height=document.querySelector('.header').clientHeight;
@@ -590,7 +591,8 @@
     width:90%!important;
     /*border: 1px solid grey;*/
     border: none;
-    background: rgba(255,255,255,.95);
+    background: #EAEBEF;
+    /*background: rgba(255,255,255,.95);*/
     box-shadow: 0px 0px 8px #f2f2f2;
     /*border-radius: 0.5rem;*/
     /*padding-left: 0.5rem;*/
@@ -623,7 +625,7 @@
     height: 100%!important;
     width:8.5rem!important;
     border: none;
-    background: rgba(255,255,255,.95);
+    /*background: rgba(255,255,255,.95);*/
     border-radius: 0.5rem;
     padding-left: 0.5rem;
     padding-right: 0.3rem;

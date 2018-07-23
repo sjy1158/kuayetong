@@ -13,7 +13,9 @@
                 <div class="icon">
                   <van-icon name="search" />
                 </div>
-                <input type="search"  v-model="value" placeholder="输入商家或商品名称搜索" ref="input1" @keyup="show($event)">
+                <form @submit.prevent="submit" action="javascript:return true">
+                  <input type="search"  v-model="value" placeholder="输入商家或商品名称搜索" ref="input1" @keyup="show($event)">
+                </form>
               </div>
             </div>
 
@@ -137,9 +139,10 @@
             this.params.mark=index;
             this.getList(this.params);
           },
-        onClickLeft(){
-          window.history.go(-1);
-        },
+        // onClickLeft(){
+        //   this.$route.meta.keepAlive=false;
+        //   window.history.go(-1);
+        // },
         getId(id){
           this.list = [];
           this.issum=true;
@@ -211,8 +214,6 @@
               userId:this.$route.query.userId
             }
           });
-          // localStorage.setItem('shopid',shopid);
-          // localStorage.setItem('pathid',2)
         }
       },
       watch: {
@@ -228,14 +229,6 @@
           }
         }
       },
-      // beforeRouteLeave(to, from, next) {
-      //   if(to.path=='/nearbyShops'){
-      //     this.$route.meta.keepAlive=false;
-      //   }else{
-      //     this.$route.meta.keepAlive=true;
-      //   }
-      //   next();
-      // },
       created:function(){
           var _this = this;
         var name = this.$route.query.name;
@@ -301,6 +294,7 @@
     padding-right: 0.3rem;
     outline: none;
     border: none;
+    -webkit-appearance: none;
     box-shadow:0px 0px 8px #f2f2f2;
   }
     /*tab切换*/

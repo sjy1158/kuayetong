@@ -188,11 +188,11 @@
            // window.location.href="https://m.amap.com/navigation/index/daddr=116.48105%2C39.996794%2C'望京';
         }
       },
-      beforeRouteLeave(to, from, next) {
-            from.meta.keepAlive = true;
-            this.$route.meta.keepAlive=false;
-            next();
-      },
+      // beforeRouteLeave(to, from, next) {
+      //       from.meta.keepAlive = true;
+      //       this.$route.meta.keepAlive=false;
+      //       next();
+      // },
         created(){
         var shopid = this.$route.query.shopid;
        // alert(this.$route.query.userId);
