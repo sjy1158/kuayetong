@@ -258,7 +258,7 @@
     font-size: 14px;
   }
   .leftdiv{
-    width: 50%;height: 100%;position: absolute;left: 0px;top: 0px;
+    width: 50%;height: 100%;position: absolute;left: 0px;top: -0.1rem;
     color: white;
   }
   .rightdiv{
