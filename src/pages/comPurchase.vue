@@ -141,7 +141,7 @@
       data(){
           return{
             params2:{
-              id:'',
+              id:'1798',
             },
             src:'',
             prize:'',
