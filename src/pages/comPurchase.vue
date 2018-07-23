@@ -216,6 +216,8 @@
         this.logarr=arrstr;
         this.params.pId=arrstr[0];
         this.params2.id=arrstr[0];
+        alert(this.params2.id);
+        alert(this.$route.query.pId)
         this.params.userId=arrstr[1];
       },
       mounted(){
