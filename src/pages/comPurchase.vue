@@ -82,7 +82,7 @@
         <img :src="item.imageUrl" alt="" style="width: 100px;height: 100px;position: absolute;left: 10px;top: 50%;margin-top: -54px;">
         <div style="height: 100px;position: absolute;left:130px;top: 0px;text-align: left;padding-right: 10px;">
           <p style="font-size: 12px;">
-            <img src="../assets/commerce_goods@3x.png" alt="" style="width: 12px;height: 12px;">
+            <img :src="item.iconUrl" alt="" style="width: 12px;height: 12px;">
             {{item.name}}
           </p>
           <p style="height: 20px;line-height: 20px;">{{item.source}}价：<span style="color: #FF0000;font-size: 14px;">{{item.price.toFixed(2)}}</span>元 <span style="float: right;font-size: 10px;color: #717171">销量：{{item.salesVolume}}件</span></p>
@@ -240,7 +240,7 @@
     font-size: 14px;
   }
   .leftdiv{
-    width: 50%;height: 100%;position: absolute;left: 0px;top: -0.35rem;
+    width: 50%;height: 100%;position: absolute;left: 0px;top: -0.3rem;
     color: white;
   }
   .rightdiv{
