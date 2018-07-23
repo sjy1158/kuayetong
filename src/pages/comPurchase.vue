@@ -214,11 +214,7 @@
           arrstr.push(arr[i].split('=')[1]);
         }
         this.logarr=arrstr;
-        this.params.pId=arrstr[0];
         this.params2.id=arrstr[0];
-        alert(this.params2.id);
-        alert(this.$route.query.pId)
-        this.params.userId=arrstr[1];
       },
       mounted(){
           this.getdinshang(this.params2);
