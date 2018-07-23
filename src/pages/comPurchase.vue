@@ -140,12 +140,8 @@
         name: "comPurchase",
       data(){
           return{
-            params:{
-              pId:'',
-              userId:''
-            },
             params2:{
-              id:''
+              id:'',
             },
             src:'',
             prize:'',
@@ -159,6 +155,7 @@
             cliHeight:'',
             logarr:[],
             location:'',
+            location2:'',
           }
       },
       methods:{
@@ -171,23 +168,9 @@
             title: '提示',
             message: '此操作不可撤销，请确认使用跨业通余额'+this.deduction+'元抵扣买单'
           }).then(() => {
-              _this.getcoupon(_this.params);
+              window.location.href=_this.location;
           }).catch(() => {
             return
-          })
-        },
-        getcoupon(params){
-          this.$api.getConpou(params).then((res)=>{
-            window.location.href=res;
-            // var arrall=[];
-            // var activityId=res.split('?')[1];
-            // var arr=activityId.split('&');
-            // for (var i=0;i<arr.length;i++){
-            //   arrall.push(arr[i].split("=")[1])
-            // };
-            // var arrpd=arrall[1];
-           // window.location.href='https://uland.taobao.com/coupon/edetail?e=/KfYv1f4RuQGQASttHIRqf5e1NUPk9EB35zW1YK2zpH73GnxKsppM+/jeYyibvzN4EmMoALL5Z8+D4SDSmjXfpQ5wfGz/u+Nx3iAE/j7p2ddiwTmD3eVNmuFqp8TFaHM52ttWb//2DPfHkioo+/RrQ==&traceId=0ab2017015314795170647938e&pid=mm_132210399_46844403_1735122725&activityId='+arrpd+'&src=cn666_com&tj1=1&tj2=1';
-            // window.location.href="https://uland.taobao.com/coupon/edetail?"+res.split("?")[1]
           })
         },
         getdinshang(params){
@@ -200,11 +183,12 @@
               _this.salesVolume=res.product.salesVolume;
               _this.deduction=res.product.deduction;
               _this.listArr=res.list;
-              _this.location='https://market.m.taobao.com/app/dinamic/h5-tb-detail/index.html?id='+res.itemId;
+              _this.location=res.product.qlink;
+              _this.location2=res.product.detailUrl;
             })
         },
         goxiangqing(){
-          window.location.href=this.location;
+          window.location.href=this.location2;
         },
         change(index){
           // alert(index);
@@ -214,7 +198,7 @@
         },
         openshop(id){
           this.params2.id=id;
-          this.params.pId=id;
+          // this.params.pId=id;
           // window.scrollTo(0);
           document.body.scrollTop=0;
           this.listArr=[];
