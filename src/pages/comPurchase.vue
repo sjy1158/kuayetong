@@ -89,42 +89,6 @@
           <div style="background: #FF0000;width: 94px;height: 24px;line-height: 24px;text-align: center;color: white;border-radius:10px;">可抵:{{item.deduction.toFixed(2)}}元</div>
         </div>
       </li>
-      <!--<li style="position: relative;">-->
-        <!--<img src="../assets/bg@3x.png" alt="" style="height: 128px;width: 100%;">-->
-        <!--<img src="../assets/commerce_details2@3x.png" alt="" style="width: 100px;height: 100px;position: absolute;left: 10px;top: 50%;margin-top: -54px;">-->
-        <!--<div style="height: 100px;position: absolute;left:130px;top: 0px;text-align: left;padding-right: 10px;">-->
-          <!--<p style="font-size: 12px;">-->
-            <!--<img src="../assets/commerce_goods@3x.png" alt="" style="width: 12px;height: 12px;">-->
-            <!--金丽洁电动牙刷成人充电式超声波自动震动软-->
-          <!--</p>-->
-          <!--<p style="height: 20px;line-height: 20px;">天猫价：<span style="color: #FF0000;font-size: 14px;">1257.90</span>元 <span style="float: right;font-size: 10px;color: #717171">销量：2000件</span></p>-->
-          <!--<div style="background: #FF0000;width: 94px;height: 24px;line-height: 24px;text-align: center;color: white;border-radius:10px;">可抵:30.00元</div>-->
-        <!--</div>-->
-      <!--</li>-->
-      <!--<li style="position: relative;">-->
-        <!--<img src="../assets/bg@3x.png" alt="" style="height: 128px;width: 100%;">-->
-        <!--<img src="../assets/commerce_details2@3x.png" alt="" style="width: 100px;height: 100px;position: absolute;left: 10px;top: 50%;margin-top: -54px;">-->
-        <!--<div style="height: 100px;position: absolute;left:130px;top: 0px;text-align: left;padding-right: 10px;">-->
-          <!--<p style="font-size: 12px;">-->
-            <!--<img src="../assets/commerce_goods@3x.png" alt="" style="width: 12px;height: 12px;">-->
-            <!--金丽洁电动牙刷成人充电式超声波自动震动软-->
-          <!--</p>-->
-          <!--<p style="height: 20px;line-height: 20px;">天猫价：<span style="color: #FF0000;font-size: 14px;">1257.90</span>元 <span style="float: right;font-size: 10px;color: #717171">销量：2000件</span></p>-->
-          <!--<div style="background: #FF0000;width: 94px;height: 24px;line-height: 24px;text-align: center;color: white;border-radius:10px;">可抵:30.00元</div>-->
-        <!--</div>-->
-      <!--</li>-->
-      <!--<li style="position: relative;">-->
-        <!--<img src="../assets/bg@3x.png" alt="" style="height: 128px;width: 100%;">-->
-        <!--<img src="../assets/commerce_details2@3x.png" alt="" style="width: 100px;height: 100px;position: absolute;left: 10px;top: 50%;margin-top: -54px;">-->
-        <!--<div style="height: 100px;position: absolute;left:130px;top: 0px;text-align: left;padding-right: 10px;">-->
-          <!--<p style="font-size: 12px;">-->
-            <!--<img src="../assets/commerce_goods@3x.png" alt="" style="width: 12px;height: 12px;">-->
-            <!--金丽洁电动牙刷成人充电式超声波自动震动软-->
-          <!--</p>-->
-          <!--<p style="height: 20px;line-height: 20px;">天猫价：<span style="color: #FF0000;font-size: 14px;">1257.90</span>元 <span style="float: right;font-size: 10px;color: #717171">销量：2000件</span></p>-->
-          <!--<div style="background: #FF0000;width: 94px;height: 24px;line-height: 24px;text-align: center;color: white;border-radius:10px;">可抵:30.00元</div>-->
-        <!--</div>-->
-      <!--</li>-->
     </ul>
   </div>
   <img id="btngo" src="../assets/commerce_top@3x.png" alt="" style="width: 35px;height: 35px;position: fixed;bottom: 61px;right: 15px;" @click="goTop">

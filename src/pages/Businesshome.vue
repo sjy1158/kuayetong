@@ -301,8 +301,8 @@
     .van-tabs p{
       /*margin: 0px!important;*/
       padding: 0px!important;
-      margin-top: -10px!important;
-      margin-bottom: 4px!important;
+      margin-top: -20px!important;
+      margin-bottom: -4px!important;
       font-size: 0.37rem;
     }
 
