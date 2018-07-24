@@ -226,7 +226,6 @@ const api = {
       params:params
     })
   },
-
   // 定位api
   getMap(){
     return axios.request({
