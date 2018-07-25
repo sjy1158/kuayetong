@@ -105,7 +105,7 @@
       data(){
           return{
             params2:{
-              id:'',
+              id:'136223',
             },
             src:'',
             prize:'',
