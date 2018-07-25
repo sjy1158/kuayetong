@@ -105,7 +105,7 @@
       data(){
           return{
             params2:{
-              id:'68566',
+              id:'',
             },
             src:'',
             prize:'',
@@ -120,6 +120,7 @@
             logarr:[],
             location:'',
             location2:'',
+            title:''
           }
       },
       methods:{
@@ -148,11 +149,24 @@
               _this.deduction=res.product.deduction;
               _this.listArr=res.list;
               _this.location=res.product.qlink;
-              _this.location2=res.product.detailUrl;
+              _this.title=res.product.source;
+              if(_this.title!="拼多多"){
+                _this.location2=res.product.detailUrl;
+              }
             })
         },
         goxiangqing(){
-          // window.location.href=this.location2;
+          var _this=this;
+          if(this.title!="拼多多"){
+            window.location.href=this.location2;
+          }else{
+            this.$router.push({
+              path:'/pingDuo',
+              query:{
+                id:_this.params2.id,
+              }
+            })
+          }
         },
         change(index){
           // alert(index);

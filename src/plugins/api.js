@@ -232,6 +232,14 @@ const api = {
       method:'get',
       url:'https://m.amap.com/detail/index/poiid=B000AAFAC5&callnative=1'
     })
+  },
+  // 拼多多详情接口
+  getPingduo(params){
+    return axios.request({
+      method:'get',
+      url:config.baseUrl+'/crossindustry/powerPurchaser/getDetail',
+      params:params
+    })
   }
 }
 export default class Api {
