@@ -136,7 +136,7 @@
                   <img :src="item.shopHeadImageUrl" alt="" style="float: left" class="shopimg">
                   <div class="textbox" style="">
                     <p>{{item.title}}</p>
-                    <p class="titlelist"><img src="../assets/businesses_icon@2x.png" alt=""><span>{{item.shopType}}</span><span style="padding-left: 10px;">人均消费{{item.averageMoney}}元</span><span style="position: absolute;right: 25px;"><{{item.distanceString}}m</span></p>
+                    <p class="titlelist"><img src="../assets/businesses_icon@2x.png" alt=""><span>{{item.shopType}}</span><span style="padding-left: 10px;">人均消费{{item.averageMoney}}元</span><span style="position: absolute;right: 25px;">{{item.distanceString}}</span></p>
                     <p class="discon" v-if="item.deductionList.length!=0">
                       <span v-for="item1 in item.deductionList">{{item1.requireValue}}抵{{item1.value}}</span>
                     </p>
