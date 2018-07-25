@@ -152,7 +152,7 @@
             })
         },
         goxiangqing(){
-          window.location.href=this.location2;
+          // window.location.href=this.location2;
         },
         change(index){
           // alert(index);
