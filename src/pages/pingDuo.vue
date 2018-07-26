@@ -1,15 +1,11 @@
 <template>
   <div class="pingduo">
-    <van-nav-bar
-      fixed
-      title="拼多多"
-      left-arrow
-      @click-left="onClickLeft"
-      @click-right="onClickRight"
-    />
-
-
-    <div style="position: relative;width: 100%;height: 375px;margin-top: 61px;">
+    <div style="height: auto;width: 94%;background: #FFFBFF;padding: 3%;">
+      <div style="background: #FFFBFF;text-align: left;color: #4A474A;letter-spacing: 2px;line-height: 20px;">
+          {{introce}}
+      </div>
+    </div>
+    <div style="position: relative;width: 100%;height: 375px;">
       <van-swipe :autoplay="3000" :show-indicators="false" @change="change">
         <van-swipe-item v-for="item in imgUrl">
           <img :src="item" alt="" style="width: 100%;height: 375px;">
@@ -18,6 +14,13 @@
       <div class="slidesum" style=""><span style="padding-right: 2px;">{{index+1}}</span>/<span style="padding-left: 2px;">{{imgUrl.length}}</span></div>
       <!--<img src="../assets/commerce_return_bg@3x.png" alt="" style="position: fixed;width: 32px;height: 32px;top: 23px;left: 10px;z-index: 9999999999999999999999;" @click="getLeft">-->
     </div>
+    <!--<div style="height: 30px;line-height: 30px;color: #A19FA0;background: #FFFBFF" @click="show">-->
+      <!--<span>点击查看商品价格说明</span>-->
+      <!--<img src="../assets/commerce_drop_down copy@3x.png" alt="" style="width: 12px;height: 6px;" :class="isshow? 'rote' : '' ">-->
+    <!--</div>-->
+    <!--<div v-show="isshow" style="height: auto;width: 94%;background: white;padding: 3%;text-align: left;color: #A19FA0;letter-spacing: 2px;line-height: 20px;">-->
+        <!--{{introcesize}}-->
+    <!--</div>-->
   </div>
 </template>
 
@@ -28,22 +31,29 @@
             imgUrl:[],
             index:0,
             params:{
+              // pid:'389046'
               pid:this.$route.query.id
-            }
+            },
+            introce:'',
+            introcesize:'',
+            isshow:false
           }
         },
       methods:{
-        onClickLeft(){
-          window.history.go(-1);
-        },
         getduoduo(params){
           var _this=this;
           this.$api.getPingduo(params).then((res)=>{
+            // alert(JSON.stringify(res));
+            // _this.introcesize=res[0].goods_name;
+            _this.introce=res[0].goods_desc;
             _this.imgUrl=res[0].goods_gallery_urls;
           })
         },
         change(index){
           this.index=index;
+        },
+        show(){
+          this.isshow=!this.isshow;
         }
       },
       mounted(){
@@ -53,16 +63,17 @@
 </script>
 
 <style scoped>
-  .van-nav-bar{
-    height: 43px;
-    width: 100%;
-    line-height: 43px;
-    padding-top: 18px;
-    z-index: 99999999!important
-  }
   .slidesum{
     position: absolute;bottom: 10px;right: 10px;
     color: #8F8F8F;
     font-size: 14px;
+  }
+
+  .rote{
+    transform: rotate(180deg);
+    -ms-transform:rotate(180deg);
+    -moz-transform:rotate(180deg);
+    -webkit-transform:rotate(180deg);
+    -o-transform:rotate(180deg);
   }
 </style>

@@ -51,15 +51,17 @@
         <div style="">
           <img src="../assets/commerce_merchandise_line2@3x.png" alt="" class="rightimg">
         </div>
-        <p style="margin: 0px!important;width: 100%;position: absolute;bottom: -0.5rem;right: 0px;font-size: 10px;color: #4AB1FE">（查看商品信息）</p>
+        <p style="margin: 0px!important;width: 100%;position: absolute;bottom: -0.5rem;right: 0px;font-size: 10px;color: #4AB1FE" v-if="title!='拼多多'">（查看商品信息）</p>
       </div>
   </div>
-  <div style="height: 373px;background: white;padding-top: 10px;padding-bottom: 10px;" v-for="item in imgUrl">
+
+  <div v-if="title!='拼多多'" style="height: 373px;background: white;padding-top: 10px;padding-bottom: 10px;" v-for="item in imgUrl">
     <img :src="item" alt="" style="width: 100%;height: 100%;">
   </div>
 
+  <iframe  v-else :src="src1" id="framecontent" frameborder="0" scrolling="no" width="100%" style="border: none;height: 488px;"></iframe>
 
-  <div style="width: 100%;height: 60px;background: white;margin-top: 10px;">
+  <div style="width: 100%;height: 60px;background: white;">
     <div style="width: 5rem;height: 60px;margin: 0 auto;display: flex" class="titleshop">
       <div style="">
         <img src="../assets/commerce_merchandise_line@3x.png" alt="" class="leftimg">
@@ -105,7 +107,7 @@
       data(){
           return{
             params2:{
-              id:'136223',
+              id:'',
             },
             src:'',
             prize:'',
@@ -120,7 +122,8 @@
             logarr:[],
             location:'',
             location2:'',
-            title:''
+            title:'',
+            src1:'',
           }
       },
       methods:{
@@ -152,20 +155,17 @@
               _this.title=res.product.source;
               if(_this.title!="拼多多"){
                 _this.location2=res.product.detailUrl;
+              }else{
+                _this.src1=res.product.detailUrl;
               }
+              // if(_this.title!="拼多多"){
+              // }
             })
         },
         goxiangqing(){
           var _this=this;
           if(this.title!="拼多多"){
             window.location.href=this.location2;
-          }else{
-            this.$router.push({
-              path:'/pingDuo',
-              query:{
-                id:_this.params2.id,
-              }
-            })
           }
         },
         change(index){
@@ -183,7 +183,7 @@
           this.imgUrl=[];
           // this.getcoupon(this.params);
           this.getdinshang(this.params2);
-        },
+        }
       },
       created(){
         var arrstr=[];

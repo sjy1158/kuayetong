@@ -148,7 +148,7 @@
               </van-cell>
             </van-list>
           </van-pull-refresh>
-          <div v-show="finished==true" style="margin-top: 0.5rem;margin-bottom: 0.5rem;">
+          <div v-show="finished==true" style="margin-top: 0.5rem;margin-bottom: 0.5rem;color: grey">
             加载完毕........
           </div>
         </div>
@@ -445,7 +445,8 @@
           this.activeIndex = 0;
         }
       }, 2500);
-      this.getindexList(this.params);
+      // alert(JSON.stringify(this.params));
+      // this.getindexList(this.params);
       this.getweather('杭州');
       this.getIcon();
       this.gethot();
