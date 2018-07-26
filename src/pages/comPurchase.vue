@@ -58,9 +58,8 @@
   <div v-if="title!='拼多多'" style="height: 373px;background: white;padding-top: 10px;padding-bottom: 10px;" v-for="item in imgUrl">
     <img :src="item" alt="" style="width: 100%;height: 100%;">
   </div>
-
-  <iframe  v-else :src="src1" id="framecontent" frameborder="0" scrolling="no" width="100%" style="border: none;height: 488px;"></iframe>
-
+  <router-view v-else></router-view>
+  <!--<iframe  v-else :src="src1" allowtransparency="true"  onload="this.height=160"  id="framecontent" frameborder="0" scrolling="no" width="100%" style="border: none;height: 488px;"></iframe>-->
   <div style="width: 100%;height: 60px;background: white;">
     <div style="width: 5rem;height: 60px;margin: 0 auto;display: flex" class="titleshop">
       <div style="">
@@ -107,7 +106,7 @@
       data(){
           return{
             params2:{
-              id:'',
+              id:'389046',
             },
             src:'',
             prize:'',
@@ -158,14 +157,21 @@
               }else{
                 _this.src1=res.product.detailUrl;
               }
-              // if(_this.title!="拼多多"){
-              // }
+              if(_this.title=="拼多多"){
+                _this.$router.push({
+                  path:'/pingDuo',
+                  query:{
+                    id:_this.params2.id
+                  }
+                })
+              }
             })
         },
         goxiangqing(){
           var _this=this;
           if(this.title!="拼多多"){
             window.location.href=this.location2;
+          }else{
           }
         },
         change(index){
@@ -183,7 +189,7 @@
           this.imgUrl=[];
           // this.getcoupon(this.params);
           this.getdinshang(this.params2);
-        }
+        },
       },
       created(){
         var arrstr=[];
@@ -195,6 +201,7 @@
         this.params2.id=arrstr[0];
       },
       mounted(){
+          var _this=this;
           this.getdinshang(this.params2);
       }
     }

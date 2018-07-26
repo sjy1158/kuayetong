@@ -182,14 +182,20 @@ export default new Router({
       component:payOver
     },
     {
-      name:'comPurchase',
-      path:'/comPurchase',
-      component:comPurchase
+      path:'/',
+      redirect:'/comPurchase'
     },
     {
-      name:'pingDuo',
-      path:'/pingDuo',
-      component:pingDuo
+      name:'comPurchase',
+      path:'/comPurchase',
+      component:comPurchase,
+      children:[
+        {
+          name:'pingDuo',
+          path:'/pingDuo',
+          component:pingDuo
+        }
+      ]
     },
     {
       name:'goLocation',
