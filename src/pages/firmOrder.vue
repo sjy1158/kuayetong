@@ -145,7 +145,7 @@
             productId:this.$route.query.shoptypeid,
             num:'',
             money:'',
-            userId:'5d'
+            userId:this.$route.query.userId
           },
           valuelocation:'',
           shoparr:[],
