@@ -2,14 +2,10 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import nearbyShops from '../pages/nearbyShops'
 import Businesshome from '../pages/Businesshome'
-import Gastrosoph from '../pages/Gastrosoph'
 import allShops from '../pages/allShops'
 import Paybill from '../pages/Paybill'
 import payOver from '../pages/payOver'
 import listItem from '../pages/listItem'
-import DistanceNear from '../pages/DistanceNear'
-import Mostdiscounts from '../pages/Mostdiscounts'
-import DistanceNearshopcenter from '../pages/DistanceNearshopcenter'
 import Meishilist from '../pages/Meishilist'
 import Shophome from '../pages/Shophome'
 import starProducts from '../pages/starProducts'
@@ -101,16 +97,6 @@ export default new Router({
         }
       ]
     },
-    // {
-    //   name:'starProducts',
-    //   path:'/Shophome/starProducts',
-    //   component:starProducts
-    // },
-    // {
-    //   name:'Businessdetails',
-    //   path:'/Shophome/Businessdetails',
-    //   component:Businessdetails
-    // },
     {
       path:'/',
       redirect:'/cardList'

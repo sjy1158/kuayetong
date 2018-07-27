@@ -152,7 +152,6 @@
             加载完毕........
           </div>
         </div>
-
         <div v-show="issum==false" style="margin-top: 1rem;margin-bottom: 1rem;">
           <div><img src="../assets/load_failed@2x.png" alt="" style="height: 1rem;width: 1rem;"></div>
           <span style="padding-top: 0.7rem;">暂无数据</span>
