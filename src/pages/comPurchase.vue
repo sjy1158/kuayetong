@@ -106,7 +106,7 @@
       data(){
           return{
             params2:{
-              id:'389046',
+              id:'',
             },
             src:'',
             prize:'',
@@ -203,6 +203,12 @@
       mounted(){
           var _this=this;
           this.getdinshang(this.params2);
+          this.$router.push({
+          path:'/pingDuo',
+          query:{
+            id:this.params2.id
+          }
+        })
       }
     }
 </script>
