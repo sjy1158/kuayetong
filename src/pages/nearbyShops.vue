@@ -202,7 +202,7 @@
         isLoading2:false,
         pageY:'',
         params:{
-          userId:this.$route.query.userid,
+          userId:'',
           productName:'',
           latitude:'',
           longitude:'',
@@ -436,11 +436,11 @@
       }
       this.logarr=arrstr;
       this.userId=this.logarr[4];
-      // this.params.userId=this.logarr[4];
+      this.params.userId=this.logarr[4];
     },
     mounted(){
       this.userId=this.logarr[4];
-      // this.params.userId=this.logarr[4];
+      this.params.userId=this.logarr[4];
       var _this = this;
       var startX = 0,
         startY = 0;
