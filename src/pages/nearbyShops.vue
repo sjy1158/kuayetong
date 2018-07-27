@@ -263,6 +263,7 @@
         },500);
       },
       openShophome(shopid){
+        document.body.scrollTop=0;
         document.getElementById('search').style.display='none';
         this.$router.push({
           path:'/Shophome/starProducts',
@@ -313,6 +314,7 @@
       },
 
       openBusinesshome(name,id){
+        document.body.scrollTop=0;
         document.getElementById('search').style.display='none';
         this.$router.push({
           path:'/Businesshome',
