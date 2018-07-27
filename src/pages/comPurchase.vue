@@ -51,7 +51,7 @@
         <div style="">
           <img src="../assets/commerce_merchandise_line2@3x.png" alt="" class="rightimg">
         </div>
-        <p style="margin: 0px!important;width: 100%;position: absolute;bottom: -0.5rem;right: 0px;font-size: 10px;color: #4AB1FE" v-if="title!='拼多多'">（查看商品信息）</p>
+        <p style="margin: 0px!important;width: 100%;position: absolute;bottom: -0.5rem;right: 0px;font-size: 12px;color: #4AB1FE" v-if="title!='拼多多'">（查看商品详情）</p>
       </div>
   </div>
 
@@ -203,12 +203,6 @@
       mounted(){
           var _this=this;
           this.getdinshang(this.params2);
-          this.$router.push({
-          path:'/pingDuo',
-          query:{
-            id:this.params2.id
-          }
-        })
       }
     }
 </script>

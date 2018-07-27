@@ -5,14 +5,18 @@
           {{introce}}
       </div>
     </div>
-    <div style="position: relative;width: 100%;height: 375px;">
-      <van-swipe :autoplay="3000" :show-indicators="false" @change="change">
-        <van-swipe-item v-for="item in imgUrl">
-          <img :src="item" alt="" style="width: 100%;height: 375px;">
-        </van-swipe-item>
-      </van-swipe>
-      <div class="slidesum" style=""><span style="padding-right: 2px;">{{index+1}}</span>/<span style="padding-left: 2px;">{{imgUrl.length}}</span></div>
-      <!--<img src="../assets/commerce_return_bg@3x.png" alt="" style="position: fixed;width: 32px;height: 32px;top: 23px;left: 10px;z-index: 9999999999999999999999;" @click="getLeft">-->
+    <div style="position: relative;width: 100%;height: auto;">
+      <ul>
+        <li v-for="item in imgUrl"><img :src="item" alt="" style="width: 100%;"></li>
+        <!--<li><img src="../assets/address.png" alt="" style="width: 100%;"></li>-->
+        <!--<li><img src="../assets/address.png" alt="" style="width: 100%;"></li>-->
+      </ul>
+      <!--<van-swipe :autoplay="3000" :show-indicators="false" @change="change">-->
+        <!--<van-swipe-item v-for="item in imgUrl">-->
+          <!--<img :src="item" alt="" style="width: 100%;height: 375px;">-->
+        <!--</van-swipe-item>-->
+      <!--</van-swipe>-->
+      <!--<div class="slidesum" style=""><span style="padding-right: 2px;">{{index+1}}</span>/<span style="padding-left: 2px;">{{imgUrl.length}}</span></div>-->
     </div>
     <div style="height: 30px;line-height: 30px;color: #A19FA0;background: #FFFBFF" @click="show">
       <span>点击查看商品价格说明</span>
