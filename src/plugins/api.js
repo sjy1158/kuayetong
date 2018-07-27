@@ -7,7 +7,8 @@ axios.interceptors.response.use(response=>{
   if(response.data.code==200) {
     return response.data.data;
   } else if (response.data.code==300){
-      return Toast(response.data.msg);
+      Toast(response.data.msg);
+      return;
   } else if(typeof response.data=="string"){
      return response.data;
   } else if(response.data.status==1){
