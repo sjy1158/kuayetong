@@ -91,7 +91,7 @@
             {{item.name}}
           </p>
           <p style="height: 20px;line-height: 20px;">{{item.source}}价：<span style="color: #FF0000;font-size: 14px;">{{item.price.toFixed(2)}}</span>元 <span style="float: right;font-size: 10px;color: #717171">销量：{{item.salesVolume}}件</span></p>
-          <div style="background: #FF0000;width: 94px;height: 24px;line-height: 24px;text-align: center;color: white;border-radius:10px;position: absolute;bottom: -19px;">可抵:{{item.deduction.toFixed(2)}}元</div>
+          <div style="background: #FF0000;width: 94px;height: 24px;line-height: 24px;text-align: center;color: white;border-radius:10px;position: absolute;bottom: -16px;">可抵:{{item.deduction.toFixed(2)}}元</div>
         </div>
       </li>
     </ul>
