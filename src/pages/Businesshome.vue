@@ -178,18 +178,20 @@
           var _this = this;
           if(this.loading&&this.issum){
             this.$api.getShoplist(params).then(function (res) {
-              if(res.sum==0){
-                _this.issum=false;
-                _this.finished = true;
+              if(res!=undefined){
+                _this.loading = false;
+                if(res.sum==0){
+                  _this.issum=false;
+                  _this.finished = true;
+                }
+                if(res.list.length<5){
+                  _this.finished = true;
+                };
+                for(var i = 0;i<res.list.length;i++){
+                  _this.list.push(res.list[i]);
+                }
+                return;
               }
-              _this.loading = false;
-              if(res.list.length<5){
-                _this.finished = true;
-              };
-              for(var i = 0;i<res.list.length;i++){
-                _this.list.push(res.list[i]);
-              }
-              return;
             });
           }else {
             return
@@ -200,7 +202,8 @@
           this.$api.getShopimg(id).then(function (res) {
             _this.headerImg = res.list;
             _this.params.shopType = res.list[index].id;
-            return _this.getList(_this.params);
+            _this.getList(_this.params);
+            return
           })
         },
         openShophome(shopid){
@@ -237,14 +240,14 @@
         // alert(this.$route.query.userId);
         this.title = name;
         if(this.$route.query.root==1){
-        this.getimg(this.id,0);
+          this.getimg(this.id,0);
         }else {
           this.getimg(this.id,this.$route.query.index);
         }
       },
       mounted(){
         this.active = this.$route.query.index;
-        this.$geturl.getL();
+        // this.$geturl.getL();
         // this.getId(this.$route.query.id1);
       }
     }

@@ -14,7 +14,8 @@ axios.interceptors.response.use(response=>{
   } else if(response.data.status==1){
     return response.data.lives;
   }else {
-   return Toast(response.data.msg);
+    Toast(response.data.msg);
+    return
   }
 });
 
