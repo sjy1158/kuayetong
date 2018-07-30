@@ -49,7 +49,7 @@
             >
               <van-cell v-for="item in list">
                 <div class="pullbox" @click="openShophome(item.shopId)" :v-lazy="item">
-                  <img :src="item.shopHeadImageUrl" alt="" style="float: left" class="shopimg">
+                  <img :src="item.shopHeadImageUrl" :v-lazy="item.shopHeadImageUrl" alt="" style="float: left" class="shopimg">
                   <div class="textbox">
                     <p>{{item.title}}</p>
                     <p class="titlelist"><img src="../assets/businesses_icon@2x.png" alt=""><span>{{item.shopType}}</span><span>人均消费{{item.averageMoney}}元</span><span style="position: absolute;right: 25px;"></span></p>
