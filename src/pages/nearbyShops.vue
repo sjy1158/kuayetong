@@ -259,6 +259,13 @@
           this.gettime();
           this.getheadline();
           this.getBanner();
+          this.list=[];
+          this.loading=true;
+          this.issum=true;
+          this.finished=false;
+          this.params.productName='';
+          this.params.pageNum=1;
+          this.params.num=5;
           this.getindexList(this.params);
         },500);
       },
