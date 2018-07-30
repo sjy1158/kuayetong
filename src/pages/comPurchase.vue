@@ -79,15 +79,19 @@
   <div style="height: auto;background: white;padding-left: 10px;padding-right: 10px;">
     <ul style="height: auto;">
       <li style="position: relative;" v-for="item in listArr" @click="openshop(item.id)">
-        <img src="../assets/bg@3x.png" alt="" style="height: 128px;width: 100%;">
+        <img src="../assets/bg@3x.png" alt="" style="height: 140px;width: 100%;">
         <img :src="item.imageUrl" alt="" style="width: 100px;height: 100px;position: absolute;left: 10px;top: 50%;margin-top: -54px;">
         <div style="height: 100px;position: absolute;left:130px;top: 0px;text-align: left;padding-right: 10px;">
-          <p style="font-size: 12px;">
+          <p style="font-size: 12px;overflow: hidden;
+                  text-overflow: ellipsis;
+                  display: -webkit-box;
+                  -webkit-line-clamp: 2;
+                  -webkit-box-orient: vertical;">
             <img :src="item.iconUrl" alt="" style="width: 12px;height: 12px;">
             {{item.name}}
           </p>
           <p style="height: 20px;line-height: 20px;">{{item.source}}价：<span style="color: #FF0000;font-size: 14px;">{{item.price.toFixed(2)}}</span>元 <span style="float: right;font-size: 10px;color: #717171">销量：{{item.salesVolume}}件</span></p>
-          <div style="background: #FF0000;width: 94px;height: 24px;line-height: 24px;text-align: center;color: white;border-radius:10px;">可抵:{{item.deduction.toFixed(2)}}元</div>
+          <div style="background: #FF0000;width: 94px;height: 24px;line-height: 24px;text-align: center;color: white;border-radius:10px;position: absolute;bottom: -19px;">可抵:{{item.deduction.toFixed(2)}}元</div>
         </div>
       </li>
     </ul>
