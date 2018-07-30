@@ -7,7 +7,7 @@
     </div>
     <div style="position: relative;width: 100%;height: auto;">
       <ul>
-        <li v-for="item in imgUrl"><img :src="item" alt="" style="width: 100%;"></li>
+        <li v-for="item in imgUrl"><img :src="item" :v-lazy="item" alt="" style="width: 100%;"></li>
         <!--<li><img src="../assets/address.png" alt="" style="width: 100%;"></li>-->
         <!--<li><img src="../assets/address.png" alt="" style="width: 100%;"></li>-->
       </ul>

@@ -78,7 +78,7 @@
 
   <div style="height: auto;background: white;padding-left: 10px;padding-right: 10px;">
     <ul style="height: auto;">
-      <li style="position: relative;" v-for="item in listArr" @click="openshop(item.id)">
+      <li style="position: relative;" v-for="item in listArr" :v-lazy="item" @click="openshop(item.id)">
         <img src="../assets/bg@3x.png" alt="" style="height: 140px;width: 100%;">
         <img :src="item.imageUrl" alt="" style="width: 100px;height: 100px;position: absolute;left: 10px;top: 50%;margin-top: -54px;">
         <div style="height: 100px;position: absolute;left:130px;top: 0px;text-align: left;padding-right: 10px;">
