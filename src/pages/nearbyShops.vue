@@ -334,7 +334,12 @@
         });
       },
       openMeishilist(){
-        this.$router.push('/allShops');
+        this.$router.push({
+          path:'/allShops',
+          query:{
+            userId:this.userId
+          }
+        });
         // window.location.href='https://login.m.taobao.com/login.htm?';
       },
       getweather(city){

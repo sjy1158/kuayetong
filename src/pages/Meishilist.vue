@@ -55,7 +55,8 @@
              index:index,
              id1:id1,
              id:id,
-             name:this.name
+             name:this.name,
+             userId:this.$route.query.userId
            }
          });
         }

@@ -76,7 +76,8 @@
           this.$router.push({
             path:'/allShops/Meishilist',
             query:{
-              id:id
+              id:id,
+              userId:this.$route.query.userId
             }
           })
         },
