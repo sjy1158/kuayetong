@@ -8,7 +8,7 @@
       </div>
     </div>
     <!--头部-->
-    <van-pull-refresh v-model="isLoading" @refresh="onRefresh2">
+    <van-pull-refresh v-model="isLoading2" @refresh="onRefresh2">
       <div id="scrollheight">
         <div class="header">
           <el-amap vid="amap" :plugin="plugin" class="amap-demo" style="display: none"></el-amap>
