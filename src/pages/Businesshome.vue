@@ -105,6 +105,7 @@
             isLoading: false,
             // 获取列表数据
             params:{
+              userId:this.$route.query.userId,
               productName:'',
               shopType:'',
               mark:0,
