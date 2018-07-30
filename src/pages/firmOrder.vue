@@ -207,8 +207,8 @@
               })
              }else if(this.radio==2){
                 this.$api.payWei(this.typeparams).then((res)=>{
-                  // alert(JSON.stringify(res));
-                  window.location.href="http://api.kuayet.com:8028/pay.html?data="+res;
+                  setTimeout(_this.getPaystatus(res.orderId),3000);
+                  window.location.href="http://api.kuayet.com:8028/pay.html?data="+res.lianjie;
                 })
               }
           }

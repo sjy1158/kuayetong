@@ -223,7 +223,7 @@ const api = {
   payWei(params){
     return axios.request({
       method:'get',
-      url:config.baseUrl+'/crossindustry/pay.do',
+      url:config.baseUrl+'/crossindustry/wx/pay.do',
       params:params
     })
   },
