@@ -56,7 +56,8 @@
              id1:id1,
              id:id,
              name:this.name,
-             userId:this.$route.query.userId
+             lat:this.$route.query.lat,
+             lng:this.$route.query.lng
            }
          });
         }

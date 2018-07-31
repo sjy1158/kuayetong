@@ -77,7 +77,8 @@
             path:'/allShops/Meishilist',
             query:{
               id:id,
-              userId:this.$route.query.userId
+              lat:this.$route.query.lat,
+              lng:this.$route.query.lng
             }
           })
         },

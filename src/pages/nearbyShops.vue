@@ -329,7 +329,9 @@
             root:1,
             name:name,
             id:id,
-            userId:this.userId
+            lat:this.params.latitude,
+            lng:this.params.longitude
+            // userId:this.userId
           }
         });
       },
@@ -337,7 +339,8 @@
         this.$router.push({
           path:'/allShops',
           query:{
-            userId:this.userId
+            lat:this.params.latitude,
+            lng:this.params.longitude
           }
         });
         // window.location.href='https://login.m.taobao.com/login.htm?';

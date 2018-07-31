@@ -52,7 +52,7 @@
                   <img :src="item.shopHeadImageUrl" :v-lazy="item.shopHeadImageUrl" alt="" style="float: left" class="shopimg">
                   <div class="textbox">
                     <p>{{item.title}}</p>
-                    <p class="titlelist"><img src="../assets/businesses_icon@2x.png" alt=""><span>{{item.shopType}}</span><span>人均消费{{item.averageMoney}}元</span><span style="position: absolute;right: 25px;"></span></p>
+                    <p class="titlelist"><img src="../assets/businesses_icon@2x.png" alt=""><span>{{item.shopType}}</span><span>人均消费{{item.averageMoney}}元</span><span style="position: absolute;right: 25px;">{{item.distanceString}}</span></p>
                     <p class="discon" v-if="item.deductionList.length!=0">
                       <span v-for="item1 in item.deductionList">{{item1.requireValue}}抵{{item1.value}}</span>
                     </p>
@@ -105,7 +105,8 @@
             isLoading: false,
             // 获取列表数据
             params:{
-              userId:this.$route.query.userId,
+              lat:this.$route.query.lat,
+              lng:this.$route.query.lng,
               productName:'',
               shopType:'',
               mark:0,
