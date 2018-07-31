@@ -451,10 +451,14 @@
       this.logarr=arrstr;
       this.userId=this.logarr[4];
       this.params.userId=this.logarr[4];
+      this.params.longitude=this.logarr[0];
+      this.params.latitude=this.logarr[1];
     },
     mounted(){
       this.userId=this.logarr[4];
       this.params.userId=this.logarr[4];
+      this.params.longitude=this.logarr[0];
+      this.params.latitude=this.logarr[1];
       var _this = this;
       var startX = 0,
         startY = 0;
