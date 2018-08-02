@@ -217,8 +217,8 @@
               o.getCurrentPosition((status,result)=>{
                 if(result&&result.position) {
                   _this.city = result.addressComponent.city;
-                  _this.params.latitude = result.position.lat;
-                  _this.params.longitude = result.position.lng;
+                  _this.params.latitude = result.position.lng;
+                  _this.params.longitude = result.position.lat;
                   _this.center = [_this.params.longitude, _this.params.latitude];
                   _this.loaded = true;
                   _this.finished = false;
