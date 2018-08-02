@@ -157,7 +157,7 @@
         },
       },
       created(){
-          this.onRefresh();
+          // this.onRefresh();
         var shopid=this.$route.query.shopid;
         this.getProduce(shopid);
       },
