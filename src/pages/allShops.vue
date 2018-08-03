@@ -13,7 +13,7 @@
       </div>
     </div>
     <div style="margin-top: 2.2rem;margin-right: 0.25rem;">
-      <div style="width: 2.5rem;padding-top: 9px;font-size: 13px;float: left;">{{name}}</div>
+      <div style="width: 2.5rem;padding-top: 9px;font-size: 13px;float: left;">分类</div>
       <div style="width: 72%;float: right;padding-top: 9px;">
         <span style="float: left">{{name}}<span>(</span>{{shopSum}}<span>)</span></span>
         <span style="float: right">去频道</span>
