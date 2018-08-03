@@ -30,17 +30,6 @@
               <p style="font-size: 12px!important;">¥{{item.value}}</p>
             </div>
           </li>
-          <li v-for="item in disconarr">
-            <img src="../assets/merchant_deduct_red_and_white@2x.png" alt="">
-            <div style="position: absolute;top: 0.55rem;width:2.5rem;color: #FF0000;left: -0.2rem;">
-              <p style="font-size: 9px!important;padding-top: 5px;">进店消费满</p>
-              <p style="font-size: 12px!important;">¥{{item.requireValue}}</p>
-            </div>
-            <div style="position: absolute;top: 0.55rem;width:1.6rem;left: 2.15rem;color: #FFFFFF">
-              <p style="font-size: 9px!important;padding-top: 5px;">进店消费满</p>
-              <p style="font-size: 12px!important;">¥{{item.value}}</p>
-            </div>
-          </li>
         </ul>
         <p v-if="disconarr.length==0" style="color: red;text-align: left;padding-left: 25px;padding-top: 5px;">此店暂无优惠券~~~~~~~</p>
       </div>
