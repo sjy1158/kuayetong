@@ -38,7 +38,7 @@
       </form>
       <van-area :area-list="areaList" v-show="isshow==true" :value="value" @confirm="finish" @cancel="onCancel" style="position: fixed;width: 100%;bottom: 0px;z-index: 999999999999"/>
       <!--保存收货信息-->
-      <div class="save" @click="savelocation">
+      <div class="save" style="background: #D8D8D8;" @click="savelocation">
         保存收货信息
       </div>
     </div>
