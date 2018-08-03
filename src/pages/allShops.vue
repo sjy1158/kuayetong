@@ -182,7 +182,7 @@
     color: #393939!important;
   }
   .shoplist ul{
-      height: 10rem;
+      /*height: 10rem;*/
     /*background: palevioletred;*/
     overflow-y: scroll;
     overflow-x: hidden;
