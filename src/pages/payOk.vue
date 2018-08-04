@@ -16,7 +16,6 @@
           this.$api.getPay1(params).then(function (res) {
             setTimeout(_this.getPaystatus(res.orderId),3000);
             var html=res.html.replace(/\\/g,'');
-              alert(html);
             document.body.innerHTML=html.split('</form>')[0];
             document.forms[0].submit();
           });
