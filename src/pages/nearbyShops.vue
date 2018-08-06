@@ -315,6 +315,7 @@
       },
       // 加载
       onLoad() {
+        alert(11111)
         this.loading = true;
         this.issum=true;
         this.params.pageNum+=1;
