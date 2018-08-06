@@ -480,16 +480,16 @@
       setTimeout(()=>{
         document.querySelector('.van-tabs__line').style.transform='translateX(1.4rem)';
       },100);
-      // window.addEventListener('scroll',function () {
-      //   var height=document.querySelector('.header').clientHeight;
-      //   var pageY=window.pageYOffset;
-      //   if(pageY>height||pageY==height){
-      //     document.getElementById('search').style.display='block';
-      //   }else{
-      //     document.getElementById('search').style.display='none';
-      //   }
-      //   // alert(window.pageYOffset);
-      // })
+      window.addEventListener('scroll',function () {
+        var height=document.querySelector('.header').clientHeight;
+        var pageY=window.pageYOffset;
+        if(pageY>height||pageY==height){
+          document.getElementById('search').style.display='block';
+        }else{
+          document.getElementById('search').style.display='none';
+        }
+        // alert(window.pageYOffset);
+      })
     }
   }
 </script>
