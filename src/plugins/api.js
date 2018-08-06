@@ -17,11 +17,6 @@ axios.interceptors.response.use(response=>{
     Toast(response.data.msg);
     return
   }
-},error => {
-  if(error.response.status==500||error.response.status==404){
-    Toast('服务器错误');
-    return
-  }
 });
 
 
