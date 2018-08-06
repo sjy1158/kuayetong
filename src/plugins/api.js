@@ -19,7 +19,6 @@ axios.interceptors.response.use(response=>{
   }
 });
 
-
 const api = {
   //获取图标
   getImage(){
