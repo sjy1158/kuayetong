@@ -38,7 +38,7 @@
       </form>
       <van-area :area-list="areaList" v-show="isshow==true" :value="value" @confirm="finish" @cancel="onCancel" style="position: fixed;width: 100%;bottom: 0px;z-index: 999999999999"/>
       <!--保存收货信息-->
-      <div class="save" style="background: #D8D8D8;" @click="savelocation">
+      <div class="save" style="background: #909090;" @click="savelocation">
         保存收货信息
       </div>
     </div>
@@ -64,7 +64,7 @@
           <img :src="item.imageUrl" alt="" style="float: left">
           <div>
             <p style="font-size: 12px;">{{item.productName}}</p>
-            <div class="sizeitem" style="font-size: 14px!important;">
+            <div class="sizeitem" style="font-size: 15px!important;">
               <span style="color:#FF0000 ">¥{{onesize}}</span>
               <span style="padding-left: 0.1rem;color: #8F8F8F;font-size: 14px;">×{{value1}}</span>
               <van-stepper style="float: right;font-size: 14px;" @change="changenum" v-model="value1"/></div>
@@ -105,7 +105,7 @@
     <!--提交订单-->
     <div class="savedingdan">
       <div class="savedingdanbtn">
-          <span style="color: #8F8F8F;font-size: 14px;">合计：</span><span style="color: #FF0000;font-size: 14px;">¥{{allsize}}</span>
+          <span style="color: #8F8F8F;font-size: 14px;">合计：</span><span style="color: #FF0000;font-size: 24px;">¥{{allsize}}</span>
           <button @click="getpay">提交订单</button>
       </div>
     </div>
@@ -270,6 +270,7 @@
     border: none;
     margin-left: 1rem;width: 5rem;
     text-align: left;
+    margin-top: -0.2rem;
   }
   .van-cell-group .van-cell .van-cell__right-icon{
     margin-left: 2rem!important;

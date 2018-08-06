@@ -13,11 +13,17 @@ axios.interceptors.response.use(response=>{
      return response.data;
   } else if(response.data.status==1){
     return response.data.lives;
-  }else {
+  }  else {
     Toast(response.data.msg);
     return
   }
+},error => {
+  if(error.response.status==500||error.response.status==404){
+    Toast('服务器错误');
+    return
+  }
 });
+
 
 const api = {
   //获取图标
