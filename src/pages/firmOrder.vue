@@ -15,7 +15,7 @@
         <van-cell-group>
           <van-cell title="收货人">
             <template>
-              <input type="text" placeholder="请使用真实姓名" style="margin-left: 1.3rem;" v-model="params.valuename">
+              <input type="text" placeholder="请使用真实姓名" style="margin-left: 1.35rem;" v-model="params.valuename">
             </template>
           </van-cell>
           <van-cell title="联系电话">
