@@ -317,7 +317,6 @@
       onLoad() {
         this.loading = true;
         this.issum=true;
-        this.isLoading=false;
         this.params.pageNum+=1;
         this.getindexList(this.params);
       },
