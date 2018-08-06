@@ -128,7 +128,7 @@
             <van-list
               v-model="loading"
               :finished="finished"
-              :offset="100"
+              :offset="10"
               @load="onLoad"
             >
               <van-cell v-for="item in list">
@@ -315,9 +315,9 @@
       },
       // 加载
       onLoad() {
-        alert(11111)
         this.loading = true;
         this.issum=true;
+        this.isLoading=false;
         this.params.pageNum+=1;
         this.getindexList(this.params);
       },
