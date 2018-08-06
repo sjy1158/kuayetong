@@ -268,7 +268,7 @@
   }
   input{
     border: none;
-    margin-left: 1rem;width: 5rem;
+    margin-left: 1rem;width: 4.8rem;
     text-align: left;
     margin-top: -0.2rem;
   }

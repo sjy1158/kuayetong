@@ -49,7 +49,7 @@
         <!--输入框-->
           <div class="search">
             <form @submit.prevent="submit" action="javascript:return true">
-              <input type="search" v-model="params.userId" class="input2" style="" placeholder="输入商品名称／宝贝标题搜索" ref="input1" @blur="clear()" @keyup="show($event)">
+              <input type="search" v-model="value" class="input2" style="" placeholder="输入商品名称／宝贝标题搜索" ref="input1" @blur="clear()" @keyup="show($event)">
             </form>
           </div>
 
