@@ -14,17 +14,17 @@
         getok(params){
           var _this = this;
           this.$api.getPay1(params).then(function (res) {
-            // setTimeout(_this.getPaystatus(res.orderId),3000);
+            setTimeout(_this.getPaystatus(res.orderId),3000);
             var html=res.html.replace(/\\/g,'');
             document.body.innerHTML=html.split('</form>')[0];
             document.forms[0].submit();
           });
         },
-        // getPaystatus(orderId){
-        //  var _this=this;
-        //   this.$api.getpaystatus(orderId).then((res)=>{
-        //   })
-        // }
+        getPaystatus(orderId){
+         var _this=this;
+          this.$api.getpaystatus(orderId).then((res)=>{
+          })
+        }
       },
       created(){
       },

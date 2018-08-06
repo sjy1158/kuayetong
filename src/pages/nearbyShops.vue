@@ -223,7 +223,11 @@
                   _this.loaded = true;
                   _this.finished = false;
                   _this.loading = true;
-                  _this.formattedAddress = result.formattedAddress.split('市')[1];
+                  if(_this.params.latitude!=""&&_this.params.longitude!=""){
+                   _this.formattedAddress = result.formattedAddress.split('市')[1];
+                  }else{
+                    _this.formattedAddress = "全部"
+                  }
                   _this.getweather(_this.city);
                   _this.getindexList(_this.params);
                   _this.$nextTick();
@@ -234,7 +238,11 @@
                   _this.loaded = true;
                   _this.finished = false;
                   _this.loading = true;
+                  if(_this.params.latitude!=""&&_this.params.longitude!=""){
                   _this.formattedAddress = _this.logarr[3].split('#')[0];
+                  }else{
+                    _this.formattedAddress = "全部"
+                  }
                   // alert(JSON.stringify(_this.params));
                   _this.getindexList(_this.params);
                   _this.$nextTick();
@@ -434,12 +442,6 @@
         return - this.activeIndex * 50 + 'px';
       }
     },
-    // beforeRouteLeave(to,from,next){
-    //   if(to.path=='/Businesshome'){
-    //       to.meta.keepAlive=false;
-    //   };
-    //   next();
-    // },
     created(){
       this.getBanner();
       this.getheadline();
