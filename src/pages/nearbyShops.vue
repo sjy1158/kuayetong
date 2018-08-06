@@ -1,12 +1,12 @@
 <template>
   <div class="nearShop">
-    <div class="search" style="position: fixed;top: 0px;z-index: 99999999999999999999;display: none" id="search">
-      <div style="width:100%;background:white;position: absolute;">
-        <form @submit.prevent="submit" action="javascript:return true">
-          <input type="search" v-model="value" class="input2" style="margin-top: 27px;" placeholder="输入商品名称／宝贝标题搜索" ref="input1" @blur="clear()" @keyup="show($event)">
-        </form>
-      </div>
-    </div>
+    <!--<div class="search" style="position: fixed;top: 0px;z-index: 99999999999999999999;display: none" id="search">-->
+      <!--<div style="width:100%;background:white;position: absolute;">-->
+        <!--<form @submit.prevent="submit" action="javascript:return true">-->
+          <!--<input type="search" v-model="value" class="input2" style="margin-top: 27px;" placeholder="输入商品名称／宝贝标题搜索" ref="input1" @blur="clear()" @keyup="show($event)">-->
+        <!--</form>-->
+      <!--</div>-->
+    <!--</div>-->
     <!--头部-->
     <van-pull-refresh v-model="isLoading2" @refresh="onRefresh2">
       <div id="scrollheight">
@@ -278,8 +278,8 @@
         },500);
       },
       openShophome(shopid){
-        document.body.scrollTop=0;
-        document.getElementById('search').style.display='none';
+        // document.body.scrollTop=0;
+        // document.getElementById('search').style.display='none';
         this.$router.push({
           path:'/Shophome/starProducts',
           query:{
@@ -329,8 +329,8 @@
       },
 
       openBusinesshome(name,id){
-        document.body.scrollTop=0;
-        document.getElementById('search').style.display='none';
+        // document.body.scrollTop=0;
+        // document.getElementById('search').style.display='none';
         this.$router.push({
           path:'/Businesshome',
           query:{
