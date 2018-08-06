@@ -128,7 +128,7 @@
             <van-list
               v-model="loading"
               :finished="finished"
-              :offset="10"
+              :offset="100"
               @load="onLoad"
             >
               <van-cell v-for="item in list">
