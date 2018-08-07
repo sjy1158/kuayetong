@@ -64,7 +64,7 @@
             </van-tab>
             <van-tab>
               <div slot="title" style="font-size: 14px;">
-                商品详情
+                  商家详情
               </div>
             </van-tab>
         </van-tabs>

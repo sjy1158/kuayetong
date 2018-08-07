@@ -148,6 +148,11 @@
             userId:this.$route.query.userId,
             mark:this.$route.query.mark
           },
+          typeParams:{
+            userId:this.$route.query.userId,
+            productId:this.$route.query.shoptypeid,
+            num:''
+          },
           valuelocation:'',
           shoparr:[],
         }
@@ -200,12 +205,21 @@
             this.typeparams.area = this.value;
             this.typeparams.word = this.value2;
             this.typeparams.num = this.value1;
+            this.typeParams.num = this.value1;
             this.typeparams.money = this.allsize;
-              if(this.radio==1){
-              this.$router.push({
-                path:'/payOk',
-                query:this.typeparams
-              })
+            if(this.radio==1){
+             _this.$api.getPay1(this.typeparams).then(function (res) {
+               if(res!=undefined){
+                 _this.$router.push({
+                   path:'/payOk',
+                   query:_this.typeparams
+                 })
+               }
+             })
+              // this.$router.push({
+              //   path:'/payOk',
+              //   query:this.typeparams
+              // })
              }else if(this.radio==2){
                 this.$api.payWei(this.typeparams).then((res)=>{
                   setTimeout(_this.getPaystatus(res.orderId),3000);
