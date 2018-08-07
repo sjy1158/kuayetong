@@ -141,7 +141,8 @@
                 price:_this.price2,
                val:_this.value,
              shoptypeid:_this.shoptypeid,
-             userId:this.$route.query.userId
+             userId:this.$route.query.userId,
+             mark:this.$route.query.mark
             }
           });
         },

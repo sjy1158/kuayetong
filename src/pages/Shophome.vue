@@ -110,6 +110,7 @@
                     shopid:this.$route.query.shopid,
                     root:this.$route.query.root,
                     userId:this.$route.query.userId,
+                    mark:this.$route.query.mark
                   }
                 });
                 break;
@@ -120,6 +121,7 @@
                     shopid:this.$route.query.shopid,
                     root:this.$route.query.root,
                     userId:this.$route.query.userId,
+                    mark:this.$route.query.mark
                   }
                 });
             }

@@ -209,6 +209,7 @@
           num:5,
           mark:0
         },
+        mark:'',
         logarr:[],
         plugin:[{
           pName:'Geolocation',
@@ -285,7 +286,8 @@
           query:{
             shopid:shopid,
             pathid:1,
-            userId:this.userId
+            userId:this.userId,
+            mark:this.mark
           }
         });
       },
@@ -338,7 +340,8 @@
             name:name,
             id:id,
             lat:this.params.latitude,
-            lng:this.params.longitude
+            lng:this.params.longitude,
+            mark:this.mark
             // userId:this.userId
           }
         });
@@ -455,12 +458,22 @@
       this.params.userId=this.logarr[4];
       this.params.longitude=this.logarr[0];
       this.params.latitude=this.logarr[1];
+      if(this.logarr[5]==undefined){
+        this.mark='';
+      }else {
+        this.mark=this.logarr[5]
+      }
     },
     mounted(){
       this.userId=this.logarr[4];
       this.params.userId=this.logarr[4];
       this.params.longitude=this.logarr[0];
       this.params.latitude=this.logarr[1];
+      if(this.logarr[5]==undefined){
+        this.mark='';
+      }else {
+        this.mark=this.logarr[5]
+      }
       var _this = this;
       var startX = 0,
         startY = 0;
