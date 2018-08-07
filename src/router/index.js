@@ -36,10 +36,7 @@ export default new Router({
     {
       name:'nearbyShops',
       path:'/nearbyShops',
-      component:nearbyShops,
-      meta:{
-        keepAlive: true
-      }
+      component:nearbyShops
     },
     {
       name:'Businesshome',
