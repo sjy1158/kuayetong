@@ -438,7 +438,7 @@
       getmark(params){
         var _this=this;
         this.$api.getMark(params).then((res)=>{
-              this.typemark=res.user.mark
+              _this.typemark=res.user.mark
         })
       }
     },
@@ -483,10 +483,10 @@
     mounted(){
       this.userId=this.logarr[4];
       this.markParams.userId=this.logarr[4];
-      this.getmark(this.markParams);
       this.params.userId=this.logarr[4];
       this.params.longitude=this.logarr[0];
       this.params.latitude=this.logarr[1];
+      this.getmark(this.markParams);
       if(this.logarr[5]==undefined){
         this.mark='';
       }else {
