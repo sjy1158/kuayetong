@@ -242,6 +242,14 @@ const api = {
       url:config.baseUrl+'/crossindustry/powerPurchaser/getDetail',
       params:params
     })
+  },
+  // 获取角色
+  getMark(params){
+    return axios.request({
+      method:'get',
+      url:config.baseUrl+'/crossindustry/phonePage/getUserInformation',
+      params:params
+    })
   }
 }
 export default class Api {

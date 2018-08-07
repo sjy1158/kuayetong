@@ -1,5 +1,9 @@
 <template>
   <div class="nearShop">
+    <div class="imgbg" v-show="typemark==1">
+      <img src="../assets/invite.png" alt="" style="width: 100%;height: 100%;">
+    </div>
+    <div v-show="typemark==0">
     <div class="search" style="position: fixed;top: 0px;z-index: 99999999999999999999;display: none" id="search">
       <div style="width:100%;background:white;position: absolute;">
         <form @submit.prevent="submit" action="javascript:return true">
@@ -160,6 +164,7 @@
       </van-tabs>
     </div>
     </van-pull-refresh>
+    </div>
   </div>
 </template>
 <script>
@@ -170,6 +175,7 @@
     data(){
       var _this = this;
       return {
+        typemark:'',
         linearr:[],
         activeIndex: 0,
         weathericon:'',
@@ -208,6 +214,9 @@
           pageNum:1,
           num:5,
           mark:0
+        },
+        markParams:{
+          userId:''
         },
         mark:'',
         logarr:[],
@@ -425,6 +434,12 @@
         this.$api.getImage().then((res)=>{
           _this.images=res.list;
         })
+      },
+      getmark(params){
+        var _this=this;
+        this.$api.getMark(params).then((res)=>{
+              this.typemark=res.user.mark
+        })
       }
     },
     watch: {
@@ -456,6 +471,7 @@
       this.logarr=arrstr;
       this.userId=this.logarr[4];
       this.params.userId=this.logarr[4];
+      this.markParams.userId=this.logarr[4];
       this.params.longitude=this.logarr[0];
       this.params.latitude=this.logarr[1];
       if(this.logarr[5]==undefined){
@@ -466,6 +482,8 @@
     },
     mounted(){
       this.userId=this.logarr[4];
+      this.markParams.userId=this.logarr[4];
+      this.getmark(this.markParams);
       this.params.userId=this.logarr[4];
       this.params.longitude=this.logarr[0];
       this.params.latitude=this.logarr[1];
