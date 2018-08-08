@@ -1,9 +1,5 @@
 <template>
   <div class="nearShop">
-    <div class="imgbg" v-show="typemark==1">
-      <img src="../assets/invite.png" alt="" style="width: 100%;height: 100%;">
-    </div>
-    <div v-show="typemark==0">
     <div class="search" style="position: fixed;top: 0px;z-index: 99999999999999999999;display: none" id="search">
       <div style="width:100%;background:white;position: absolute;">
         <form @submit.prevent="submit" action="javascript:return true">
@@ -164,7 +160,6 @@
       </van-tabs>
     </div>
     </van-pull-refresh>
-    </div>
   </div>
 </template>
 <script>
@@ -438,7 +433,9 @@
       getmark(params){
         var _this=this;
         this.$api.getMark(params).then((res)=>{
-              _this.typemark=res.user.mark
+           if(res.user.mark==1){
+              _this.$router.push('/shareSome')
+           }
         })
       }
     },

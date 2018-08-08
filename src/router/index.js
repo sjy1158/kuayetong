@@ -25,6 +25,7 @@ import logintaobao from '../pages/logintaobao'
 import comPurchase from '../pages/comPurchase'
 import goLocation from '../pages/goLocation'
 import pingDuo from '../pages/pingDuo'
+import shareSome from '../pages/shareSome'
 Vue.use(Router)
 
 export default new Router({
@@ -166,6 +167,11 @@ export default new Router({
       name:'payOver',
       path:'/payOver',
       component:payOver
+    },
+    {
+      name:'shareSome',
+      path:'/shareSome',
+      component:shareSome
     },
     {
       path:'/',
