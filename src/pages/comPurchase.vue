@@ -137,7 +137,7 @@
           var _this=this;
           Dialog.confirm({
             title: '提示',
-            message: '此操作不可撤销，请确认使用跨业通余额'+this.deduction+'元抵扣购物'
+            message: '此操作不可撤销，请确认使用本平台余额'+this.deduction+'元抵扣购物'
           }).then(() => {
               window.location.href=_this.location;
           }).catch(() => {
