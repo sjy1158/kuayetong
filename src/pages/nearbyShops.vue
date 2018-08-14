@@ -470,6 +470,9 @@
       this.logarr=arrstr;
       this.userId=this.logarr[4];
       this.getmark(this.markParams);
+      if(this.mark=='1'){
+        this.$router.push('/shareSome')
+      }
       this.params.userId=this.logarr[4];
       this.markParams.userId=this.logarr[4];
       this.params.longitude=this.logarr[0];
@@ -483,6 +486,9 @@
     mounted(){
       this.userId=this.logarr[4];
       this.getmark(this.markParams);
+      if(this.mark=='1'){
+        this.$router.push('/shareSome')
+      }
       this.markParams.userId=this.logarr[4];
       this.params.userId=this.logarr[4];
       this.params.longitude=this.logarr[0];
