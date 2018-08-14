@@ -11,7 +11,7 @@
     <van-pull-refresh v-model="isLoading2" @refresh="onRefresh2">
       <div id="scrollheight">
         <div class="header">
-          <el-amap vid="amap" v-if="mark=='1'" :plugin="plugin2" class="amap-demo" style="display: none"></el-amap>
+          <span v-if="mark=='1'" style="display: none"></span>
           <el-amap vid="amap" v-else :plugin="plugin" class="amap-demo" style="display: none"></el-amap>
           <div>
             <van-swipe :autoplay="3000">
