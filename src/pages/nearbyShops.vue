@@ -434,9 +434,9 @@
       getmark(params){
         var _this=this;
         this.$api.getMark(params).then((res)=>{
-           if(res.user.mark==1){
+          _this.mark=res.user.mark
+           if(_this.mark==1){
               _this.$router.push('/shareSome')
-              _this.mark=res.user.mark
            }
         })
       }
