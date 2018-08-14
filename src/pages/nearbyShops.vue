@@ -11,8 +11,7 @@
     <van-pull-refresh v-model="isLoading2" @refresh="onRefresh2">
       <div id="scrollheight">
         <div class="header">
-          <span v-if="mark=='1'" style="display: none"></span>
-          <el-amap vid="amap" v-else :plugin="plugin" class="amap-demo" style="display: none"></el-amap>
+          <el-amap vid="amap" :plugin="plugin" class="amap-demo" style="display: none"></el-amap>
           <div>
             <van-swipe :autoplay="3000">
               <van-swipe-item v-for="item in images">
@@ -435,7 +434,7 @@
         var _this=this;
         this.$api.getMark(params).then((res)=>{
           _this.mark=res.user.mark
-           if(_this.mark==1){
+           if(_this.mark=='1'){
               _this.$router.push('/shareSome')
            }
         })
@@ -474,11 +473,6 @@
       this.getmark(this.markParams);
       this.params.longitude=this.logarr[0];
       this.params.latitude=this.logarr[1];
-      if(this.logarr[5]==undefined){
-        this.mark='';
-      }else {
-        this.mark=this.logarr[5]
-      }
     },
     mounted(){
       this.userId=this.logarr[4];
@@ -487,11 +481,6 @@
       this.params.userId=this.logarr[4];
       this.params.longitude=this.logarr[0];
       this.params.latitude=this.logarr[1];
-      if(this.logarr[5]==undefined){
-        this.mark='';
-      }else {
-        this.mark=this.logarr[5]
-      }
       var _this = this;
       var startX = 0,
         startY = 0;
