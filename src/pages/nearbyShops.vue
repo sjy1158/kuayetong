@@ -11,8 +11,7 @@
     <van-pull-refresh v-model="isLoading2" @refresh="onRefresh2">
       <div id="scrollheight">
         <div class="header">
-          <div v-if="mark=='1'"></div>
-          <el-amap v-else vid="amap" :plugin="plugin" class="amap-demo" style="display: none"></el-amap>
+          <el-amap v-if="mark=='1'" vid="amap" :plugin="plugin" class="amap-demo" style="display: none"></el-amap>
           <div>
             <van-swipe :autoplay="3000">
               <van-swipe-item v-for="item in images">
@@ -437,6 +436,7 @@
           _this.mark=res.user.mark
            if(_this.mark=='1'){
              _this.$route.meta.keepAlive=false
+             _this.plugin=''
               _this.$router.push('/shareSome')
            }else{
              _this.$route.meta.keepAlive=true
