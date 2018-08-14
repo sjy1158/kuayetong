@@ -11,7 +11,8 @@
     <van-pull-refresh v-model="isLoading2" @refresh="onRefresh2">
       <div id="scrollheight">
         <div class="header">
-          <el-amap vid="amap" :plugin="plugin" class="amap-demo" style="display: none"></el-amap>
+          <el-amap vid="amap" v-if="mark=='1'" :plugin="plugin2" class="amap-demo" style="display: none"></el-amap>
+          <el-amap vid="amap" v-else :plugin="plugin" class="amap-demo" style="display: none"></el-amap>
           <div>
             <van-swipe :autoplay="3000">
               <van-swipe-item v-for="item in images">
@@ -215,6 +216,7 @@
         },
         mark:'',
         logarr:[],
+        plugin2:'',
         plugin:[{
           pName:'Geolocation',
           events:{
@@ -435,6 +437,7 @@
         this.$api.getMark(params).then((res)=>{
            if(res.user.mark==1){
               _this.$router.push('/shareSome')
+              _this.mark=res.user.mark
            }
         })
       }
@@ -467,6 +470,7 @@
       }
       this.logarr=arrstr;
       this.userId=this.logarr[4];
+      this.getmark(this.markParams);
       this.params.userId=this.logarr[4];
       this.markParams.userId=this.logarr[4];
       this.params.longitude=this.logarr[0];
@@ -479,11 +483,11 @@
     },
     mounted(){
       this.userId=this.logarr[4];
+      this.getmark(this.markParams);
       this.markParams.userId=this.logarr[4];
       this.params.userId=this.logarr[4];
       this.params.longitude=this.logarr[0];
       this.params.latitude=this.logarr[1];
-      this.getmark(this.markParams);
       if(this.logarr[5]==undefined){
         this.mark='';
       }else {
