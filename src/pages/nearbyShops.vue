@@ -1,5 +1,5 @@
 <template>
-  <div class="nearShop" v-show="mark!='1'">
+  <div class="nearShop">
     <div class="search" style="position: fixed;top: 0px;z-index: 99999999999999999999;display: none" id="search">
       <div style="width:100%;background:white;position: absolute;">
         <form @submit.prevent="submit" action="javascript:return true">
@@ -208,12 +208,12 @@
           longitude:'',
           pageNum:1,
           num:5,
-          mark:'1'
+          mark:0
         },
         markParams:{
           userId:''
         },
-        mark:'',
+        mark:'1',
         logarr:[],
         plugin2:'',
         plugin:[{
@@ -469,12 +469,9 @@
       }
       this.logarr=arrstr;
       this.userId=this.logarr[4];
-      this.getmark(this.markParams);
-      if(this.mark=='1'){
-        this.$router.push('/shareSome')
-      }
       this.params.userId=this.logarr[4];
       this.markParams.userId=this.logarr[4];
+      this.getmark(this.markParams);
       this.params.longitude=this.logarr[0];
       this.params.latitude=this.logarr[1];
       if(this.logarr[5]==undefined){
@@ -485,11 +482,8 @@
     },
     mounted(){
       this.userId=this.logarr[4];
-      this.getmark(this.markParams);
-      if(this.mark=='1'){
-        this.$router.push('/shareSome')
-      }
       this.markParams.userId=this.logarr[4];
+      this.getmark(this.markParams);
       this.params.userId=this.logarr[4];
       this.params.longitude=this.logarr[0];
       this.params.latitude=this.logarr[1];
