@@ -1,5 +1,5 @@
 <template>
-  <div class="nearShop">
+  <div class="nearShop" v-show="mark!='1'">
     <div class="search" style="position: fixed;top: 0px;z-index: 99999999999999999999;display: none" id="search">
       <div style="width:100%;background:white;position: absolute;">
         <form @submit.prevent="submit" action="javascript:return true">
@@ -208,7 +208,7 @@
           longitude:'',
           pageNum:1,
           num:5,
-          mark:1
+          mark:'1'
         },
         markParams:{
           userId:''
