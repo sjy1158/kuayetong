@@ -11,7 +11,7 @@
     <van-pull-refresh v-model="isLoading2" @refresh="onRefresh2">
       <div id="scrollheight">
         <div class="header">
-          <el-amap v-if="mark=='1'" vid="amap" :plugin="plugin" class="amap-demo" style="display: none"></el-amap>
+          <el-amap vid="amap" :plugin="plugin" class="amap-demo" style="display: none"></el-amap>
           <div>
             <van-swipe :autoplay="3000">
               <van-swipe-item v-for="item in images">
@@ -219,46 +219,49 @@
           pName:'Geolocation',
           events:{
             init(o){
-              o.getCurrentPosition((status,result)=>{
-                if(result&&result.position) {
-                  _this.city = result.addressComponent.city;
-                  _this.params.latitude = result.position.lng;
-                  _this.params.longitude = result.position.lat;
-                  _this.center = [_this.params.longitude, _this.params.latitude];
-                  _this.loaded = true;
-                  _this.finished = false;
-                  _this.loading = true;
-                  if(_this.params.latitude!=""&&_this.params.longitude!=""){
-                   _this.formattedAddress = result.formattedAddress.split('市')[1];
-                  }else{
-                    _this.formattedAddress = "全部"
-                  }
-                  _this.getweather(_this.city);
-                  _this.getindexList(_this.params);
-                  _this.$nextTick();
-                }else{
-                  _this.params.latitude =_this.logarr[0];
-                  _this.params.longitude = _this.logarr[1];
-                  _this.center = [_this.params.longitude, _this.params.latitude];
-                  _this.loaded = true;
-                  _this.finished = false;
-                  _this.loading = true;
-                  if(_this.params.latitude!=""&&_this.params.longitude!=""){
-                  _this.formattedAddress = _this.logarr[3].split('#')[0];
-                  }else{
-                    _this.formattedAddress = "全部"
-                  }
-                  // alert(JSON.stringify(_this.params));
-                  _this.getindexList(_this.params);
-                  _this.$nextTick();
-                }
-              })
             }
           }
         }]
       }
     },
     methods:{
+      init(o){
+        const _this=this
+        o.getCurrentPosition((status,result)=>{
+          if(result&&result.position) {
+            _this.city = result.addressComponent.city;
+            _this.params.latitude = result.position.lng;
+            _this.params.longitude = result.position.lat;
+            _this.center = [_this.params.longitude, _this.params.latitude];
+            _this.loaded = true;
+            _this.finished = false;
+            _this.loading = true;
+            if(_this.params.latitude!=""&&_this.params.longitude!=""){
+              _this.formattedAddress = result.formattedAddress.split('市')[1];
+            }else{
+              _this.formattedAddress = "全部"
+            }
+            _this.getweather(_this.city);
+            _this.getindexList(_this.params);
+            _this.$nextTick();
+          }else{
+            _this.params.latitude =_this.logarr[0];
+            _this.params.longitude = _this.logarr[1];
+            _this.center = [_this.params.longitude, _this.params.latitude];
+            _this.loaded = true;
+            _this.finished = false;
+            _this.loading = true;
+            if(_this.params.latitude!=""&&_this.params.longitude!=""){
+              _this.formattedAddress = _this.logarr[3].split('#')[0];
+            }else{
+              _this.formattedAddress = "全部"
+            }
+            // alert(JSON.stringify(_this.params));
+            _this.getindexList(_this.params);
+            _this.$nextTick();
+          }
+        })
+      },
       submit() {
         return false
       },
@@ -436,10 +439,10 @@
           _this.mark=res.user.mark
            if(_this.mark=='1'){
              _this.$route.meta.keepAlive=false
-             _this.plugin=''
               _this.$router.push('/shareSome')
            }else{
              _this.$route.meta.keepAlive=true
+             _this.init(o)
            }
         })
       }
