@@ -471,6 +471,7 @@
       this.markParams.userId=this.logarr[4];
       this.params.longitude=this.logarr[0];
       this.params.latitude=this.logarr[1];
+      this.getmark(this.markParams);
       if(this.logarr[5]==undefined){
         this.mark='';
       }else {
