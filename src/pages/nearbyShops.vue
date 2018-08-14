@@ -219,6 +219,7 @@
           pName:'Geolocation',
           events:{
             init(o){
+              _this.init(o)
             }
           }
         }]
