@@ -24,7 +24,6 @@
           <div class="titlelocation">
             <div class="locationtext">
               <img src="../assets/business_positioning@2x.png" alt="" style="width: 10px;height: 15px;">
-
               <!--<van-notice-bar style="background: none!important;left: 1rem;color: white!important;top: -0.1rem;" v-if="loaded">-->
               <!--{{formattedAddress}}-->
               <!--</van-notice-bar>-->
@@ -209,7 +208,7 @@
           longitude:'',
           pageNum:1,
           num:5,
-          mark:0
+          mark:1
         },
         markParams:{
           userId:''
