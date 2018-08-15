@@ -409,6 +409,8 @@
         this.$api.getMark(params).then((res)=>{
           _this.mark=res.user.mark
            if(_this.mark=='1'){
+             _this.$router.push('/shareSome')
+           }else{
              o.getCurrentPosition((status,result)=>{
                if(result&&result.position) {
                  _this.city = result.addressComponent.city;
@@ -443,8 +445,6 @@
                  _this.$nextTick();
                }
              })
-             // _this.$router.push('/shareSome')
-           }else{
 
            }
         })
