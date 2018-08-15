@@ -219,50 +219,20 @@
           pName:'Geolocation',
           events:{
             init(o){
-              _this.init(o)
-            }
+              var arrstr=[];
+              var arr=_this.$geturl.getL();
+              for(var i=0;i<arr.length;i++){
+                arrstr.push(arr[i].split('=')[1]);
+              }
+              _this.logarr=arrstr;
+              _this.markParams.userId=_this.logarr[4]
+              _this.getmark(_this.markParams,o)
+            },
           }
         }]
       }
     },
     methods:{
-      init(o){
-        const _this=this
-        o.getCurrentPosition((status,result)=>{
-          if(result&&result.position) {
-            _this.city = result.addressComponent.city;
-            _this.params.latitude = result.position.lng;
-            _this.params.longitude = result.position.lat;
-            _this.center = [_this.params.longitude, _this.params.latitude];
-            _this.loaded = true;
-            _this.finished = false;
-            _this.loading = true;
-            if(_this.params.latitude!=""&&_this.params.longitude!=""){
-              _this.formattedAddress = result.formattedAddress.split('市')[1];
-            }else{
-              _this.formattedAddress = "全部"
-            }
-            _this.getweather(_this.city);
-            _this.getindexList(_this.params);
-            _this.$nextTick();
-          }else{
-            _this.params.latitude =_this.logarr[0];
-            _this.params.longitude = _this.logarr[1];
-            _this.center = [_this.params.longitude, _this.params.latitude];
-            _this.loaded = true;
-            _this.finished = false;
-            _this.loading = true;
-            if(_this.params.latitude!=""&&_this.params.longitude!=""){
-              _this.formattedAddress = _this.logarr[3].split('#')[0];
-            }else{
-              _this.formattedAddress = "全部"
-            }
-            // alert(JSON.stringify(_this.params));
-            _this.getindexList(_this.params);
-            _this.$nextTick();
-          }
-        })
-      },
       submit() {
         return false
       },
@@ -434,12 +404,47 @@
           _this.images=res.list;
         })
       },
-      getmark(params){
+      getmark(params,o){
         var _this=this;
         this.$api.getMark(params).then((res)=>{
           _this.mark=res.user.mark
            if(_this.mark=='1'){
-              _this.$router.push('/shareSome')
+             _this.$router.push('/shareSome')
+           }else{
+             o.getCurrentPosition((status,result)=>{
+               if(result&&result.position) {
+                 _this.city = result.addressComponent.city;
+                 _this.params.latitude = result.position.lng;
+                 _this.params.longitude = result.position.lat;
+                 _this.center = [_this.params.longitude, _this.params.latitude];
+                 _this.loaded = true;
+                 _this.finished = false;
+                 _this.loading = true;
+                 if(_this.params.latitude!=""&&_this.params.longitude!=""){
+                   _this.formattedAddress = result.formattedAddress.split('市')[1];
+                 }else{
+                   _this.formattedAddress = "全部"
+                 }
+                 _this.getweather(_this.city);
+                 _this.getindexList(_this.params);
+                 _this.$nextTick();
+               }else{
+                 _this.params.latitude =_this.logarr[0];
+                 _this.params.longitude = _this.logarr[1];
+                 _this.center = [_this.params.longitude, _this.params.latitude];
+                 _this.loaded = true;
+                 _this.finished = false;
+                 _this.loading = true;
+                 if(_this.params.latitude!=""&&_this.params.longitude!=""){
+                   _this.formattedAddress = _this.logarr[3].split('#')[0];
+                 }else{
+                   _this.formattedAddress = "全部"
+                 }
+                 // alert(JSON.stringify(_this.params));
+                 _this.getindexList(_this.params);
+                 _this.$nextTick();
+               }
+             })
            }
         })
       }
