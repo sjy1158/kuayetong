@@ -27,6 +27,7 @@ import goLocation from '../pages/goLocation'
 import pingDuo from '../pages/pingDuo'
 import shareSome from '../pages/shareSome'
 import vsCode from '../pages/vsCode'
+import payWay from '../pages/payWay'
 Vue.use(Router)
 
 export default new Router({
@@ -181,6 +182,10 @@ export default new Router({
     {
       path:'/vsCode',
       component:vsCode
+    },
+    {
+      path:'/payWay',
+      component:payWay
     },
     {
       name:'comPurchase',

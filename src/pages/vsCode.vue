@@ -12,7 +12,7 @@
         </div>
         <div class="dingdanPrice"><label>抵扣类别(元)</label><input type="text" disabled="true" placeholder="请选择" v-model="value" style="background: white"></div>
         <ul class="chosesize" style="background: white" v-if="disconarr.length!=0">
-          <li v-for="item in disconarr"><span :class="params.deductionId == item.id ? 'activechose':''" @click="chosesize(item.id,'满'+item.requireValue+'抵'+item.value+'元',item.value)">满{{item.requireValue}}抵{{item.value}}元</span></li>
+          <li v-for="item in disconarr"><span :class="params2.deductionId == item.id ? 'activechose':''" @click="chosesize(item.id,item.requireValue,'满'+item.requireValue+'抵'+item.value+'元',item.value)">满{{item.requireValue}}抵{{item.value}}元</span></li>
         </ul>
         <p v-if="disconarr.length==0" style="color: red;margin-top: 10px;padding-bottom: 20px;">此店暂无可选优惠券~~~~~~~~~~</p>
       </div>
@@ -34,6 +34,7 @@
             title:'',
             moneyVal:'',
             discon:'',
+            requireValue:'',
             disconarr:[],
             // userId:this.$route.query.userId,
             params:{
@@ -53,12 +54,14 @@
               this.getdiscon(this.params.shopId)
           }
         },
-        async  chosesize(id,val,discon){
-          this.params.deductionId = id;
+        chosesize(id,requireValue,val,discon){
+          this.params2.deductionId = id;
+          this.requireValue=requireValue;
           this.value = val;
-          this.params.money = val;
+          this.params2.money = val;
           this.discon = discon
         },
+
         async getdiscon(shopid){
           var _this = this;
           this.$api.getDiscon(shopid).then(function (res) {
@@ -66,42 +69,49 @@
             _this.title = res.title;
           })
         },
-        async chosesize(id,val,discon){
-          this.params.deductionId = id;
-          this.value = val;
-          this.params.money = val;
-          this.discon = discon
-        },
         payDiscon(){
-          var regnum = /^[0-9]*$/;
+          var regnum = /^\d+(\.\d+)?$/;
           // alert(this.$refs.moneyVal.value)
           var _this = this;
           if(this.moneyVal!=''&&regnum.test(this.moneyVal)&&this.moneyVal!=''&&this.value!=''){
+            if(this.moneyVal>=this.requireValue){
             Dialog.confirm({
               title: '提示',
               message: '此操作不可撤销，请确认使用跨业通余额'+this.discon+'元抵扣买单'
             }).then(() => {
-              _this.getGopay();
-              // _this.params.money = this.moneyVal;
-              // _this.paydicon(_this.params);
-            }).catch(() => {
-              return
-            });
+              _this.params2.money = this.moneyVal;
+              if(_this.params2.userId==''||_this.params2.userId==undefined||_this.params2.userId==null){
+                var paymoney=(_this.moneyVal-_this.discon).toFixed(2)
+                _this.isWeixinorAlipay(paymoney);
+              }else {
+                _this.paydicon(_this.params2);
+                }
+              }).catch(() => {
+                return
+              })
+            }else{
+              Toast('请输入正确订单金额')
+              return;
+            }
           }else {
             Toast('请输入正确信息')
             return;
           }
         },
-        async getGopay(){
-          this.paydicon(this.params2)
-          },
         paydicon(params){
           var _this = this;
           this.$api.payDicon(params).then(function (res) {
-            alert(res.money)
+            // alert(res.money)
+            _this.$router.push({
+              path:'/payWay',
+              query:{
+                userId:_this.params2.userId,
+                money:res.money
+              }
+            })
           })
         },
-        isWeixinorAlipay(){
+        isWeixinorAlipay(paymoney){
             var ua = window.navigator.userAgent.toLowerCase();
             if(ua.match(/MicroMessenger/i) =='micromessenger'){
                 alert('微信支付')
