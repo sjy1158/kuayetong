@@ -75,7 +75,7 @@ const api = {
   getDiscon(shopid){
     return axios.request({
       method:'get',
-      url:config.baseUrl+'/crossindustry/shopPage/getShopDeduction',
+      url:'/api'+'/crossindustry/shopPage/getShopDeduction',
       params:{
         shopId:shopid
       }
@@ -85,7 +85,7 @@ const api = {
   payDicon(params){
       return axios.request({
         method:'get',
-        url:config.baseUrl+'/crossindustry/shopPage/deductPay',
+        url:'/api'+'/crossindustry/shopPage/deductPay',
         params:params
       })
   },

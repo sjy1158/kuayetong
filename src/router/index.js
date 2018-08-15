@@ -26,6 +26,7 @@ import comPurchase from '../pages/comPurchase'
 import goLocation from '../pages/goLocation'
 import pingDuo from '../pages/pingDuo'
 import shareSome from '../pages/shareSome'
+import vsCode from '../pages/vsCode'
 Vue.use(Router)
 
 export default new Router({
@@ -176,6 +177,10 @@ export default new Router({
     {
       path:'/',
       redirect:'/comPurchase'
+    },
+    {
+      path:'/vsCode',
+      component:vsCode
     },
     {
       name:'comPurchase',
