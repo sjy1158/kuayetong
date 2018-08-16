@@ -1,7 +1,8 @@
 <template>
-  <div>
+  <div style="letter-spacing: 0.02rem;">
     <van-nav-bar
       fixed
+      left-arrow
       :title="title"
     />
     <div class="typeChoose">
@@ -82,7 +83,13 @@
               _this.params2.money = this.moneyVal;
               if(_this.params2.userId==''||_this.params2.userId==undefined||_this.params2.userId==null){
                 var paymoney=(_this.moneyVal-_this.discon).toFixed(2)
-                _this.isWeixinorAlipay(paymoney);
+                _this.$router.push({
+                  path:'/payoutLine',
+                  query:{
+                    money:paymoney,
+                    shopId:_this.params.shopId
+                  }
+                })
               }else {
                 _this.paydicon(_this.params2);
                 }
@@ -106,23 +113,24 @@
               path:'/payWay',
               query:{
                 userId:_this.params2.userId,
-                money:res.money
+                money:res.money,
+                shopId:_this.params.shopId
               }
             })
           })
         },
-        isWeixinorAlipay(paymoney){
-            var ua = window.navigator.userAgent.toLowerCase();
-            if(ua.match(/MicroMessenger/i) =='micromessenger'){
-                alert('微信支付')
-                return
-            }
-            if(ua.match(/AlipayClient/i) == 'alipayclient'){
-              alert('支付宝支付')
-              return
-            }
-            return false
-          }
+        // isWeixinorAlipay(paymoney){
+        //     var ua = window.navigator.userAgent.toLowerCase();
+        //     if(ua.match(/MicroMessenger/i) =='micromessenger'){
+        //         alert('微信支付')
+        //         return
+        //     }
+        //     if(ua.match(/AlipayClient/i) == 'alipayclient'){
+        //       alert('支付宝支付')
+        //       return
+        //     }
+        //     return false
+        //   }
       },
       mounted(){
          this.ifHasuser()

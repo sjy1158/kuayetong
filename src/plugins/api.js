@@ -250,6 +250,32 @@ const api = {
       url:config.baseUrl+'/crossindustry/phonePage/getUserInformation',
       params:params
     })
+  },
+  // 内部支付
+  getAlipay2(params){
+    return axios.request({
+      method:'get',
+      url:'/api'+'/crossindustry/alipay/payTwo',
+      params:params
+    })
+  },
+  // 微信支付2
+  getWeixin2(params){
+    return axios.request({
+      method:'get',
+      url:'/api'+'/crossindustry/wx/payTwo.do',
+      params:params
+    })
+  },
+  // 获取回调
+  getStatus(id){
+    return axios.request({
+      method:'get',
+      url:'/api'+'/crossindustry/shopPage/judgeOrderStatusOffLine',
+      params:{
+        id:id
+      }
+    })
   }
 }
 export default class Api {

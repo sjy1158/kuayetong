@@ -28,6 +28,9 @@ import pingDuo from '../pages/pingDuo'
 import shareSome from '../pages/shareSome'
 import vsCode from '../pages/vsCode'
 import payWay from '../pages/payWay'
+import payoutLine from '../pages/payoutLine'
+import alipayOk from '../pages/alipayOk'
+import appSuccess from '../pages/appSuccess'
 Vue.use(Router)
 
 export default new Router({
@@ -186,6 +189,18 @@ export default new Router({
     {
       path:'/payWay',
       component:payWay
+    },
+    {
+      path:'/payoutLine',
+      component:payoutLine
+    },
+    {
+      path:'/alipayOk',
+      component:alipayOk
+    },
+    {
+      path:'/appSuccess',
+      component:appSuccess
     },
     {
       name:'comPurchase',
