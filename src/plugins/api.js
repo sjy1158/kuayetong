@@ -75,7 +75,7 @@ const api = {
   getDiscon(shopid){
     return axios.request({
       method:'get',
-      url:'/api'+'/crossindustry/shopPage/getShopDeduction',
+      url:'http://445d1aec.ngrok.io'+'/crossindustry/shopPage/getShopDeduction',
       params:{
         shopId:shopid
       }
@@ -85,7 +85,7 @@ const api = {
   payDicon(params){
       return axios.request({
         method:'get',
-        url:'/api'+'/crossindustry/shopPage/deductPay',
+        url:'http://445d1aec.ngrok.io'+'/crossindustry/shopPage/deductPay',
         params:params
       })
   },
@@ -255,7 +255,7 @@ const api = {
   getAlipay2(params){
     return axios.request({
       method:'get',
-      url:'/api'+'/crossindustry/alipay/payTwo',
+      url:'http://445d1aec.ngrok.io'+'/crossindustry/alipay/payTwo',
       params:params
     })
   },
@@ -263,7 +263,7 @@ const api = {
   getWeixin2(params){
     return axios.request({
       method:'get',
-      url:'/api'+'/crossindustry/wx/payTwo.do',
+      url:'http://445d1aec.ngrok.io'+'/crossindustry/wx/payTwo.do',
       params:params
     })
   },
@@ -271,7 +271,7 @@ const api = {
   getStatus(id){
     return axios.request({
       method:'get',
-      url:'/api'+'/crossindustry/shopPage/judgeOrderStatusOffLine',
+      url:'http://445d1aec.ngrok.io'+'/crossindustry/shopPage/judgeOrderStatusOffLine',
       params:{
         id:id
       }
@@ -281,7 +281,7 @@ const api = {
   getMessg(params){
     return axios.request({
       method:'get',
-      url:'/api'+'/crossindustry/shopPage/getMoney',
+      url:'http://445d1aec.ngrok.io'+'/crossindustry/shopPage/getMoney',
       params:params
     })
   }
