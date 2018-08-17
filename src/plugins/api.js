@@ -276,6 +276,14 @@ const api = {
         id:id
       }
     })
+  },
+  //获取短信提示
+  getMessg(params){
+    return axios.request({
+      method:'get',
+      url:'/api'+'/crossindustry/shopPage/getMoney',
+      params:params
+    })
   }
 }
 export default class Api {

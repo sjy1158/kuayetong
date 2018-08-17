@@ -31,6 +31,8 @@ import payWay from '../pages/payWay'
 import payoutLine from '../pages/payoutLine'
 import alipayOk from '../pages/alipayOk'
 import appSuccess from '../pages/appSuccess'
+import alipayOk2 from '../pages/alipayOk2'
+import outSuccess from '../pages/outSuccess'
 Vue.use(Router)
 
 export default new Router({
@@ -201,6 +203,14 @@ export default new Router({
     {
       path:'/appSuccess',
       component:appSuccess
+    },
+    {
+      path:'/alipayOk2',
+      component:alipayOk2
+    },
+    {
+      path:'/outSuccess',
+      component:outSuccess
     },
     {
       name:'comPurchase',

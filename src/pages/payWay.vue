@@ -8,7 +8,7 @@
   />
   <div class="price">
     <p>请将抵扣后剩余的</p>
-    <p><span>¥</span><span class="pricemoney">{{money.toFixed(2)}}</span></p>
+    <p><span>¥</span><span class="pricemoney">{{money}}</span></p>
     <p>支付给商家</p>
   </div>
 
@@ -22,7 +22,7 @@
   </div>
 
   <div class="paybtn">
-    <button type="button" @click="payWays">确认支付<span style="font-size: 14px;padding-left: 2px;">¥</span><span class="pricemoney">{{money.toFixed(2)}}</span></button>
+    <button type="button" @click="payWays">确认支付<span style="font-size: 14px;padding-left: 2px;">¥</span><span class="pricemoney">{{money}}</span></button>
   </div>
 </div>
 </template>
@@ -46,12 +46,12 @@
         payWays(){
           const _this=this
           if(this.radio=='1'){
-           _this.$router.push({
-             path:'/alipayOk',
-             query:{
-               data:_this.$route.query
-             }
-           })
+              _this.$router.push({
+                path:'/alipayOk',
+                query:{
+                  data:_this.$route.query
+                }
+              })
           }else if(this.radio=='2'){
             this.$api.getWeixin2(_this.$route.query).then((res)=>{
               setTimeout(_this.getPaystatus(res.orderId),3000);
@@ -62,13 +62,13 @@
         getPaystatus(orderId){
           var _this=this;
           this.$api.getStatus(orderId).then((res)=>{
-            _this.$router.push({
-              path:'/appSuccess',
-              query:{
-                type:res.type,
-                mony:res.money
-              }
-            })
+                _this.$router.push({
+                  path:'/appSuccess',
+                  query:{
+                    type:res.type,
+                    mony:res.money
+                  }
+                })
             // window.location.href='https://www.baidu.com/';
           })
         }

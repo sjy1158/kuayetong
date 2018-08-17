@@ -37,6 +37,7 @@
         isWeixinorAlipay(paymoney){
             const _this=this;
             var ua = window.navigator.userAgent.toLowerCase();
+            var userAgent = navigator.userAgent;
             if(ua.match(/MicroMessenger/i) =='micromessenger'){
               this.$api.getWeixin2(_this.$route.query).then((res)=>{
                 window.location.href="http://api.kuayet.com:8028/pay.html?data="+res.lianjie;
@@ -52,7 +53,16 @@
               })
               return
             }
-            return false
+          // if(userAgent.match(/Chrome/i) == 'Chrome'){
+          //   _this.$router.push({
+          //     path:'/alipayOk',
+          //     query:{
+          //       data:_this.$route.query
+          //     }
+          //   })
+          //   return
+          // }
+          return false
           }
       }
     }

@@ -16,7 +16,7 @@
     <p>请在下方输入手机号码领取</p>
     <div class="getcode">
       <div>
-        <input type="text" placeholder="输入手机号码">
+        <input type="text" placeholder="输入手机号码" v-model="params.phone">
         <button @click="truePay">确定</button>
       </div>
     </div>
@@ -29,18 +29,32 @@
 </template>
 
 <script>
+  import {Toast} from 'vant'
   import { Dialog } from 'vant'
     export default {
         name: "appSuccess",
       data(){
           return{
             title:'',
-            money:this.$route.query.mony
+            money:this.$route.query.money,
+            params:{
+              money:this.$route.query.money,
+              phone:''
+            }
           }
       },
       methods:{
           truePay(){
-            this.open('您已领取成功')
+            const _this=this;
+            // this.open('您已领取成功')
+            var myreg=/^[1][3,4,5,7,8][0-9]{9}$/;
+            if(this.params.phone!=''&&myreg.test(this.params.phone)){
+              this.$api.getMessg(this.params).then((res)=>{
+                _this.open(res)
+              })
+            }else {
+              Toast('请输入正确的手机号')
+            }
           },
           open(msg){
             Dialog.alert({

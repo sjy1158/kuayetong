@@ -18,7 +18,7 @@
           document.body.innerHTML=html.split('</form>')[0];
           document.forms[0].submit();
           // alert(window.location.href);
-          return setTimeout(_this.getPaystatus(res.orderId),3000);
+          setTimeout(_this.getPaystatus(res.orderId),3000);
         });
       },
       getPaystatus(orderId){
@@ -26,14 +26,15 @@
         this.$api.getStatus(orderId).then((res)=>{
           // alert(window.location.href);
          if(res.type=='1'){
+           var ua = window.navigator.userAgent.toLowerCase();
            _this.$router.push({
-             path:'/outSuccess',
+             path:'/appSuccess',
              query:{
                type:res.type,
                money:res.money
              }
            })
-         }else {
+         }else{
            return false
          }
         })

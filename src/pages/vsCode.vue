@@ -73,7 +73,7 @@
         payDiscon(){
           var regnum = /^\d+(\.\d+)?$/;
           // alert(this.$refs.moneyVal.value)
-          var _this = this;
+          const _this = this;
           if(this.moneyVal!=''&&regnum.test(this.moneyVal)&&this.moneyVal!=''&&this.value!=''){
             if(this.moneyVal>=this.requireValue){
             Dialog.confirm({
@@ -82,14 +82,25 @@
             }).then(() => {
               _this.params2.money = this.moneyVal;
               if(_this.params2.userId==''||_this.params2.userId==undefined||_this.params2.userId==null){
+                var ua = window.navigator.userAgent.toLowerCase();
                 var paymoney=(_this.moneyVal-_this.discon).toFixed(2)
-                _this.$router.push({
-                  path:'/payoutLine',
-                  query:{
-                    money:paymoney,
-                    shopId:_this.params.shopId
-                  }
-                })
+                if(ua.match(/MicroMessenger/i) =='micromessenger'||ua.match(/AlipayClient/i) == 'alipayclient'){
+                  _this.$router.push({
+                    path:'/payoutLine',
+                    query:{
+                      money:paymoney,
+                      shopId:_this.params.shopId
+                    }
+                  })
+                }else{
+                  _this.$router.push({
+                    path:'/payWay',
+                    query:{
+                      money:paymoney,
+                      shopId:_this.params.shopId
+                    }
+                  })
+                }
               }else {
                 _this.paydicon(_this.params2);
                 }
