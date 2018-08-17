@@ -24,9 +24,9 @@
     data(){
       return{
         title:'',
-        money:this.$route.query.money,
+        money:this.$route.query.mony,
         params:{
-          money:this.$route.query.money,
+          money:this.$route.query.mony,
           phone:''
         }
       }
@@ -40,6 +40,9 @@
       if(this.$route.query.type=='1'){
         this.title='支付成功'
       }
+      if(this.$route.query.type=='0'){
+        this.title='0'
+      }
     }
   }
 </script>
@@ -49,12 +52,11 @@
     height: 43px;
     width: 100%;
     line-height: 43px;
-    padding-top: 18px;
   }
   .price{
     width: 100%;
     height:70px;
-    margin-top: 61px;
+    margin-top: 43px;
     background: white;
     line-height: 70px;
     color: #FF0000;

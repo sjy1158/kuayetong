@@ -36,9 +36,9 @@
       data(){
           return{
             title:'',
-            money:this.$route.query.money,
+            money:this.$route.query.mony,
             params:{
-              money:this.$route.query.money,
+              money:this.$route.query.mony,
               phone:''
             }
           }
@@ -56,6 +56,9 @@
               Toast('请输入正确的手机号')
             }
           },
+        onClickLeft(){
+          this.$router.back(-1);
+        },
           open(msg){
             Dialog.alert({
               title:'提示',
@@ -77,7 +80,6 @@
     height: 43px;
     width: 100%;
     line-height: 43px;
-    padding-top: 18px;
   }
   .price{
     width: 100%;

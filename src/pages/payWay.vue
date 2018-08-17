@@ -46,22 +46,41 @@
         payWays(){
           const _this=this
           if(this.radio=='1'){
+            if(this.$route.query.userId!=undefined){
               _this.$router.push({
                 path:'/alipayOk',
                 query:{
                   data:_this.$route.query
                 }
               })
+            }else{
+              _this.$router.push({
+                path:'/alipayOk2',
+                query:{
+                  data:_this.$route.query
+                }
+              })
+            }
           }else if(this.radio=='2'){
             this.$api.getWeixin2(_this.$route.query).then((res)=>{
-              setTimeout(_this.getPaystatus(res.orderId),3000);
               window.location.href="http://api.kuayet.com:8028/pay.html?data="+res.lianjie;
+              setTimeout(_this.getPaystatus(res.orderId),3000);
             })
           }
         },
         getPaystatus(orderId){
           var _this=this;
           this.$api.getStatus(orderId).then((res)=>{
+            if(res.type=='1'){
+              if(this.$route.query.userId!=undefined){
+                  _this.$router.push({
+                    path:'/outSuccess',
+                    query:{
+                      type:res.type,
+                      mony:res.money
+                    }
+                  })
+              }else{
                 _this.$router.push({
                   path:'/appSuccess',
                   query:{
@@ -69,6 +88,8 @@
                     mony:res.money
                   }
                 })
+              }
+          }
             // window.location.href='https://www.baidu.com/';
           })
         }
@@ -84,13 +105,12 @@
     height: 43px;
     width: 100%;
     line-height: 43px;
-    padding-top: 18px;
   }
   .price{
     height: 165px;
     width: 100%;
     background: white;
-    margin-top: 71px;
+    margin-top: 53px;
   }
   .price p:first-child{
     height: 44px;

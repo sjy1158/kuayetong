@@ -25,7 +25,6 @@
         var _this=this;
         this.$api.getStatus(orderId).then((res)=>{
           // alert(window.location.href);
-         if(res.type=='1'){
            _this.$router.push({
              path:'/outSuccess',
              query:{
@@ -33,9 +32,6 @@
                money:res.money
              }
            })
-         }else {
-           return false
-         }
         })
       }
     },
@@ -43,6 +39,7 @@
     },
     mounted(){
       this.getok(this.$route.query)
+      // alert(this.$route.query.data.userId)
     }
   }
 </script>

@@ -155,7 +155,6 @@
     height: 43px;
     width: 100%;
     line-height: 43px;
-    padding-top: 18px;
   }
   .activechose{
     background:  #FF0000;
@@ -170,7 +169,7 @@
     width: 100%;
     height: auto;
     background: white;
-    margin-top: 61px;
+    margin-top: 43px;
     border-radius: 14px;
   }
   .typeChoose .chooseSize .dingdanPrice{
