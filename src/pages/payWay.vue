@@ -34,7 +34,8 @@
           return{
             money:this.$route.query.money,
             radio:'1',
-            orderId:''
+            orderId:'',
+            type:'',
           }
       },
       methods:{
@@ -54,7 +55,6 @@
             }
           }else if(this.radio=='2'){
             this.$api.getWeixin2(_this.$route.query).then((res)=>{
-              // _this.orderId=res.orderId;
               window.location.href="http://api.kuayet.com:8028/pay.html?data="+res.lianjie;
               setTimeout(_this.getPaystatus(res.orderId),3000);
             })
@@ -63,18 +63,26 @@
         getPaystatus(orderId){
           var _this=this;
           this.$api.getStatus(orderId).then((res)=>{
+            _this.type=res.type;
             if(res.type=='1'){
               if(this.$route.query.userId!=undefined){
-                window.location.href='http://192.168.5.150:8082/#/outSuccess?'+'type='+res.type+'&'+'mony='+res.money
+                _this.$router.push({
+                  path:'/outSuccess',
+                  query:{
+                    type:res.type,
+                    mony:res.money
+                  }
+                })
+                // window.location.href='http://192.168.5.150:8082/#/outSuccess?'+'type='+res.type+'&'+'mony='+res.money
               }else{
-                window.location.href='http://192.168.5.150:8082/#/appSuccess?'+'type='+res.type+'&'+'mony='+res.money
-                // _this.$router.push({
-                //   path:'/appSuccess',
-                //   query:{
-                //     type:res.type,
-                //     mony:res.money
-                //   }
-                // })
+                // window.location.href='http://192.168.5.150:8082/#/appSuccess?'+'type='+res.type+'&'+'mony='+res.money
+                _this.$router.push({
+                  path:'/appSuccess',
+                  query:{
+                    type:res.type,
+                    mony:res.money
+                  }
+                })
               }
             }else{
               return
