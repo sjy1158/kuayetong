@@ -2,7 +2,6 @@
   <div style="letter-spacing: 0.02rem;">
     <van-nav-bar
       fixed
-      left-arrow
       :title="title"
     />
     <div class="typeChoose">
