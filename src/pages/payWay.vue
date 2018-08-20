@@ -33,7 +33,8 @@
       data(){
           return{
             money:this.$route.query.money,
-            radio:'1'
+            radio:'1',
+            orderId:''
           }
       },
       methods:{
@@ -47,22 +48,13 @@
           const _this=this
           if(this.radio=='1'){
             if(this.$route.query.userId!=undefined){
-              _this.$router.push({
-                path:'/alipayOk',
-                query:{
-                  data:_this.$route.query
-                }
-              })
+              window.location.href='http://192.168.5.109:8080/crossindustry/alipay/payTwo?'+'buyMoney='+_this.$route.query.buyMoney+'&money='+_this.$route.query.money+'&userId='+_this.$route.query.userId+'&shopId='+_this.$route.query.shopId
             }else{
-              _this.$router.push({
-                path:'/alipayOk2',
-                query:{
-                  data:_this.$route.query
-                }
-              })
+              window.location.href='http://192.168.5.109:8080/crossindustry/alipay/payTwo?'+'buyMoney='+_this.$route.query.buyMoney+'&money='+_this.$route.query.money+'&shopId='+_this.$route.query.shopId
             }
           }else if(this.radio=='2'){
             this.$api.getWeixin2(_this.$route.query).then((res)=>{
+              // _this.orderId=res.orderId;
               window.location.href="http://api.kuayet.com:8028/pay.html?data="+res.lianjie;
               setTimeout(_this.getPaystatus(res.orderId),3000);
             })
@@ -73,23 +65,20 @@
           this.$api.getStatus(orderId).then((res)=>{
             if(res.type=='1'){
               if(this.$route.query.userId!=undefined){
-                  _this.$router.push({
-                    path:'/outSuccess',
-                    query:{
-                      type:res.type,
-                      mony:res.money
-                    }
-                  })
+                window.location.href='http://192.168.5.150:8082/#/outSuccess?'+'type='+res.type+'&'+'mony='+res.money
               }else{
-                _this.$router.push({
-                  path:'/appSuccess',
-                  query:{
-                    type:res.type,
-                    mony:res.money
-                  }
-                })
+                window.location.href='http://192.168.5.150:8082/#/appSuccess?'+'type='+res.type+'&'+'mony='+res.money
+                // _this.$router.push({
+                //   path:'/appSuccess',
+                //   query:{
+                //     type:res.type,
+                //     mony:res.money
+                //   }
+                // })
               }
-          }
+            }else{
+              return
+            }
             // window.location.href='https://www.baidu.com/';
           })
         }

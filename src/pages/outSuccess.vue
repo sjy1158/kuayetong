@@ -25,6 +25,7 @@
       return{
         title:'',
         money:this.$route.query.mony,
+        orderId:this.$router.query.orderId,
         params:{
           money:this.$route.query.mony,
           phone:''
@@ -41,7 +42,7 @@
         this.title='支付成功'
       }
       if(this.$route.query.type=='0'){
-        this.title='0'
+        this.title='待支付'
       }
     }
   }

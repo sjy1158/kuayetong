@@ -97,7 +97,8 @@
                     path:'/payWay',
                     query:{
                       money:paymoney,
-                      shopId:_this.params.shopId
+                      shopId:_this.params.shopId,
+                      buyMoney:_this.moneyVal
                     }
                   })
                 }
@@ -125,7 +126,8 @@
               query:{
                 userId:_this.params2.userId,
                 money:res.money,
-                shopId:_this.params.shopId
+                shopId:_this.params.shopId,
+                buyMoney:_this.moneyVal
               }
             })
           })
