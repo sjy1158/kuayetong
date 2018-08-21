@@ -119,7 +119,6 @@
         paydicon(params){
           var _this = this;
           this.$api.payDicon(params).then(function (res) {
-            // alert(res.money)
             _this.$router.push({
               path:'/payWay',
               query:{

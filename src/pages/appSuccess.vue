@@ -36,9 +36,10 @@
       data(){
           return{
             title:'',
-            money:this.$route.query.mony,
+            money:'',
+            orderId:this.$route.query.orderId,
             params:{
-              money:this.$route.query.mony,
+              money:'',
               phone:''
             }
           }
@@ -65,12 +66,27 @@
               message:msg
             }).then(()=>{
             })
-          }
+          },
+        getStatustype(){
+          this.$api.getStatus(this.orderId).then((res)=>{
+            if(res.type=='0'){
+              this.title="待支付中"
+              this.money=res.money
+              this.params.money=res.money
+            }
+            if(res.type=='1'){
+              this.title="支付成功"
+              this.money=res.money
+              this.params.money=res.money
+            }
+          })
+        },
+      },
+      beforeMount(){
+        setInterval(this.getStatustype(),3000);
       },
       mounted(){
-        if(this.$route.query.type=='1'){
-          this.title='支付成功'
-        }
+        setInterval(this.getStatustype(),3000);
       }
     }
 </script>

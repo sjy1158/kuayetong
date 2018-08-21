@@ -24,8 +24,8 @@
     data(){
       return{
         title:'',
-        money:this.$route.query.mony,
-        orderId:this.$router.query.orderId,
+        money:'',
+        orderId:this.$route.query.orderId,
         params:{
           money:this.$route.query.mony,
           phone:''
@@ -35,15 +35,34 @@
     methods:{
       lookdan(){
         window.location.href='https://blog.csdn.net/nongweiyilady/article/details/74007124';
+      },
+      onClickLeft(){
+        this.$router.back(-1);
+      },
+      getStatustype(){
+        this.$api.getStatus(this.orderId).then((res)=>{
+          if(res.type=='0'){
+            this.title="待支付中"
+            this.money=res.money
+          }
+          if(res.type=='1'){
+            this.title="支付成功"
+            this.money=res.money
+          }
+        })
       }
     },
+    beforeMount(){
+      setInterval(this.getStatustype(),3000);
+    },
     mounted(){
-      if(this.$route.query.type=='1'){
-        this.title='支付成功'
-      }
-      if(this.$route.query.type=='0'){
-        this.title='待支付'
-      }
+      setInterval(this.getStatustype(),3000);
+      // if(this.$route.query.type=='1'){
+      //   this.title='支付成功'
+      // }
+      // if(this.$route.query.type=='0'){
+      //   this.title='待支付'
+      // }
     }
   }
 </script>

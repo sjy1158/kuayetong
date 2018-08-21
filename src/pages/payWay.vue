@@ -36,6 +36,7 @@
             radio:'1',
             orderId:'',
             type:'',
+            money2:''
           }
       },
       methods:{
@@ -45,6 +46,21 @@
         choosePay(num){
           this.radio=num;
         },
+       isInstallapp(url,orderId){
+          const _this=this;
+
+         if(isiOS){
+           var hasApp=true;
+           if(hasApp){
+             window.location="mqqwpa://im/chat?chat_type=wpa&uin=501863587&version=1&src_type=web&web_src=badcatu.com";
+           }
+           setTimeout(function () {
+             window.location.href=url;
+           },3000)
+           window.location="mqqwpa://im/chat?chat_type=wpa&uin=501863587&version=1&src_type=web&web_src=badcatu.com";//打开某手机上的某个安卓app应用
+         }
+       },
+        // },
         payWays(){
           const _this=this
           if(this.radio=='1'){
@@ -56,37 +72,42 @@
           }else if(this.radio=='2'){
             this.$api.getWeixin2(_this.$route.query).then((res)=>{
               window.location.href="http://api.kuayet.com:8028/pay.html?data="+res.lianjie;
-              setTimeout(_this.getPaystatus(res.orderId),3000);
+              setTimeout(function () {
+                if(_this.$route.query.userId!=undefined) {
+                  window.location.href = 'http://192.168.5.112:8082/#/outSuccess?' + 'orderId=' + res.orderId
+                }else{
+                  _this.getPaystatus('http://192.168.5.112:8082/#/appSuccess?' + 'orderId=' + res.orderId,res.orderId)
+                  // window.location.href = 'http://192.168.5.163:8082/#/appSuccess?' + 'orderId=' + res.orderId
+                }
+              },3000)
+              // setTimeout();
             })
           }
         },
-        getPaystatus(orderId){
-          var _this=this;
-          this.$api.getStatus(orderId).then((res)=>{
-            _this.type=res.type;
-            if(res.type=='1'){
-              if(this.$route.query.userId!=undefined){
-                _this.$router.push({
-                  path:'/outSuccess',
-                  query:{
-                    type:res.type,
-                    mony:res.money
-                  }
-                })
-                // window.location.href='http://192.168.5.150:8082/#/outSuccess?'+'type='+res.type+'&'+'mony='+res.money
-              }else{
-                // window.location.href='http://192.168.5.150:8082/#/appSuccess?'+'type='+res.type+'&'+'mony='+res.money
-                _this.$router.push({
-                  path:'/appSuccess',
-                  query:{
-                    type:res.type,
-                    mony:res.money
-                  }
-                })
-              }
-            }else{
-              return
-            }
+        getPaystatus(url,orderId){
+          const _this=this;
+         this.$api.getStatus(orderId).then((res)=>{
+              _this.type=res.type;
+             var u = navigator.userAgent, app = navigator.appVersion;
+             var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Linux') > -1;
+             var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/);
+             // alert(_this.type);
+           if(_this.type=='1'){
+             if(isAndroid){
+               var hasApp=true;
+               if(hasApp){
+                 window.location.href="kytstart://awaken/awakenback/scheme?"+"payPrice="+_this.money;
+               }
+               setTimeout(function () {
+                 hasApp=!hasApp
+                 window.location.href=url
+               },3000)
+             }
+           }else{
+             setTimeout(function () {
+               window.location.href=url
+             },3000)
+           }
             // window.location.href='https://www.baidu.com/';
           })
         }
