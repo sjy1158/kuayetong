@@ -409,8 +409,8 @@
         this.$api.getMark(params).then((res)=>{
           _this.mark=res.user.mark
            if(_this.mark=='1'){
-              _this.$route.meta.keepAlive=false
-             _this.$router.push('/shareSome')
+               _this.$route.meta.keepAlive=false
+               _this.$router.push('/shareSome')
            }else{
              _this.$route.meta.keepAlive=true;
              o.getCurrentPosition((status,result)=>{

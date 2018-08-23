@@ -35,6 +35,8 @@
         name: "appSuccess",
       data(){
           return{
+            type:'',
+            time:'',
             title:'',
             money:'',
             orderId:this.$route.query.orderId,
@@ -48,13 +50,17 @@
           truePay(){
             const _this=this;
             // this.open('您已领取成功')
-            var myreg=/^[1][3,4,5,7,8][0-9]{9}$/;
-            if(this.params.phone!=''&&myreg.test(this.params.phone)){
-              this.$api.getMessg(this.params).then((res)=>{
-                _this.open(res)
-              })
-            }else {
-              Toast('请输入正确的手机号')
+            if(this.type=='1'){
+              var myreg=/^[1][3,4,5,7,8][0-9]{9}$/;
+              if(this.params.phone!=''&&myreg.test(this.params.phone)){
+                this.$api.getMessg(this.params).then((res)=>{
+                  _this.open(res)
+                })
+              }else {
+                Toast('请输入正确的手机号')
+              }
+            }else{
+              _this.open2('请返回上一层进行支付')
             }
           },
         onClickLeft(){
@@ -65,28 +71,67 @@
               title:'提示',
               message:msg
             }).then(()=>{
+              _this.$router.back(-1);
             })
           },
-        getStatustype(){
-          this.$api.getStatus(this.orderId).then((res)=>{
-            if(res.type=='0'){
-              this.title="待支付中"
-              this.money=res.money
-              this.params.money=res.money
-            }
-            if(res.type=='1'){
-              this.title="支付成功"
-              this.money=res.money
-              this.params.money=res.money
-            }
+        open2(msg){
+          const _this=this;
+          Dialog.alert({
+            title:'提示',
+            message:msg
+          }).then(()=>{
+            _this.$router.back(-1);
           })
         },
+        initSetTimeout(){
+            const _this=this;
+            _this.time=setInterval(()=>{
+              if(_this.type=='1'){
+                return
+                clearInterval(_this.time)
+              }
+              _this.getStatustype()
+            },500)
+        },
+        getStatustype(){
+              const _this=this;
+              _this.$api.getStatus(_this.orderId).then((res)=>{
+                _this.type=res.type;
+                if(_this.type=='0'){
+                  _this.title="待支付中"
+                  _this.money=res.money
+                  _this.params.money=res.money
+                }
+                if(_this.type=='1'){
+                  _this.title="支付成功"
+                  _this.money=res.money
+                  _this.params.money=res.money
+                  var u = navigator.userAgent, app = navigator.appVersion;
+                  var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/);
+                  var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Linux') > -1;
+                  if(isiOS){
+                    var ishasapp=true;
+                    if(ishasapp){
+                      window.location.href="kytstart://awaken/awakenback/scheme?"+"payPrice="+_this.params.money;
+                    }
+                  }
+                  if(isAndroid){
+                    var ishasapp=true;
+                    if(ishasapp){
+                      window.location.href="kytstart://awaken/awakenback/scheme?"+"payPrice="+_this.params.money;
+                    }
+                  }
+                }
+              })
+        },
       },
-      beforeMount(){
-        setInterval(this.getStatustype(),3000);
+      created(){
+        this.getStatustype();
+        this.initSetTimeout();
       },
       mounted(){
-        setInterval(this.getStatustype(),3000);
+        this.getStatustype();
+        this.initSetTimeout();
       }
     }
 </script>

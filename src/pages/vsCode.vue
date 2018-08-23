@@ -2,7 +2,9 @@
   <div style="letter-spacing: 0.02rem;">
     <van-nav-bar
       fixed
+      left-arrow
       :title="title"
+      @click-left="onClickLeft"
     />
     <div class="typeChoose">
       <div class="chooseSize">
@@ -47,6 +49,9 @@
           }
         },
       methods:{
+        onClickLeft(){
+          window.location.href="https://www.baidu.com/"
+        },
         ifHasuser(){
           if(this.params.shopId==''||this.params.shopId==undefined||this.params.shopId==null){
               Toast('请传入正确的商家ID')
