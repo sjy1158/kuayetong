@@ -24,7 +24,7 @@
         <div class="chooseinput">
           <div class="inputshuru">
             <label>金额(元)</label>
-            <label style="font-size: 14px;position: absolute;right:5rem;padding-top: 0.05rem;">￥</label>
+            <label style="font-size: 14px;position: absolute;right:5rem;font-size:16px;">￥</label>
             <input type="text" placeholder="" v-model="moneyVal2" ref="moneyVal">
           </div>
           <p>下载“跨业通”APP扫码支付可抵扣部分金额</p>
@@ -314,10 +314,10 @@
     height: 40px;
     position: absolute;
     right: 0px;
-    top: 50%;
+    top: 49%;
     margin-top: -20px;
     border: none;
-    line-height: 20px;
+    line-height: 15px;
     font-size: 18px;
     background: none;
     width: 4.8rem;
