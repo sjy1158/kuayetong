@@ -317,7 +317,7 @@
     margin-top: -20px;
     border: none;
     line-height: 20px;
-    font-size: 14px;
+    font-size: 18px;
     background: none;
     width: auto;
     text-align: right;
