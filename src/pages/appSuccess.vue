@@ -112,6 +112,21 @@
                   _this.title="支付成功"
                   _this.money=res.money
                   _this.params.money=res.money
+                  var u = navigator.userAgent, app = navigator.appVersion;
+                  var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/);
+                  var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Linux') > -1;
+                  if(isiOS){
+                    var ishasapp=true;
+                    if(ishasapp){
+                      window.location.href="kytstart://awaken/awakenback/scheme?"+"payPrice="+_this.params.money;
+                    }
+                  }
+                  if(isAndroid){
+                    var ishasapp=true;
+                    if(ishasapp){
+                      window.location.href="kytstart://awaken/awakenback/scheme?"+"payPrice="+_this.params.money;
+                    }
+                  }
                 }
               })
         },

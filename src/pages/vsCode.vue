@@ -9,7 +9,7 @@
     <div class="typeChoose" v-if="params2.userId!=undefined||params2.userId!=null">
       <div class="chooseSize">
         <div class="dingdanPrice"><label>订单金额(元)</label><input type="text" placeholder="请询问服务员后输入" v-model="moneyVal" ref="moneyVal"></div>
-        <div class="line" style="padding-right: 15px;padding-left: 15px;height: 2px;background: white">
+        <div class="line" style="padding-right: 15px;padding-left: 15px;height: 1px;background: white">
           <div style="height: 2px;background:#F2F2F2;margin-top: 2px;width: 100%"></div>
         </div>
         <div class="dingdanPrice"><label>抵扣类别(元)</label><input type="text" disabled="true" placeholder="请选择" v-model="value" style="background: white"></div>
@@ -213,13 +213,20 @@
   .typeChoose .chooseSize .dingdanPrice{
     height: 53px;
     line-height: 53px;
+    position: relative;
   }
   .typeChoose .chooseSize .dingdanPrice input{
     border: none;
     float: right;
+    top: 50%;
+    margin-top: -20px;
     font-size: 14px;
     text-align: right;
     margin-right: 15px;
+    height: 40px;
+    line-height: 20px;
+    position: absolute;
+    right: 0px;
     width: 4rem;
   }
   .typeChoose .chooseSize .dingdanPrice label{
