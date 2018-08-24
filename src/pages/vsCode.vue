@@ -24,6 +24,7 @@
         <div class="chooseinput">
           <div class="inputshuru">
             <label>金额(元)</label>
+            <label style="font-size: 14px;position: absolute;right:5rem;padding-top: 0.05rem;">￥</label>
             <input type="text" placeholder="" v-model="moneyVal2" ref="moneyVal">
           </div>
           <p>下载“跨业通”APP扫码支付可抵扣部分金额</p>
@@ -51,7 +52,7 @@
             value:'',
             title:'',
             moneyVal:'',
-            moneyVal2:'￥'+'',
+            moneyVal2:'',
             discon:'',
             requireValue:'',
             show:true,
@@ -93,13 +94,13 @@
           })
         },
         quickpay(){
-          if(this.moneyVal2.split('￥')[1]<0||this.moneyVal2.split('￥')[1]==0){
+          if(this.moneyVal2==''||this.moneyVal2.length==0){
             Toast('请输入金额')
           }else{
             this.$router.push({
               path:'/payWay',
               query:{
-                money:this.moneyVal2.split('￥')[1],
+                money:this.moneyVal2,
                 shopId:this.params.shopId,
                 buyMoney:''
               }
@@ -319,7 +320,7 @@
     line-height: 20px;
     font-size: 18px;
     background: none;
-    width: auto;
+    width: 4.8rem;
     text-align: right;
     padding-right: 8px;
   }
