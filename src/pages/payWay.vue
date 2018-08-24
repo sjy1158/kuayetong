@@ -136,6 +136,7 @@
       },
       mounted(){
           this.choosePay('1')
+          this.money=this.$route.query.money
       }
     }
 </script>

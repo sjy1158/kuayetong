@@ -6,7 +6,7 @@
       :title="title"
       @click-left="onClickLeft"
     />
-    <div class="typeChoose">
+    <div class="typeChoose" v-if="params2.userId!=undefined||params2.userId!=null">
       <div class="chooseSize">
         <div class="dingdanPrice"><label>订单金额(元)</label><input type="text" placeholder="请询问服务员后输入" v-model="moneyVal" ref="moneyVal"></div>
         <div class="line" style="padding-right: 15px;padding-left: 15px;height: 2px;background: white">
@@ -19,8 +19,24 @@
         <p v-if="disconarr.length==0" style="color: red;margin-top: 10px;padding-bottom: 20px;">此店暂无可选优惠券~~~~~~~~~~</p>
       </div>
     </div>
+
+    <div class="typeChoose2" v-else>
+        <div class="chooseinput">
+          <div class="inputshuru">
+            <label>金额(元)</label>
+            <input type="text" placeholder="" v-model="moneyVal2" ref="moneyVal">
+          </div>
+          <p>下载“跨业通”APP扫码支付可抵扣部分金额</p>
+          <div class="payimg" style="margin-top: 80px;" @click="quickpay">
+            <img src="../assets/payimg2.png" alt="">
+          </div>
+          <div class="payimg" style="margin-top: 30px;" @click="download">
+            <img src="../assets/downimg.png" alt="">
+          </div>
+        </div>
+    </div>
     <!--立即抵扣按钮-->
-    <div class="disconbtn">
+    <div class="disconbtn" v-if="params2.userId!=undefined||params2.userId!=null">
       <button type="button" @click="payDiscon()">立即抵扣买单</button>
     </div>
   </div>
@@ -35,8 +51,10 @@
             value:'',
             title:'',
             moneyVal:'',
+            moneyVal2:'￥'+'',
             discon:'',
             requireValue:'',
+            show:true,
             disconarr:[],
             // userId:this.$route.query.userId,
             params:{
@@ -44,7 +62,7 @@
             },
             params2:{
               deductionId:'',
-              userId:this.$route.query.userId,
+              userId:this.$route.query.userid,
             }
           }
         },
@@ -74,6 +92,23 @@
             _this.title = res.title;
           })
         },
+        quickpay(){
+          if(this.moneyVal2.split('￥')[1]<0||this.moneyVal2.split('￥')[1]==0){
+            Toast('请输入金额')
+          }else{
+            this.$router.push({
+              path:'/payWay',
+              query:{
+                money:this.moneyVal2.split('￥')[1],
+                shopId:this.params.shopId,
+                buyMoney:''
+              }
+            })
+          }
+        },
+        download(){
+          window.location.href='http://app.kuayet.com/down/'
+        },
         payDiscon(){
           var regnum = /^\d+(\.\d+)?$/;
           // alert(this.$refs.moneyVal.value)
@@ -85,7 +120,7 @@
               message: '此操作不可撤销，请确认使用跨业通余额'+this.discon+'元抵扣买单'
             }).then(() => {
               _this.params2.money = this.moneyVal;
-              if(_this.params2.userId==''||_this.params2.userId==undefined||_this.params2.userId==null){
+              if(_this.params2.userId==undefined){
                 var ua = window.navigator.userAgent.toLowerCase();
                 var paymoney=(_this.moneyVal-_this.discon).toFixed(2)
                 if(ua.match(/MicroMessenger/i) =='micromessenger'||ua.match(/AlipayClient/i) == 'alipayclient'){
@@ -157,9 +192,7 @@
 
 <style scoped>
   .van-nav-bar{
-    height: 43px;
     width: 100%;
-    line-height: 43px;
   }
   .activechose{
     background:  #FF0000;
@@ -240,4 +273,59 @@
     font-size: 18px;
     border-radius: 5px;
   }
+
+  .chooseinput{
+    padding-left: 38px;
+    padding-right: 38px;
+  }
+  .chooseinput p{
+    font-size: 12px;
+    color: #393939;
+    margin: 0px!important;
+    margin-top: 21px!important;
+  }
+  .chooseinput .inputshuru{
+    width: 100%;
+    height: 60px;
+    border: 1px solid #979797;
+    border-radius: 5px;
+    margin-top: 84px;
+    line-height: 60px;
+    position: relative;
+  }
+  .chooseinput .inputshuru label:first-child{
+    float: left;
+    padding-left: 8px;
+    font-size: 16px;
+    color: #393939;
+  }
+  .iconmoney{
+    float: left;
+  }
+  .chooseinput .inputshuru input{
+    height: 40px;
+    position: absolute;
+    right: 0px;
+    top: 50%;
+    margin-top: -20px;
+    border: none;
+    line-height: 20px;
+    font-size: 14px;
+    background: none;
+    width: auto;
+    text-align: right;
+    padding-right: 8px;
+  }
+  .payimg{
+  }
+  .payimg img{
+    width: 100%;
+    height:40px;
+  }
+  /*.chooseinput input{*/
+    /*width: 100%;*/
+    /*height: 60px;*/
+    /*border: 1px solid #979797;*/
+    /*margin-top: 84px;*/
+  /*}*/
 </style>

@@ -63,15 +63,21 @@
               _this.open2('请返回上一层进行支付')
             }
           },
-        onClickLeft(){
-          this.$router.back(-1);
-        },
+          onClickLeft(){
+            this.$router.back(-1);
+          },
           open(msg){
-            Dialog.alert({
+            const _this=this;
+            Dialog.confirm({
               title:'提示',
+              confirmButtonText:'下载',
+              cancelButtonText:'取消',
               message:msg
             }).then(()=>{
-              _this.$router.back(-1);
+              window.location.href='http://app.kuayet.com/down/'
+              // _this.$router.back(-1);
+            }).catch(()=>{
+             return
             })
           },
         open2(msg){
@@ -106,21 +112,6 @@
                   _this.title="支付成功"
                   _this.money=res.money
                   _this.params.money=res.money
-                  var u = navigator.userAgent, app = navigator.appVersion;
-                  var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/);
-                  var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Linux') > -1;
-                  if(isiOS){
-                    var ishasapp=true;
-                    if(ishasapp){
-                      window.location.href="kytstart://awaken/awakenback/scheme?"+"payPrice="+_this.params.money;
-                    }
-                  }
-                  if(isAndroid){
-                    var ishasapp=true;
-                    if(ishasapp){
-                      window.location.href="kytstart://awaken/awakenback/scheme?"+"payPrice="+_this.params.money;
-                    }
-                  }
                 }
               })
         },
