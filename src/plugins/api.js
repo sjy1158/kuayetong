@@ -75,7 +75,7 @@ const api = {
   getDiscon(shopid){
     return axios.request({
       method:'get',
-      url:'/api'+'/crossindustry/shopPage/getShopDeduction',
+      url:config.baseUrl+'/crossindustry/shopPage/getShopDeduction',
       params:{
         shopId:shopid
       }
@@ -85,7 +85,7 @@ const api = {
   payDicon(params){
       return axios.request({
         method:'get',
-        url:'/api'+'/crossindustry/shopPage/deductPay',
+        url:config.baseUrl+'/crossindustry/shopPage/deductPay',
         params:params
       })
   },
@@ -255,7 +255,7 @@ const api = {
   getAlipay2(params){
     return axios.request({
       method:'get',
-      url:'/api'+'/crossindustry/alipay/payTwo',
+      url:config.baseUrl+'/crossindustry/alipay/payTwo',
       params:params
     })
   },
@@ -263,7 +263,7 @@ const api = {
   getWeixin2(params){
     return axios.request({
       method:'get',
-      url:'/api'+'/crossindustry/wx/payTwo.do',
+      url:config.baseUrl+'/crossindustry/wx/payTwo.do',
       params:params
     })
   },
@@ -271,7 +271,7 @@ const api = {
   getStatus(id){
     return axios.request({
       method:'get',
-      url:'/api'+'/crossindustry/shopPage/judgeOrderStatusOffLine',
+      url:config.baseUrl+'/crossindustry/shopPage/judgeOrderStatusOffLine',
       params:{
         id:id
       }
@@ -281,7 +281,7 @@ const api = {
   getMessg(params){
     return axios.request({
       method:'get',
-      url:'/api'+'/crossindustry/shopPage/getMoney',
+      url:config.baseUrl+'/crossindustry/shopPage/getMoney',
       params:params
     })
   }
