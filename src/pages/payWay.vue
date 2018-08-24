@@ -65,9 +65,9 @@
           const _this=this
           if(this.radio=='1'){
             if(this.$route.query.userId!=undefined){
-              window.location.href='http://192.168.5.113:8080/crossindustry/alipay/payTwo?'+'buyMoney='+_this.$route.query.buyMoney+'&money='+_this.$route.query.money+'&userId='+_this.$route.query.userId+'&shopId='+_this.$route.query.shopId
+              window.location.href='http://api.kuayet.com:8080/crossindustry/alipay/payTwo?'+'buyMoney='+_this.$route.query.buyMoney+'&money='+_this.$route.query.money+'&userId='+_this.$route.query.userId+'&shopId='+_this.$route.query.shopId
             }else{
-              window.location.href='http://192.168.5.113:8080/crossindustry/alipay/payTwo?'+'buyMoney='+_this.$route.query.buyMoney+'&money='+_this.$route.query.money+'&shopId='+_this.$route.query.shopId
+              window.location.href='http://api.kuayet.com:8080/crossindustry/alipay/payTwo?'+'buyMoney='+_this.$route.query.buyMoney+'&money='+_this.$route.query.money+'&shopId='+_this.$route.query.shopId
             }
           }else if(this.radio=='2'){
             this.$api.getWeixin2(_this.$route.query).then((res)=>{
@@ -77,19 +77,19 @@
               var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/);
                 if(isiOS){
                   if(_this.$route.query.userId!=undefined){
-                    window.location.href = 'http://192.168.5.112:8083/#/outSuccess?' + 'orderId=' + res.orderId
+                    window.location.href = 'http://api.kuayet.com:8028/#/outSuccess?' + 'orderId=' + res.orderId
                   }else{
                     // window.location.href="kytstart://awaken/awakenback/scheme?"+"payPrice="+_this.money;
-                    window.location.href = 'http://192.168.5.112:8083/#/appSuccess?' + 'orderId=' + res.orderId
+                    window.location.href = 'http://api.kuayet.com:8028/#/appSuccess?' + 'orderId=' + res.orderId
                   }
                 }
                 //安卓
                 if(isAndroid) {
                   setTimeout(function () {
                     if (_this.$route.query.userId != undefined) {
-                      window.location.href = 'http://192.168.5.112:8083/#/outSuccess?' + 'orderId=' + res.orderId
+                      window.location.href = 'http://api.kuayet.com:8028/#/outSuccess?' + 'orderId=' + res.orderId
                     } else {
-                      window.location.href = 'http://192.168.5.112:8083/#/appSuccess?' + 'orderId=' + res.orderId
+                      window.location.href = 'http://api.kuayet.com:8028/#/appSuccess?' + 'orderId=' + res.orderId
                     }
                   }, 3000)
                 }
