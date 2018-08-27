@@ -416,8 +416,8 @@
              o.getCurrentPosition((status,result)=>{
                if(result&&result.position) {
                  _this.city = result.addressComponent.city;
-                 _this.params.latitude = result.position.lng;
-                 _this.params.longitude = result.position.lat;
+                 _this.params.latitude = result.position.lat;
+                 _this.params.longitude = result.position.lng;
                  _this.center = [_this.params.longitude, _this.params.latitude];
                  _this.loaded = true;
                  _this.finished = false;
@@ -431,8 +431,8 @@
                  _this.getindexList(_this.params);
                  _this.$nextTick();
                }else{
-                 _this.params.latitude =_this.logarr[0];
-                 _this.params.longitude = _this.logarr[1];
+                 _this.params.latitude =_this.logarr[1];
+                 _this.params.longitude = _this.logarr[0];
                  _this.center = [_this.params.longitude, _this.params.latitude];
                  _this.loaded = true;
                  _this.finished = false;
