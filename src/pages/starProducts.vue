@@ -71,6 +71,11 @@
           sub2:'',
           price2:'',
           value:'',
+          params:{
+            productId:'',
+            userId:this.$route.query.userId,
+            num:''
+          },
           sku: {
             tree: [
               {
@@ -103,10 +108,12 @@
       },
       methods: {
         plus(val){
+          this.params.num=val;
           this.sku.price = (this.price2*val).toFixed(2);
           this.sub = this.sub2*val;
         },
         minus(val){
+          this.params.num=val;
           this.sku.price = (this.price2*val).toFixed(2);
           this.sub = this.sub2*val;
         },
@@ -123,9 +130,11 @@
           }, 500);
         },
         openBuy(el,imageurl,price,productName,sub,shoptypeid){
+          this.params.productId=shoptypeid;
           this.shoptypeid = shoptypeid;
           this.showBase = true;
           this.value=1;
+          this.params.num=this.value;
           this.price2 = price-sub;
           this.sub2 = sub;
           this.goods.picture = imageurl;
@@ -135,16 +144,20 @@
         },
         onPointClicked(){
           var _this = this;
-          this.$router.push({
-            path:'/firmOrder',
-           query:{
-                price:_this.price2,
-               val:_this.value,
-             shoptypeid:_this.shoptypeid,
-             userId:this.$route.query.userId,
-             mark:this.$route.query.mark
+          this.$api.getNumpro(_this.params).then((res)=>{
+            if(res!=undefined){
+            this.$router.push({
+              path:'/firmOrder',
+             query:{
+                  price:_this.price2,
+                 val:_this.value,
+               shoptypeid:_this.shoptypeid,
+               userId:this.$route.query.userId,
+               mark:this.$route.query.mark
+              }
+            });
             }
-          });
+          })
         },
         getProduce(shopid){
           var _this = this;

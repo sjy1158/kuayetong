@@ -20,13 +20,14 @@ axios.interceptors.response.use(response=>{
 });
 
 const api = {
-  //获取图标
+  //获取首页图标
   getImage(){
     return axios.request({
       method:'get',
       url:config.baseUrl+'/crossindustry/shopPage/getShopAdvertiseImage',
     })
   },
+  //获取首页level
   geticon() {
     return axios.request({
       method: 'get',
@@ -71,7 +72,7 @@ const api = {
       }
     })
   },
-  //获取折扣信息
+  //获取立即抵扣折扣信息
   getDiscon(shopid){
     return axios.request({
       method:'get',
@@ -89,6 +90,7 @@ const api = {
         params:params
       })
   },
+  // 获取天气
   getWeather(city){
     return axios.request({
       method:'get',
@@ -282,6 +284,14 @@ const api = {
     return axios.request({
       method:'get',
       url:config.baseUrl+'/crossindustry/shopPage/getMoney',
+      params:params
+    })
+  },
+  //判断库存
+  getNumpro(params){
+    return axios.request({
+      method:'get',
+      url:config.baseUrl+'/crossindustry/shopPage/judgeUserAndProduct',
       params:params
     })
   }

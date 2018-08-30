@@ -12,7 +12,6 @@
           <img v-else src="" alt="">
           <div class="titletext">
             <p>{{title}}</p>
-            <p>官方旗舰店</p>
           </div>
         </div>
 
@@ -230,7 +229,8 @@
     font-weight: bold;
   }
   .titleImg .titletext p{
-    margin: 0px!important;
+    margin-top: 0.4rem;
+    /*margin: 0px!important;*/
     margin-bottom: 4px!important;
     font-size: 14px;
   }

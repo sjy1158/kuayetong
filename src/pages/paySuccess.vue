@@ -32,7 +32,7 @@
         finish(){
           window.location.href="www.back.com";
         }
-          },
+      },
       created(){
           // alert(this.$route.query.prize)
         this.prize = (this.$route.query.prize).toFixed(2);
