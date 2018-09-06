@@ -377,7 +377,7 @@
         var _this = this;
         var datajson = this.$api.geticon();
         datajson.then(function (res) {
-          _this.iconarr = res.list;
+          _this.iconarr = res.list.slice(0,9);
         });
       },
       gethot(){
