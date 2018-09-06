@@ -5,14 +5,6 @@
           <img :src="item.imageUrl" alt="" @click="openBusiness(item.id,index,item.superiorShopTypeId)">
           <p>{{item.name}}</p>
         </van-col>
-        <van-col span="8">
-          <img src="../assets/merchants_fast_food_nobg@2x.png" alt="">
-          <p>鸡腿</p>
-        </van-col>
-        <van-col span="8">
-          <img src="../assets/merchants_all_no_bg@2x.png" alt="">
-          <p>鸡腿</p>
-        </van-col>
       </van-row>
 
       <div v-show="issum==false" style="margin-top: 1rem;margin-bottom: 1rem;">

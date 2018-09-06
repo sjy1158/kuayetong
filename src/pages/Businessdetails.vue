@@ -13,18 +13,6 @@
                <li v-for="item in shopImageList">
                  <img :src="item.imageUrl" alt="" style="width: 3rem;height: 2rem;">
                </li>
-               <li v-for="item in shopImageList">
-                 <img :src="item.imageUrl" alt="" style="width: 3rem;height: 2rem;">
-               </li>
-               <li v-for="item in shopImageList">
-                 <img :src="item.imageUrl" alt="" style="width: 3rem;height: 2rem;">
-               </li>
-               <li v-for="item in shopImageList">
-                 <img :src="item.imageUrl" alt="" style="width: 3rem;height: 2rem;">
-               </li>
-               <li v-for="item in shopImageList">
-                 <img :src="item.imageUrl" alt="" style="width: 3rem;height: 2rem;">
-               </li>
              </ul>
               <p v-if="shopImageList.length==0" style="color: red;text-align: left;padding-left: 0.8rem;padding-top: 5px;">此店暂未上传门店图片~~~~~~~</p>
             </div>
