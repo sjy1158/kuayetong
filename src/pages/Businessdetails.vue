@@ -16,13 +16,6 @@
              </ul>
               <p v-if="shopImageList.length==0" style="color: red;text-align: left;padding-left: 0.8rem;padding-top: 5px;">此店暂未上传门店图片~~~~~~~</p>
             </div>
-            <!--<van-tabs v-model="active" line-width="0">-->
-              <!--<van-tab v-for="item in shopImageList">-->
-                <!--<div slot="title">-->
-                  <!--<img :src="item.imageUrl" alt="">-->
-                <!--</div>-->
-              <!--</van-tab>-->
-            <!--</van-tabs>-->
           </li>
           <li>
             <div class="title">

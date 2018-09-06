@@ -94,10 +94,6 @@
               <p style="font-size: 12px;color: #393939;font-weight: bold">{{item.headline}}</p>
               <p style="font-size: 12px;color: #393939;">@{{item.headline}}</p>
             </li>
-            <li>
-              <p style="font-size: 12px;color: #393939;font-weight: bold">黄焖鸡开业了,你造么？</p>
-              <p style="font-size: 12px;color: #393939;">@黄焖鸡开业了,你造么？</p>
-            </li>
           </ul>
         </div>
 
