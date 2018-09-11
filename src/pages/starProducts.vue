@@ -6,7 +6,11 @@
             <div class="shopjieshao" @click.prevent="openBuy($event,item.imageUrl,item.price,item.productName,item.subPrice,item.id)">
               <img :src="item.imageUrl" alt="">
               <div>
-                <p>{{item.productName}}</p>
+                <p style="overflow: hidden;
+                    text-overflow: ellipsis;
+                    display: -webkit-box;
+                    -webkit-line-clamp: 2;
+                    -webkit-box-orient: vertical;">{{item.productName}}</p>
                 <p>¥<span style="font-size:12px;">{{item.price}}</span><span style="margin-left: 0.5rem;font-size: 14px;color: #FF0000">可抵¥{{item.subPrice}}</span></p>
               </div>
             </div>
@@ -204,6 +208,7 @@
       padding-left: 0.2rem;
       padding-right: 0.2rem;
       padding-top: 0.2rem;
+      height: 1rem;
       font-size: 12px;
     }
     .van-row .van-col .shopjieshao p:nth-child(2){
