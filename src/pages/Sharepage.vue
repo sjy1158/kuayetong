@@ -2,7 +2,8 @@
 <div>
   <div class="content">
     <div class="invite">
-      <img :src="headImage" alt="" style="width: 24px;height: 24px;border-radius: 50%;">
+      <img v-if="headImage!=null" :src="headImage" alt="" style="width: 24px;height: 24px;border-radius: 50%;">
+      <img v-else src="../assets/head_portraityuan.png" alt="" style="width: 24px;height: 24px;border-radius: 50%;">
       <span style="padding-left: 50px">{{name}}邀你开启跨业之旅</span>
     </div>
     <img src="../assets/invite.png" alt="" style="width: 100%;margin-bottom:170px;">
