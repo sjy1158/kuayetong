@@ -50,7 +50,7 @@
              this.$api.shareRegister(this.params).then((res)=>{
                // this.$toast('工程师正在努力研发中...')
                setTimeout((res)=>{
-                _this.$router.push('/Shareweima');
+                window.location.href="http://app.kuayet.com/down/"
                },1000)
              })
            }
