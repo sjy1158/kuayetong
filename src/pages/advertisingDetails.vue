@@ -77,7 +77,7 @@
     <div>
         <van-row>
           <van-col span="8" style="border-radius: 4px;" v-for="item in listArr" :v-lazy="item">
-            <div class="shopjieshao" style="border-radius: 4px;height: 290px!important;" @click="openshop(item.id)">
+            <div class="shopjieshao" style="border-radius: 4px;height: 8rem!important;" @click="openshop(item.id)">
               <img :src="item.imageUrl" :v-lazy="item.imageUrl"  alt="">
               <div>
                 <p style="overflow: hidden;
@@ -91,7 +91,7 @@
                     <span style="font-size:0.3rem;"><span style="font-size: 0.28rem;color: #FF0000">¥</span><span style="font-size: 0.35rem;padding-left: 0.1rem;color:#FF0000">{{item.price.toFixed(2)}}</span></span>
                     <span style="float:right;font-size: 0.28rem;padding-right: 0.4rem;line-height: 0.45rem;color: #717171;">销量:{{item.salesVolume}}件</span></div>
                 </div>
-                <div style="width: 100%;padding-top: 1rem!important;"><span style="padding: 0.2rem;background: red;margin-left: 0.2rem;color: #FFFFFF;border-radius: 15px;">可抵扣¥{{item.deduction.toFixed(2)}}</span></div>
+                <div style="width: 100%;" class="disconnum"><span style="padding: 0.2rem;background: red;margin-left: 0.2rem;color: #FFFFFF;border-radius: 15px;">可抵扣¥{{item.deduction.toFixed(2)}}</span></div>
                 <!--<p><span style="font-size: 14px;color: #FF0000">可抵¥{{item.deduction.toFixed(2)}}</span></p>-->
               </div>
             </div>
@@ -361,5 +361,8 @@
     width: 100%;
     height: 182px;
     border-radius: 4px 4px 0px 0px;
+  }
+  .disconnum{
+    padding-top: 0.9rem;
   }
 </style>
