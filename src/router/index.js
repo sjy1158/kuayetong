@@ -33,6 +33,7 @@ import alipayOk from '../pages/alipayOk'
 import appSuccess from '../pages/appSuccess'
 import alipayOk2 from '../pages/alipayOk2'
 import outSuccess from '../pages/outSuccess'
+import advertisingDetails from '../pages/advertisingDetails'
 Vue.use(Router)
 
 export default new Router({
@@ -243,6 +244,11 @@ export default new Router({
       name:'listItem',
       path:'/listItem',
       component:listItem
+    },
+    {
+      name:'advertisingDetails',
+      path:'/advertisingDetails',
+      component:advertisingDetails
     }
   ]
 })
