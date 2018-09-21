@@ -10,6 +10,10 @@
       <div class="titletext">
         <p>{{title}}</p>
       </div>
+      <div style="position: absolute;right: 35px;top: 45%;">
+        <p style="margin: 0px!important;">100</p>
+        <p style="margin: 0px!important;">粉丝</p>
+      </div>
     </div>
 
     <!--优惠券-->
