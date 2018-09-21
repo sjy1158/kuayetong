@@ -10,6 +10,9 @@
       </van-swipe>
       <div class="slidesum" style=""><span style="padding-right: 2px;">{{index+1}}</span>/<span style="padding-left: 2px;">{{imgUrl.length}}</span></div>
       <img src="../assets/commerce_return_bg@3x.png" alt="" style="position: fixed;width: 32px;height: 32px;top: 23px;left: 10px;z-index: 9999999999999999999999;" @click="getLeft">
+      <img v-if="isshangcang!=false" src="../assets/collection_sel@3x.png" style="position: fixed;width: 32px;height: 32px;top: 23px;right: 56px;z-index: 9999999999999999999999;" alt="" @click="shouCang">
+      <img v-else src="../assets/collection@3x.png" style="position: fixed;width: 32px;height: 32px;top: 23px;right: 56px;z-index: 9999999999999999999999;" alt="" @click="shouCang">
+      <img src="../assets/share@3x.png" style="position: fixed;width: 32px;height: 32px;top: 23px;right: 10px;z-index: 9999999999999999999999;" alt="" @click="share">
     </div>
 
     <div style="height: auto;background: white;padding:10px;">
@@ -126,12 +129,18 @@
 
 <script>
   import { Dialog } from 'vant'
+  import { Toast } from 'vant'
   export default {
     name: "comPurchase",
     data(){
       return{
         params2:{
-          id:'',
+          id:this.$route.query.id,
+        },
+        params3:{
+          userId:this.$route.query.userId,
+          id:this.$route.query.id,
+          type:'2',
         },
         src:'',
         prize:'',
@@ -148,11 +157,26 @@
         location2:'',
         title:'',
         src1:'',
+        isshangcang:false
       }
     },
     methods:{
       getLeft(){
         window.location.href="http://back.com";
+      },
+      shouCang(){
+        this.isshangcang = true;
+        this.getShoucang(this.params3);
+      },
+      getShoucang(params){
+        this.$api.getScang(params).then((res)=>{
+          if(JSON.stringify(res)!=undefined){
+            Toast("收藏成功");
+          }
+        })
+      },
+      share(){
+        window.location.href="http://back.com"
       },
       openpay(){
         var _this=this;
@@ -207,6 +231,7 @@
       },
       openshop(id){
         this.params2.id=id;
+        this.isshangcang = false;
         // this.params.pId=id;
         // window.scrollTo(0);
         document.body.scrollTop=0;
@@ -217,13 +242,13 @@
       },
     },
     created(){
-      var arrstr=[];
+    /*  var arrstr=[];
       var arr=this.$geturl.getL();
       for(var i=0;i<arr.length;i++){
         arrstr.push(arr[i].split('=')[1]);
       }
       this.logarr=arrstr;
-      this.params2.id=arrstr[0];
+      this.params2.id=arrstr[0];*/
     },
     mounted(){
       var _this=this;

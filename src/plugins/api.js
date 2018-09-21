@@ -294,6 +294,22 @@ const api = {
       url:config.baseUrl+'/crossindustry/shopPage/judgeUserAndProduct',
       params:params
     })
+  },
+  // 获取商家商品详情
+  getStoreshop(params){
+    return axios.request({
+      method:'get',
+      url:config.baseUrl+'/crossindustry/shopPage/getProductMessage',
+      params:params
+    })
+  },
+  //收藏
+  getScang(params){
+    return axios.request({
+      method:'get',
+      url:config.baseUrl+'/crossindustry/shopPage/collect',
+      params:params
+    })
   }
 }
 export default class Api {

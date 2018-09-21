@@ -34,6 +34,10 @@ import appSuccess from '../pages/appSuccess'
 import alipayOk2 from '../pages/alipayOk2'
 import outSuccess from '../pages/outSuccess'
 import advertisingDetails from '../pages/advertisingDetails'
+import storeShop from '../pages/storeShop'
+import shareShophome from '../pages/shareShophome'
+import shareBusinessdetails from '../pages/shareBusinessdetails'
+import sharestarProducts from '../pages/sharestarProducts'
 Vue.use(Router)
 
 export default new Router({
@@ -249,6 +253,35 @@ export default new Router({
       name:'advertisingDetails',
       path:'/advertisingDetails',
       component:advertisingDetails
-    }
+    },
+    {
+      name:'storeShop',
+      path:'/storeShop',
+      component:storeShop
+    },
+    {
+      name:'shareShophome',
+      path:'/shareShophome',
+      component:shareShophome,
+      meta:{
+        keepAlive: false
+      },
+      children:[
+        {
+          path:'/shareShophome',
+          redirect:'/shareShophome/sharestarProducts'
+        },
+        {
+          name:'sharestarProducts',
+          path:'/shareShophome/sharestarProducts',
+          component:sharestarProducts
+        },
+        {
+          name:'shareBusinessdetails',
+          path:'/shareShophome/shareBusinessdetails',
+          component:shareBusinessdetails
+        }
+      ]
+    },
   ]
 })
