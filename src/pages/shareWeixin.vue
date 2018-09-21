@@ -9,10 +9,6 @@
         </van-swipe-item>
       </van-swipe>
       <div class="slidesum" style=""><span style="padding-right: 2px;">{{index+1}}</span>/<span style="padding-left: 2px;">{{imgUrl.length}}</span></div>
-      <img src="../assets/commerce_return_bg@3x.png" alt="" style="position: fixed;width: 32px;height: 32px;top: 23px;left: 10px;z-index: 9999999999999999999999;" @click="getLeft">
-      <img v-if="params3.mark==1" src="../assets/collection_sel@3x.png" style="position: fixed;width: 32px;height: 32px;top: 23px;right: 56px;z-index: 9999999999999999999999;" alt="" @click="shouCang">
-      <img v-else src="../assets/collection@3x.png" style="position: fixed;width: 32px;height: 32px;top: 23px;right: 56px;z-index: 9999999999999999999999;" alt="" @click="shouCang">
-      <img src="../assets/share@3x.png" style="position: fixed;width: 32px;height: 32px;top: 23px;right: 10px;z-index: 9999999999999999999999;" alt="" @click="share">
     </div>
 
     <div style="height: auto;background: white;padding:10px;">
@@ -78,52 +74,57 @@
       </div>
     </div>
     <div>
-        <van-row>
-          <van-col span="8" style="border-radius: 4px;" v-for="item in listArr" :v-lazy="item">
-            <div class="shopjieshao" style="border-radius: 4px;height: 8rem!important;" @click="openshop(item.id)">
-              <img :src="item.imageUrl" :v-lazy="item.imageUrl"  alt="">
-              <div>
-                <p style="overflow: hidden;
+      <van-row>
+        <van-col span="8" style="border-radius: 4px;" v-for="item in listArr" :v-lazy="item">
+          <div class="shopjieshao" style="border-radius: 4px;height: 8rem!important;" @click="openshop(item.id)">
+            <img :src="item.imageUrl" :v-lazy="item.imageUrl"  alt="">
+            <div>
+              <p style="overflow: hidden;
                         text-overflow: ellipsis;
                         display: -webkit-box;
                         -webkit-line-clamp: 2;
                         -webkit-box-orient: vertical;height: auto"><i><img :src="item.iconUrl" alt="" style="width: 12px;height: 12px;"></i>{{item.name}}</p>
-                <div style="width: 100%;">
-                  <div style="width: 100%;float: left;padding:0.2rem;">
-                    <span style="font-size: 0.28rem;color: #717171;">拼多多价</span>
-                    <span style="font-size:0.3rem;"><span style="font-size: 0.28rem;color: #FF0000">¥</span><span style="font-size: 0.35rem;padding-left: 0.1rem;color:#FF0000">{{item.price.toFixed(2)}}</span></span>
-                    <span style="float:right;font-size: 0.28rem;padding-right: 0.4rem;line-height: 0.45rem;color: #717171;">销量:{{item.salesVolume}}件</span></div>
-                </div>
-                <div style="width: 100%;" class="disconnum"><span style="padding: 0.2rem;background: red;margin-left: 0.2rem;color: #FFFFFF;border-radius: 15px;">可抵扣¥{{item.deduction.toFixed(2)}}</span></div>
-                <!--<p><span style="font-size: 14px;color: #FF0000">可抵¥{{item.deduction.toFixed(2)}}</span></p>-->
+              <div style="width: 100%;">
+                <div style="width: 100%;float: left;padding:0.2rem;">
+                  <span style="font-size: 0.28rem;color: #717171;">拼多多价</span>
+                  <span style="font-size:0.3rem;"><span style="font-size: 0.28rem;color: #FF0000">¥</span><span style="font-size: 0.35rem;padding-left: 0.1rem;color:#FF0000">{{item.price.toFixed(2)}}</span></span>
+                  <span style="float:right;font-size: 0.28rem;padding-right: 0.4rem;line-height: 0.45rem;color: #717171;">销量:{{item.salesVolume}}件</span></div>
               </div>
+              <div style="width: 100%;" class="disconnum"><span style="padding: 0.2rem;background: red;margin-left: 0.2rem;color: #FFFFFF;border-radius: 15px;">可抵扣¥{{item.deduction.toFixed(2)}}</span></div>
+              <!--<p><span style="font-size: 14px;color: #FF0000">可抵¥{{item.deduction.toFixed(2)}}</span></p>-->
             </div>
-          </van-col>
-        </van-row>
+          </div>
+        </van-col>
+      </van-row>
     </div>
-      <!--<ul style="height: auto;">-->
-        <!--<li style="position: relative;height: 140px;" v-for="item in listArr" :v-lazy="item" @click="openshop(item.id)">-->
-          <!--<img src="../assets/bg@3x.png" alt="" style="height: 140px;width: 100%;">-->
-          <!--<img :src="item.imageUrl" :v-lazy="item.imageUrl" alt="" style="width: 109px;height: 109px;position: absolute;left: 10px;top: 48%;margin-top: -54px;">-->
-          <!--<div style="height: 100px;position: absolute;left:130px;top: 3px;text-align: left;padding-right: 10px;">-->
-            <!--<p style="font-size: 12px;overflow: hidden;-->
-                  <!--text-overflow: ellipsis;-->
-                  <!--display: -webkit-box;-->
-                   <!-- -webkit-line-clamp: 2;-->
-                   <!-- -webkit-box-orient: vertical;">-->
-              <!--<img :src="item.iconUrl" alt="" style="width: 12px;height: 12px;">-->
-              <!--{{item.name}}-->
-            <!--</p>-->
-            <!--<p style="height: 20px;line-height: 20px;">{{item.source}}价：<span style="color: #FF0000;font-size: 14px;">{{item.price.toFixed(2)}}</span>元 <span style="float: right;font-size: 10px;color: #717171">销量：{{item.salesVolume}}件</span></p>-->
-            <!--<div style="background: #FF0000;width: 94px;height: 24px;line-height: 24px;text-align: center;color: white;border-radius:10px;position: absolute;bottom: -18px;">可抵:{{item.deduction.toFixed(2)}}元</div>-->
-          <!--</div>-->
-        <!--</li>-->
-      <!--</ul>-->
+    <!--<ul style="height: auto;">-->
+    <!--<li style="position: relative;height: 140px;" v-for="item in listArr" :v-lazy="item" @click="openshop(item.id)">-->
+    <!--<img src="../assets/bg@3x.png" alt="" style="height: 140px;width: 100%;">-->
+    <!--<img :src="item.imageUrl" :v-lazy="item.imageUrl" alt="" style="width: 109px;height: 109px;position: absolute;left: 10px;top: 48%;margin-top: -54px;">-->
+    <!--<div style="height: 100px;position: absolute;left:130px;top: 3px;text-align: left;padding-right: 10px;">-->
+    <!--<p style="font-size: 12px;overflow: hidden;-->
+    <!--text-overflow: ellipsis;-->
+    <!--display: -webkit-box;-->
+    <!-- -webkit-line-clamp: 2;-->
+    <!-- -webkit-box-orient: vertical;">-->
+    <!--<img :src="item.iconUrl" alt="" style="width: 12px;height: 12px;">-->
+    <!--{{item.name}}-->
+    <!--</p>-->
+    <!--<p style="height: 20px;line-height: 20px;">{{item.source}}价：<span style="color: #FF0000;font-size: 14px;">{{item.price.toFixed(2)}}</span>元 <span style="float: right;font-size: 10px;color: #717171">销量：{{item.salesVolume}}件</span></p>-->
+    <!--<div style="background: #FF0000;width: 94px;height: 24px;line-height: 24px;text-align: center;color: white;border-radius:10px;position: absolute;bottom: -18px;">可抵:{{item.deduction.toFixed(2)}}元</div>-->
+    <!--</div>-->
+    <!--</li>-->
+    <!--</ul>-->
     <!--</div>-->
     <img id="btngo" src="../assets/commerce_top@3x.png" alt="" style="width: 35px;height: 35px;position: fixed;bottom: 61px;right: 15px;" @click="goTop">
     <button id="paybtn" type="button" style="position: fixed;bottom: 0px;left: 0px;" @click="openpay">
       立即抵扣购买
     </button>
+    <div id="weixin-tip" v-show="!disweixin">
+      <p>
+        <img style="width:80%" src="http://api.kuayet.com:8028/imgsave.png" alt="微信打开"/>
+      </p>
+    </div>
   </div>
 </template>
 
@@ -136,13 +137,11 @@
       return{
         params2:{
           id:this.$route.query.id,
-          userId:this.$route.query.userId
         },
         params3:{
           userId:this.$route.query.userId,
           id:this.$route.query.id,
           type:'2',
-          mark:0
         },
         src:'',
         prize:'',
@@ -159,7 +158,8 @@
         location2:'',
         title:'',
         src1:'',
-        isshangcang:false
+        isshangcang:false,
+        disweixin:true,
       }
     },
     methods:{
@@ -167,7 +167,7 @@
         window.location.href="http://back.com";
       },
       shouCang(){
-        this.params3.mark =!this.params3.mark;
+        this.isshangcang = true;
         this.getShoucang(this.params3);
       },
       getShoucang(params){
@@ -180,13 +180,44 @@
       share(){
         window.location.href="http://share.com"
       },
+      isSysten(){
+        var u = navigator.userAgent, app = navigator.appVersion;
+        return{
+          isanzhuo:u.indexOf('Android') > -1 || u.indexOf('Linux') > -1,
+          isios:!!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/)
+        }
+      },
+      isweixin(){
+        var ua = navigator.userAgent.toLowerCase();
+        if(ua.match(/MicroMessenger/i) == "micromessenger"){
+          return true
+        }else {
+          return false
+        }
+      },
       openpay(){
-        var _this=this;
+        var _this = this;
         Dialog.confirm({
           title: '提示',
-          message: '此操作不可撤销，请确认使用本平台余额'+this.deduction+'元抵扣购物'
+          message: '请下载APP使用此功能'
         }).then(() => {
-          window.location.href=_this.location;
+          if(_this.isweixin()){
+            _this.disweixin = !_this.disweixin;
+          }else{
+            var hasapp = true;
+            if(_this.isSysten().isanzhuo){
+              window.location.href="kytstart://awaken/awakenback/scheme";
+              setTimeout(function () {
+                window.location.href="http://app.kuayet.com/down/";
+              },3000)
+            }
+            if(_this.isSysten().isios){
+              window.location.href="kytstart://awaken/awakenback/scheme";
+              setTimeout(function () {
+                window.location.href="http://app.kuayet.com/down/";
+              },3000)
+            }
+          }
         }).catch(() => {
           return
         })
@@ -244,13 +275,6 @@
       },
     },
     created(){
-    /*  var arrstr=[];
-      var arr=this.$geturl.getL();
-      for(var i=0;i<arr.length;i++){
-        arrstr.push(arr[i].split('=')[1]);
-      }
-      this.logarr=arrstr;
-      this.params2.id=arrstr[0];*/
     },
     mounted(){
       var _this=this;
@@ -260,6 +284,7 @@
 </script>
 
 <style scoped>
+  #weixin-tip{position: fixed; left:0; top:0px; background: rgba(0,0,0,0.8); filter:alpha(opacity=80); width: 100%; height:100%; z-index: 100;} #weixin-tip p{text-align: center; margin-top: 10%; padding:0 5%;}
   button{
     height: 51px;
     border: none;

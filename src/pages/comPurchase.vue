@@ -135,11 +135,11 @@
     data(){
       return{
         params2:{
-          id:this.$route.query.id,
+          id:'',
         },
         params3:{
           userId:this.$route.query.userId,
-          id:this.$route.query.id,
+          id:'',
           type:'2',
         },
         src:'',
@@ -242,13 +242,13 @@
       },
     },
     created(){
-      /*  var arrstr=[];
+        var arrstr=[];
         var arr=this.$geturl.getL();
         for(var i=0;i<arr.length;i++){
           arrstr.push(arr[i].split('=')[1]);
         }
         this.logarr=arrstr;
-        this.params2.id=arrstr[0];*/
+        this.params2.id=arrstr[0];
     },
     mounted(){
       var _this=this;

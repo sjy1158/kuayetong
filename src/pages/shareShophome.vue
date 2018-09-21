@@ -11,7 +11,7 @@
         <p>{{title}}</p>
       </div>
       <div style="position: absolute;right: 35px;top: 45%;">
-        <p style="margin: 0px!important;">100</p>
+        <p style="margin: 0px!important;">{{fans}}</p>
         <p style="margin: 0px!important;">粉丝</p>
       </div>
     </div>
@@ -94,7 +94,8 @@
         call:'',
         latitude:'',
         longitude:'',
-        disweixin:true
+        disweixin:true,
+        fans:''
       }
     },
     methods:{
@@ -169,6 +170,7 @@
       getInformation(shopid){
         var _this = this;
         this.$api.getShopInformation(shopid).then(function (res) {
+          _this.fans = res.fans;
           _this.latitude=res.latitude;
           _this.longitude=res.longitude;
           _this.title = res.title;

@@ -38,6 +38,7 @@ import storeShop from '../pages/storeShop'
 import shareShophome from '../pages/shareShophome'
 import shareBusinessdetails from '../pages/shareBusinessdetails'
 import sharestarProducts from '../pages/sharestarProducts'
+import shareWeixin from '../pages/shareWeixin'
 Vue.use(Router)
 
 export default new Router({
@@ -260,6 +261,11 @@ export default new Router({
       component:storeShop
     },
     {
+      name:'shareWeixin',
+      path:'/shareWeixin',
+      component:shareWeixin
+    },
+    {
       name:'shareShophome',
       path:'/shareShophome',
       component:shareShophome,
@@ -282,6 +288,6 @@ export default new Router({
           component:shareBusinessdetails
         }
       ]
-    },
+    }
   ]
 })
