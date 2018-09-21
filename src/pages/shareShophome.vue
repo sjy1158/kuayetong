@@ -60,7 +60,7 @@
     </div>
     <button type="button" @click="openPay">立即抵扣买单</button>
 
-    <div id="weixin-tip">
+    <div id="weixin-tip" v-show="!disweixin">
       <p>
         <img style="width:80%" src="http://api.kuayet.com:8028/imgsave.png" alt="微信打开"/>
       </p>
@@ -89,7 +89,8 @@
         location:'',
         call:'',
         latitude:'',
-        longitude:''
+        longitude:'',
+        disweixin:true
       }
     },
     methods:{
@@ -126,10 +127,22 @@
           message: '请下载APP使用此功能'
         }).then(() => {
           if(_this.isweixin()){
-
+            _this.disweixin = !_this.disweixin;
+          }else{
+            var hasapp = true;
+            if(_this.isSysten().isanzhuo){
+                window.location.href="kytstart://awaken/awakenback/scheme";
+                setTimeout(function () {
+                  window.location.href="http://app.kuayet.com/down/";
+                },3000)
+            }
+            if(_this.isSysten().isios){
+                window.location.href="kytstart://awaken/awakenback/scheme";
+                setTimeout(function () {
+                  window.location.href="http://app.kuayet.com/down/";
+                },3000)
+            }
           }
-          // alert(_this.isSysten().isWeixin);
-          // window.location.href="http://app.kuayet.com/down/";
         }).catch(() => {
           return
         })
@@ -182,6 +195,7 @@
 </script>
 
 <style scoped>
+  #weixin-tip{position: fixed; left:0; top:45px; background: rgba(0,0,0,0.8); filter:alpha(opacity=80); width: 100%; height:100%; z-index: 100;} #weixin-tip p{text-align: center; margin-top: 10%; padding:0 5%;}
   .van-nav-bar{
     height: 43px;
     width: 100%;
