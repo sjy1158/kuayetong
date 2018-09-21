@@ -10,9 +10,7 @@
       </van-swipe>
       <div class="slidesum" style=""><span style="padding-right: 2px;">{{index+1}}</span>/<span style="padding-left: 2px;">{{imgUrl.length}}</span></div>
       <img src="../assets/commerce_return_bg@3x.png" alt="" style="position: fixed;width: 32px;height: 32px;top: 23px;left: 10px;z-index: 9999999999999999999999;" @click="getLeft">
-      <img v-if="isshangcang!=false" src="../assets/collection_sel@3x.png" style="position: fixed;width: 32px;height: 32px;top: 23px;right: 56px;z-index: 9999999999999999999999;" alt="" @click="shouCang">
-      <img v-else src="../assets/collection@3x.png" style="position: fixed;width: 32px;height: 32px;top: 23px;right: 56px;z-index: 9999999999999999999999;" alt="" @click="shouCang">
-      <img src="../assets/share@3x.png" style="position: fixed;width: 32px;height: 32px;top: 23px;right: 10px;z-index: 9999999999999999999999;" alt="" @click="share">
+      <!--<img v-if="isshangcang!=false" src="../assets/collection_sel@3x.png" style="position: fixed;width: 32px;height: 32px;top: 23px;right: 56px;z-index: 9999999999999999999999;" alt="" @click="shouCang">-->
     </div>
 
     <div style="height: auto;background: white;padding:10px;">
@@ -157,7 +155,6 @@
         location2:'',
         title:'',
         src1:'',
-        isshangcang:false
       }
     },
     methods:{
@@ -167,13 +164,6 @@
       shouCang(){
         this.isshangcang = true;
         this.getShoucang(this.params3);
-      },
-      getShoucang(params){
-        this.$api.getScang(params).then((res)=>{
-          if(JSON.stringify(res)!=undefined){
-            Toast("收藏成功");
-          }
-        })
       },
       share(){
         window.location.href="http://share.com"
