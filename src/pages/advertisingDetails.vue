@@ -171,9 +171,14 @@
         this.getShoucang(this.params3);
       },
       getShoucang(params){
+        var _this = this;
         this.$api.getScang(params).then((res)=>{
           if(JSON.stringify(res)!=undefined){
-            Toast("收藏成功");
+            if(_this.params3.mark){
+              Toast('收藏成功')
+            }else {
+              Toast('取消收藏成功')
+            }
           }
         })
       },
