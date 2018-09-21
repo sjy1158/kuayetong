@@ -176,7 +176,7 @@
         })
       },
       share(){
-        window.location.href="http://back.com"
+        window.location.href="http://share.com"
       },
       openpay(){
         var _this=this;

@@ -59,10 +59,17 @@
       <router-view></router-view>
     </div>
     <button type="button" @click="openPay">立即抵扣买单</button>
+
+    <div id="weixin-tip">
+      <p>
+        <img style="width:80%" src="http://api.kuayet.com:8028/imgsave.png" alt="微信打开"/>
+      </p>
+    </div>
   </div>
 </template>
 
 <script>
+  import { Dialog } from 'vant'
   export default {
     name: "Shophome",
     data(){
@@ -113,23 +120,33 @@
         }
       },
       openPay(){
-          if(this.isSysten().isanzhuo){
-            window.location.href="kytstart://awaken/awakenback/scheme";
-            // var str = "<iframe src='kytstart://awaken/awakenback/scheme'>"+"</iframe>";
-            // document.querySelector('body').appendChild(str);
+        var _this=this;
+        Dialog.confirm({
+          title: '提示',
+          message: '请下载APP使用此功能'
+        }).then(() => {
+          if(_this.isweixin()){
+
           }
-          if(this.isSysten().isios){
-            window.location.href="kytstart://awaken/awakenback/scheme";
-          }
-        setTimeout(function () {
-            window.location.href="http://app.kuayet.com/down/"
-        },3000)
+          // alert(_this.isSysten().isWeixin);
+          // window.location.href="http://app.kuayet.com/down/";
+        }).catch(() => {
+          return
+        })
       },
       isSysten(){
         var u = navigator.userAgent, app = navigator.appVersion;
         return{
           isanzhuo:u.indexOf('Android') > -1 || u.indexOf('Linux') > -1,
           isios:!!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/)
+        }
+      },
+      isweixin(){
+        var ua = navigator.userAgent.toLowerCase();
+        if(ua.match(/MicroMessenger/i) == "micromessenger"){
+          return true
+        }else {
+          return false
         }
       },
       getInformation(shopid){
