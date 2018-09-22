@@ -10,8 +10,8 @@
       </van-swipe>
       <div class="slidesum" style=""><span style="padding-right: 2px;">{{index+1}}</span>/<span style="padding-left: 2px;">{{imgUrl.length}}</span></div>
       <img src="../assets/commerce_return_bg@3x.png" alt="" style="position: fixed;width: 32px;height: 32px;top: 23px;left: 10px;z-index: 9999999999999999999999;" @click="getLeft">
-      <img v-if="params3.mark==1" src="../assets/collection_sel@3x.png" style="position: fixed;width: 32px;height: 32px;top: 23px;right: 56px;z-index: 9999999999999999999999;" alt="" @click="shouCang">
-      <img v-else src="../assets/collection@3x.png" style="position: fixed;width: 32px;height: 32px;top: 23px;right: 56px;z-index: 9999999999999999999999;" alt="" @click="shouCang">
+      <img v-if="mark=='1'" src="../assets/collection_sel@3x.png" style="position: fixed;width: 32px;height: 32px;top: 23px;right: 56px;z-index: 9999999999999999999999;" alt="" @click="shouCang(0,'0')">
+      <img v-if="mark=='0'" src="../assets/collection@3x.png" style="position: fixed;width: 32px;height: 32px;top: 23px;right: 56px;z-index: 9999999999999999999999;" alt="" @click="shouCang('','1')">
       <img src="../assets/share@3x.png" style="position: fixed;width: 32px;height: 32px;top: 23px;right: 10px;z-index: 9999999999999999999999;" alt="" @click="share">
     </div>
 
@@ -138,11 +138,12 @@
           id:this.$route.query.id,
           userId:this.$route.query.userId
         },
+        mark:'',
         params3:{
           userId:this.$route.query.userId,
           id:this.$route.query.id,
           type:'2',
-          mark:0
+          mark:''
         },
         src:'',
         prize:'',
@@ -166,19 +167,18 @@
       getLeft(){
         window.location.href="http://back.com";
       },
-      shouCang(){
-        this.params3.mark =!this.params3.mark;
+      shouCang(mark,mark2){
+        this.params3.mark = mark;
+        this.mark = mark2;
         this.getShoucang(this.params3);
       },
       getShoucang(params){
         var _this = this;
         this.$api.getScang(params).then((res)=>{
-          if(JSON.stringify(res)!=undefined){
-            if(_this.params3.mark){
-              Toast('收藏成功')
-            }else {
-              Toast('取消收藏成功')
-            }
+          if(this.mark=='1'){
+            Toast('收藏成功');
+          }else{
+            Toast('取消收藏成功')
           }
         })
       },
@@ -199,6 +199,8 @@
       getdinshang(params){
         const _this=this;
         this.$api.getDinshang(params).then((res)=>{
+          // _this.params3.mark=res.product.isCollect;
+          _this.mark = res.product.isCollect;
           _this.prize=res.product.price.toFixed(2);
           _this.name=res.product.name;
           _this.source=res.product.source;
