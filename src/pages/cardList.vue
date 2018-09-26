@@ -58,7 +58,7 @@
         <div style="width: 100%;height: 62px;line-height:62px;position: relative">
             <div>
               <span style="font-size: 16px;font-weight: bold;padding-right: 20px;" @click="pushPage">＜</span>
-              <input type="text" placeholder="" v-model="params.pageNum" disabled="disabled" style="height: 20px;width:30px;background:#cfcfcf;border: none;text-align: center;border-radius: 5px;">
+              <input type="text" placeholder="" v-model="params.pageNum" disabled="disabled" style="height: 20px;width:30px;background:#cfcfcf;border: none;text-align: center;border-radius: 5px;line-height: 20px;">
               <span style="font-size: 16px;font-weight: bold;padding-left: 20px;" @click="addPage">＞</span>
             </div>
           <div style="position: absolute;width: 100px;right: 0px;top: 0px;">
@@ -152,7 +152,7 @@
     padding-top: 10px;
   }
   form label{
-    width: 42px;
+    width: 2rem;
     text-align: left;
     padding-left: 20px;
   }
@@ -172,6 +172,7 @@
   form div div input{
     padding-left: 28px;
     border: none;
+    line-height: 20px;
     color: #8F8F8F!important;
   }
   .van-radio-group .van-radio .van-radio__label{

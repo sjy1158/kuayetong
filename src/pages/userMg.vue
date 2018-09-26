@@ -40,7 +40,7 @@
       <div style="width: 100%;height: 62px;line-height:62px;position: relative">
         <div>
           <span style="font-size: 16px;font-weight: bold;padding-right: 20px" @click="pushPage">＜</span>
-          <input type="text" placeholder="" v-model="params.pageNum" disabled="disabled" style="height: 20px;width:30px;background:#cfcfcf;border: none;text-align: center;border-radius: 5px;">
+          <input type="text" placeholder="" v-model="params.pageNum" disabled="disabled" style="height: 20px;width:30px;background:#cfcfcf;border: none;text-align: center;border-radius: 5px;line-height: 20px;">
           <span style="font-size: 16px;font-weight: bold;padding-left: 20px;" @click="addPage">＞</span>
         </div>
         <div style="position: absolute;width: 100px;right: 0px;top: 0px;">
@@ -87,7 +87,7 @@
       },
       // 时间戳转换
       changetime(time){
-       var time = new Date(time/1000).getFullYear()+'-'+(new Date(time/1000).getMonth()+1)+'-'+new Date(time/1000).getDay();
+       var time = new Date(time).getFullYear()+'-'+(new Date(time).getMonth()+1)+'-'+new Date(time).getDay();
        return time;
       },
       // 加
@@ -155,6 +155,7 @@
   form div div input{
     padding-left: 28px;
     border: none;
+    line-height: 20px;
     color: #8F8F8F!important;
   }
   .van-radio-group .van-radio .van-radio__label{
