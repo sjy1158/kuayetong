@@ -87,14 +87,17 @@
                         text-overflow: ellipsis;
                         display: -webkit-box;
                         -webkit-line-clamp: 2;
-                        -webkit-box-orient: vertical;height: auto"><i><img :src="item.iconUrl" alt="" style="width: 12px;height: 12px;"></i>{{item.name}}</p>
+                        -webkit-box-orient: vertical;height: auto">
+                  <i style="vertical-align:middle;"><img :src="item.iconUrl" alt="" style="width: 0.35rem;height: 0.35rem;vertical-align:middle;float: left;margin-top: 0.055rem;"></i>
+                  <span style="padding-left: 2px;vertical-align: middle;">{{item.name}}</span>
+                </p>
                 <div style="width: 100%;">
                   <div style="width: 100%;float: left;padding:0.2rem;">
-                    <span style="font-size: 0.28rem;color: #717171;">拼多多价</span>
+                    <span style="font-size: 0.28rem;color: #717171;">{{item.source}}价</span>
                     <span style="font-size:0.3rem;"><span style="font-size: 0.28rem;color: #FF0000">¥</span><span style="font-size: 0.35rem;padding-left: 0.1rem;color:#FF0000">{{item.price.toFixed(2)}}</span></span>
                     <span style="float:right;font-size: 0.28rem;padding-right: 0.4rem;line-height: 0.45rem;color: #717171;">销量:{{item.salesVolume}}件</span></div>
                 </div>
-                <div style="width: 100%;" class="disconnum"><span style="padding: 0.2rem;background: red;margin-left: 0.2rem;color: #FFFFFF;border-radius: 15px;">可抵扣¥{{item.deduction.toFixed(2)}}</span></div>
+                <div style="width: 100%;" class="disconnum"><span style="padding:2px 5px;background: red;margin-left: 0.2rem;color: #FFFFFF;border-radius: 15px;font-size: 12px;">可抵扣¥{{item.deduction.toFixed(2)}}</span></div>
                 <!--<p><span style="font-size: 14px;color: #FF0000">可抵¥{{item.deduction.toFixed(2)}}</span></p>-->
               </div>
             </div>
