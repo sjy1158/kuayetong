@@ -1,5 +1,12 @@
 <template>
   <div style="margin-bottom: 61px;">
+    <div id="Loading" v-show="loading">
+    <div class="loader-inner ball-beat">
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+  </div>
     <!--<img src="../assets/bg2.jpg" alt="" style="width: 100%;height: 375px;">-->
     <!--图片轮播-->
     <div style="position: relative;width: 100%;height: 375px;">
@@ -29,16 +36,34 @@
 
 
     <div style="height: 2.2rem;background: white;margin-top: 10px;padding: 15px 34px;">
-      <div style="width: 100%;height: 2rem;position: relative">
-        <img src="../assets/commerce_coupons_bg@3x.png" alt="" style="width: 100%;height: 2rem;">
-        <div class="leftdiv" style="">
-          <p>{{deduction}}<span style="font-size: 12px;">元</span></p>
-          <p>本商品可用余额抵扣</p>
-          <p>（提交订单时会自动抵扣）</p>
+      <div style="width: 100%;height: 2rem;position: relative;">
+        <img src="../assets/newbg.png" alt="" style="width: 100%;height: 2rem;">
+        <div style="width:80%;height: 1.6rem;position: absolute;top: 50%;left: 0px;text-align: left;margin-top: -0.8rem;color: white;padding-top: 0.3rem;">
+          <div style="display: inline-block;position: absolute;left: 10px;top: 5px;">¥</div>
+          <div style="display: inline-block;font-size: 1rem;margin-left: 16px;line-height: 0.8rem;padding-top: 5px;">{{deduction}}</div>
+          <div style="display: inline-block;padding-left: 7px;">
+            <p style="margin: 0px;font-size: 12px;letter-spacing: 2px;">元抵扣券</p>
+            <p style="margin: 0px;font-size: 10px;letter-spacing: 2px;padding-top: 2px;">提交订单时会自动抵扣</p>
+          </div>
         </div>
-        <div class="rightdiv" style="" @click="openpay">
+        <div style="width: 20%;height: 100%;position: absolute;top: 0px;right: 0px;line-height: 2rem;color: white;border-left: 1px dashed #FFFFFF;padding-left: 7px;padding-right: 7px;" @click="openpay">
           立即抵扣
         </div>
+          <!--<div class="leftdiv" style="">-->
+            <!--<div style="height: 1.6rem;position: absolute;top: 50%;margin-top: -0.8rem;width: 80%;">-->
+              <!--<div style="display: inline-block"><span>¥</span><span style="font-size: 40px;">100</span></div>-->
+              <!--<div style="display: inline-block;text-align: left">-->
+                <!--<p>元抵扣券</p>-->
+                <!--<p>提交订单时会自动抵扣</p>-->
+              <!--</div>-->
+            <!--</div>-->
+            <!--&lt;!&ndash;<p>{{deduction}}<span style="font-size: 12px;">元</span></p>&ndash;&gt;-->
+            <!--&lt;!&ndash;<p>本商品可用余额抵扣</p>&ndash;&gt;-->
+            <!--&lt;!&ndash;<p>（提交订单时会自动抵扣）</p>&ndash;&gt;-->
+          <!--</div>-->
+          <!--<div class="rightdiv" style="font-size: 13px;" @click="openpay">-->
+            <!--立即抵扣-->
+          <!--</div>-->
       </div>
     </div>
 
@@ -49,7 +74,7 @@
         </div>
         <div style="height: 60px;width: 3rem;position: absolute;left: 50%;margin-left: -1.5rem;">
           <img src="../assets/commerce_goods@3x.png" alt="" style="width: 18px;height: 18px;vertical-align: middle;padding-bottom:0.1rem;">
-          <span style="vertical-align: middle;padding-left: 3px;">商品信息</span>
+          <span style="vertical-align: middle;padding-left: 3px;">跳转{{source}}</span>
         </div>
         <div style="">
           <img src="../assets/commerce_merchandise_line2@3x.png" alt="" class="rightimg">
@@ -133,6 +158,7 @@
 <script>
   import { Dialog } from 'vant'
   import { Toast } from 'vant'
+  import {Loading} from 'vant'
   export default {
     name: "comPurchase",
     data(){
@@ -163,7 +189,8 @@
         location2:'',
         title:'',
         src1:'',
-        isshangcang:false
+        isshangcang:false,
+        loading:true
       }
     },
     methods:{
@@ -190,18 +217,23 @@
       },
       openpay(){
         var _this=this;
-        Dialog.confirm({
-          title: '提示',
-          message: '此操作不可撤销，请确认使用本平台余额'+this.deduction+'元抵扣购物'
-        }).then(() => {
-          window.location.href=_this.location;
-        }).catch(() => {
-          return
-        })
+        if(_this.loading==false){
+          Dialog.confirm({
+            title: '提示',
+            message: '此操作不可撤销，请确认使用本平台余额'+this.deduction+'元抵扣购物'
+          }).then(() => {
+            window.location.href=_this.location;
+          }).catch(() => {
+            return
+          })
+        }else{
+          return;
+        }
       },
       getdinshang(params){
         const _this=this;
         this.$api.getDinshang(params).then((res)=>{
+          _this.loading = false;
           // _this.params3.mark=res.product.isCollect;
           _this.mark = res.product.isCollect;
           _this.prize=res.product.price.toFixed(2);
@@ -287,11 +319,12 @@
     font-size: 14px;
   }
   .leftdiv{
-    width: 50%;height: 100%;position: absolute;left: 0px;top: -0.3rem;
+    width:70%;height: 100%;position: absolute;left: 0px;
+    top: 0px;
     color: white;
   }
   .rightdiv{
-    width: 50%;height: 100%;position: absolute;right: 0px;top: 0px;
+    height: 100%;position: absolute;right: 0px;top: 0px;
     color: white;
     line-height: 2.2rem;
     font-size: 18px;
@@ -300,7 +333,7 @@
     margin: 0px!important;
   }
   .leftdiv p:first-child{
-    font-size: 24px;
+    /*font-size: 24px;*/
     padding-top: 0.4rem;
     /*margin: 0px!important;*/
   }
@@ -402,4 +435,48 @@
   .disconnum{
     padding-top: 0.9rem;
   }
+  #Loading {
+    top:50%;
+    left:50%;
+    position: absolute;
+    -webkit-transform: translateY(-50%) translateX(-50%);
+    transform: translateY(-50%) translateX(-50%);
+    z-index:100;
+  }
+  @-webkit-keyframes ball-beat {
+    50% {
+      opacity: 0.2;
+      -webkit-transform: scale(0.75);
+      transform: scale(0.75); }
+
+    100% {
+      opacity: 1;
+      -webkit-transform: scale(1);
+      transform: scale(1); } }
+
+  @keyframes ball-beat {
+    50% {
+      opacity: 0.2;
+      -webkit-transform: scale(0.75);
+      transform: scale(0.75); }
+
+    100% {
+      opacity: 1;
+      -webkit-transform: scale(1);
+      transform: scale(1); } }
+
+  .ball-beat > div {
+    background-color: #F67419;
+    width: 15px;
+    height: 15px;
+    border-radius: 100% !important;
+    margin: 2px;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+    display: inline-block;
+    -webkit-animation: ball-beat 0.7s 0s infinite linear;
+    animation: ball-beat 0.7s 0s infinite linear; }
+  .ball-beat > div:nth-child(2n-1) {
+    -webkit-animation-delay: 0.35s !important;
+    animation-delay: 0.35s !important; }
 </style>
