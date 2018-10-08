@@ -279,6 +279,7 @@
         // this.params.pId=id;
         // window.scrollTo(0);
         document.body.scrollTop=0;
+        this.loading=true;
         this.listArr=[];
         this.imgUrl=[];
         // this.getcoupon(this.params);
