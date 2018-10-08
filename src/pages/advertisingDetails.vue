@@ -74,7 +74,8 @@
         </div>
         <div style="height: 60px;width: 3rem;position: absolute;left: 50%;margin-left: -1.5rem;">
           <img src="../assets/commerce_goods@3x.png" alt="" style="width: 18px;height: 18px;vertical-align: middle;padding-bottom:0.1rem;">
-          <span style="vertical-align: middle;padding-left: 3px;">跳转{{source}}</span>
+          <span style="vertical-align: middle;padding-left: 3px;" v-if="title!='拼多多'">跳转{{source}}</span>
+          <span style="vertical-align: middle;padding-left: 3px;" v-else>商品详情</span>
         </div>
         <div style="">
           <img src="../assets/commerce_merchandise_line2@3x.png" alt="" class="rightimg">
@@ -86,7 +87,29 @@
     <div v-if="title!='拼多多'" style="height: 373px;background: white;padding-top: 10px;padding-bottom: 10px;" v-for="item in imgUrl">
       <img :src="item" alt="" style="width: 100%;height: 100%;">
     </div>
-    <router-view v-else></router-view>
+    <div style="position: relative;width: 100%;height: auto;" v-else>
+      <ul>
+        <li v-for="item in imgUrl2"><img :src="item" alt="" style="width: 100%;"></li>
+        <!--<li><img src="../assets/address.png" alt="" style="width: 100%;"></li>-->
+        <!--<li><img src="../assets/address.png" alt="" style="width: 100%;"></li>-->
+      </ul>
+      <!--<van-swipe :autoplay="3000" :show-indicators="false" @change="change">-->
+      <!--<van-swipe-item v-for="item in imgUrl">-->
+      <!--<img :src="item" alt="" style="width: 100%;height: 375px;">-->
+      <!--</van-swipe-item>-->
+      <!--</van-swipe>-->
+      <!--<div class="slidesum" style=""><span style="padding-right: 2px;">{{index+1}}</span>/<span style="padding-left: 2px;">{{imgUrl.length}}</span></div>-->
+    </div>
+    <div v-if="title=='拼多多'">
+      <div style="height: 30px;line-height: 30px;color: #A19FA0;background: #FFFBFF" @click="show">
+        <span>点击查看商品价格说明</span>
+        <img src="../assets/commerce_drop_down copy@3x.png" alt="" style="width: 12px;height: 6px;" :class="isshow? 'rote' : '' ">
+      </div>
+      <div v-show="isshow" style="height: auto;width: 94%;background: white;padding: 3%;text-align: left;color: #A19FA0;letter-spacing: 2px;line-height: 20px;">
+        {{introcesize}}
+      </div>
+    </div>
+
     <!--<iframe  v-else :src="src1" allowtransparency="true"  onload="this.height=160"  id="framecontent" frameborder="0" scrolling="no" width="100%" style="border: none;height: 488px;"></iframe>-->
     <div style="width: 100%;height: 60px;background: white;margin-top: 10px">
       <div style="width: 5rem;height: 60px;margin: 0 auto;display: flex" class="titleshop">
@@ -163,6 +186,9 @@
     name: "comPurchase",
     data(){
       return{
+        params:{
+          pid:this.$route.query.id
+        },
         params2:{
           id:this.$route.query.id,
           userId:this.$route.query.userId
@@ -190,10 +216,18 @@
         title:'',
         src1:'',
         isshangcang:false,
-        loading:true
+        loading:true,
+        //pingduoduo
+        imgUrl2:[],
+        introcesize:'',
+        introce:'',
+        isshow:false
       }
     },
     methods:{
+      show(){
+        this.isshow=!this.isshow;
+      },
       getLeft(){
         window.location.href="http://back.com";
       },
@@ -230,6 +264,15 @@
           return;
         }
       },
+      getduoduo(params){
+        var _this=this;
+        this.$api.getPingduo(params).then((res)=>{
+          // alert(JSON.stringify(res));
+          _this.introcesize=res[0].goods_name;
+          _this.introce=res[0].goods_desc;
+          _this.imgUrl2=res[0].goods_gallery_urls;
+        })
+      },
       getdinshang(params){
         const _this=this;
         this.$api.getDinshang(params).then((res)=>{
@@ -248,16 +291,16 @@
           if(_this.title!="拼多多"){
             _this.location2=res.product.detailUrl;
           }else{
-            _this.src1=res.product.detailUrl;
+            _this.getduoduo(_this.params)
           }
-          if(_this.title=="拼多多"){
-            _this.$router.push({
-              path:'/pingDuo',
-              query:{
-                id:_this.params2.id
-              }
-            })
-          }
+          // if(_this.title=="拼多多"){
+          //   _this.$router.push({
+          //     path:'/pingDuo',
+          //     query:{
+          //       id:_this.params2.id
+          //     }
+          //   })
+          // }
         })
       },
       goxiangqing(){
@@ -275,6 +318,7 @@
       },
       openshop(id){
         this.params2.id=id;
+        this.params.pid = id;
         this.isshangcang = false;
         // this.params.pId=id;
         // window.scrollTo(0);
@@ -282,6 +326,7 @@
         this.loading=true;
         this.listArr=[];
         this.imgUrl=[];
+        this.imgUrl2=[];
         // this.getcoupon(this.params);
         this.getdinshang(this.params2);
       },
