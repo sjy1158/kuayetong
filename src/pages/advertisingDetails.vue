@@ -28,25 +28,25 @@
           <div style="flex: 1;text-align: left">{{source}}价<span style="color: #FF0000;font-size: 16px;padding-left: 10px;">¥{{prize}}元</span></div>
           <div style="flex: 1;text-align: right;color: #717171;font-size: 10px;">销量：{{salesVolume}}件</div>
         </div>
-        <div style="display: flex;text-align: left;font-size: 14px;color: #393939;font-weight: bold;padding-top: 10px;">
+        <div style="display: flex;text-align: left;font-size: 14px;color: #393939;font-weight: bold;padding-top: 10px;letter-spacing: 1px;">
           {{name}}
         </div>
       </div>
     </div>
 
 
-    <div style="height: 2.2rem;background: white;margin-top: 10px;padding: 15px 34px;">
+    <div style="height: 2.2rem;background: white;margin-top: 10px;padding: 15px 10px;">
       <div style="width: 100%;height: 2rem;position: relative;">
         <img src="../assets/newbg.png" alt="" style="width: 100%;height: 2rem;">
-        <div style="width:80%;height: 1.6rem;position: absolute;top: 50%;left: 0px;text-align: left;margin-top: -0.8rem;color: white;padding-top: 0.3rem;">
-          <div style="display: inline-block;position: absolute;left: 10px;top: 5px;">¥</div>
-          <div style="display: inline-block;font-size: 1rem;margin-left: 16px;line-height: 0.8rem;padding-top: 5px;">{{deduction}}</div>
+        <div style="width:80%;height: 1.6rem;position: absolute;top: 50%;text-align: left;margin-top: -0.8rem;color: white;padding-top: 0.3rem;" :class="deduction<100 ? 'left2':'left'">
+          <div style="display: inline-block;position: absolute;left: 10px;top: 5px;font-weight: bold">¥</div>
+          <div style="display: inline-block;font-size: 1rem;line-height: 0.8rem;padding-top: 5px;" :class="deduction<100 ? 'marLeft2':'marLeft'">{{deduction}}</div>
           <div style="display: inline-block;padding-left: 7px;">
-            <p style="margin: 0px;font-size: 12px;letter-spacing: 2px;">元抵扣券</p>
+            <p style="margin: 0px;font-size: 12px;letter-spacing: 2px;font-weight: bold">元抵扣券</p>
             <p style="margin: 0px;font-size: 10px;letter-spacing: 2px;padding-top: 2px;">提交订单时会自动抵扣</p>
           </div>
         </div>
-        <div style="width: 20%;height: 100%;position: absolute;top: 0px;right: 0px;line-height: 2rem;color: white;border-left: 1px dashed #FFFFFF;padding-left: 7px;padding-right: 7px;" @click="openpay">
+        <div style="width: 20%;height: 1.6rem;position: absolute;top: 50%;right: 0px;line-height: 1.6rem;margin-top:-0.8rem;color: white;border-left: 1px dashed #FFFFFF;padding-left: 7px;padding-right: 7px;font-weight: bold" @click="openpay">
           立即抵扣
         </div>
           <!--<div class="leftdiv" style="">-->
@@ -80,7 +80,7 @@
         <div style="">
           <img src="../assets/commerce_merchandise_line2@3x.png" alt="" class="rightimg">
         </div>
-        <p style="margin: 0px!important;width: 100%;position: absolute;bottom: -0.5rem;right: 0px;font-size: 12px;color: #4AB1FE" v-if="title!='拼多多'">（查看商品详情）</p>
+        <p style="margin: 0px!important;width: 100%;position: absolute;bottom: -0.5rem;right: 0px;font-size: 12px;color: #4AB1FE" v-if="title!='拼多多'">（点击查看商品详情）</p>
       </div>
     </div>
 
@@ -348,6 +348,18 @@
 </script>
 
 <style scoped>
+  .left{
+    left: 0px
+  }
+  .left2{
+    left: 0.7rem;
+  }
+  .marLeft{
+    margin-left: 16px;
+  }
+  .marLeft2{
+    margin-left: 25px;
+  }
   button{
     height: 51px;
     border: none;
