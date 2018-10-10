@@ -232,6 +232,7 @@
       },
       // getInfo(userId){
       //   this.$api.getInfor(userId).then((res)=>{
+      //     alert(JSON.stringify(res));
       //     var channel = res.user.channel;
       //     if(channel=='跨业通'){
       //       localStorage.setItem('channel','%e8%b7%a8%e4%b8%9a%e9%80%9a');
@@ -259,11 +260,11 @@
         }
         this.logarr=arrstr;
         this.params2.id=arrstr[0];
+        // this.getInfo(this.$route.query.userId);
     },
     mounted(){
-      var _this=this;
-      this.getInfo(this.$route.query.userId);
-      this.getdinshang(this.params2);
+        var _this=this;
+        this.getdinshang(this.params2);
     }
   }
 </script>

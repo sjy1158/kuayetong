@@ -332,9 +332,11 @@
       },
       // getInfo(userId){
       //   this.$api.getInfor(userId).then((res)=>{
+      //     alert(JSON.stringify(res));
       //     var channel = res.user.channel;
       //      if(channel=='跨业通'){
-      //          localStorage.setItem('channel','%e8%b7%a8%e4%b8%9a%e9%80%9a');
+      //        alert(111111111111);
+      //        localStorage.setItem('channel','%e8%b7%a8%e4%b8%9a%e9%80%9a');
       //      }
       //      if(channel=='天淘通'){
       //           localStorage.setItem('channel','%e5%a4%a9%e6%b7%98%e9%80%9a');
@@ -352,6 +354,7 @@
       // }
     },
     created(){
+      // this.getInfo(this.$route.query.userId);
     /*  var arrstr=[];
       var arr=this.$geturl.getL();
       for(var i=0;i<arr.length;i++){
