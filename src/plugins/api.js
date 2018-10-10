@@ -2,11 +2,11 @@ import axios from 'axios'
 import { Toast } from 'vant'
 import config from '../util/config'
 //每个请求添加头部
-axios.interceptors.request.use(request =>{
-  alert(localStorage.getItem('channel'));
-  request.headers['channel']=localStorage.getItem('channel');
-  return request;
-})
+// axios.interceptors.request.use(request =>{
+//   alert(localStorage.getItem('channel'));
+//   request.headers['channel']=localStorage.getItem('channel');
+//   return request;
+// })
 // 处理服务端错误信息
 axios.interceptors.response.use(response=>{
   if(response.data.code==200) {
