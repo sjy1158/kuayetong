@@ -33,7 +33,6 @@ import alipayOk from '../pages/alipayOk'
 import appSuccess from '../pages/appSuccess'
 import alipayOk2 from '../pages/alipayOk2'
 import outSuccess from '../pages/outSuccess'
-import advertisingDetails from '../pages/advertisingDetails'
 import storeShop from '../pages/storeShop'
 import shareShophome from '../pages/shareShophome'
 import shareBusinessdetails from '../pages/shareBusinessdetails'
@@ -253,7 +252,7 @@ export default new Router({
     {
       name:'advertisingDetails',
       path:'/advertisingDetails',
-      component:advertisingDetails
+      component:resolve => require(['../pages/advertisingDetails'],resolve)
     },
     {
       name:'storeShop',
