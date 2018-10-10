@@ -330,29 +330,30 @@
         // this.getcoupon(this.params);
         this.getdinshang(this.params2);
       },
-      // getInfo(userId){
-      //   this.$api.getInfor(userId).then((res)=>{
-      //     var channel = res.user.channel;
-      //      if(channel=='跨业通'){
-      //          localStorage.setItem('channel','%e8%b7%a8%e4%b8%9a%e9%80%9a');
-      //      }
-      //      if(channel=='天淘通'){
-      //           localStorage.setItem('channel','%e5%a4%a9%e6%b7%98%e9%80%9a');
-      //      }
-      //      if(channel=='淘天通'){
-      //           localStorage.setItem('channel','%e6%b7%98%e5%a4%a9%e9%80%9a');
-      //      }
-      //      if(channel=='惠购通'){
-      //           localStorage.setItem('channel','%e6%83%a0%e8%b4%ad%e9%80%9a');
-      //      }
-      //      if(channel=='华夏信用大师'){
-      //           localStorage.setItem('channel','%e5%8d%8e%e5%a4%8f%e4%bf%a1%e7%94%a8%e5%a4%a7%e5%b8%88');
-      //      }
-      //   })
-      // }
+      getInfo(userId){
+        this.$api.getInfor(userId).then((res)=>{
+          var channel = res.user.channel;
+           if(channel=='跨业通'){
+               localStorage.setItem('channel2',channel);
+               localStorage.setItem('channel','%e8%b7%a8%e4%b8%9a%e9%80%9a');
+           }
+           if(channel=='天淘通'){
+                localStorage.setItem('channel','%e5%a4%a9%e6%b7%98%e9%80%9a');
+           }
+           if(channel=='淘天通'){
+                localStorage.setItem('channel','%e6%b7%98%e5%a4%a9%e9%80%9a');
+           }
+           if(channel=='惠购通'){
+                localStorage.setItem('channel','%e6%83%a0%e8%b4%ad%e9%80%9a');
+           }
+           if(channel=='华夏信用大师'){
+                localStorage.setItem('channel','%e5%8d%8e%e5%a4%8f%e4%bf%a1%e7%94%a8%e5%a4%a7%e5%b8%88');
+           }
+        })
+      }
     },
     created(){
-      // this.getInfo(this.$route.query.userId);
+      this.getInfo(this.$route.query.userId);
     /*  var arrstr=[];
       var arr=this.$geturl.getL();
       for(var i=0;i<arr.length;i++){
