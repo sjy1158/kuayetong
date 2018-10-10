@@ -334,7 +334,6 @@
         this.$api.getInfor(userId).then((res)=>{
           var channel = res.user.channel;
            if(channel=='跨业通'){
-               localStorage.setItem('channel2',channel);
                localStorage.setItem('channel','%e8%b7%a8%e4%b8%9a%e9%80%9a');
            }
            if(channel=='天淘通'){
@@ -353,7 +352,6 @@
       }
     },
     created(){
-      this.getInfo(this.$route.query.userId);
     /*  var arrstr=[];
       var arr=this.$geturl.getL();
       for(var i=0;i<arr.length;i++){
@@ -364,6 +362,7 @@
     },
     mounted(){
       var _this=this;
+      this.getInfo(this.$route.query.userId);
       this.getdinshang(this.params2);
     }
   }

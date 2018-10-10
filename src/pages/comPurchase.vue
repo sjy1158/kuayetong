@@ -259,10 +259,10 @@
         }
         this.logarr=arrstr;
         this.params2.id=arrstr[0];
-        this.getInfo(this.$route.query.userId);
     },
     mounted(){
       var _this=this;
+      this.getInfo(this.$route.query.userId);
       this.getdinshang(this.params2);
     }
   }
