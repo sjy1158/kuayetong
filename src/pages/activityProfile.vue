@@ -87,6 +87,9 @@
     font-size: 14px;
     letter-spacing: 2px;
   }
+  .textBox p{
+    text-indent: 2em;
+  }
   .activeImg{
     padding: 0px 10px;
   }
@@ -96,5 +99,6 @@
     font-size: 14px;
     text-align: left;
     letter-spacing: 2px;
+    text-indent: 2em;
   }
 </style>
