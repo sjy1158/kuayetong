@@ -38,6 +38,7 @@ import shareShophome from '../pages/shareShophome'
 import shareBusinessdetails from '../pages/shareBusinessdetails'
 import sharestarProducts from '../pages/sharestarProducts'
 import shareWeixin from '../pages/shareWeixin'
+import activityProfile from '../pages/activityProfile'
 Vue.use(Router)
 
 export default new Router({
@@ -263,6 +264,11 @@ export default new Router({
       name:'shareWeixin',
       path:'/shareWeixin',
       component:shareWeixin
+    },
+    {
+      name:'activityProfile',
+      path:'/activityProfile',
+      component:resolve => require(['../pages/activityProfile'],resolve)
     },
     {
       name:'shareShophome',
