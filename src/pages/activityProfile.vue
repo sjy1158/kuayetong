@@ -99,6 +99,5 @@
     font-size: 14px;
     text-align: left;
     letter-spacing: 2px;
-    text-indent: 2em;
   }
 </style>
