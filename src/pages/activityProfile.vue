@@ -64,6 +64,7 @@
     text-align: left;
     padding: 15px;
     letter-spacing: 1px;
+    line-height: 28px;
   }
   .time{
     text-align: left;
