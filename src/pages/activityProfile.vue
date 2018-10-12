@@ -32,7 +32,7 @@
         name: "activityProfile",
       data(){
           return{
-
+            dataURL:''
           }
       },
       beforeCreate () {
@@ -50,7 +50,8 @@
         document.querySelector('html').removeAttribute('style');
         next();
       },
-
+      methods:{
+      },
       mounted(){
       }
     }
