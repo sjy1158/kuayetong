@@ -6,7 +6,7 @@
       <img v-else src="../assets/head_portraityuan.png" alt="" style="width: 24px;height: 24px;border-radius: 50%;">
       <span style="padding-left: 50px">{{name}}邀你开启跨业之旅</span>
     </div>
-    <img src="../assets/invite.png" alt="" style="width: 100%;margin-bottom:170px;">
+    <img src="../assets/bginviter.png" alt="" style="width: 100%;margin-bottom:170px;">
     <div class="shareInput">
       <ul>
         <li><input type="text" v-model="params.phone" placeholder="请输入手机号码"></li>
