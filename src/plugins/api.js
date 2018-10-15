@@ -314,6 +314,14 @@ const api = {
       url:config.baseUrl+'/crossindustry/shopPage/collect',
       params:params
     })
+  },
+  //活动详情
+  activityDetail(params){
+    return axios.request({
+      method:'get',
+      url:config.baseUrl+'/crossindustry/findPage/FindActivityDetalis',
+      params:params
+    })
   }
 }
 export default class Api {

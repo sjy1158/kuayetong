@@ -1,28 +1,17 @@
 <template>
   <div class="app" style="">
     <div class="title">
-      梦想不死，彩旗不止，全国地面推广接力活动会-4月25日济南站
+     {{dataobj.title}}
     </div>
     <div class="time">
-      <i><img src="../assets/time@3x.png" alt=""></i><span>星期五 2018-05-25 13:44:54</span>
+      <i><img src="../assets/time@3x.png" alt=""></i><span v-html="str"></span>
     </div>
     <!--主题内容-->
     <div class="textBox">
-      <p>银杏叶状的家风牌、酒缸制成的花盆……近日，走进分水镇朝阳村，充满创意与乡村风情的庭院设计，令人眼前一亮。
-      <p>今年来，分水镇以美丽庭院建设为抓手，注重产业、文化、文明、创意四个结合，做好 “美丽庭院+”文章。</p>
-      <p>在点位选择上，分水镇围绕产业项目和助力村经济发展，坚持“小庭院大推动，小投入大见效”，把农户庭院变成创意的景区。
-        计划通过美丽庭院创建，建成小源村松田、外范村大湾里、朝阳村竹桐坞等民宿示范点，为全镇美丽庭院打造样本与标杆。
-      </p>
-    </div>
-    <div class="activeImg">
-      <div>
-        <img src="../assets/activeimg.png" alt="" style="width: 100%">
+      <div v-for="item in dataobj.detalis">
+        <img v-if="item.match(/http:\/\/.+/)" :src="item" class="bottom" alt="">
+        <p v-if="item.match(/http:\/\/.+/)==null">{{item}}</p>
       </div>
-    </div>
-    <div class="textfoot">
-      在环境改造中，
-      该镇积极将“家庭”文化元素融入庭院建设，把家风家训、家庭和睦文化与“美丽庭院”创建有机结合起来，
-      同时进一步挖掘培育“竹文化”“农耕文化”等，让庭院别有一番韵味。
     </div>
   </div>
 </template>
@@ -32,7 +21,13 @@
         name: "activityProfile",
       data(){
           return{
-            dataURL:''
+            dataURL:'',
+            params:{
+              type:this.$route.query.type,
+              id:this.$route.query.id
+            },
+            dataobj:{},
+            str:''
           }
       },
       beforeCreate () {
@@ -51,6 +46,32 @@
         next();
       },
       methods:{
+          getActivity(params){
+            const _this = this;
+            this.$api.activityDetail(params).then((res)=>{
+                res.activityNotice.time = _this.changeTime(res.activityNotice.time);
+                res.activityNotice.detalis = JSON.parse(res.activityNotice.detalis);
+                // alert(JSON.stringify(res.activityNotice.detalis));
+                // res.activityNotice.detalis = JSON.stringify(res.activityNotice.detalis).replaceAll(/\\/g,'');
+                _this.dataobj = res.activityNotice;
+            })
+          },
+          changeTime(time){
+              var weekarry = ["星期日","星期一","星期二","星期三","星期四","星期五","星期六"];
+              var time = new Date(time);
+              var month = time.getMonth()+1;
+              month = month<10?"0"+month:month;
+              var hours = time.getHours()<10?"0"+time.getHours():time.getHours();
+              var minues = time.getMinutes()<10?"0"+time.getMinutes():time.getMinutes();
+              var second = time.getSeconds()<10?"0"+time.getSeconds():time.getSeconds();
+            // 星期五 2018-05-25 13:44:54
+            //   var date = weekarry[time.getDay()]+time.getFullYear()+'-'+month+'-'+time.getDate()+hours+":"+minues+":"+second;
+              this.str = "<span>"+weekarry[time.getDay()]+'&nbsp;'+time.getFullYear()+'-'+month+'-'+time.getDate()+"&nbsp;"+hours+":"+minues+":"+second+"</span>"
+              // return date;
+          }
+      },
+      created(){
+         this.getActivity(this.params);
       },
       mounted(){
       }
@@ -58,6 +79,16 @@
 </script>
 
 <style scoped>
+  .bottom{
+    width: 100%;float: left;
+    margin-bottom: 16px;
+  }
+  /*.textBox p:first-child{*/
+    /*margin-top: 0px!important;*/
+  /*}*/
+  /*.textBox img:first-child{*/
+    /*margin-top: 0px!important;*/
+  /*}*/
   .title{
     color: #393939;
     font-size: 20px;
@@ -69,7 +100,7 @@
   }
   .time{
     text-align: left;
-    padding: 0px 16px;
+    padding: 10px 16px;
   }
   i img{
     vertical-align: middle;
@@ -97,7 +128,7 @@
     padding: 0px 10px;
   }
   .textfoot{
-    padding: 20px 16px;
+    padding: 20px 0px;
     color: #393939;
     font-size: 14px;
     text-align: left;
