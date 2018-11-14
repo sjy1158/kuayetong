@@ -19,7 +19,6 @@
               </div>
             </div>
 
-
             <!--商品tab切换-->
             <div class="slideshoptab" id="slideshoptab" style="">
               <div style="" id="tab1">

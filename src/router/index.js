@@ -18,7 +18,6 @@ import cardList from '../pages/cardList'
 import toUp from '../pages/toUp'
 import userMg from '../pages/userMg'
 import pageStatus from '../pages/pageStatus'
-import Sharepage from '../pages/Sharepage'
 import Shareweima from '../pages/Shareweima'
 import receiveCoupons from '../pages/receiveCoupons'
 import logintaobao from '../pages/logintaobao'
@@ -170,7 +169,7 @@ export default new Router({
     },
     {
       path:'/Sharepage',
-      component:Sharepage
+      component:resolve => require(['../pages/Sharepage'],resolve)
     },
     {
       path:'/Shareweima',
