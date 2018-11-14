@@ -29,7 +29,7 @@
             note: {
               backgroundImage: "url(" + require("../assets/bgimg.png") + ")",
               backgroundRepeat: "no-repeat",
-              backgroundSize: "100% 100%",
+              backgroundSize: "100% 100%"
             },
             inputWidth: {
               width: (window.screen.width - 76) + 'px'
