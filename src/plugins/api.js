@@ -316,7 +316,7 @@ const api = {
   activityDetail(params){
     return axios.request({
       method:'get',
-      url:config.baseUrl+'/crossindustry/findPage/FindActivityDetalis',
+      url:'/api'+'/crossindustry/findPage/FindActivityDetalis',
       params:params
     })
   }

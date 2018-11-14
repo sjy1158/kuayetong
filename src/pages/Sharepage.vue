@@ -1,5 +1,9 @@
 <template>
 <div class="pagesbg" :style="note">
+  <div class="mod">
+    <img :src="userfrom.headImage" alt="" style="height: 24px;width: 24px;float: left">
+    <span>{{userfrom.nickName}}邀你开启跨业之旅</span>
+  </div>
   <div class="mod1" style="">
     <div style="height: auto;position: fixed;bottom: 0px;" :style="inputWidth">
         <div>
@@ -34,10 +38,17 @@
               phone:'',
               password:'',
               userId:''
-            }
+            },
+            userfrom: ''
           }
         },
-      methods:{
+      methods: {
+        getuserInfo (id) {
+          const _this = this
+          this.$api.getInfor(id).then((res)=>{
+            _this.userfrom = res.user
+          })
+        },
         downkyt () {
           window.location.href = 'http://app.kuayet.com/down/'
         },
@@ -64,11 +75,35 @@
             Idarr.push(arr[i].split('=')[1]);
           }
         this.params.userId = Idarr[0];
+        this.getuserInfo(this.params.userId)
       }
     }
 </script>
 
 <style scoped>
+  .mod{
+    height: 35px;
+    width: 100%;
+    line-height: 35px;
+    position: relative;
+    background: rgba(57,57,57,0.4);
+    color: #FFFFFF;
+  }
+  .mod img{
+    position: absolute;
+    top:50%;
+    left: 20px;
+    margin-top: -12px;
+    border-radius: 50%;
+    vertical-align: middle;
+  }
+  .mod span{
+    font-size: 14px;
+    letter-spacing: 1px;
+    float: left;
+    margin-left: 50px;
+    vertical-align: middle;
+  }
   .pagesbg{
     height: 100%;
     width: 100%;
