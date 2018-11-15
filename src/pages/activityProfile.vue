@@ -9,7 +9,7 @@
     <!--主题内容-->
     <div class="textBox">
       <div v-for="item in dataobj.detalis">
-        <img v-if="item.match(/htt:\/\/.+/)" :src="item" class="bottom" alt="">
+        <img v-if="item.match(/http:\/\/.+/)" :src="item" class="bottom" alt="">
         <p v-if="item.match(/http:\/\/.+/)==null">{{item}}</p>
       </div>
     </div>
