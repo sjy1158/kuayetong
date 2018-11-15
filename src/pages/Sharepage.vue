@@ -1,10 +1,11 @@
 <template>
 <div class="pagesbg" :style="note">
-  <div class="mod">
+  <header class="mod">
     <img :src="userfrom.headImage" alt="" style="height: 24px;width: 24px;float: left">
     <span>{{userfrom.nickName}}邀你开启跨业之旅</span>
-  </div>
-  <div class="mod1" style="">
+  </header>
+  <footer class="mod1" style="">
+    <!--底部导航分类异常显示-->
     <div style="height: auto;position: fixed;bottom: 0px;" :style="inputWidth">
         <div>
           <input type="text" placeholder="请输入手机号码" v-model="params.phone">
@@ -17,7 +18,8 @@
           <button type="button" style="float: right" @click="startOpen()">立即注册</button>
         </div>
     </div>
-  </div>
+    <!--底部导航分类异常ending-->
+  </footer>
 </div>
 </template>
 
@@ -34,10 +36,10 @@
             inputWidth: {
               width: (window.screen.width - 76) + 'px'
             },
-            params:{
-              phone:'',
-              password:'',
-              userId:''
+            params: {
+              phone: '',
+              password: '',
+              userId: ''
             },
             userfrom: ''
           }
@@ -85,7 +87,9 @@
     height: 35px;
     width: 100%;
     line-height: 35px;
-    position: relative;
+    position: fixed;
+    top: 0;
+    left: 0;
     background: rgba(57,57,57,0.4);
     color: #FFFFFF;
   }
@@ -107,7 +111,7 @@
   .pagesbg{
     height: 100%;
     width: 100%;
-    position: fixed;
+    position: absolute;
   }
   .mod1{
     padding-left: 38px;
