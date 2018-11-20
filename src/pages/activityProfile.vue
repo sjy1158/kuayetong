@@ -26,7 +26,7 @@
 
 <script>
     export default {
-        name: "activityProfile",
+      name: "activityProfile",
       data(){
           return{
             dataURL:'',

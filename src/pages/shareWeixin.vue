@@ -174,7 +174,7 @@
 
     <div id="weixin-tip" v-show="!disweixin">
       <p>
-        <img style="width:80%" src="http://api.kuayet.com:8028/imgsave.png" alt="微信打开"/>
+        <img style="width:80%" src="http://api.kuayet.com/pc/imgsave.png" alt="微信打开"/>
       </p>
     </div>
   </div>
