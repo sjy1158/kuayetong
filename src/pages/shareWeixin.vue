@@ -284,7 +284,7 @@
               },3000)
             }
             if(_this.isSysten().isios){
-              window.location.href="kytstart://awaken/awakenback/scheme";
+              window.location.href="kytstart://awaken/Newkytstart/awakenback/scheme";
               setTimeout(function () {
                 window.location.href="http://app.kuayet.com/down/";
               },3000)
