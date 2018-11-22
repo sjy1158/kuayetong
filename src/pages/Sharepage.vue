@@ -7,10 +7,10 @@
   <footer class="mod1" style="">
     <!--底部导航分类异常显示-->
     <div style="height: auto;position: fixed;bottom: 0px;" :style="inputWidth">
-        <div @click="openjianpan()">
+        <div @click="openjianpan()" style="height: 1rem;">
           <input type="tel" autofocus ref="input" maxlength="11" placeholder="请输入手机号码" v-focus v-model="params.phone">
         </div>
-        <div @click="openjianpan2()">
+        <div @click="openjianpan2()" style="height: 1rem;">
           <input type="text" ref="input2" placeholder="请输入密码" v-model="params.password">
         </div>
         <div style="margin-bottom: 0;">
@@ -146,7 +146,7 @@
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     margin: 0 auto;
-    height: 100%;
+    height: 1rem;
     width: 100%;
     background: white;
     text-align: center;
