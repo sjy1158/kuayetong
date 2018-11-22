@@ -7,11 +7,11 @@
   <footer class="mod1" style="">
     <!--底部导航分类异常显示-->
     <div style="height: auto;position: fixed;bottom: 0px;" :style="inputWidth">
-        <div>
-          <input type="text" placeholder="请输入手机号码" v-model="params.phone">
+        <div @click="openjianpan()">
+          <input type="tel" autofocus ref="input" maxlength="11" placeholder="请输入手机号码" v-focus v-model="params.phone">
         </div>
-        <div>
-          <input type="text" placeholder="请输入密码" v-model="params.password">
+        <div @click="openjianpan2()">
+          <input type="text" ref="input2" placeholder="请输入密码" v-model="params.password">
         </div>
         <div style="margin-bottom: 0;">
           <button type="button" style="float: left" @click="downkyt()">直接下载</button>
@@ -80,6 +80,12 @@
                }, 1000)
              })
            }
+        },
+        openjianpan () {
+          this.$refs.input.focus()
+        },
+        openjianpan2 () {
+          this.$refs.input2.focus()
         }
       },
       mounted () {
@@ -90,6 +96,7 @@
           }
         this.params.userId = Idarr[0];
         this.getuserInfo(this.params.userId)
+        this.$refs.input.focus()
       }
     }
 </script>
