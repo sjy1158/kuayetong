@@ -45,6 +45,13 @@
           }
         },
       methods: {
+        isSystm () {
+          var u = navigator.userAgent, app = navigator.appVersion;
+          return {
+            ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+            android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或者uc浏览器
+          }
+        },
         getuserInfo (id) {
           const _this = this
           this.$api.getInfor(id).then((res)=>{
@@ -52,10 +59,15 @@
           })
         },
         downkyt () {
-          window.location.href = 'http://app.kuayet.com/down/'
+          if (this.isSystm().ios) {
+            window.location.href = 'itms-apps://itunes.apple.com/app/id1441515723'
+          }
+          if (this.isSystm().android) {
+            window.location.href = 'https://sj.qq.com/myapp/detail.htm?apkName=com.xsr.kyt'
+          }
         },
         startOpen () {
-            const _this=this;
+            const _this = this;
            var phone = /^[1][3,4,5,7,8][0-9]{9}$/
            if(!phone.test(this.params.phone)) {
              this.$toast('请输入正确的手机号')
@@ -64,7 +76,7 @@
            } else {
              this.$api.shareRegister(this.params).then((res) => {
                setTimeout((res) => {
-                window.location.href = 'http://app.kuayet.com/down/'
+                _this.downkyt()
                }, 1000)
              })
            }
@@ -111,7 +123,7 @@
   .pagesbg{
     height: 100%;
     width: 100%;
-    position: absolute;
+    position: fixed;
   }
   .mod1{
     padding-left: 38px;
