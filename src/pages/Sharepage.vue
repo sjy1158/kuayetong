@@ -54,7 +54,7 @@
         },
         getuserInfo (id) {
           const _this = this
-          this.$api.getInfor(id).then((res)=>{
+          this.$api.getInfor(id).then((res) => {
             _this.userfrom = res.user
           })
         },
