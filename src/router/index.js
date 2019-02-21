@@ -47,6 +47,21 @@ export default new Router({
       redirect:'/nearbyShops'
     },
     {
+      name: 'goPay',
+      path: '/goPay',
+      component: resolve => require(['../pages/goPay'], resolve)
+    },
+    {
+      name: 'tutorialBuy',
+      path: '/tutorialBuy',
+      component: resolve => require(['../pages/tutorialBuy'], resolve)
+    },
+    {
+      name: 'becomeParner',
+      path: '/becomeParner',
+      component: resolve => require(['../pages/becomeParner'], resolve)
+    },
+    {
       name:'nearbyShops',
       path:'/nearbyShops',
       component:nearbyShops,

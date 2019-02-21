@@ -1,9 +1,9 @@
 <template>
   <div>
-    <img src="../assets/quan.png" style="width: 100%;" alt="">
+    <img src="../assets/tutorial.png" style="width: 100%;" alt="">
     <footer>
       <div class="footer">
-        <button @click="goBuy">立即购买</button>
+        <button @click="goParner">立即购买</button>
       </div>
     </footer>
   </div>
@@ -16,9 +16,9 @@
       }
     },
     methods:{
-      goBuy () {
+      goParner () {
         this.$router.push({
-          path: '/goPay'
+          path: '/becomeParner'
         })
       }
     },

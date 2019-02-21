@@ -10,18 +10,18 @@ module.exports = {
     // Paths
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
-    proxyTable: {
-      '/api': {  //使用"/api"来代替"http://f.apiplus.c"
-        target: 'http://192.168.5.113:8080', //源地址
-        changeOrigin: true, //改变源
-        pathRewrite: {
-          '^/api': 'http://192.168.5.113:8080' //路径重写
-        }
-      }
-    },
+    // proxyTable: {
+    //   '/api': {  //使用"/api"来代替"http://f.apiplus.c"
+    //     target: 'http://192.168.5.113:8080', //源地址
+    //     changeOrigin: true, //改变源
+    //     pathRewrite: {
+    //       '^/api': 'http://192.168.5.113:8080' //路径重写
+    //     }
+    //   }
+    // },
 
     // Various Dev Server settings
-    host: '192.168.5.146', // can be overwritten by process.env.HOST
+    host: '192.168.2.23', // can be overwritten by process.env.HOST
     port: 8082, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
     autoOpenBrowser: false,
     errorOverlay: true,
