@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<body>
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script src="https://gw.alipayobjects.com/as/g/h5-lib/alipayjsapi/3.1.1/alipayjsapi.min.js"></script>
+<button id="pay">支付</button>
+<script>
+  var btn = document.querySelector('#pay')
+  btn.addEventListener('click',function () {
+    var str = 'type=0&sellerid=756&updown=1'
+    $.ajax({
+      url: 'https://mp.q11.shop/q11api/api/UserUpgrade/getAlipayParameter?' + str,
+      dataType: 'json',
+      method: 'GET',
+      success: function (res) {
+        if (res.code == 200) {
+          var oredrStr = decodeURIComponent(res.data)
+          alert(oredrStr)
+          ap.tradePay({
+            orderStr: oredrStr
+          },function (res) {
+            alert(res.resultCode)
+          })
+        }
+      }
+    })
+    // ap.tradePay({
+    //   orderStr: 'app_id=2018121262534255&biz_content={"body":"券十一合伙人","out_trade_no":"APP1C050276D2701E7E","product_code":"756","subject":"券十一合伙人","timeout_express":"30m","total_amount":"8400.00"}&charset=utf-8&format=json&method=alipay.trade.app.pay&notify_url=https://mp.q11.shop/jkpaymp/areas/q11/AppNotify/alipay_notify_url.aspx&sign_type=RSA2&timestamp=2019-02-27+17:30:55&version=1.0&sign=PgGOyzQT7aWaqsdnViwcLw6VyDjuwGnpD/RPNAnkezZngVb6dw2nI6GssJpy9N2m8+nS7sZNQYFkosunVyJMw+IjI67zaizpiGEek2oroVMbB6No7D+yyOj/5XYFGLjSJ8leDda18eWRZFJ2I3uwFnfb48lBP6X2L6jY+wlRm8DNotZ55zIDSy8/9OZThFhnHpJz5XjMerTgs62980bXplvQkMd8YgowdprvKWEWPqYlzEX3QlycMv03/6HWswdueeTMkhqQFRKNU1Cb2j0K9plQDQbyLlQDaL4AewbYzQrtbwT6sv/H3H38JrUW2HQS222+w+FiAD1buTBUPBFIFw=='
+    // },function (res) {
+    //   alert(res.resultCode)
+    // })
+  })
+</script>
+</body>
+</html>

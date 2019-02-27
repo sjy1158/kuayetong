@@ -86,13 +86,11 @@
             const _this = this
             this.params.amount = money
             this.params.updown = updown
-            this.params.userId = this.$route.query.userId
+            this.params.userId = this.$store.state.userId
             this.$router.push({
-              path: '/goPay',
-              query: {
-                params: _this.params
-              }
+              path: '/goPay'
             })
+            this.$store.state.params = this.params
           },
           getConfig (params) {
             const _this = this
@@ -101,15 +99,16 @@
                 _this.isLoading = false
                 if (res.data.length == 0) {
                   _this.choosetype = 0
-                }
-                if (res.data[1].updown == '1') {
-                  _this.choosetype = 1
-                }
-                if (res.data[1].updown == '2') {
-                  _this.choosetype = 2
-                }
-                if (res.data.length==2) {
-                  _this.choosetype = 3
+                } else {
+                  if (res.data[0].updown == '1') {
+                    _this.choosetype = 1
+                  }
+                  if (res.data[1].updown == '2') {
+                    _this.choosetype = 2
+                  }
+                  if (res.data.length==2) {
+                    _this.choosetype = 3
+                  }
                 }
               }
             })
@@ -133,15 +132,19 @@
           getSian (str) {
             console.log(str)
             var md5 = crypto.createHash("md5")
+
             md5.update(str)
             return md5.digest("hex")
           }
         },
         created () {
           this.paramsuser.timestamp = this.getTime()
-          this.paramsuser.userId = this.$route.query.userId
+          this.paramsuser.userId = this.$store.state.userId
           this.paramsuser.sign = this.getSian('userId=' + this.paramsuser.userId + '&timestamp=' + this.paramsuser.timestamp + '&ABCDEFHIJKL98712&*^&65@#$2334056MNOPQRSYIJIWANGL#$#UOUVWXYZ')
           this.getConfig(this.paramsuser)
+        },
+        mounted () {
+          // alert(this.$store.state.userId)
         }
     }
 </script>

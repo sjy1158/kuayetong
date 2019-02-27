@@ -26,7 +26,7 @@
 
     <!--立即支付按钮-->
     <div class="paybtn">
-      <button @click="payQuick()">立即支付 ¥{{this.$route.query.params.amount.toFixed(2)}}</button>
+      <button @click="payQuick()">立即支付 ¥{{$store.state.params.amount.toFixed(2)}}</button>
     </div>
   </div>
 </template>
@@ -39,7 +39,7 @@
         data () {
           return {
             payway: 1,
-            params: {"timestamp":"","userId":"756","type":"0","updown":""},
+            params: {"type":"1","updown":this.$store.state.params.updown},
             payparams: {}
           }
         },
@@ -49,42 +49,60 @@
           },
           payQuick () {
             const _this = this
-            // var str = this.getXun(_this.payparams).substr(1)
-            // var sign = this.getSian(str + '&key=')
-            if (this.payway==2) {
-              wx.ready(function () {
-                wx.scanQRCode({
-                  needResult : 1,
-                  scanType : [ "qrCode", "barCode" ],
-                  success : function(res) {
-                    console.log(res)
-                    alert(JSON.stringify(res));
-                    var result = res.resultStr;
-                  },
-                  fail : function(res) {
-                    console.log(res)
-                    alert(JSON.stringify(res));
-
-                  }
-                })
-              })
+            if (this.payway==1) {
+              this.params = {"type":"1","updown":this.$store.state.params.updown}
+              // alert(JSON.stringify(this.params))
+              // 支付宝支付
+              this.params.sellerid = this.$store.state.params.userId,
+              this.aliPay(this.params)
+            } else if (this.payway==2) {
+              this.params = {"type":"1","updown":this.$store.state.params.updown}
+              this.params.userId = this.$store.state.params.userId
+              this.params.timestamp = this.getTime()
+              var str = this.getXun(this.params).substr(1)
+              this.params.sign = this.getSian(str + '&ABCDEFHIJKL98712&*^&65@#$2334056MNOPQRSYIJIWANGL#$#UOUVWXYZ')
+              this.getPayconfig(this.params)
             }
           },
-          getPayconfig () {
-            var data = {}
-            this.params.timestamp = this.getTime()
-            var str = this.getXun(this.params).substr(1)
-            this.params.sign = this.getSian(str + '&ABCDEFHIJKL98712&*^&65@#$2334056MNOPQRSYIJIWANGL#$#UOUVWXYZ')
-            this.$api.getConfig(this.params).then((res) => {
-              alert(res.data)
-              this.payparams = res.data
+          aliPay (params) {
+            // alert(JSON.stringify(params))
+            this.$api.getAlipay(params).then((res) => {
+              var oredrStr = decodeURIComponent(res.data)
+              console.log(oredrStr)
+              ap.tradePay({
+                orderStr: oredrStr
+              }, function (res) {
+                alert('11111111')
+              })
+            })
+          },
+          getPayconfig (params) {
+            // alert(JSON.stringify(params))
+            const _this = this
+            this.$api.getConfig(params).then((res) => {
+              // alert(res.data.timestamp)
               wx.config({
-                debug: true,
+                debug: false,
                 appId: res.data.appid,
-                timeStamp: res.data.timestamp,
+                timestamp: res.data.timestamp,
                 nonceStr: res.data.noncestr,
                 signature: res.data.sign,
-                jsApiList: ['chooseWXPay','scanQRCode']
+                jsApiList: ['chooseWXPay']
+              })
+              wx.ready(function () {
+                wx.chooseWXPay({
+                  timestamp: res.data.timestamp, // 支付签名时间戳，注意微信jssdk中的所有使用timestamp字段均为小写。但最新版的支付后台生成签名使用的timeStamp字段名需大写其中的S字符
+                  nonceStr: res.data.noncest, // 支付签名随机串，不长于 32 位
+                  package: 'prepay_id=' + res.data.prepayid, // 统一支付接口返回的prepay_id参数值，提交格式如：prepay_id=***）
+                  signType: 'MD5', // 签名方式，默认为'SHA1'，使用新版支付需传入'MD5'
+                  paySign: res.data.sign, // 支付签名
+                  success: function (res) {
+                    alert('我成功了')
+                  },
+                  error: function (error) {
+                    alert(error)
+                  }
+                })
               })
             })
           },
@@ -117,7 +135,8 @@
         created () {
         },
         mounted () {
-          this.getPayconfig()
+          // this.getPayconfig()
+          // alert(this.$store.state.params.amount)
         }
     }
 </script>

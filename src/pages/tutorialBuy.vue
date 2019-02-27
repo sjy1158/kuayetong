@@ -38,12 +38,10 @@
               Toast('当前账户等级不符合购买条件，无法购买！')
             }else{
               _this.isLoading = false
-              this.$router.push({
-                path: '/becomeParner',
-                query: {
-                  userId: id
-                }
+              _this.$router.push({
+                path: '/becomeParner'
               })
+              _this.$store.state.userId = id
             }
           }
         })

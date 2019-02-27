@@ -9,11 +9,14 @@ import getLocation from './plugins/getUrl'
 import 'vant/lib/vant-css/index.css'
 import 'lib-flexible/flexible'
 import AMap from 'vue-amap'
+import Store from './vuex/index'
+// import Alipay from '../src/plugins/alipay'
 
 Vue.use(AMap)
 Vue.use(Vant)
 Vue.use(Api)
 Vue.use(getLocation)
+// Vue.use(Alipay)
 
 AMap.initAMapApiLoader({
   // 申请的高德key
@@ -27,6 +30,7 @@ Vue.config.productionTip = false
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
+  store: Store,
   router,
   components: { App },
   template: '<App/>'

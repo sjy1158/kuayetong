@@ -328,6 +328,12 @@ const api = {
   //获取状态
   getOrderstatus (params) {
     return axios.post('http://q11.shop:8090/app/user/upgrad/orderStauts', params)
+  },
+  // 支付宝支付
+  getAlipay (params) {
+    return axios.get('https://mp.q11.shop/q11api/api/UserUpgrade/getAlipayParameter', {
+      params: params
+    })
   }
 }
 export default class Api {
