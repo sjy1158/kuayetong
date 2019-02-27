@@ -3,7 +3,7 @@
     <img src="../assets/quan.png" style="width: 100%;" alt="">
     <footer>
       <div class="footer">
-        <button @click="goBuy">立即购买</button>
+        <button @click="goBuy(991)">立即购买</button>
       </div>
     </footer>
   </div>
@@ -16,9 +16,12 @@
       }
     },
     methods:{
-      goBuy () {
+      goBuy (price) {
         this.$router.push({
-          path: '/goPay'
+          path: '/goPay',
+          query: {
+            price: price
+          }
         })
       }
     },

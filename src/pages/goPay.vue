@@ -26,24 +26,98 @@
 
     <!--立即支付按钮-->
     <div class="paybtn">
-      <button>立即支付 ¥991.00</button>
+      <button @click="payQuick()">立即支付 ¥{{this.$route.query.params.amount.toFixed(2)}}</button>
     </div>
   </div>
 </template>
 
 <script>
+  import wx from 'weixin-js-sdk'
+  import crypto from 'crypto'
     export default {
         name: "goPay",
         data () {
           return {
-            payway: 1
+            payway: 1,
+            params: {"timestamp":"","userId":"756","type":"0","updown":""},
+            payparams: {}
           }
         },
         methods: {
           chosePayway (payway) {
-            console.log(payway)
             this.payway = payway
+          },
+          payQuick () {
+            const _this = this
+            // var str = this.getXun(_this.payparams).substr(1)
+            // var sign = this.getSian(str + '&key=')
+            if (this.payway==2) {
+              wx.ready(function () {
+                wx.scanQRCode({
+                  needResult : 1,
+                  scanType : [ "qrCode", "barCode" ],
+                  success : function(res) {
+                    console.log(res)
+                    alert(JSON.stringify(res));
+                    var result = res.resultStr;
+                  },
+                  fail : function(res) {
+                    console.log(res)
+                    alert(JSON.stringify(res));
+
+                  }
+                })
+              })
+            }
+          },
+          getPayconfig () {
+            var data = {}
+            this.params.timestamp = this.getTime()
+            var str = this.getXun(this.params).substr(1)
+            this.params.sign = this.getSian(str + '&ABCDEFHIJKL98712&*^&65@#$2334056MNOPQRSYIJIWANGL#$#UOUVWXYZ')
+            this.$api.getConfig(this.params).then((res) => {
+              alert(res.data)
+              this.payparams = res.data
+              wx.config({
+                debug: true,
+                appId: res.data.appid,
+                timeStamp: res.data.timestamp,
+                nonceStr: res.data.noncestr,
+                signature: res.data.sign,
+                jsApiList: ['chooseWXPay','scanQRCode']
+              })
+            })
+          },
+          // 字典序排序
+          getXun (obj) {
+            var newkey = Object.keys(obj).sort().reverse()
+            var str = ''
+            var newobj = []
+            for (var i = 0; i < newkey.length; i++) {
+              newobj.push(newkey[i] + '=' + obj[newkey[i]])
+            }
+            for (var i = 0; i< newobj.length; i++) {
+              str += '&' + newobj[i]
+            }
+            return str
+            // return newobj
+          },
+          // 获取时间戳
+          getTime () {
+            return  Date.parse(new Date())
+          },
+          // 获取签名
+          getSian (str) {
+            console.log(str)
+            var md5 = crypto.createHash("md5")
+            md5.update(str)
+            return md5.digest("hex")
           }
+        },
+        created () {
+        },
+        mounted () {
+          this.getPayconfig()
         }
     }
 </script>
@@ -79,6 +153,9 @@
     color: #666666;
     font-size: 18px;
     position: relative;
+  }
+  .payway_item:first-child {
+    border-bottom: 1px solid #EBEBEB;
   }
   .payway_item span {
     vertical-align: middle;

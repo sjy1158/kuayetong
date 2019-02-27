@@ -28,7 +28,8 @@
     "vue-mui": "^2.0.0",
     "vue-router": "^3.0.1",
     "vue-social-share": "0.0.3",
-    "vue-ydui": "^1.2.2"
+    "vue-ydui": "^1.2.2",
+    "weixin-js-sdk": "^1.4.0-test"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",
@@ -49,6 +50,7 @@
     "chromedriver": "^2.27.2",
     "copy-webpack-plugin": "^4.0.1",
     "cross-spawn": "^5.0.1",
+    "crypto": "^1.0.1",
     "css-loader": "^0.28.0",
     "eslint": "^4.15.0",
     "eslint-config-standard": "^10.2.1",

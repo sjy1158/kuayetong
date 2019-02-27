@@ -9,15 +9,8 @@ import config from '../util/config'
 // 处理服务端错误信息
 axios.interceptors.response.use(response=>{
   if(response.data.code==200) {
-    return response.data.data;
-  } else if (response.data.code==300){
-      Toast(response.data.msg);
-      return;
-  } else if(typeof response.data=="string"){
-     return response.data;
-  } else if(response.data.status==1){
-    return response.data.lives;
-  }  else {
+    return response.data
+  } else {
     Toast(response.data.msg);
     return
   }
@@ -319,6 +312,22 @@ const api = {
       url:config.baseUrl+'/crossindustry/findPage/FindActivityDetalis',
       params:params
     })
+  },
+  // 获取用户信息
+  getInfo (id) {
+    return axios.get('http://q11.shop:8090/app/user/getInfo', {
+      params: {
+        userId: id
+      }
+    })
+  },
+  //获取config参数
+  getConfig (params) {
+    return axios.post('http://q11.shop:8090/app/user/upgrad/wxPay', params)
+  },
+  //获取状态
+  getOrderstatus (params) {
+    return axios.post('http://q11.shop:8090/app/user/upgrad/orderStauts', params)
   }
 }
 export default class Api {
